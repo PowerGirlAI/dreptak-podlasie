@@ -201,7 +201,7 @@ a{text-underline-offset:3px;text-decoration-thickness:1px}
 .tag{font:500 .68rem/1.4 var(--f-body);text-transform:uppercase;letter-spacing:.16em;color:var(--b-muted)}
 
 /* macierz */
-.matrix{display:grid;grid-template-columns:110px repeat(2,minmax(0,1fr));border-top:1px solid var(--b-line)}
+.matrix{display:grid;grid-template-columns:110px minmax(0,1fr);border-top:1px solid var(--b-line)}
 .matrix>div{padding:22px 20px 22px 0;min-width:0;border-bottom:1px solid var(--b-line)}
 .matrix>div:not(.d):not(.corner){padding-left:20px;border-left:1px solid var(--b-line)}
 .matrix .h{font:500 .74rem/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;display:flex;gap:10px;align-items:center;color:var(--b-muted)}
@@ -210,7 +210,7 @@ a{text-underline-offset:3px;text-decoration-thickness:1px}
 .matrix .km{font:400 2.4rem/1 var(--f-display);font-variant-numeric:tabular-nums;margin-bottom:6px}
 .matrix .lt .km{color:var(--c-light)} .matrix .hd .km{color:var(--c-hard)}
 .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
-@media (max-width:640px){.matrix{grid-template-columns:1fr 1fr}.matrix .d{grid-column:1/-1;padding-bottom:6px;border-bottom:0}.matrix .corner{display:none}.matrix>div:not(.d):not(.corner){padding-left:0;border-left:0}.matrix>div.hd:not(.h){padding-left:14px!important;border-left:1px solid var(--b-line)!important}}
+@media (max-width:640px){.matrix{grid-template-columns:minmax(0,1fr)!important}.matrix .d{grid-column:1/-1;padding-bottom:6px;border-bottom:0}.matrix .corner{display:none}.matrix>div:not(.d):not(.corner){padding-left:0;border-left:0}.matrix>div.hd:not(.h){padding-left:14px!important;border-left:1px solid var(--b-line)!important}}
 .alerts{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin-top:32px}
 .alert{border-radius:var(--r);padding:18px 20px;background:var(--b-card);border:1px solid var(--b-line);position:relative}
 .alert::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:2px;background:var(--warn)}
@@ -403,7 +403,7 @@ footer a{color:var(--heather)}
 <section class="band t-chalk" id="uklad">
   <div class="wrap">
     <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak czerwony · układ</div><h2>Kto co robi</h2><p>Baza na obie noce: <b>LasPokój w Wólce Nadbużnej</b>, kilka km od stacji Siemiatycze. Każdy dzień kończy się w domkach. Piątek wybiera każda osoba sama (1a albo 1b); sobota i niedziela są wspólne.</p></div>
-    <div class="matrix" role="table" aria-label="Plan wyjazdu" style="grid-template-columns:110px minmax(0,1fr)">
+    <div class="matrix" role="table" aria-label="Plan wyjazdu">
       <div class="corner" role="columnheader"></div>
       <div class="h lt" role="columnheader"><i class="dot" style="background:var(--c-light)"></i>Plan dla wszystkich</div>
       <div class="d" role="rowheader">Pt<span>20.11</span></div>
@@ -412,6 +412,17 @@ footer a{color:var(--heather)}
       <div class="lt"><div class="km" data-km="sat2a">≈ 60 km</div><span class="small">Z domków przez Siemiatycze do Maćkowicz, potem zielonym szlakiem do Czeremchy: Maćkowicze, Góra Uszeście, Mielnik (obiad, Góra Zamkowa, kopalnia kredy), Tokary, Zubacze. Start 09:00, powrót pociągiem REG 16:26 do Siemiatycz (16:54) i rowerem do domków.</span></div>
       <div class="d" role="rowheader">Nd<span>22.11</span></div>
       <div class="lt"><div class="km" data-km="sun3a">≈ 37 km</div><span class="small">Spacer ścieżką przyrodniczą, rowerem do Drohiczyna: Góra Zamkowa, katedra, widok na Bug, obiad. Potem na stację Siemiatycze i TLK 15:41 do Warszawy.</span></div>
+    </div>
+    <div class="card wx" style="margin-top:18px">
+      <div class="tag">Prognoza pogody · Siemiatycze <span class="st or">prognoza długoterminowa</span></div>
+      <h3>Pogoda na weekend</h3>
+      <div class="wx-grid" id="wxGrid">
+        <div class="wx-day"><b>Pt 20.11</b><span class="wx-t">6° / −1°</span><span>chmury i słońce</span><span>wiatr SW 15 km/h, porywy 28</span><span>opady 25%, 0 mm</span></div>
+        <div class="wx-day"><b>Sob 21.11</b><span class="wx-t">5° / −3°</span><span>rosnące zachmurzenie</span><span>wiatr ENE 4 km/h, porywy 6</span><span>opady 25%, 0 mm</span></div>
+        <div class="wx-day"><b>Nd 22.11</b><span class="wx-t">2° max</span><span>pochmurno, możliwy śnieg</span><span>wiatr S 15 km/h</span><span>śnieg ok. 1,5 cm (Interia)</span></div>
+      </div>
+      <p class="small muted" style="margin-top:10px">Źródła: AccuWeather (pt, sob) i Interia Pogoda (nd), stan 7.11.2026 — prognoza na 2 tygodnie naprzód jest mało pewna. Noce z przymrozkiem: szron na mostkach i asfalcie rano, rękawiczki i ochraniacze na buty. Sobota zapowiada się najspokojniej (słaby wiatr) — dobry dzień na najdłuższy odcinek.</p>
+      <p class="small" id="wxLive" style="margin-top:6px"></p>
     </div>
     <div class="alerts">
       <div class="alert"><strong>Dzień ma 8,5 h <span class="st ok">wyliczone</span></strong><p class="small">21.11: wschód 06:58, zachód 15:28. Pobudka najwcześniej 7:00. Dojazdy do domków po zmroku (piątek, sobota) — przednie i tylne światło obowiązkowo.</p></div>
