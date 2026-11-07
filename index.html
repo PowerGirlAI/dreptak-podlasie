@@ -436,10 +436,6 @@ footer a{color:var(--heather)}
     <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak niebieski · atrakcje</div><h2>Co po drodze</h2><p>Liczby przy nazwach to kilometr zielonego szlaku licząc od Czeremchy. W listopadzie część miejsc działa krócej albo wcale. Zdjęć nie osadzamy bez sprawdzonej licencji — każda karta prowadzi do zdjęć w Mapach Google i Wikimedia Commons.</p></div>
     <div class="filters" id="attrFilters"></div>
     <div class="grid g3" id="attrGrid"></div>
-    <div class="card" style="margin-top:16px" id="geocaching">
-      <h3>Geocaching <span class="st td">brak zweryfikowanych skrytek</span></h3>
-      <p class="small" style="margin-top:6px">Nie udało się potwierdzić statusu ani współrzędnych skrytek wzdłuż szlaku: OpenCaching pokazuje je dopiero po zalogowaniu, a Geocaching.com nie udostępnia ich publicznie. Warstwa skrytek jest pusta, licznik pokazuje 0. Zaloguj się w <a href="https://opencaching.pl/" target="_blank" rel="noopener">OpenCaching.pl</a> lub <a href="https://www.geocaching.com/play/map" target="_blank" rel="noopener">Geocaching.com</a>, wybierz skrytki przy szlaku ze świeżym logiem i wyślij kody organizatorce. Pomijamy skrytki w pasie przygranicznym, w schronach Linii Mołotowa i na terenie kopalni.</p>
-    </div>
   </div>
 </section>
 
@@ -619,7 +615,7 @@ const P={
   kuzawa:{n:'Kuzawa',c:[52.5250,23.3900],q:'Cerkiew św. Barbary Kuzawa'},
   siedlce:{n:'Siedlce — stacja',c:[52.1677,22.2901],q:'Dworzec PKP Siedlce'},
   uszescie:{n:'Rezerwat Góra Uszeście',c:[52.3380,23.0100],q:'Rezerwat przyrody Góra Uszeście'},
-  grabarka:{n:'Święta Góra Grabarka',c:[52.4280,23.0040],q:'Święta Góra Grabarka'}
+  grabarka:{n:'Święta Góra Grabarka',c:[52.4166,23.0067],q:'Święta Góra Grabarka',maps:'https://maps.app.goo.gl/s3xwKjdoV6Mk2hTs7'}
 };
 /* Km zielonego szlaku od Czeremchy = 58,5 − km GreenVelo */
 const GREEN=[['czeremcha',0],['zubacze',9.4],['klukowicze',15.8],['tokaryc',20.2],['tokary',22.0],['tokaryg',24.1],['adamowo',31.8],['mielnik',39.3],['oslowo',43.4],['mackowicze',47.9],['stacja',51.0],['siemiatycze',58.5]];
@@ -696,9 +692,8 @@ function initMap(){
   L.marker(P.czeremcha.c,{icon:pinIcon('⌂','#4f7d5c'),title:'Baza noclegowa'}).bindPopup('<b>Baza: okolice Czeremchy</b><br><a href="#noclegi">Porównanie noclegów</a>').addTo(layers.stay);
   ATTR.forEach(a=>{if(['czeremcha','mielnik','siemiatycze'].includes(a.p)&&!a.pin)return;L.marker(P[a.p].c,{icon:pinIcon('★','#7d4f6f'),title:a.n}).bindTooltip(a.n).bindPopup(()=>attrPopup(a)).addTo(layers.attr)});
   const box=$('#layerToggles');
-  box.innerHTML=[['route','Wybrana trasa'],['attr','Atrakcje'],['stay','Noclegi'],['rail','Kolej'],['geo','Geocaching']].map(([k,l])=>`<label><input type="checkbox" data-layer="${k}" ${k==='geo'?'':'checked'}> ${l}</label>`).join('');
+  box.innerHTML=[['route','Wybrana trasa'],['attr','Atrakcje'],['stay','Noclegi'],['rail','Kolej']].map(([k,l])=>`<label><input type="checkbox" data-layer="${k}" checked> ${l}</label>`).join('');
   box.addEventListener('change',e=>{const k=e.target.dataset.layer;if(!k)return;
-    if(k==='geo'){e.target.checked=false;openDlg('Geocaching','Brak zweryfikowanych skrytek','<p>Nie pokazujemy skrytek bez potwierdzonego statusu i współrzędnych. Instrukcja jest w sekcji „Co po drodze”.</p>');return}
     if(k==='route'){e.target.checked?routeLayer.addTo(map):map.removeLayer(routeLayer);return}
     e.target.checked?layers[k].addTo(map):map.removeLayer(layers[k])});
 }
@@ -722,7 +717,7 @@ function pointPopup(i){const r=curR(),x=r.pts[i],p=P[x.p],s=segInfo(r,i);
    <span>📍 od startu: <b>${s.km!=null?fmt(s.km)+' km':'do wyliczenia'}</b> ${x.kmSt?ST[x.kmSt]:''}</span>
    <span>↔ od poprzedniego: ${s.d!=null?fmt(s.d)+' km':'—'} · ⏱ ${s.ride!=null?hm(s.ride):'—'}</span>
    <span>🏛 postój: ${x.visit?x.visit+' min':'—'} · 🛤 ${esc(x.surf)}</span>${x.info?`<span>ℹ️ ${esc(x.info)}</span>`:''}</div>
-  <div class="photo-slot" style="margin-top:6px"><a href="${commons(p.n)}" target="_blank" rel="noopener">Zdjęcia (Commons)</a> · <a href="${gmaps(p.q)}" target="_blank" rel="noopener">Google Maps</a></div>`}
+  <div class="photo-slot" style="margin-top:6px"><a href="${commons(p.n)}" target="_blank" rel="noopener">Zdjęcia (Commons)</a> · <a href="${p.maps||gmaps(p.q)}" target="_blank" rel="noopener">Google Maps</a></div>`}
 function renderRouteSeg(){$('#routeSeg').innerHTML=ROUTE_ORDER.map(k=>`<button type="button" data-r="${k}" aria-pressed="${k===cur}"><i style="background:${ROUTES[k].color}"></i>${esc(ROUTES[k].label)}</button>`).join('')}
 $('#routeSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setRoute(b.dataset.r)});
 function renderPoints(){const r=curR();
@@ -733,7 +728,7 @@ $('#pointList').addEventListener('click',e=>{const b=e.target.closest('.pt');if(
 function rstats(r){const km=r.km, ride=km!=null?km/r.pace*60:null, vis=r.pts.reduce((a,p)=>a+(p.visit||0),0);
   const attrs=new Set(r.pts.map(x=>x.p).filter(p=>ATTR.some(a=>a.p===p))).size;return{km,ride,vis,tot:ride!=null?ride+vis:null,attrs}}
 function renderStats(){const r=curR(),s=rstats(r),live=liveKm[cur];
-  $('#routeStats').innerHTML=[[s.km!=null?fmt(s.km)+' km':'—','dystans (źródło)'],[s.ride!=null?hm(s.ride):'—',(r.type==='foot'?'marsz':'jazda')+' przy '+r.pace+' km/h'],[s.tot!=null?hm(s.tot):'—','z postojami'],[r.diff,'trudność'],[String(s.attrs),'atrakcje'],['0','zweryfikowane skrytki']]
+  $('#routeStats').innerHTML=[[s.km!=null?fmt(s.km)+' km':'—','dystans (źródło)'],[s.ride!=null?hm(s.ride):'—',(r.type==='foot'?'marsz':'jazda')+' przy '+r.pace+' km/h'],[s.tot!=null?hm(s.tot):'—','z postojami'],[r.diff,'trudność'],[String(s.attrs),'atrakcje']]
    .map(([v,l])=>`<div class="stat"><div class="v" style="font-size:${v.length>9?'1.15rem':'1.7rem'};color:${r.hex}">${esc(v)}</div><div class="l">${l}</div></div>`).join('')}
 function setRoute(k){cur=k;renderRouteSeg();renderPoints();try{drawRoute()}catch(e){console.warn(e)}renderStats()}
 async function tryRouting(key,coords,type){
@@ -773,7 +768,7 @@ const ATTR=[
   {id:'kuzawa',p:'kuzawa',km:'—',t:'cerkwie',n:'Kuzawa',d:'Cerkiew św. Barbary i przydomowy ogród z „kwiatowym pociągiem”. Wieś blisko granicy — sprawdź strefę.',visit:30,price:'z zewnątrz bezpłatnie',hours:'do sprawdzenia',src:'komoot'},
   {id:'kleszczele',p:'kleszczele',km:'N 11,0',t:'miasta',n:'Kleszczele i zalew Repczyce',d:'Miasteczko na czerwonym szlaku Green Velo; w Repczycach ośrodek rekreacji z pomostami, wiatą z miejscem na ognisko i wieżą 25 m.',visit:45,price:'bezpłatnie',hours:'teren otwarty',src:'GreenVelo, komoot'},
   {id:'uszescie',p:'uszescie',km:'≈ 41',t:'widoki',n:'Rezerwat Góra Uszeście',d:'Stromy stok doliny Bugu z murawami kserotermicznymi tuż za Mielnikiem. Punkt widokowy na krawędzi ok. 30-metrowej skarpy nad zakolem rzeki.',visit:20,price:'bezpłatnie',hours:'teren otwarty, tylko wyznaczone ścieżki',src:'komoot, hajnowka.pl'},
-  {id:'grabarka',p:'grabarka',km:'Mielnik +12,7',t:'cerkwie',n:'Święta Góra Grabarka',d:'Najważniejsze sanktuarium prawosławne w Polsce: cerkiew, żeński monaster, tysiące krzyży i cudowne źródełko. Odbicie z Mielnika przez Moszczonę Królewską (12,7 km w jedną stronę, wg GreenVelo) — opcja dla Hard lub na luźniejszy dzień. W cerkwi nie fotografujemy; obowiązuje skromny strój.',visit:45,price:'bezpłatnie (ofiara mile widziana)',hours:'cerkiew: pn–pt 10–17, sob 11–17, nd 13–17 (serwis nieoficjalny)',src:'GreenVelo, nocowanie.pl'}
+  {id:'grabarka',p:'grabarka',maps:'https://maps.app.goo.gl/s3xwKjdoV6Mk2hTs7',km:'Mielnik +12,7',t:'cerkwie',n:'Święta Góra Grabarka',d:'Najważniejsze sanktuarium prawosławne w Polsce: cerkiew, żeński monaster, tysiące krzyży i cudowne źródełko. Odbicie z Mielnika przez Moszczonę Królewską (12,7 km w jedną stronę, wg GreenVelo) — opcja dla Hard lub na luźniejszy dzień. W cerkwi nie fotografujemy; obowiązuje skromny strój.',visit:45,price:'bezpłatnie (ofiara mile widziana)',hours:'cerkiew: pn–pt 10–17, sob 11–17, nd 13–17 (serwis nieoficjalny)',src:'GreenVelo, nocowanie.pl'}
 ];
 const ACC={cerkwie:'var(--mk-blue)',widoki:'var(--mk-green)',muzea:'var(--mk-yellow)',miasta:'var(--mk-red)'};
 let attrF='all';
@@ -783,11 +778,11 @@ function renderAttr(){setTimeout(()=>fillPhotos($('#attrGrid')),0);
   $('#attrGrid').innerHTML=ATTR.filter(a=>attrF==='all'||a.t===attrF).map(a=>{const sure=!/sprawdz|umówieniu/.test(a.hours+a.price);
    return `<article class="card attr" style="--acc:${ACC[a.t]}"><div class="top"><span class="tag">${esc(a.t)}</span><span class="kmchip">km ${esc(a.km)}</span></div><h3>${esc(a.n)}</h3><figure class="ph" data-ph="${a.id}"><span class="ph-empty">Wczytuję zdjęcie…</span></figure><p class="small">${esc(a.d)}</p>
    <dl class="kv"><dt>Zwiedzanie</dt><dd>ok. ${a.visit} min</dd><dt>Wstęp</dt><dd>${esc(a.price)}</dd><dt>Listopad</dt><dd>${esc(a.hours)} ${sure?ST.or:ST.td}</dd></dl>
-   <div class="btns"><button class="btn sec small" type="button" onclick="attrDetails('${a.id}')">Szczegóły</button><a class="btn sec small" href="${gmaps(a.n)}" target="_blank" rel="noopener">Google Maps</a></div></article>`}).join('')}
+   <div class="btns"><button class="btn sec small" type="button" onclick="attrDetails('${a.id}')">Szczegóły</button><a class="btn sec small" href="${a.maps||gmaps(a.n)}" target="_blank" rel="noopener">Google Maps</a></div></article>`}).join('')}
 $('#attrFilters').addEventListener('click',e=>{const b=e.target.closest('button');if(b){attrF=b.dataset.f;renderAttr()}});
 function attrDetails(id){const a=ATTR.find(x=>x.id===id);
   openDlg(a.n,a.t+' · km '+a.km,`<p>${esc(a.d)}</p><dl class="kv"><dt>Zwiedzanie</dt><dd>ok. ${a.visit} min</dd><dt>Wstęp</dt><dd>${esc(a.price)}</dd><dt>Listopad</dt><dd>${esc(a.hours)}</dd><dt>Rezerwacja</dt><dd>do sprawdzenia</dd><dt>Źródło</dt><dd>${esc(a.src)}</dd></dl>
-  <div class="photo-slot">Zdjęć nie osadzamy bez potwierdzonej licencji: <a href="${commons(a.n)}" target="_blank" rel="noopener">Wikimedia Commons</a> · <a href="${gmaps(a.n)}" target="_blank" rel="noopener">Mapy Google</a></div>
+  <div class="photo-slot">Zdjęć nie osadzamy bez potwierdzonej licencji: <a href="${commons(a.n)}" target="_blank" rel="noopener">Wikimedia Commons</a> · <a href="${a.maps||gmaps(a.n)}" target="_blank" rel="noopener">Mapy Google</a></div>
   <p class="small"><b>Dojazd:</b> ${a.km.startsWith('N')?'szlak czerwony z Czeremchy na północ (niedziela, Light)':a.km==='—'||a.km==='0'?'pieszo lub rowerem z bazy w Czeremsze':'zielony szlak, km '+esc(a.km)+' od Czeremchy (sobota)'}.</p>`)}
 window.attrDetails=attrDetails;
 
@@ -806,7 +801,7 @@ const PHOTO={
   kuzawa:{cat:'Church of Saint Barbara in Kuzawa',cat2:'Kuzawa'},
   kleszczele:{file:'Cerkiew Kleszczele Polska.JPG',cat:'Kleszczele'},
   uszescie:{cat:'Góra Uszeście',cat2:'Western Bug in Poland'},
-  grabarka:{cat:'Grabarka',cat2:'Holy Mount Grabarka'}
+  grabarka:{url:'https://lh3.googleusercontent.com/grass-cs/AABkmLcG0bf1i95K2R6rS-cC-29tjmGJpNkLvHrrKMwjTyJpfmF2YMwrNhEbfylXRO6Ntcyg45q4s1ZqPI1fdsRhsLLBQynVTP57pkP6oROdqjd9WoL3nms9x3Kb8SWdH4esRIdjAl1bmkEazMQ=w960-h1200-n-k-no',page:'https://maps.app.goo.gl/s3xwKjdoV6Mk2hTs7',author:'użytkownik Map Google',site:'Mapy Google',cat:'Grabarka',cat2:'Holy Mount Grabarka'}
 };
 const CAPI='https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&prop=imageinfo&iiprop=url|size|extmetadata&iiextmetadatafilter=Artist|LicenseShortName&iiurlwidth=';
 const photoCache={};
@@ -814,18 +809,19 @@ const stripHtml=h=>{const d=document.createElement('div');d.innerHTML=h||'';retu
 function pickPage(pages){const arr=Object.values(pages||{}).filter(p=>p.imageinfo&&/\.(jpe?g|png|webp)$/i.test(p.title));
   if(!arr.length)return null;arr.sort((a,b)=>a.title.localeCompare(b.title));const land=arr.find(p=>p.imageinfo[0].width>=p.imageinfo[0].height*1.15);return land||arr[0]}
 async function commonsQuery(q,w){const r=await fetch(CAPI+w+'&'+q);if(!r.ok)throw 0;const j=await r.json();return pickPage(j.query&&j.query.pages)}
-async function getPhoto(key,w){if(photoCache[key+w])return photoCache[key+w];const src=PHOTO[key];if(!src)return null;
+async function getPhoto(key,w,noUrl){const ck=key+w+(noUrl?'c':'');if(photoCache[ck])return photoCache[ck];const src=PHOTO[key];if(!src)return null;
+  if(src.url&&!noUrl)return{url:src.url,page:src.page,author:src.author,lic:'',site:src.site};
   const p=(async()=>{let pg=null;
     if(src.file)try{pg=await commonsQuery('titles='+encodeURIComponent('File:'+src.file),w)}catch(e){}
     for(const c of [src.cat,src.cat2]){if(pg||!c)continue;try{pg=await commonsQuery('generator=categorymembers&gcmtype=file&gcmlimit=30&gcmtitle='+encodeURIComponent('Category:'+c),w)}catch(e){}}
     if(!pg)return null;const ii=pg.imageinfo[0],m=ii.extmetadata||{};
     return{url:ii.thumburl||ii.url,page:ii.descriptionurl,author:stripHtml(m.Artist&&m.Artist.value)||'autor na stronie pliku',lic:(m.LicenseShortName&&m.LicenseShortName.value)||'wolna licencja'}})();
-  photoCache[key+w]=p;return p}
-const credit=ph=>`Fot. ${esc(ph.author)}, ${esc(ph.lic)} · <a href="${ph.page}" target="_blank" rel="noopener">Wikimedia Commons</a>`;
+  photoCache[ck]=p;return p}
+const credit=ph=>`Fot. ${esc(ph.author)}${ph.lic?', '+esc(ph.lic):''} · <a href="${ph.page}" target="_blank" rel="noopener">${esc(ph.site||'Wikimedia Commons')}</a>`;
 async function fillPhotos(root){for(const f of (root||document).querySelectorAll('.ph[data-ph]')){const key=f.dataset.ph;
-  getPhoto(key,640).then(ph=>{if(!f.isConnected)return;if(!ph){f.innerHTML='<span class="ph-empty">Zdjęcie niedostępne w tym widoku</span>';return}
+  const load=noUrl=>getPhoto(key,640,noUrl).then(ph=>{if(!f.isConnected)return;if(!ph){f.innerHTML='<span class="ph-empty">Zdjęcie niedostępne w tym widoku</span>';return}
     f.innerHTML=`<img src="${ph.url}" alt="${esc((ATTR.find(a=>a.id===key)||{}).n||'')}" loading="lazy" decoding="async" referrerpolicy="no-referrer"><figcaption>${credit(ph)}</figcaption>`;
-    f.querySelector('img').onerror=()=>{f.innerHTML='<span class="ph-empty">Zdjęcie niedostępne w tym widoku</span>'}}).catch(()=>{f.innerHTML='<span class="ph-empty">Zdjęcie niedostępne w tym widoku</span>'})}}
+    f.querySelector('img').onerror=()=>{if(!noUrl&&PHOTO[key]&&PHOTO[key].url)load(true);else f.innerHTML='<span class="ph-empty">Zdjęcie niedostępne w tym widoku</span>'}}).catch(()=>{f.innerHTML='<span class="ph-empty">Zdjęcie niedostępne w tym widoku</span>'});load(false)}}
 async function heroPhoto(){try{const ph=await getPhoto('hero',1600);if(!ph)return;const im=$('#heroPhoto');im.onload=()=>{im.classList.add('on');$('#heroCredit').innerHTML=credit(ph)};im.src=ph.url}catch(e){}}
 
 /* ---------- Dialog ---------- */
@@ -888,7 +884,7 @@ function renderNumbers(){if(!lastB)return;
   const L1=numG==='light';const fri=18.8, sat=L1?58.5:117, sun=L1?22:98;const bike=fri+sat+sun;
   const ride=(fri/14+sat/(L1?14:20)+sun/(L1?14:20))*60;
   const attrs=L1?ATTR.filter(a=>!['kuzawa','muzeum'].includes(a.id)).length:6;
-  $('#numbers').innerHTML=[[fmt(bike),'km łącznie (z piątkowym rozjazdem)'],[fmt(bike),'km rowerem'],['—','km pieszo (zwiedzanie, do wyliczenia)'],[String(attrs),'atrakcje po drodze'],['0','skrytki (zweryfikowane)'],[hm(ride),'czas jazdy'],['2','noclegi'],[zl(lastB.b.tot),'koszt grupy ('+lastB.n+' os.)'],[zl(lastB.b.per),'na osobę']]
+  $('#numbers').innerHTML=[[fmt(bike),'km łącznie (z piątkowym rozjazdem)'],[fmt(bike),'km rowerem'],['—','km pieszo (zwiedzanie, do wyliczenia)'],[String(attrs),'atrakcje po drodze'],[hm(ride),'czas jazdy'],['2','noclegi'],[zl(lastB.b.tot),'koszt grupy ('+lastB.n+' os.)'],[zl(lastB.b.per),'na osobę']]
    .map(([v,l])=>`<div class="stat"><div class="v" style="font-size:${v.length>9?'1.25rem':'1.9rem'};color:${L1?'#b9d3bf':'#e2b08f'}">${v}</div><div class="l">${l}</div></div>`).join('');
   $$('#numSeg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g===numG))}
 $('#numSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(b){numG=b.dataset.g;renderNumbers()}});
@@ -897,7 +893,6 @@ $('#numSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(
 const CL={'Odzież':['bielizna termiczna','warstwa ocieplająca','kurtka przeciwdeszczowa i przeciwwiatrowa','spodnie odpowiednie do aktywności','ciepłe rękawiczki (dwie pary dla Hard)','czapka lub opaska pod kask','zapasowe skarpety','odzież na wieczór'],
  'Sprzęt rowerowy':['sprawny rower po przeglądzie','oświetlenie przednie i tylne + zapasowe baterie','kask','odblaski','zapasowa dętka lub zestaw naprawczy','pompka i podstawowe narzędzia','wodoodporne sakwy','powerbank'],
  'Trekking i nawigacja':['wygodne obuwie z dobrą przyczepnością','mapa offline (zielony i czerwony szlak)','naładowany telefon','latarka czołowa','termos','woda i prowiant','apteczka','dokumenty i ubezpieczenie'],
- 'Geocaching':['telefon z mapami offline','aplikacja geocachingowa','długopis','małe przedmioty na wymianę (jeśli zasady skrytki pozwalają)'],
  'Na nocleg':['ręcznik i klapki do balii/sauny','strój kąpielowy','kosmetyki','wygodne ubranie','gry planszowe (jeśli chcesz)']};
 const CLKEY='dreptak-podlasie-cl';let clS={};try{clS=JSON.parse(localStorage.getItem(CLKEY)||'{}')}catch(e){}
 function renderCL(){let i=0;$('#checklist').innerHTML=Object.entries(CL).map(([g,it])=>`<fieldset><legend>${g}</legend><div class="checks">${it.map(x=>`<label><input type="checkbox" id="cl${i++}" data-k="${esc(g+'|'+x)}" ${clS[g+'|'+x]?'checked':''}> ${esc(x)}</label>`).join('')}</div></fieldset>`).join('');updCL()}
