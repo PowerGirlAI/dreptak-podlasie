@@ -1029,7 +1029,7 @@ $('#dlgClose').addEventListener('click',closeDlg); $('#dlg').addEventListener('c
 /* ---------- Noclegi ---------- */
 const STAYS=[{id:'laspokoj',n:'LasPokój',loc:'Wólka Nadbużna',cap:12}];
 const LS={night:600,max:6,balia:300,nights:2};
-const LS_IMG=['2024/05/LASPOKOJ-00106-scaled.jpg','2024/05/LASPOKOJ-00130-scaled.jpg','2024/05/LASPOKOJ-00054-scaled.jpg','2024/05/LASPOKOJ-00132-768x1024.jpg','2024/05/LASPOKOJ-00129-scaled.jpg','2024/05/LASPOKOJ-00128.jpg','2024/05/LASPOKOJ-00050-scaled.jpg','2024/05/LASPOKOJ-00010-1024x768.jpg','2024/05/LASPOKOJ-00018-1024x768.jpg','2025/05/Wolka-jazcuzi-1-scaled.jpg'].map(p=>'https://laspokoj.pl/wp-content/uploads/'+p);
+const LS_IMG=['2024/05/LASPOKOJ-00106-scaled.jpg','2024/05/LASPOKOJ-00130-scaled.jpg','2024/05/LASPOKOJ-00054-scaled.jpg','2024/05/LASPOKOJ-00132-768x1024.jpg','2024/05/LASPOKOJ-00129-scaled.jpg','2024/05/LASPOKOJ-00128.jpg','2024/05/LASPOKOJ-00050-scaled.jpg','2024/05/LASPOKOJ-00094-scaled.jpg','2024/05/LASPOKOJ-00088-scaled.jpg','2024/05/LASPOKOJ-00010-1024x768.jpg','2024/05/LASPOKOJ-00018-1024x768.jpg','2025/05/Wolka-jazcuzi-1-scaled.jpg'].map(p=>'https://laspokoj.pl/wp-content/uploads/'+p);
 function lsCost(n,balia){n=Math.max(2,n);const d=Math.ceil(n/LS.max),stay=d*LS.night*LS.nights,b=balia?d*LS.balia:0;return{d,stay,b,tot:stay+b,per:(stay+b)/n}}
 function lsText(n){const c=lsCost(n,false);return zl(c.per)+' na osobę · 2 noce ('+n+' os., '+c.d+(c.d>1?' domki':' domek')+')'}
 function renderStays(){const n=+$('#nGuests').value,b=$('#lsBalia').checked,c=lsCost(n,b);
