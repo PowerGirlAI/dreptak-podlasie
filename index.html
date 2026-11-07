@@ -463,50 +463,24 @@ footer a{color:var(--heather)}
 
 <section class="band t-ember edge" id="hard">
   <div class="wrap">
-    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Dystanse · Light i Hard</div><h2>Ile kilometrów w weekend</h2><p>Suma kilometrów zależy od piątku: 1a (rano, pętla ok. 33 km) albo 1b (wieczorem, tylko dojazd do domków). Kilometry orientacyjne — dokładne liczy mapa.</p></div>
-    <div class="grid g2">
-      <div class="card lt-card">
-        <div class="bigkm">≈ 127<small>KM · LIGHT MAX · Z PIĄTKIEM 1a</small></div>
-        <dl class="kv" style="margin-top:14px">
-          <dt>Piątek 1a</dt><dd>≈ 33 km — stacja Siemiatycze → Grabarka → Siemiatycze → domki</dd>
-          <dt>Sobota 2a</dt><dd>≈ 57 km — zielony szlak do Czeremchy, powrót pociągiem</dd>
-          <dt>Niedziela 3a</dt><dd>≈ 37 km — domki → Drohiczyn → stacja Siemiatycze</dd>
-          <dt>Czas jazdy</dt><dd>ok. 9 h przy 14 km/h (3 dni)</dd>
-          <dt>Trudność</dt><dd>łatwa–średnia; najdłuższy dzień to sobota</dd>
-        </dl>
-      </div>
-      <div class="card lt-card">
-        <div class="bigkm">≈ 99<small>KM · LIGHT MIN · Z PIĄTKIEM 1b</small></div>
-        <dl class="kv" style="margin-top:14px">
-          <dt>Piątek 1b</dt><dd>≈ 5–6 km — stacja Siemiatycze → domki, po ciemku</dd>
-          <dt>Sobota 2a</dt><dd>≈ 57 km — jak wyżej</dd>
-          <dt>Niedziela 3a</dt><dd>≈ 37 km — jak wyżej</dd>
-          <dt>Czas jazdy</dt><dd>ok. 7 h przy 14 km/h</dd>
-          <dt>Trudność</dt><dd>łatwa–średnia</dd>
-        </dl>
-      </div>
-    </div>
-    <h3 style="margin-top:26px">Hard: ≈ 112 + 150 km <span class="small muted">· razem z piątkiem ≈ 295 km (1a) lub ≈ 267 km (1b)</span></h3>
-    <p class="small muted" style="margin:4px 0 12px">Dwa długie dni pod rząd w listopadzie. Wykonalne dla zgranej grupy w tempie ok. 20 km/h. Niedziela do Warszawy kończy się po zmroku.</p>
-    <div class="grid g2">
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Dystanse · Light i Hard</div><h2>Ile kilometrów w weekend</h2><p>Obie grupy mają wersję <b>max</b> (piątek rano, 1a) i <b>min</b> (piątek wieczorem, 1b). Różnią się sobotą i niedzielą: Light 2a + 3a, Hard 2b + 3b. Kilometry liczy mapa po drogach dla rowerów (OSRM) przy każdym otwarciu strony; przycisk przy trasie otwiera ją w Mapach Google z ich pomiarem.</p></div>
+    <div class="tbl"><table id="kmTable"></table></div>
+    <div class="grid" style="margin-top:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))" id="kmCards"></div>
+    <div class="grid g2" style="margin-top:16px">
       <div class="card">
-        <div class="bigkm">≈ 112<small>KM · SOBOTA 2b · PĘTLA</small></div>
-        <dl class="kv" style="margin-top:14px">
-          <dt>Trasa</dt><dd>LasPokój → szlak zielony → Mielnik → Tokary → Zubacze → Czeremcha (ok. 57 km), powrót drogami lokalnymi przez Milejczyce i Siemiatycze <span class="st or">km z mapy</span></dd>
-          <dt>Czas</dt><dd>ok. 5 h 40 min jazdy przy 20 km/h + ok. 1 h 15 min postojów</dd>
-          <dt>Okno</dt><dd>08:00 → ok. 14:50; zapas do zmroku ok. 40 min</dd>
-          <dt>Punkt decyzji</dt><dd>Czeremcha ok. 11:00 — przy zmęczeniu lub złej pogodzie powrót pociągiem z grupą Light (15:17 / 16:26)</dd>
-          <dt>Nawierzchnia</dt><dd>szlak: asfalt, drogi lokalne; powrót: drogi wyznaczone automatycznie <span class="st td">sprawdź w komoot</span></dd>
+        <h3>Hard · sobota 2b — pętla</h3>
+        <dl class="kv" style="margin-top:10px">
+          <dt>Okno</dt><dd>start 08:00, meta ok. 14:50; zmrok 15:28</dd>
+          <dt>Punkt decyzji</dt><dd>Czeremcha ok. 11:00 — przy zmęczeniu lub złej pogodzie powrót pociągiem z Light (15:17 / 16:26)</dd>
+          <dt>Nawierzchnia</dt><dd>szlak: asfalt, drogi lokalne; powrót przez Milejczyce: drogi wyznaczone automatycznie <span class="st td">sprawdź przed wyjazdem</span></dd>
         </dl>
       </div>
       <div class="card">
-        <div class="bigkm">≈ 150<small>KM · NIEDZIELA 3b · DO WARSZAWY</small></div>
-        <dl class="kv" style="margin-top:14px">
-          <dt>Trasa</dt><dd>LasPokój → most na Bugu → Siedlce → Mińsk Mazowiecki → Warszawa Wschodnia. Przebieg i km wyznacza mapa (OSRM, profil rowerowy) <span class="st or">orientacyjne</span></dd>
-          <dt>Czas</dt><dd>ok. 7,5 h jazdy + ok. 1 h postojów; start 08:30, meta ok. 17:00 — ostatnie 1,5 h po zmroku</dd>
-          <dt>Punkty zejścia</dt><dd>Siedlce (IC 1126 15:42 → Warszawa 16:33, KM) i dalej stacje Kolei Mazowieckich (rower bezpłatnie) <span class="st td">do sprawdzenia</span></dd>
-          <dt>Koszt</dt><dd>bez biletu powrotnego; bagaż wozicie w sakwach</dd>
-          <dt>Wersja bezpieczniejsza</dt><dd>do Siedlec (ok. 75 km) i dalej pociągiem: + ok. 34 zł + rower 11,90 zł</dd>
+        <h3>Hard · niedziela 3b — do Warszawy</h3>
+        <dl class="kv" style="margin-top:10px">
+          <dt>Okno</dt><dd>start 08:30, meta ok. 17:00 — ostatnie 1,5 h po zmroku</dd>
+          <dt>Punkt zejścia</dt><dd>Siedlce: IC 1126 15:42 → Warszawa 16:33 (+ ok. 34 zł + rower 11,90 zł)</dd>
+          <dt>Koszt</dt><dd>bez biletu powrotnego; bagaż w sakwach</dd>
         </dl>
       </div>
     </div>
@@ -662,6 +636,7 @@ footer a{color:var(--heather)}
       <h3 style="margin-top:18px">Płatność</h3>
       <dl class="kv" style="margin-top:8px">
         <dt>Zaliczka na noclegi</dt><dd>kwota do uzupełnienia po ustaleniu liczby osób i domków</dd>
+        <dt>BLIK na telefon</dt><dd><span class="copybox"><b id="blikNr">530-770-135</b><button type="button" class="btn sec small" id="copyBlik">Kopiuj</button></span><br><span class="small muted">przelew na telefon BLIK w aplikacji banku; w tytule imię i nazwisko</span></dd>
         <dt>Numer konta organizatorki</dt><dd>[DO UZUPEŁNIENIA]</dd>
         <dt>Tytuł przelewu</dt><dd><span class="copybox"><span id="payTitle">Podlasie 20–22.11.2026 – [Imię i nazwisko]</span><button type="button" class="btn sec small" id="copyTitle">Kopiuj</button></span></dd>
       </dl>
@@ -849,12 +824,13 @@ async function placeStays(){const used={},n=+(($('#nGuests')||{}).value||8);
     if(exact)distFor(s,c);else{DIST[s.id]=null;const el=document.getElementById('dist-'+s.id);if(el)el.innerHTML=distHtml(s.id)}
     const pv=ppVal(s,n);
     L.marker(cc,{icon:L.divIcon({className:'',html:`<div class="spin"><b>⌂</b>${STAYS.indexOf(s)+1}</div>`,iconSize:[34,24],iconAnchor:[17,12],popupAnchor:[0,-12]}),title:s.n,zIndexOffset:500}).bindTooltip((STAYS.indexOf(s)+1)+'. '+s.n).bindPopup(()=>`<div class="tag">Baza · 2 noce</div><b>${STAYS.indexOf(s)+1}. ${esc(s.n)}</b><div class="small" style="margin:4px 0">📍 <b>${esc(A.a||s.loc)}</b></div><div class="small" style="margin:0 0 4px">Ze stacji Siemiatycze: ${distHtml(s.id)}</div><div><b>${lsText(n)}</b></div><div class="small" style="margin-top:4px">${house?'Pinezka pod tym adresem (OpenStreetMap).':exact?'Mapa OSM nie zna tego numeru domu — pinezka przy ulicy / w centrum wsi.':'Położenie do sprawdzenia — pinezka umowna przy Czeremsze.'}</div><p style="margin-top:6px"><a href="https://laspokoj.pl/" target="_blank" rel="noopener">laspokoj.pl</a> · <a href="https://www.google.com/maps/search/?api=1&query=52.36433,22.845" target="_blank" rel="noopener">Google Maps</a> · <a href="#noclegi">Szczegóły</a></p>`).addTo(layers.stay)}}
-function segInfo(r,i){const x=r.pts[i],prev=i?r.pts[i-1]:null;const d=(x.km!=null&&prev&&prev.km!=null)?x.km-prev.km:(i===0?0:null);return{km:x.km,d,ride:d!=null?d/r.pace*60:null}}
+function segInfo(r,i){const k=Object.keys(ROUTES).find(q=>ROUTES[q]===r),lv=liveKm[k];if(lv&&lv.legs&&lv.legs.length===r.pts.length-1){const cum=lv.legs.slice(0,i).reduce((a,b)=>a+b,0),d=i?lv.legs[i-1]:0;return{km:cum,d,ride:d/r.pace*60}}
+  const x=r.pts[i],prev=i?r.pts[i-1]:null;const d=(x.km!=null&&prev&&prev.km!=null)?x.km-prev.km:(i===0?0:null);return{km:x.km,d,ride:d!=null?d/r.pace*60:null}}
 function drawAll(){routeLayer=L.layerGroup();const all=[];
   ROUTE_ORDER.filter(k=>k!=='all').forEach(k=>{const r=ROUTES[k],coords=r.pts.map(x=>P[x.p].c),live=liveKm[k];all.push(...coords);
     const line=live&&live.geom?L.polyline(live.geom,{color:r.hex,weight:k==='fri1b'?3:5,opacity:.85}):L.polyline(coords,{color:r.hex,weight:k==='fri1b'?3:4,dashArray:'10 7',opacity:.9});
     line.bindTooltip(r.label+(r.km!=null?' · '+fmt(r.km)+' km':''),{sticky:true}).on('click',()=>setRoute(k)).addTo(routeLayer);
-    tryRouting(k,[...new Set(r.pts.map(x=>x.p))].map(p=>P[p].c),r.type)});
+    tryRouting(k,wpts(r).map(p=>P[p].c),r.type)});
   const tog=$('#layerToggles input[data-layer="route"]'); if(!tog||tog.checked)routeLayer.addTo(map);
   window.__lb=L.latLngBounds(all).pad(.08);map.invalidateSize();map.fitBounds(window.__lb)}
 function drawRoute(){
@@ -869,7 +845,7 @@ function drawRoute(){
     L.marker(P[x.p].c,{icon:pinIcon(String(i+1),r.hex),title:(i+1)+'. '+P[x.p].n,zIndexOffset:1000}).bindTooltip((i+1)+'. '+P[x.p].n,{direction:'top',offset:[0,-24]}).bindPopup(()=>pointPopup(i)).addTo(routeLayer)});
   const tog=$('#layerToggles input[data-layer="route"]'); if(!tog||tog.checked)routeLayer.addTo(map);
   window.__lb=L.latLngBounds(coords).pad(.12);map.invalidateSize();map.fitBounds(window.__lb);
-  tryRouting(cur,[...new Set(r.pts.map(x=>x.p))].map(p=>P[p].c),r.type);
+  tryRouting(cur,wpts(r).map(p=>P[p].c),r.type);
 }
 function pointPopup(i){const r=curR(),x=r.pts[i],p=P[x.p],s=segInfo(r,i);
   return `<div class="tag">Punkt ${i+1} · ${esc(r.label)}</div><b>${esc(p.n)}</b>
@@ -881,8 +857,8 @@ function pointPopup(i){const r=curR(),x=r.pts[i],p=P[x.p],s=segInfo(r,i);
 function renderRouteSeg(){$('#routeSeg').innerHTML=ROUTE_ORDER.map(k=>`<button type="button" data-r="${k}" aria-pressed="${k===cur}"><i style="background:${ROUTES[k].color}"></i>${esc(ROUTES[k].label)}</button>`).join('')}
 $('#routeSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setRoute(b.dataset.r)});
 function renderPoints(){const r=curR();
-  if(r.all){$('#pointList').innerHTML=`<div class="card small"><b>Wszystkie trasy</b><br>Kliknij trasę na liście lub na mapie, aby zobaczyć jej punkty.</div>`+ROUTE_ORDER.filter(k=>k!=='all').map(k=>{const x=ROUTES[k];return `<button class="pt" type="button" data-r="${k}"><span class="n" style="background:${x.hex}"></span><span><b>${esc(x.label)}</b><span class="meta num">${x.km!=null?fmt(x.km)+' km':'km do wyliczenia'} · ${esc(x.diff)}</span></span></button>`}).join('');return}
-  $('#pointList').innerHTML=`<div class="card small"><b>${esc(r.label)}</b> · ${esc(r.diff)}<br>${esc(r.src)}</div>`+r.pts.map((x,i)=>{const s=segInfo(r,i);
+  if(r.all){$('#pointList').innerHTML=`<div class="card small"><b>Wszystkie trasy</b><br>Kliknij trasę na liście lub na mapie, aby zobaczyć jej punkty.</div>`+ROUTE_ORDER.filter(k=>k!=='all').map(k=>{const x=ROUTES[k];return `<button class="pt" type="button" data-r="${k}"><span class="n" style="background:${x.hex}"></span><span><b>${esc(x.label)}</b><span class="meta num">${rkm(k)!=null?'ok. '+fmt(rkm(k))+' km':'km do wyliczenia'} · ${esc(x.diff)}</span></span></button>`}).join('');return}
+  $('#pointList').innerHTML=`<div class="card small"><b>${esc(r.label)}</b> · ${esc(r.diff)}<br>${esc(r.src)}<br><a href="${gdir(r)}" target="_blank" rel="noopener">Otwórz trasę w Mapach Google (rower) ↗</a> — tam zobaczysz km wg Google</div>`+r.pts.map((x,i)=>{const s=segInfo(r,i);
    return `<button class="pt" type="button" data-i="${i}"><span class="n" style="background:${r.hex}">${i+1}</span><span><b>${esc(P[x.p].n)}${x.ret?' (powrót)':''}</b><span class="meta num">${s.km!=null?fmt(s.km)+' km':'km do wyliczenia'}${s.d!=null&&i?' · +'+fmt(s.d)+' km':''}${x.visit?' · postój '+x.visit+' min':''}</span>${x.kmSt==='td'?' <span class="st td">do sprawdzenia</span>':''}</span></button>`}).join('')}
 $('#pointList').addEventListener('click',e=>{const b=e.target.closest('.pt');if(!b)return;if(b.dataset.r){setRoute(b.dataset.r);return}const i=+b.dataset.i,r=curR();
   if(map){map.setView(P[r.pts[i].p].c,12);routeLayer.eachLayer(l=>{if(l.options&&l.options.title===(r.pts.findIndex(x=>x.p===r.pts[i].p)+1)+'. '+P[r.pts[i].p].n)l.openPopup()})}else openDlg(P[r.pts[i].p].n,'Punkt '+(i+1),pointPopup(i))});
@@ -896,17 +872,19 @@ function renderStats(){const r=curR();
   $('#routeStats').innerHTML=[[s.km!=null?(r.km==null?'≈ ':'')+fmt(s.km)+' km':'—',r.km==null&&s.km!=null?'dystans (po drogach, OSRM)':'dystans (źródło)'],[s.ride!=null?hm(s.ride):'—',(r.type==='foot'?'marsz':'jazda')+' przy '+r.pace+' km/h'],[s.tot!=null?hm(s.tot):'—','z postojami'],[r.diff,'trudność'],[String(s.attrs),'atrakcje']]
    .map(([v,l])=>`<div class="stat"><div class="v" style="font-size:${v.length>9?'1.15rem':'1.7rem'};color:${r.hex}">${esc(v)}</div><div class="l">${l}</div></div>`).join('')}
 function setRoute(k){cur=k;renderRouteSeg();renderPoints();try{drawRoute()}catch(e){console.warn(e)}renderStats()}
-const RKEY='dreptak-route-v2';let rCache={};try{rCache=JSON.parse(localStorage.getItem(RKEY)||'{}')}catch(e){}
+const wpts=r=>r.pts.map(x=>x.p).filter((p,i,a)=>!i||p!==a[i-1]);
+const gdir=r=>{const w=wpts(r).map(p=>P[p].c.join(','));return 'https://www.google.com/maps/dir/?api=1&travelmode=bicycling&origin='+w[0]+'&destination='+w[w.length-1]+(w.length>2?'&waypoints='+w.slice(1,-1).join('|'):'')};
+const RKEY='podlasie-route-v3';let rCache={};try{rCache=JSON.parse(localStorage.getItem(RKEY)||'{}')}catch(e){}
 async function tryRouting(key,coords,type){
   if(liveKm[key]!==undefined)return; liveKm[key]=null;
   const prof=type==='foot'?'routed-foot':'routed-bike', ck=prof+':'+coords.map(c=>c.map(v=>v.toFixed(4)).join(',')).join(';');
-  if(rCache[ck]){liveKm[key]=rCache[ck];if(key===cur||cur==='all'){drawRoute();if(key===cur)renderStats()}return}
+  if(rCache[ck]){liveKm[key]=rCache[ck];if(key===cur||cur==='all'){drawRoute();if(key===cur)renderStats()}afterKm();return}
   const url=`https://routing.openstreetmap.de/${prof}/route/v1/driving/${coords.map(c=>c[1]+','+c[0]).join(';')}?overview=full&geometries=geojson`;
   for(let attempt=0;attempt<2;attempt++){
     try{const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),20000);const res=await fetch(url,{signal:ctl.signal});clearTimeout(t);if(!res.ok)throw 0;const j=await res.json();const rt=j.routes&&j.routes[0];if(!rt)throw 0;
-      const v={km:rt.distance/1000,geom:rt.geometry.coordinates.map(c=>[+c[1].toFixed(5),+c[0].toFixed(5)])};liveKm[key]=v;
+      const v={km:rt.distance/1000,legs:(rt.legs||[]).map(l=>l.distance/1000),geom:rt.geometry.coordinates.map(c=>[+c[1].toFixed(5),+c[0].toFixed(5)])};liveKm[key]=v;
       try{rCache[ck]=v;localStorage.setItem(RKEY,JSON.stringify(rCache))}catch(e){}
-      if(key===cur||cur==='all'){drawRoute();if(key===cur)renderStats()}return}catch(e){await new Promise(r=>setTimeout(r,1500))}}
+      if(key===cur||cur==='all'){drawRoute();if(key===cur)renderStats()}afterKm();return}catch(e){await new Promise(r=>setTimeout(r,1500))}}
   liveKm[key]=undefined;
 }
 
@@ -931,6 +909,17 @@ async function loadWeather(){const el=$('#wxLive');if(!el)return;try{
 }catch(e){el.textContent=''}}
 loadWeather();
 
+/* ---------- Dystanse (na żywo z OSRM) ---------- */
+const PLANS=[['Light max','1a + 2a + 3a',['fri1a','sat2a','sun3a'],'#9fd0ad'],['Light min','1b + 2a + 3a',['fri1b','sat2a','sun3a'],'#9fd0ad'],['Hard max','1a + 2b + 3b',['fri1a','sat2b','sun3b'],'#e2b08f'],['Hard min','1b + 2b + 3b',['fri1b','sat2b','sun3b'],'#e2b08f']];
+let kmT=null;function afterKm(){clearTimeout(kmT);kmT=setTimeout(()=>{renderKm();try{renderNumbers()}catch(e){}renderPoints()},200)}
+function kmTxt(k){const l=liveKm[k];return l&&l.km?fmt(l.km)+' km':'ok. '+fmt(ROUTES[k].est,0)+' km'}
+function renderKm(){if(!$('#kmTable'))return;const ks=['fri1a','fri1b','sat2a','sat2b','sun3a','sun3b'];const live=ks.every(k=>liveKm[k]&&liveKm[k].km);
+  $('#kmTable').innerHTML=`<thead><tr><th>Trasa</th><th class="r">Kilometry</th><th class="r">Jazda</th><th>Mapy Google</th></tr></thead><tbody>`+ks.map(k=>{const r=ROUTES[k];return `<tr><td><i class="dot" style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${r.hex};margin-right:6px"></i>${esc(r.label)}</td><td class="r num">${kmTxt(k)}</td><td class="r">${hm(rkm(k)/r.pace*60)}</td><td><a href="${gdir(r)}" target="_blank" rel="noopener">trasa rowerowa ↗</a></td></tr>`}).join('')+`</tbody>`;
+  $('#kmCards').innerHTML=PLANS.map(([n,sub,ks2,col])=>{const sum=ks2.reduce((a,k)=>a+rkm(k),0),ride=ks2.reduce((a,k)=>a+rkm(k)/ROUTES[k].pace*60,0);
+    return `<div class="card ${n.startsWith('Light')?'lightc':''}"><div class="bigkm" style="color:${col}">${live?'':'≈ '}${fmt(sum,0)}<small>KM · ${n.toUpperCase()} · ${sub}</small></div><dl class="kv" style="margin-top:12px">${ks2.map(k=>`<dt>${esc(ROUTES[k].label)}</dt><dd>${kmTxt(k)}</dd>`).join('')}<dt>Czas jazdy</dt><dd>${hm(ride)}</dd></dl></div>`}).join('')+(live?'':'<p class="small muted">Liczę trasy po drogach… (do tego czasu kilometry szacunkowe)</p>')}
+function routeAll(){Object.keys(ROUTES).filter(k=>k!=='all').forEach(k=>{const r=ROUTES[k];tryRouting(k,wpts(r).map(p=>P[p].c),r.type)})}
+
+try{$('#copyBlik').addEventListener('click',()=>{navigator.clipboard&&navigator.clipboard.writeText('530770135');$('#copyBlik').textContent='Skopiowano'})}catch(e){}
 /* ---------- Dzień po dniu ---------- */
 let grp='light';
 const DAYS={
@@ -958,8 +947,6 @@ const ATTR=[
   {id:'mackowicze',p:'mackowicze',km:'47,9',t:'cerkwie',n:'Maćkowicze i most w Olendrach',d:'Cerkiew przy szlaku, dalej stalowy most kolejowy i schrony Linii Mołotowa — oglądamy tylko z zewnątrz.',visit:10,price:'bezpłatnie',hours:'teren otwarty',src:'GreenVelo, decathlon-outdoor'},
   {id:'siemiatycze',p:'siemiatycze',pin:true,km:'58,5',t:'miasta',n:'Siemiatycze',d:'Miasto księżnej Jabłonowskiej: kościół Wniebowzięcia NMP, klasztor, synagoga, szkoła talmudyczna, cerkiew, sfinksy przy bramie pałacowej.',visit:30,price:'bezpłatnie z zewnątrz',hours:'wnętrza do sprawdzenia',src:'GreenVelo'},
   {id:'muzeum',www:[['Facebook muzeum','https://www.facebook.com/p/Muzeum-Kolejnictwa-w-Czeremsze-100057645241122/'],['Polska.travel (POT)','https://www.polska.travel/rit/muzeum-kolejnictwa-w-czeremsze/'],['GOK Czeremcha','https://gok.czeremcha.pl/'],['czeremcha.pl — o muzeum','https://www.czeremcha.pl/index.php?option=com_content&view=article&id=1736:szynobus-sn81-001-muzeum-kolejnictwa-w-czeremsze&catid=118&Itemid=862']],addr:'ul. 1 Maja 87, Czeremcha',p:'czeremcha',pin:true,km:'0',t:'muzea',n:'Muzeum Kolejnictwa w Czeremsze',d:'Pamiątki dawnego węzła kolejowego, który przed wojną łączył wschód Polski z centrum.',visit:60,price:'do sprawdzenia',hours:'do sprawdzenia',src:'komoot, wprost.pl'},
-  {id:'kuzawa',www:[['Wikipedia — Kuzawa','https://en.wikipedia.org/wiki/Kuzawa'],['komoot — cerkiew w Kuzawie','https://www.komoot.com/highlight/6337253']],p:'kuzawa',km:'—',t:'cerkwie',n:'Kuzawa',d:'Cerkiew św. Barbary i przydomowy ogród z „kwiatowym pociągiem”. Wieś blisko granicy — sprawdź strefę.',visit:30,price:'z zewnątrz bezpłatnie',hours:'do sprawdzenia',src:'komoot'},
-  {id:'kleszczele',p:'kleszczele',km:'N 11,0',t:'miasta',n:'Kleszczele i zalew Repczyce',d:'Miasteczko na czerwonym szlaku Green Velo; w Repczycach ośrodek rekreacji z pomostami, wiatą z miejscem na ognisko i wieżą 25 m.',visit:45,price:'bezpłatnie',hours:'teren otwarty',src:'GreenVelo, komoot'},
   {id:'uszescie',p:'uszescie',km:'≈ 41',t:'widoki',n:'Rezerwat Góra Uszeście',d:'Stromy stok doliny Bugu z murawami kserotermicznymi tuż za Mielnikiem. Punkt widokowy na krawędzi ok. 30-metrowej skarpy nad zakolem rzeki.',visit:20,price:'bezpłatnie',hours:'teren otwarty, tylko wyznaczone ścieżki',src:'komoot, hajnowka.pl'},
   {id:'drohiczyn',www:[['Wikipedia','https://pl.wikipedia.org/wiki/Drohiczyn']],p:'drohiczyn',km:'—',t:'miasta',n:'Drohiczyn',d:'Dawna stolica Podlasia na wysokiej skarpie nad Bugiem: Góra Zamkowa (grodzisko), katedra Trójcy Przenajświętszej, zespoły klasztorne i rozległy widok na dolinę rzeki. Niedziela 3a.',visit:60,price:'bezpłatnie z zewnątrz',hours:'teren otwarty; wnętrza do sprawdzenia',src:'Wikipedia'},
   {id:'grabarka',www:[['grabarka.pl','http://www.grabarka.pl/'],['Portal turystyczny powiatu','https://podlasie.siemiatycze.pl/en/351-siematycze-orthodox-monastery-complex-in-grabarka']],tel:'+48 85 655 00 10',p:'grabarka',maps:'https://maps.app.goo.gl/s3xwKjdoV6Mk2hTs7',km:'Mielnik +12,7',t:'cerkwie',n:'Święta Góra Grabarka',d:'Najważniejsze sanktuarium prawosławne w Polsce: cerkiew, żeński monaster, tysiące krzyży i cudowne źródełko. Odbicie z Mielnika przez Moszczonę Królewską (12,7 km w jedną stronę, wg GreenVelo) — opcja dla Hard lub na luźniejszy dzień. W cerkwi nie fotografujemy; obowiązuje skromny strój.',visit:45,price:'bezpłatnie (ofiara mile widziana)',hours:'cerkiew: pn–pt 10–17, sob 11–17, nd 13–17 (serwis nieoficjalny)',src:'GreenVelo, nocowanie.pl'}
@@ -1029,7 +1016,7 @@ $('#dlgClose').addEventListener('click',closeDlg); $('#dlg').addEventListener('c
 /* ---------- Noclegi ---------- */
 const STAYS=[{id:'laspokoj',n:'LasPokój',loc:'Wólka Nadbużna',cap:12}];
 const LS={night:600,max:6,balia:300,nights:2};
-const LS_IMG=['2024/05/LASPOKOJ-00106-scaled.jpg','2024/05/LASPOKOJ-00130-scaled.jpg','2024/05/LASPOKOJ-00054-scaled.jpg','2024/05/LASPOKOJ-00132-768x1024.jpg','2024/05/LASPOKOJ-00129-scaled.jpg','2024/05/LASPOKOJ-00128.jpg','2024/05/LASPOKOJ-00050-scaled.jpg','2024/05/LASPOKOJ-00094-scaled.jpg','2024/05/LASPOKOJ-00088-scaled.jpg','2024/05/LASPOKOJ-00010-1024x768.jpg','2024/05/LASPOKOJ-00018-1024x768.jpg','2025/05/Wolka-jazcuzi-1-scaled.jpg'].map(p=>'https://laspokoj.pl/wp-content/uploads/'+p);
+const LS_IMG=['2025/05/Wolka-jazcuzi-1-scaled.jpg','2024/05/LASPOKOJ-00106-scaled.jpg','2024/05/LASPOKOJ-00130-scaled.jpg','2024/05/LASPOKOJ-00054-scaled.jpg','2024/05/LASPOKOJ-00132-768x1024.jpg','2024/05/LASPOKOJ-00129-scaled.jpg','2024/05/LASPOKOJ-00128.jpg','2024/05/LASPOKOJ-00050-scaled.jpg','2024/05/LASPOKOJ-00094-scaled.jpg','2024/05/LASPOKOJ-00088-scaled.jpg','2024/05/LASPOKOJ-00010-1024x768.jpg','2024/05/LASPOKOJ-00018-1024x768.jpg'].map(p=>'https://laspokoj.pl/wp-content/uploads/'+p);
 function lsCost(n,balia){n=Math.max(2,n);const d=Math.ceil(n/LS.max),stay=d*LS.night*LS.nights,b=balia?d*LS.balia:0;return{d,stay,b,tot:stay+b,per:(stay+b)/n}}
 function lsText(n){const c=lsCost(n,false);return zl(c.per)+' na osobę · 2 noce ('+n+' os., '+c.d+(c.d>1?' domki':' domek')+')'}
 function renderStays(){const n=+$('#nGuests').value,b=$('#lsBalia').checked,c=lsCost(n,b);
@@ -1157,7 +1144,7 @@ function drawHero(){const c=$('#heroCanvas'),r=c.getBoundingClientRect(),dpr=Mat
 /* ---------- Start ---------- */
 renderRouteSeg();renderDays();renderAttr();renderStays();renderTrain();renderBudgetInputs();renderBudget();renderCL();
 try{initMap()}catch(e){console.warn(e)}
-setRoute('sat2a');
+setRoute('sat2a');renderKm();setTimeout(routeAll,800);
 heroPhoto();drawHero();addEventListener('resize',()=>{clearTimeout(window.__h);window.__h=setTimeout(drawHero,150)});
 initCaps();
 </script>
