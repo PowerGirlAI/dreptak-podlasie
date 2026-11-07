@@ -252,6 +252,7 @@ a{text-underline-offset:3px;text-decoration-thickness:1px}
 .ls-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:10px}
 .ls-gallery a{display:block;aspect-ratio:4/3;overflow:hidden;border-radius:10px;background:var(--b-bg)}
 .ls-gallery img{width:100%;height:100%;object-fit:cover;display:block;max-width:100%}
+.shpin.food{border-color:#b05a2a}
 .shpin{width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid #2f7d4f;display:grid;place-items:center;font-size:12px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
 .wx-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
 @media (max-width:640px){.wx-grid{grid-template-columns:1fr}}
@@ -434,7 +435,7 @@ footer a{color:var(--heather)}
 
 <section class="band t-meadow" id="mapa">
   <div class="wrap">
-    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak zielony · mapa</div><h2>Mapa wyprawy</h2><p>Wybierz wariant dnia. Trasy prowadzą po drogach dla rowerów, razem z odbiciami do atrakcji i powrotem na szlak; kilometry liczy mapa. Na mapie są też domki (⌂), stacje (🚆) i sklepy spożywcze przy trasach (🛒, do 400 m od trasy) z godzinami otwarcia.</p></div>
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak zielony · mapa</div><h2>Mapa wyprawy</h2><p>Wybierz wariant dnia. Trasy prowadzą po drogach dla rowerów, razem z odbiciami do atrakcji i powrotem na szlak; kilometry liczy mapa. Na mapie są też domki (⌂), stacje (🚆) i sklepy (🛒) i knajpy (🍽) przy trasach i w miejscowościach na postojach (Siemiatycze, Mielnik, Czeremcha, Drohiczyn), z godzinami z OpenStreetMap.</p></div>
     <div class="seg" role="group" aria-label="Trasa" id="routeSeg"></div>
     <div class="layers" id="layerToggles"></div>
     <div class="map-layout">
@@ -750,7 +751,7 @@ function initMap(){
   let base=L.layerGroup();try{base=buildBase().addTo(map)}catch(e){console.warn(e)}
   const note=()=>{$('#mapNote').innerHTML=(tileOk?'Podkład: OpenStreetMap. ':'Uproszczony podkład (ten widok blokuje zewnętrzne mapy): Bug, granica, miejscowości. Pełna mapa OSM — po otwarciu pliku HTML w Chrome lub Firefoksie. ')+'Linia ciągła prowadzi drogami dla rowerów przez punkty trasy (także odbicia do atrakcji), więc miejscami może odbiegać od znaków szlaku — na miejscu jedziemy wg oznakowania. Kilometry liczy mapa (OSRM). Przycisk w prawym górnym rogu zmienia podkład (np. rowerowy CyclOSM).'};
   tiles.on('tileload',()=>{if(!tileOk){tileOk=true;map.removeLayer(base);note()}}); note();
-  layers.rail=L.layerGroup().addTo(map); layers.stay=L.layerGroup().addTo(map); layers.attr=L.layerGroup().addTo(map); layers.shop=L.layerGroup().addTo(map);
+  layers.rail=L.layerGroup().addTo(map); layers.stay=L.layerGroup().addTo(map); layers.attr=L.layerGroup().addTo(map); layers.shop=L.layerGroup().addTo(map); layers.food=L.layerGroup().addTo(map);
   const STATIONS=[['stacja','Stacja Siemiatycze','przyjazd w piątek 11:58 (1a) lub 21:13 (1b); w sobotę powrót z Czeremchy 16:54 (REG); w niedzielę TLK 15:41 do Warszawy'],['czeremcha','Stacja Czeremcha','sobota: pociąg REG 16:26 do Siemiatycz']];
   STATIONS.forEach(([k,n,d])=>L.marker(P[k].c,{icon:L.divIcon({className:'',html:'<div class="rail-pin">🚆</div>',iconSize:[30,30],iconAnchor:[15,15],popupAnchor:[0,-14]}),title:n,zIndexOffset:1500}).bindTooltip(n.replace('Stacja ','🚆 '),{permanent:true,direction:'right',offset:[14,0],className:'rail-lbl'}).bindPopup(`<b>${n}</b><br><span class="small">${d}</span><br><a href="#dojazd">Rozkład pociągów</a>`).addTo(layers.rail));
   L.polyline([P.czeremcha.c,P.stacja.c],{color:'#555',weight:3,dashArray:'2 8'}).bindTooltip('Linia kolejowa Czeremcha–Siemiatycze (dalej do Warszawy), schemat').addTo(layers.rail);
@@ -760,11 +761,11 @@ function initMap(){
     const dx=off?Math.round(30*Math.cos(ang)):0,dy=off?Math.round(30*Math.sin(ang)):0,L1=ALET(a.id);
     L.marker(P[a.p].c,{icon:L.divIcon({className:'',html:`<div class="apin">${L1}${PAID(a)?'<i class="coin">zł</i>':''}</div>`,iconSize:[26,26],iconAnchor:[13-dx,13-dy],popupAnchor:[dx,dy-12],tooltipAnchor:[dx+12,dy]}),title:L1+'. '+a.n,zIndexOffset:1200}).bindTooltip(L1+'. '+a.n).bindPopup(()=>attrPopup(a)).addTo(layers.attr)});
   const box=$('#layerToggles');
-  box.innerHTML=[['route','Wybrana trasa'],['attr','Atrakcje'],['stay','Domki'],['shop','Sklepy'],['rail','Kolej']].map(([k,l])=>`<label><input type="checkbox" data-layer="${k}" checked> ${l}</label>`).join('');
+  box.innerHTML=[['route','Wybrana trasa'],['attr','Atrakcje'],['stay','Domki'],['shop','Sklepy'],['food','Knajpy'],['rail','Kolej']].map(([k,l])=>`<label><input type="checkbox" data-layer="${k}" checked> ${l}</label>`).join('');
   box.addEventListener('change',e=>{const k=e.target.dataset.layer;if(!k)return;
     if(k==='route'){e.target.checked?routeLayer.addTo(map):map.removeLayer(routeLayer);return}
     e.target.checked?layers[k].addTo(map):map.removeLayer(layers[k]);
-    if(e.target.checked&&(k==='rail'||k==='stay'||k==='shop')){const b=L.latLngBounds(window.__lb?[window.__lb.getSouthWest(),window.__lb.getNorthEast()]:[]);layers[k].eachLayer(l=>{if(l.getLatLng)b.extend(l.getLatLng())});if(b.isValid())map.fitBounds(b.pad(.05))}});
+    if(e.target.checked&&(k==='rail'||k==='stay'||k==='shop'||k==='food')){const b=L.latLngBounds(window.__lb?[window.__lb.getSouthWest(),window.__lb.getNorthEast()]:[]);layers[k].eachLayer(l=>{if(l.getLatLng)b.extend(l.getLatLng())});if(b.isValid())map.fitBounds(b.pad(.05))}});
 }
 
 /* ---------- Pinezki noclegów: położenie miejscowości z OpenStreetMap (Nominatim), zapamiętane w przeglądarce ---------- */
@@ -859,21 +860,25 @@ async function tryRouting(key,coords,type){
 }
 
 /* ---------- Sklepy spożywcze z OpenStreetMap (Overpass API) ---------- */
-const SHOPKEY='podlasie-shops-v2';let SHOPS=null;
+const SHOPKEY='podlasie-shops-v3';let SHOPS=null;
 async function loadShops(){let data=null;try{const c=JSON.parse(localStorage.getItem(SHOPKEY)||'null');if(c&&Date.now()-c.t<864e5)data=c.d}catch(e){}
-  if(!data){try{const q='[out:json][timeout:25];(nwr["shop"~"^(supermarket|convenience|general|greengrocer|bakery)$"](52.30,22.60,52.54,23.37););out center tags;';
+  if(!data){try{const bb='(52.30,22.60,52.54,23.37)',q='[out:json][timeout:30];(nwr["shop"~"^(supermarket|convenience|general|greengrocer|bakery)$"]'+bb+';nwr["amenity"~"^(restaurant|cafe|fast_food|pub|bar|biergarten)$"]'+bb+';);out center tags;';
     const r=await fetch('https://overpass-api.de/api/interpreter',{method:'POST',body:'data='+encodeURIComponent(q),headers:{'Content-Type':'application/x-www-form-urlencoded'}});if(!r.ok)throw 0;data=(await r.json()).elements||[];
     try{localStorage.setItem(SHOPKEY,JSON.stringify({t:Date.now(),d:data}))}catch(e){}}catch(e){return}}
-  const base=P.laspokoj.c;SHOPS=data.map(e=>({c:e.lat!=null?[e.lat,e.lon]:(e.center?[e.center.lat,e.center.lon]:null),t:e.tags||{}})).filter(x=>x.c).map(x=>({...x,d:shDist(base,x.c)}));placeShops()}
+  const base=P.laspokoj.c;SHOPS=data.map(e=>({c:e.lat!=null?[e.lat,e.lon]:(e.center?[e.center.lat,e.center.lon]:null),t:e.tags||{}})).filter(x=>x.c).map(x=>({...x,food:!x.t.shop,d:shDist(base,x.c)}));placeShops()}
 const shDist=(a,b)=>{const R=6371,t=Math.PI/180,x=(b[1]-a[1])*t*Math.cos((a[0]+b[0])/2*t),y=(b[0]-a[0])*t;return Math.sqrt(x*x+y*y)*R};
-/* tylko sklepy przy trasach (do 400 m od linii trasy) */
+/* sklepy i knajpy przy trasach: do 400 m (sklep) / 800 m (knajpa) od linii trasy albo do 1,5 km od miejscowości-postojów */
+const TOWNS=['czeremcha','mielnik','siemiatycze','stacja','drohiczyn'];
+const FOODT={restaurant:'Restauracja',cafe:'Kawiarnia',fast_food:'Bar szybkiej obsługi',pub:'Pub',bar:'Bar',biergarten:'Ogródek piwny'};
 function placeShops(){if(!SHOPS||!layers.shop)return;const ks=Object.keys(ROUTES).filter(k=>k!=='all'),gs=ks.map(k=>liveKm[k]&&liveKm[k].geom).filter(Boolean);if(gs.length<ks.length)return;
-  layers.shop.clearLayers();const near=c=>gs.some(g=>{for(let i=0;i<g.length;i++){if(Math.abs(g[i][0]-c[0])<.01&&shDist(g[i],c)<.4)return true}return false});
-  const shops=SHOPS.filter(x=>near(x.c));
-  shops.forEach(x=>{const t=x.t,nm=t.name||t.brand||({supermarket:'Supermarket',convenience:'Sklep spożywczy',general:'Sklep',bakery:'Piekarnia',greengrocer:'Warzywniak'}[t.shop]||'Sklep');
+  layers.shop.clearLayers();layers.food.clearLayers();
+  const near=(c,r)=>TOWNS.some(k=>P[k]&&shDist(P[k].c,c)<1.5)||gs.some(g=>{for(let i=0;i<g.length;i++){if(Math.abs(g[i][0]-c[0])<.012&&shDist(g[i],c)<r)return true}return false});
+  SHOPS.filter(x=>near(x.c,x.food?.8:.4)).forEach(x=>{const t=x.t,nm=t.name||t.brand||(x.food?FOODT[t.amenity]:({supermarket:'Supermarket',convenience:'Sklep spożywczy',general:'Sklep',bakery:'Piekarnia',greengrocer:'Warzywniak'}[t.shop]))||'Sklep';
     const adr=[t['addr:street']||t['addr:place'],t['addr:housenumber']].filter(Boolean).join(' ')+(t['addr:city']?', '+t['addr:city']:'');
     const oh=t.opening_hours?esc(t.opening_hours).replace(/;\s*/g,'<br>'):'brak godzin w OpenStreetMap — sprawdź w Google Maps';
-    L.marker(x.c,{icon:L.divIcon({className:'',html:'<div class="shpin">🛒</div>',iconSize:[24,24],iconAnchor:[12,12],popupAnchor:[0,-12]}),title:nm,zIndexOffset:300}).bindTooltip('🛒 '+nm).bindPopup(`<div class="tag">Sklep · ${fmt(x.d)} km od domków (w linii prostej)</div><b>${esc(nm)}</b>${adr?`<div class="small">${esc(adr)}</div>`:''}<div class="small" style="margin-top:6px"><b>Godziny (OSM):</b><br>${oh}</div><div class="small muted" style="margin-top:6px">22.11 to niedziela niehandlowa — sklepy sieciowe zamknięte. Godziny z OpenStreetMap mogą być nieaktualne.</div><p style="margin-top:6px"><a href="${gmaps(nm+' '+(adr||'Siemiatycze'))}" target="_blank" rel="noopener">Google Maps</a></p>`).addTo(layers.shop)})}
+    const ic=x.food?'🍽':'🛒',kind=x.food?(FOODT[t.amenity]||'Knajpa')+(t.cuisine?' · '+esc(t.cuisine.replace(/;/g,', ')):''):'Sklep';
+    const note=x.food?'Poza sezonem godziny bywają krótsze — przed wyjazdem zadzwoń lub sprawdź w Google Maps.':'22.11 to niedziela niehandlowa — sklepy sieciowe zamknięte. Godziny z OpenStreetMap mogą być nieaktualne.';
+    L.marker(x.c,{icon:L.divIcon({className:'',html:`<div class="shpin${x.food?' food':''}">${ic}</div>`,iconSize:[24,24],iconAnchor:[12,12],popupAnchor:[0,-12]}),title:nm,zIndexOffset:300}).bindTooltip(ic+' '+nm).bindPopup(`<div class="tag">${kind} · ${fmt(x.d)} km od domków (w linii prostej)</div><b>${esc(nm)}</b>${adr?`<div class="small">${esc(adr)}</div>`:''}${t.phone?`<div class="small"><a href="tel:${esc(t.phone)}">${esc(t.phone)}</a></div>`:''}<div class="small" style="margin-top:6px"><b>Godziny (OSM):</b><br>${oh}</div><div class="small muted" style="margin-top:6px">${note}</div><p style="margin-top:6px"><a href="${gmaps(nm+' '+(adr||t['addr:city']||''))}" target="_blank" rel="noopener">Google Maps</a></p>`).addTo(x.food?layers.food:layers.shop)})}
 
 /* ---------- Prognoza na żywo (Open-Meteo, bez klucza) ---------- */
 async function loadWeather(){const el=$('#wxLive');if(!el)return;try{
