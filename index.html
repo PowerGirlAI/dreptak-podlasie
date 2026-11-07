@@ -1088,7 +1088,7 @@ function renderOrg(rows){$('#orgTable').innerHTML=`<thead><tr><th>Osoba</th><th>
 function renderPub(rows){rows.sort((a,b)=>String(a.updatedAt||'').localeCompare(String(b.updatedAt||'')));$('#pubCount').textContent='('+rows.length+')';
   $('#pubTable').innerHTML=`<thead><tr><th>#</th><th>Imię i nazwisko</th><th>Grupa</th><th>Sobota — powrót</th><th>Niedziela</th><th>Własny rower</th><th>Balia/sauna</th></tr></thead><tbody>`+(rows.length?rows.map((r,i)=>`<tr><td class="num">${i+1}</td><td>${esc(r.name||'')}</td><td>${esc(r.variant||'')}</td><td class="small">${esc(r.satBack||'')}</td><td class="small">${esc(r.sunday||'')}</td><td>${esc(r.ownBike||'')}</td><td>${esc(r.sauna||'')}</td></tr>`).join(''):'<tr><td colspan="7">Jeszcze nikt się nie zgłosił — bądź pierwsza!</td></tr>')+'</tbody>'}
 /* ---------- Formularz poza claude.ai: Google Apps Script (arkusz + mail do organizatorki) ---------- */
-const FORM_ENDPOINT='';
+const FORM_ENDPOINT='https://script.google.com/macros/s/AKfycbzqxE7UqR49jkyLdpVDZTI8wtqk5_W-jFDojWehNPL3103jBjAZU4n1u_8w-Sfsb4sy1Q/exec';
 function validForm(){for(const [s,l] of [['#fName','imię i nazwisko'],['#fEmail','e-mail']])if(!$(s).value.trim()){$('#fMsg').textContent='Uzupełnij pole: '+l+'.';$(s).focus();return false}
   if(!/^\S+@\S+\.\S+$/.test($('#fEmail').value.trim())){$('#fMsg').textContent='Podaj poprawny adres e-mail.';$('#fEmail').focus();return false}
   if(!$('#fConsent').checked){$('#fMsg').textContent='Zaznacz zgodę na przetwarzanie danych.';return false}return true}
