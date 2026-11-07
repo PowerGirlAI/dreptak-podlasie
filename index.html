@@ -249,6 +249,10 @@ a{text-underline-offset:3px;text-decoration-thickness:1px}
 .spin{width:34px;height:24px;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4)}
 .spin b,.snum b{font-size:13px;font-weight:700}
 .snum{height:1.6em;padding:0 .5em;margin-right:.45em;font-size:.72em;vertical-align:.15em}
+.ls-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:10px}
+.ls-gallery a{display:block;aspect-ratio:4/3;overflow:hidden;border-radius:10px;background:var(--b-bg)}
+.ls-gallery img{width:100%;height:100%;object-fit:cover;display:block;max-width:100%}
+.shpin{width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid #2f7d4f;display:grid;place-items:center;font-size:12px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
 .alet{display:inline-grid;place-items:center;width:1.5em;height:1.5em;margin-right:.45em;border-radius:6px;background:#7a3f8f;color:#fff;font:700 .7em/1 var(--f-body);vertical-align:.18em}
 .pin span{transform:rotate(45deg);font:600 11px/1 var(--f-body);color:#fff}
 .maplbl{position:absolute;transform:translate(-50%,12px);white-space:nowrap;font:500 11px/1 var(--f-body);color:var(--muted);text-shadow:0 0 3px var(--map-bg),0 0 3px var(--map-bg),0 0 3px var(--map-bg);pointer-events:none}
@@ -376,10 +380,10 @@ footer a{color:var(--heather)}
     <p class="sub">Trzy dni na rowerze: zielony szlak wzdłuż Bugu, drewniane cerkwie i podlaskie wsie.</p>
     <dl class="facts">
       <div><dt>Termin</dt><dd>20–22 listopada 2026</dd></div>
-      <div><dt>Baza</dt><dd>Czeremcha, 2 noce</dd></div>
-      <div><dt>Grupa</dt><dd>6–10 uczestniczek</dd></div>
-      <div><dt>Sobota</dt><dd>58,5 km lub 117 km</dd></div>
-      <div><dt>Dojazd</dt><dd>pociąg z Warszawy Wschodniej</dd></div>
+      <div><dt>Baza</dt><dd>LasPokój nad Bugiem, 2 noce</dd></div>
+      <div><dt>Grupa</dt><dd>od 2 osób (domek do 6 os.)</dd></div>
+      <div><dt>Sobota</dt><dd>ok. 57 km lub ok. 112 km</dd></div>
+      <div><dt>Dojazd</dt><dd>pociąg Warszawa – Siemiatycze</dd></div>
     </dl>
     <div class="btns"><a class="btn" href="#zgloszenie">Zgłoś udział</a><a class="btn ghost" href="#mapa">Odkryj trasy</a><a class="btn ghost" href="#budzet">Zobacz koszty</a></div>
     <p class="legend">Oznaczenia: <span class="st ok">potwierdzone</span> <span class="st or">orientacyjne</span> <span class="st td">do sprawdzenia</span> · stan wiedzy 7.11.2026</p>
@@ -389,32 +393,32 @@ footer a{color:var(--heather)}
 <main>
 <section class="band t-chalk" id="uklad">
   <div class="wrap">
-    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak czerwony · układ</div><h2>Kto co robi</h2><p>Baza na obie noce w okolicy Czeremchy, przy stacji. Sobota: zielony szlak rowerowy Czeremcha – Siemiatycze. Niedziela: Light w drugą stronę, Hard rowerem w kierunku Warszawy. Wszystkie spotykają się w tym samym pociągu do Warszawy.</p></div>
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak czerwony · układ</div><h2>Kto co robi</h2><p>Baza na obie noce: <b>LasPokój w Wólce Nadbużnej</b>, kilka km od stacji Siemiatycze. Każdy dzień kończy się w domkach. Piątek wybiera każda osoba sama (1a albo 1b), sobota i niedziela zależą od grupy.</p></div>
     <div class="matrix" role="table" aria-label="Plan dla grup Light i Hard">
       <div class="corner" role="columnheader"></div>
       <div class="h lt" role="columnheader"><i class="dot" style="background:var(--c-light)"></i>Light</div>
       <div class="h hd" role="columnheader"><i class="dot" style="background:var(--c-hard)"></i>Hard</div>
       <div class="d" role="rowheader">Pt<span>20.11</span></div>
-      <div class="lt"><b>Pociąg do Czeremchy 12:21</b><br><span class="small">Opcjonalny rozjazd do cerkwi w Zubaczach i z powrotem: 18,8 km.</span></div>
-      <div class="hd"><b>Jak Light</b><br><span class="small">Kontrola świateł i ustawienie tempa na sobotę.</span></div>
+      <div class="lt"><b>1a · rano</b> — TLK 10:24 → Siemiatycze 11:58. Pętla ok. 33 km: Święta Góra Grabarka, potem obiad i zwiedzanie Siemiatycz, wieczorem domki.<br><span class="small">Wariant dla obu grup.</span></div>
+      <div class="hd"><b>1b · wieczorem</b> — IC 19:38 → Siemiatycze 21:13, ok. 5 km rowerem do domków.<br><span class="small">Wariant dla obu grup.</span></div>
       <div class="d" role="rowheader">Sob<span>21.11</span></div>
-      <div class="lt"><div class="km">58,5 km</div><span class="small">Czeremcha → Mielnik → Siemiatycze, ok. 4–5 h jazdy. Powrót do bazy busem albo pociągiem.</span></div>
-      <div class="hd"><div class="km">117 km</div><span class="small">Czeremcha → Siemiatycze i z powrotem rowerem. Pobudka 7:00, start 8:00, ok. 6 h jazdy.</span></div>
+      <div class="lt"><div class="km">≈ 57 km</div><span class="small"><b>2a</b> — z domków zielonym szlakiem do Czeremchy: Maćkowicze, Góra Uszeście, Mielnik (obiad, Góra Zamkowa, kopalnia kredy), Tokary, Zubacze. Powrót pociągiem 15:17 lub 16:26 do Siemiatycz.</span></div>
+      <div class="hd"><div class="km">≈ 112 km</div><span class="small"><b>2b</b> — szlakiem do Czeremchy i pętlą z powrotem przez Milejczyce i Siemiatycze do domków. Start 8:00, meta ok. 14:50.</span></div>
       <div class="d" role="rowheader">Nd<span>22.11</span></div>
-      <div class="lt"><div class="km">22 km</div><span class="small">Czeremcha ⇄ Kleszczele szlakiem Green Velo (na północ) albo zwiedzanie. Pociąg 15:17.</span></div>
-      <div class="hd"><div class="km">≈ 98 km</div><span class="small">Czeremcha → Siedlce rowerem, z Siedlec pociąg (dosiadacie się do tego samego TLK). Do Warszawy w 1 dzień — nie.</span></div>
+      <div class="lt"><div class="km">≈ 37 km</div><span class="small"><b>3a</b> — wspólny spacer ścieżką przyrodniczą, rowerem do Drohiczyna (zwiedzanie, obiad), TLK 15:41 z Siemiatycz do Warszawy.</span></div>
+      <div class="hd"><div class="km">≈ 150 km</div><span class="small"><b>3b</b> — po wspólnym śniadaniu rowerem do Warszawy przez most na Bugu i Siedlce. Bez biletu powrotnego.</span></div>
     </div>
     <div class="alerts">
-      <div class="alert"><strong>Strefa buforowa <span class="st ok">potwierdzone</span></strong><p class="small">Zakaz przebywania przy granicy z Białorusią obowiązuje od 1.09.2026 przez 90 dni, w tym w zasięgu placówki SG w Czeremsze. Pas 200 m od granicy (szerzej przy rezerwatach); miejscowości i szlaki co do zasady wyłączone. Okolice „Tokary, granica” i Kuzawy: <span class="st td">do sprawdzenia</span> tuż przed wyjazdem.</p></div>
-      <div class="alert"><strong>Dzień ma 8,5 h <span class="st ok">wyliczone</span></strong><p class="small">21.11: wschód 06:58, zachód 15:28. Pobudka najwcześniej 7:00. Hard startuje o 08:00, Light o 09:00; Hard wraca ok. 14:40, więc oświetlenie obowiązkowe. Rano szron na drewnianych mostkach i asfalcie w lesie.</p></div>
-      <div class="alert td"><strong>Rozkład i rowery <span class="st td">do sprawdzenia</span></strong><p class="small">Godziny pochodzą z wyszukiwarki (stan 7.11). Potwierdź je na 20–22.11. W PKP Intercity rezerwacja roweru jest obowiązkowa (11,90 zł), a liczba miejsc ograniczona.</p></div>
+      <div class="alert"><strong>Dzień ma 8,5 h <span class="st ok">wyliczone</span></strong><p class="small">21.11: wschód 06:58, zachód 15:28. Pobudka najwcześniej 7:00. Wszystkie dojazdy po zmroku (piątek, sobota 2a, niedziela 3b) — przednie i tylne światło obowiązkowo.</p></div>
+      <div class="alert"><strong>Strefa buforowa <span class="st ok">potwierdzone</span></strong><p class="small">Zakaz przebywania przy granicy z Białorusią obowiązuje od 1.09.2026 przez 90 dni. Pas 200 m od granicy; miejscowości i szlaki co do zasady wyłączone. Odcinek przy Tokarach jedziemy tylko szlakiem: <span class="st td">do sprawdzenia</span> tuż przed wyjazdem.</p></div>
+      <div class="alert td"><strong>Rozkład i rowery <span class="st td">do sprawdzenia</span></strong><p class="small">Godziny z wyszukiwarki EuroPodróże (stan 7.11). Potwierdź je na 20–22.11. W PKP Intercity rezerwacja miejsca na rower jest obowiązkowa (11,90 zł), liczba miejsc ograniczona.</p></div>
     </div>
   </div>
 </section>
 
 <section class="band t-meadow" id="mapa">
   <div class="wrap">
-    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak zielony · mapa</div><h2>Mapa wyprawy</h2><p>Wybierz dzień i grupę. Kilometraż pochodzi z opisów szlaków GreenVelo, a nie z linii prostej. W podglądzie aplikacji widać uproszczony podkład; pełna mapa OSM działa w pliku HTML otwartym w przeglądarce.</p></div>
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak zielony · mapa</div><h2>Mapa wyprawy</h2><p>Wybierz wariant dnia. Trasy prowadzą po drogach dla rowerów, razem z odbiciami do atrakcji i powrotem na szlak; kilometry liczy mapa. Na mapie są też domki (⌂), stacje (🚆) i najbliższe sklepy spożywcze (🛒) z godzinami otwarcia.</p></div>
     <div class="seg" role="group" aria-label="Trasa" id="routeSeg"></div>
     <div class="layers" id="layerToggles"></div>
     <div class="map-layout">
@@ -427,7 +431,7 @@ footer a{color:var(--heather)}
 
 <section class="band t-sand" id="dni">
   <div class="wrap">
-    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak żółty · harmonogram</div><h2>Dzień po dniu</h2><p>Godziny dopasowane do pociągów i do zmroku o 15:28. Przełącz grupę w karcie dnia.</p></div>
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak żółty · harmonogram</div><h2>Dzień po dniu</h2><p>Godziny dopasowane do pociągów i do zmroku o 15:28. Piątek: warianty 1a i 1b dla obu grup. Przełącz grupę, by zobaczyć sobotę i niedzielę.</p></div>
     <div class="seg" role="group" aria-label="Grupa" id="groupSeg" style="margin-bottom:16px">
       <button type="button" data-g="light" aria-pressed="true"><i style="background:var(--c-light)"></i>Light</button>
       <button type="button" data-g="hard" aria-pressed="false"><i style="background:var(--c-hard)"></i>Hard</button>
@@ -439,27 +443,26 @@ footer a{color:var(--heather)}
 
 <section class="band t-ember edge" id="hard">
   <div class="wrap">
-    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak dla twardych</div><h2>Hard: 117 + 98 km</h2><p>Dwa długie dni pod rząd w listopadzie. Wykonalne dla zgranej grupy w tempie ok. 20 km/h, pod warunkiem startu o 8:00 i jazdy bez długich postojów.</p></div>
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak dla twardych</div><h2>Hard: ≈ 112 + 150 km</h2><p>Dwa długie dni pod rząd w listopadzie. Wykonalne dla zgranej grupy w tempie ok. 20 km/h. Niedziela do Warszawy kończy się po zmroku.</p></div>
     <div class="grid g2">
       <div class="card">
-        <div class="bigkm">117<small>KM · SOBOTA · TAM I Z POWROTEM</small></div>
+        <div class="bigkm">≈ 112<small>KM · SOBOTA 2b · PĘTLA</small></div>
         <dl class="kv" style="margin-top:14px">
-          <dt>Trasa</dt><dd>szlak zielony Czeremcha → Siemiatycze (58,5 km) i z powrotem tą samą drogą <span class="st ok">km wg GreenVelo</span></dd>
-          <dt>Czas jazdy</dt><dd>ok. 5 h 50 min przy 20 km/h + ok. 1 h postojów</dd>
-          <dt>Okno</dt><dd>08:00 → ok. 14:40; zapas do zmroku ok. 50 min</dd>
-          <dt>Nawierzchnia</dt><dd>głównie asfalt drogami lokalnymi <span class="st or">wg opisu szlaku</span></dd>
-          <dt>Punkt decyzji</dt><dd>Mielnik (km 39,3) ok. 10:00. Jeśli grupa dojeżdża po 10:20, zawraca stąd: razem 78,6 km.</dd>
-          <dt>Plan B</dt><dd>wysiadka w Siemiatyczach i powrót busem z grupą Light</dd>
+          <dt>Trasa</dt><dd>LasPokój → szlak zielony → Mielnik → Tokary → Zubacze → Czeremcha (ok. 57 km), powrót drogami lokalnymi przez Milejczyce i Siemiatycze <span class="st or">km z mapy</span></dd>
+          <dt>Czas</dt><dd>ok. 5 h 40 min jazdy przy 20 km/h + ok. 1 h 15 min postojów</dd>
+          <dt>Okno</dt><dd>08:00 → ok. 14:50; zapas do zmroku ok. 40 min</dd>
+          <dt>Punkt decyzji</dt><dd>Czeremcha ok. 11:00 — przy zmęczeniu lub złej pogodzie powrót pociągiem z grupą Light (15:17 / 16:26)</dd>
+          <dt>Nawierzchnia</dt><dd>szlak: asfalt, drogi lokalne; powrót: drogi wyznaczone automatycznie <span class="st td">sprawdź w komoot</span></dd>
         </dl>
       </div>
       <div class="card">
-        <div class="bigkm">≈ 98<small>KM · NIEDZIELA · CZEREMCHA → SIEDLCE</small></div>
+        <div class="bigkm">≈ 150<small>KM · NIEDZIELA 3b · DO WARSZAWY</small></div>
         <dl class="kv" style="margin-top:14px">
-          <dt>Dystans</dt><dd>98 km to odległość drogowa samochodem <span class="st or">orientacyjne</span>. Trasę rowerową wyznacz w <a href="https://brouter.de/brouter-web/" target="_blank" rel="noopener">BRouter</a> (bez dróg ekspresowych i S8).</dd>
-          <dt>Czas</dt><dd>ok. 5 h jazdy + postoje; start 08:00, meta ok. 13:45</dd>
-          <dt>Pociąg z Siedlec</dt><dd>IC 1126 15:42 → Warszawa Wsch. 16:33 albo TLK 1112 16:25 → 17:21 — ten sam pociąg, którym jedzie grupa Light z Czeremchy (15:17). <span class="st or">orientacyjne</span></dd>
-          <dt>Rowery</dt><dd>rezerwacja miejsca Siedlce → Warszawa, 11,90 zł</dd>
-          <dt>Warszawa rowerem</dt><dd>ok. 190 km w sumie — tylko w 2 dni (nocleg w okolicy Siedlec, powrót w poniedziałek). Dystans drugiego dnia: <span class="st td">do wyliczenia</span>.</dd>
+          <dt>Trasa</dt><dd>LasPokój → most na Bugu → Siedlce → Mińsk Mazowiecki → Warszawa Wschodnia. Przebieg i km wyznacza mapa (OSRM, profil rowerowy) <span class="st or">orientacyjne</span></dd>
+          <dt>Czas</dt><dd>ok. 7,5 h jazdy + ok. 1 h postojów; start 08:30, meta ok. 17:00 — ostatnie 1,5 h po zmroku</dd>
+          <dt>Punkty zejścia</dt><dd>Siedlce (IC 1126 15:42 → Warszawa 16:33, KM) i dalej stacje Kolei Mazowieckich (rower bezpłatnie) <span class="st td">do sprawdzenia</span></dd>
+          <dt>Koszt</dt><dd>bez biletu powrotnego; bagaż wozicie w sakwach</dd>
+          <dt>Wersja bezpieczniejsza</dt><dd>do Siedlec (ok. 75 km) i dalej pociągiem: + ok. 34 zł + rower 11,90 zł</dd>
         </dl>
       </div>
     </div>
@@ -469,7 +472,7 @@ footer a{color:var(--heather)}
 
 <section class="band t-frost" id="atrakcje">
   <div class="wrap">
-    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak niebieski · atrakcje</div><h2>Co po drodze</h2><p>Liczby przy nazwach to kilometr zielonego szlaku licząc od Czeremchy. W listopadzie część miejsc działa krócej albo wcale. Zdjęć nie osadzamy bez sprawdzonej licencji — każda karta prowadzi do zdjęć w Mapach Google i Wikimedia Commons.</p></div>
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak niebieski · atrakcje</div><h2>Co po drodze</h2><p>Litery odpowiadają pinezkom na mapie. „km” to kilometr zielonego szlaku licząc od Czeremchy. W listopadzie część miejsc działa krócej albo wcale. Oznaczenie 💰 — wstęp może być płatny.</p></div>
     <div class="filters" id="attrFilters"></div>
     <div class="grid g3" id="attrGrid"></div>
   </div>
@@ -477,76 +480,91 @@ footer a{color:var(--heather)}
 
 <section class="band t-hearth edge" id="noclegi">
   <div class="wrap">
-    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Przy kominku · noclegi</div><h2>Baza w Czeremsze</h2><p>Czeremcha ma stację, z której ruszamy w piątek, sobotę i niedzielę. Obiekty sprawdzone 7.11 w Booking.com, AlohaCamp, Slowhop i Airbnb; mają od 6 do 14 miejsc. Zdjęcia obiektów należą do właścicieli, więc pokazujemy je przez link do oferty. Ceny i dostępność na 20–22.11: <span class="st td">do sprawdzenia</span> we wszystkich przypadkach.</p></div>
-    <div class="field" style="max-width:260px"><label for="nGuests">Liczba uczestniczek</label><select id="nGuests"><option>6</option><option selected>8</option><option>10</option></select></div>
-    <div class="grid g3" id="stayGrid"></div>
-    <div class="card" style="margin-top:16px" id="balia">
-      <div class="tag">Mobilna balia z dowozem · OLX, stan 7.11.2026 <span class="st or">orientacyjne</span></div>
-      <h3>Balia do domku, jeśli obiekt jej nie ma</h3>
-      <p class="small" style="margin-top:6px">Na OLX jest kilkanaście ogłoszeń mobilnych balii na przyczepie z okolicy. Ceny z listy ogłoszeń; za ile godzin lub dób, koszt dowozu i rozpalania — do ustalenia z wynajmującym. Przed rezerwacją zapytaj gospodarza, czy można postawić balię na posesji.</p>
-      <div class="tbl" style="margin-top:10px"><table><thead><tr><th>Ogłoszenie</th><th>Miejscowość</th><th class="r">Cena</th></tr></thead><tbody>
-        <tr><td>Balia Jacuzzi mobilna</td><td>Czeremcha</td><td class="r num">250 zł</td></tr>
-        <tr><td>Mobilna balia PREMIUM „Kocioł z Bobrówki”</td><td>Kleszczele</td><td class="r num">200 zł</td></tr>
-        <tr><td>Mobilna balia, bania, Jacuzzi na przyczepie</td><td>Kleszczele</td><td class="r num">200 zł</td></tr>
-        <tr><td>Mobilna balia Jacuzzi</td><td>Dubicze Cerkiewne</td><td class="r num">300 zł</td></tr>
-        <tr><td>Duża balia 10-osobowa, bania, Jacuzzi</td><td>Hajnówka</td><td class="r num">300 zł</td></tr>
-        <tr><td>Mobilna balia Jacuzzi</td><td>Siemiatycze</td><td class="r num">250 zł</td></tr>
-        <tr><td>Mobilna balia i sauna</td><td>Drohiczyn</td><td class="r num">300 zł</td></tr>
-        <tr><td>Mobilna balia / Jacuzzi (kilka ofert)</td><td>Bielsk Podlaski</td><td class="r num">250–350 zł</td></tr>
-      </tbody></table></div>
-      <div class="btns" style="margin-top:10px"><a class="btn sec small" href="https://www.olx.pl/wypozyczalnia/bielsk-podlaski/q-mobilna-balia/" target="_blank" rel="noopener">Ogłoszenia na OLX (Bielsk Podlaski i okolice)</a><a class="btn sec small" href="https://www.olx.pl/wypozyczalnia/siemiatycze/q-balia-na-wynajem/" target="_blank" rel="noopener">OLX: Siemiatycze</a><a class="btn sec small" href="https://baliawogrodzie.pl/" target="_blank" rel="noopener">baliawogrodzie.pl</a></div>
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Przy kominku · nocleg</div><h2>LasPokój nad Bugiem</h2><p>Dwa drewniane domki w sosnowym lesie w Wólce Nadbużnej, kilka km od stacji Siemiatycze. Tu wracamy każdego dnia.</p></div>
+    <div class="ls-gallery" id="lsGallery"></div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card">
+        <h3>Domek dla 6 osób</h3>
+        <dl class="kv" style="margin-top:10px">
+          <dt>Adres</dt><dd>Wólka Nadbużna, 17-300 Siemiatycze</dd>
+          <dt>Ze stacji Siemiatycze</dt><dd id="dist-laspokoj"><span class="small">liczę po drogach…</span></dd>
+          <dt>Parter</dt><dd>salon z aneksem kuchennym i kominkiem, stół dla 6 osób, rozkładana sofa, TV, łazienka z prysznicem i pralką</dd>
+          <dt>Piętro</dt><dd>2 sypialnie, w każdej łóżka dla 3 osób; dodatkowa toaleta</dd>
+          <dt>Kuchnia</dt><dd>zmywarka, lodówka z zamrażarką, płyta indukcyjna, mikrofalówka, czajnik, ekspres na kapsułki, garnki i naczynia</dd>
+          <dt>W cenie</dt><dd><b>kominek, sauna opalana drewnem</b>, sprzątanie, pościel, ręczniki, Wi-Fi, ogrzewanie i klimatyzacja</dd>
+          <dt>Na zewnątrz</dt><dd>duży zadaszony taras, ogrodzona posesja, sauna i 6-osobowa balia, grill, hamak, 2 rowery</dd>
+          <dt>Zasady</dt><dd>minimum 2 doby; zwierzęta mile widziane; godziny zameldowania i wymeldowania <span class="st td">do ustalenia</span></dd>
+          <dt>Kontakt</dt><dd><a href="tel:+48509766487">+48 509 766 487</a> · <a href="mailto:rezerwacja@laspokoj.pl">rezerwacja@laspokoj.pl</a> · <a href="https://laspokoj.pl/" target="_blank" rel="noopener">laspokoj.pl</a></dd>
+        </dl>
+      </div>
+      <div class="card">
+        <h3>Ile to kosztuje</h3>
+        <dl class="kv" style="margin-top:10px">
+          <dt>Domek</dt><dd><b>600 zł za dobę</b> (do 6 os.), czyli 1200 zł za 2 noce <span class="st ok">wg ustaleń organizatorki</span><br><span class="small muted">cennik na stronie obiektu: 650 zł/doba</span></dd>
+          <dt>Minimum</dt><dd><b>2 osoby</b> — domek kosztuje tyle samo przy 2 i przy 6 osobach</dd>
+          <dt>Balia</dt><dd>+300 zł za pobyt (za domek)</dd>
+        </dl>
+        <div class="formgrid" style="margin-top:12px">
+          <div class="field"><label for="nGuests">Liczba osób</label><select id="nGuests"><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option selected>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div>
+          <div class="field checks" style="align-self:end"><label><input type="checkbox" id="lsBalia"> z balią</label></div>
+        </div>
+        <div class="pp" id="lsCost"></div>
+        <div class="tbl" style="margin-top:10px"><table id="lsTable"></table></div>
+        <div class="btns" style="margin-top:12px"><a class="btn sec small" href="https://laspokoj.pl/" target="_blank" rel="noopener">Strona obiektu</a><a class="btn sec small" href="https://www.booking.com/hotel/pl/laspokoj.pl.html?checkin=2026-11-20&checkout=2026-11-22" target="_blank" rel="noopener">Booking</a><a class="btn sec small" href="https://www.google.com/maps/search/?api=1&query=52.36433,22.845" target="_blank" rel="noopener">Google Maps</a></div>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="band t-rail" id="dojazd">
   <div class="wrap">
-    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak czarny · koleje</div><h2>Pociągi</h2><p>Jedna linia łączy wszystko: Warszawa Wschodnia – Siedlce – Siemiatycze – Czeremcha. Godziny z wyszukiwarki EuroPodróże (stan 7.11.2026) — <span class="st td">potwierdź na 20–22.11</span>.</p></div>
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak czarny · koleje</div><h2>Pociągi</h2><p>Linia Warszawa Wschodnia – Siedlce – Siemiatycze – Czeremcha. Godziny i ceny „od” z wyszukiwarki EuroPodróże (stan 7.11.2026) — <span class="st td">potwierdź na 20–22.11</span>.</p></div>
     <div class="tbl"><table>
-      <thead><tr><th>Kiedy</th><th>Odjazd</th><th>Przyjazd</th><th>Pociąg</th><th class="r">Bilet od</th><th>Kto</th></tr></thead>
+      <thead><tr><th>Wariant</th><th>Odjazd</th><th>Przyjazd</th><th>Pociąg</th><th class="r">Bilet od</th><th class="r">Rower</th></tr></thead>
       <tbody>
-        <tr><td>Pt 20.11</td><td><span class="dep">10:24</span><br>Warszawa Wsch.</td><td><span class="dep">12:21</span><br>Czeremcha</td><td>TLK 1012 „Bocian”, bez przesiadek, 1 h 57 min</td><td class="r">61 zł</td><td>wszystkie</td></tr>
-        <tr><td>Pt 20.11 — po pracy</td><td><span class="dep">19:38</span><br>Warszawa Wsch.</td><td><span class="dep">21:37</span><br>Czeremcha</td><td>IC 1016 „Żubr”</td><td class="r">61 zł</td><td>spóźnione</td></tr>
-        <tr><td>Sob 21.11</td><td><span class="dep">19:16</span><br>Siemiatycze</td><td><span class="dep">19:44</span><br>Czeremcha</td><td>REG 10488 (Polregio), 28 min</td><td class="r">12 zł</td><td>Light, jeśli nie bus</td></tr>
-        <tr><td>Nd 22.11</td><td><span class="dep">15:17</span><br>Czeremcha</td><td><span class="dep">17:21</span><br>Warszawa Wsch.</td><td>TLK 1112 „Bocian”: Siemiatycze 15:40, Siedlce 16:25</td><td class="r">61 zł</td><td>Light, zwiedzanie</td></tr>
-        <tr><td>Nd 22.11</td><td><span class="dep">16:25</span><br>Siedlce</td><td><span class="dep">17:21</span><br>Warszawa Wsch.</td><td>ten sam TLK 1112 — wspólny powrót</td><td class="r">34 zł</td><td>Hard</td></tr>
-        <tr><td>Nd 22.11</td><td><span class="dep">15:42</span><br>Siedlce</td><td><span class="dep">16:33</span><br>Warszawa Wsch.</td><td>IC 1126 „Podlasie”</td><td class="r">34 zł</td><td>Hard (wcześniej)</td></tr>
+        <tr><td><b>1a</b> Pt rano</td><td><span class="dep">10:24</span><br>Warszawa Wsch.</td><td><span class="dep">11:58</span><br>Siemiatycze</td><td>TLK 1012 „Bocian”, bez przesiadek</td><td class="r">50 zł</td><td class="r">11,90 zł</td></tr>
+        <tr><td><b>1a</b> wcześniej</td><td>KM do Siedlec, potem <span class="dep">07:20</span> Siedlce</td><td><span class="dep">08:24</span><br>Siemiatycze</td><td>REG 10484 (Polregio) — dla chętnych na dłuższą trasę; pobudka ok. 5:00</td><td class="r">26 zł + KM</td><td class="r">8,50 zł · KM 0 zł</td></tr>
+        <tr><td><b>1b</b> Pt wieczór</td><td><span class="dep">19:38</span><br>Warszawa Wsch.</td><td><span class="dep">21:13</span><br>Siemiatycze</td><td>IC 1016 „Żubr” — miejsca na rower <span class="st td">sprawdź przy zakupie</span></td><td class="r">50 zł</td><td class="r">11,90 zł</td></tr>
+        <tr><td><b>2a</b> Sob</td><td><span class="dep">15:17</span><br>Czeremcha</td><td><span class="dep">15:40</span><br>Siemiatycze</td><td>TLK 1112 „Bocian”</td><td class="r">19 zł</td><td class="r">11,90 zł</td></tr>
+        <tr><td><b>2a</b> Sob</td><td><span class="dep">16:26</span><br>Czeremcha</td><td><span class="dep">16:54</span><br>Siemiatycze</td><td>REG 10482 (Polregio)</td><td class="r">19 zł</td><td class="r">8,50 zł</td></tr>
+        <tr><td>awaryjnie</td><td><span class="dep">19:37</span><br>Czeremcha</td><td><span class="dep">20:05</span><br>Siemiatycze</td><td>REG 10450 (Polregio)</td><td class="r">19 zł</td><td class="r">8,50 zł</td></tr>
+        <tr><td><b>3a</b> Nd</td><td><span class="dep">15:41</span><br>Siemiatycze</td><td><span class="dep">17:20</span><br>Warszawa Wsch.</td><td>TLK 1112 „Bocian”</td><td class="r">50 zł</td><td class="r">11,90 zł</td></tr>
+        <tr><td><b>3b</b> Nd</td><td colspan="3">rowerem do Warszawy — bez pociągu. Awaryjnie: Siedlce 15:42 → Warszawa Wsch. 16:33 (IC 1126)</td><td class="r">0 zł (awaryjnie 34 zł)</td><td class="r">0 zł (11,90 zł)</td></tr>
       </tbody></table></div>
     <div class="grid g2" style="margin-top:16px">
       <div class="card"><h3>Rowery w pociągu</h3>
         <dl class="kv" style="margin-top:8px">
-          <dt>PKP Intercity</dt><dd>11,90 zł w jedną stronę, rezerwacja obowiązkowa <span class="st ok">potwierdzone</span></dd>
+          <dt>PKP Intercity (TLK, IC)</dt><dd>11,90 zł w jedną stronę, rezerwacja miejsca <span class="st ok">potwierdzone, cennik od 23.07.2026</span></dd>
           <dt>Bez rezerwacji</dt><dd>tylko przy wolnych miejscach, + 20 zł opłaty pokładowej</dd>
-          <dt>Polregio (sobota)</dt><dd>opłata za rower <span class="st td">do sprawdzenia</span></dd>
-          <dt>6–10 rowerów</dt><dd>może się nie zmieścić w jednym składzie — rezerwujcie od razu po otwarciu sprzedaży <span class="st td">do sprawdzenia</span></dd>
-          <dt>Bus sobotni</dt><dd>Siemiatycze → Czeremcha z przyczepką na rowery <span class="st td">do wyceny</span></dd>
+          <dt>Polregio (REG)</dt><dd>8,50 zł za rower, niezależnie od trasy <span class="st or">wg KOLEO</span></dd>
+          <dt>Koleje Mazowieckie</dt><dd>rower bezpłatnie <span class="st or">wg KOLEO</span></dd>
+          <dt>6–12 rowerów</dt><dd>może się nie zmieścić w jednym składzie — rezerwujcie od razu <span class="st td">do sprawdzenia</span></dd>
         </dl></div>
-      <div class="card"><h3>Koszt kolei dla grupy</h3><p class="small muted">Bilety normalne „od” + rowery tam i z powrotem. Ulgi studenckie obniżą kwotę.</p><div class="tbl" style="margin-top:10px"><table id="trainCost"></table></div></div>
+      <div class="card"><h3>Koszt kolei na osobę</h3><p class="small muted">Bilety normalne „od” + rowery. Ulgi obniżą kwotę. Piątek 1a i 1b kosztują tyle samo.</p><div class="tbl" style="margin-top:10px"><table id="trainCost"></table></div></div>
     </div>
   </div>
 </section>
 
 <section class="band t-clay" id="budzet">
   <div class="wrap">
-    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak czerwony · budżet</div><h2>Ile to kosztuje</h2><p>Pozycje „do wyceny” nie wchodzą do sumy. Zmieniaj liczbę osób, nocleg, podział Light/Hard i dodatki.</p></div>
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak czerwony · budżet</div><h2>Ile to kosztuje</h2><p>Tylko podróż i nocleg — bez jedzenia. Domek 600 zł za dobę, do 6 osób, minimum 2 osoby.</p></div>
     <div class="calc">
       <div class="card">
         <div class="formgrid">
-          <div class="field"><label for="bN">Uczestniczki</label><select id="bN"><option>6</option><option selected>8</option><option>10</option></select></div>
-          <div class="field"><label for="bHard">W tym Hard</label><input type="number" id="bHard" min="0" max="10" value="3"></div>
-          <div class="field"><label for="bStay">Nocleg</label><select id="bStay"></select></div>
-          <div class="field"><label for="bFood">Jedzenie na osobę (Twoje założenie, zł)</label><input type="number" id="bFood" min="0" step="10" value="150"></div>
-          <div class="field"><label for="bReserve">Rezerwa (%)</label><input type="number" id="bReserve" min="0" max="50" value="10"></div>
+          <div class="field"><label for="bN">Liczba osób</label><select id="bN"><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option selected>8</option><option>9</option><option>10</option><option>11</option><option>12</option></select></div>
+          <div class="field"><label for="bSat">Sobota 2a — powrót z Czeremchy</label><select id="bSat"><option value="tlk">TLK 15:17 (rower 11,90 zł)</option><option value="reg" selected>REG 16:26 (rower 8,50 zł)</option></select></div>
+          <div class="field"><label for="bSun3b">Niedziela 3b</label><select id="bSun3b"><option value="bike" selected>do Warszawy rowerem</option><option value="siedlce">do Siedlec + pociąg</option></select></div>
         </div>
-        <div class="fl">Dodatki</div><div class="checks" id="bExtras" style="margin-top:8px"></div>
+        <div class="checks" style="margin-top:10px"><label><input type="checkbox" id="bBalia"> Balia (+300 zł za domek, dzielone na wszystkich)</label></div>
       </div>
       <div class="card" aria-live="polite">
-        <div class="fl">Na osobę</div><div class="total" id="bPer">—</div>
+        <div class="fl">Na osobę · Light (1 → 2a → 3a)</div><div class="total" id="bPerL">—</div>
+        <div class="fl" style="margin-top:10px">Na osobę · Hard (1 → 2b → 3b)</div><div class="total" id="bPerH">—</div>
         <p class="small muted" id="bTotal"></p>
         <div id="bBuckets" style="margin-top:12px"></div>
-        <div class="tbl" style="margin-top:12px"><table id="bCompare"></table></div>
       </div>
     </div>
+    <div class="tbl" style="margin-top:16px"><table id="bCompare"></table></div>
   </div>
 </section>
 
@@ -555,7 +573,7 @@ footer a{color:var(--heather)}
     <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Na mecie</div><h2>Twój weekend w liczbach</h2></div>
     <div class="seg" role="group" aria-label="Grupa" id="numSeg"><button type="button" data-g="light" aria-pressed="true"><i style="background:var(--c-light)"></i>Light</button><button type="button" data-g="hard" aria-pressed="false"><i style="background:var(--c-hard)"></i>Hard</button></div>
     <div class="statrow" id="numbers"></div>
-    <div class="card" style="margin-top:18px"><h3>Dlaczego warto?</h3><p style="margin-top:8px;max-width:70ch">Zielony szlak prowadzi od kolejowej Czeremchy przez drewniane cerkwie w Zubaczach i Tokarach do Mielnika, gdzie kredowa odkrywka świeci bielą, a z Góry Zamkowej widać zakola Bugu. W listopadzie jest tu pusto i cicho. Jedziemy pociągiem, rowerem i na własnych nogach, a wieczorem siedzimy w balii, suszymy rękawiczki przy kominku i porównujemy liczniki.</p></div>
+    <div class="card" style="margin-top:18px"><h3>Dlaczego warto?</h3><p style="margin-top:8px;max-width:70ch">Zielony szlak prowadzi znad Bugu przez Mielnik, gdzie kredowa odkrywka świeci bielą, a z Góry Zamkowej widać zakola rzeki, do drewnianych cerkwi w Tokarach i Zubaczach. W listopadzie jest tu pusto i cicho. Każdego dnia wracamy do domków w sosnowym lesie: sauna, kominek, a dla chętnych balia.</p></div>
   </div>
 </section>
 
@@ -584,12 +602,12 @@ footer a{color:var(--heather)}
           <div class="field"><label for="fEmail">E-mail *</label><input type="email" id="fEmail" required autocomplete="email"></div>
           <div class="field"><label for="fPhone">Telefon (opcjonalnie)</label><input type="tel" id="fPhone" autocomplete="tel"></div>
           <div class="field"><label for="fVariant">Grupa</label><select id="fVariant"><option>LIGHT BIKE</option><option>HARD BIKE</option><option>tylko zwiedzanie / trekking</option><option selected>jeszcze nie wiem</option></select></div>
-          <div class="field"><label for="fSun">Niedziela</label><select id="fSun"><option>Light: Czeremcha ⇄ Kleszczele</option><option>zwiedzanie Czeremchy</option><option>Hard: rowerem do Siedlec + pociąg</option><option>Hard: 2 dni rowerem do Warszawy</option><option selected>jeszcze nie wiem</option></select></div>
-          <div class="field"><label for="fSatBack">Sobota: powrót z Siemiatycz</label><select id="fSatBack"><option>bus</option><option>pociąg 19:16</option><option>rowerem (Hard)</option><option selected>jeszcze nie wiem</option></select></div>
+          <div class="field"><label for="fSun">Niedziela</label><select id="fSun"><option>3a: Drohiczyn + pociąg 15:41</option><option>3b: rowerem do Warszawy</option><option>3b: rowerem do Siedlec + pociąg</option><option selected>jeszcze nie wiem</option></select></div>
+          <div class="field"><label for="fSatBack">Sobota</label><select id="fSatBack"><option>2a: Light do Czeremchy + pociąg</option><option>2b: Hard pętla</option><option selected>jeszcze nie wiem</option></select></div>
           <div class="field"><label for="fOwnBike">Własny rower?</label><select id="fOwnBike"><option>tak</option><option>nie</option><option>jeszcze nie wiem</option></select></div>
           <div class="field"><label for="fTrainBike">Miejsce na rower w pociągu?</label><select id="fTrainBike"><option>tak, w obie strony</option><option>tylko w jedną stronę</option><option>nie</option></select></div>
-          <div class="field"><label for="fStay">Preferencje noclegu</label><select id="fStay"><option>bez preferencji</option><option>blisko stacji w Czeremsze</option><option>dom z balią/sauną</option><option>najtańsza opcja</option></select></div>
-          <div class="field"><label for="fSauna">Sauna / balia</label><select id="fSauna"><option>chętnie</option><option>może</option><option>nie</option></select></div>
+          <div class="field"><label for="fStay">Piątek</label><select id="fStay"><option>1a: rano (TLK 10:24)</option><option>1b: wieczorem (IC 19:38)</option><option selected>jeszcze nie wiem</option></select></div>
+          <div class="field"><label for="fSauna">Balia (+300 zł za domek)</label><select id="fSauna"><option>chętnie</option><option>może</option><option>nie</option></select></div>
           <div class="field full"><label for="fLimits">Ograniczenia ważne dla aktywności (opcjonalnie)</label><textarea id="fLimits"></textarea></div>
           <div class="field full"><label for="fNotes">Uwagi organizacyjne</label><textarea id="fNotes"></textarea></div>
           <div hidden aria-hidden="true"><label for="fWebsite">Strona www</label><input type="text" id="fWebsite" tabindex="-1" autocomplete="off"></div>
@@ -600,7 +618,7 @@ footer a{color:var(--heather)}
       </form>
       <h3 style="margin-top:18px">Płatność</h3>
       <dl class="kv" style="margin-top:8px">
-        <dt>Zaliczka na noclegi</dt><dd>kwota do uzupełnienia po wybraniu obiektu i ustaleniu podziału kosztów</dd>
+        <dt>Zaliczka na noclegi</dt><dd>kwota do uzupełnienia po ustaleniu liczby osób i domków</dd>
         <dt>Numer konta organizatorki</dt><dd>[DO UZUPEŁNIENIA]</dd>
         <dt>Tytuł przelewu</dt><dd><span class="copybox"><span id="payTitle">Podlasie 20–22.11.2026 – [Imię i nazwisko]</span><button type="button" class="btn sec small" id="copyTitle">Kopiuj</button></span></dd>
       </dl>
@@ -620,7 +638,7 @@ footer a{color:var(--heather)}
       <li>Rozkłady: <a href="https://www.europodroze.pl/rozklad-jazdy/warszawa/czeremcha" target="_blank" rel="noopener">Warszawa → Czeremcha</a> · <a href="https://www.europodroze.pl/rozklad-jazdy/czeremcha/warszawa-wschodnia" target="_blank" rel="noopener">Czeremcha → Warszawa</a> · <a href="https://www.europodroze.pl/rozklad-jazdy/czeremcha/siemiatycze" target="_blank" rel="noopener">Czeremcha → Siemiatycze</a> · <a href="https://www.europodroze.pl/rozklad-jazdy/siemiatycze/czeremcha" target="_blank" rel="noopener">Siemiatycze → Czeremcha</a> · <a href="https://www.europodroze.pl/rozklad-jazdy/siedlce/warszawa-wschodnia" target="_blank" rel="noopener">Siedlce → Warszawa</a></li>
       <li><a href="https://www.intercity.pl/pl/site/dla-pasazera/oferty/krajowe/przewoz-rowerow.html" target="_blank" rel="noopener">PKP Intercity — przewóz rowerów</a> · <a href="https://www.intercity.pl/pl/dokumenty/Przepisy%20i%20taryfy/Cennik_uslug_przewozowych_PKP_Intercity_tekst_ujednolicony_obowiazuje_od_23.07.2026_r.pdf" target="_blank" rel="noopener">Cennik od 23.07.2026</a></li>
       <li><a href="https://www.rome2rio.com/s/Siedlce/Czeremcha" target="_blank" rel="noopener">Rome2rio — Siedlce–Czeremcha, ok. 98 km drogą</a></li>
-      <li>Noclegi: <a href="https://slowhop.com/en/places/3338-podlaski-zakatek.html" target="_blank" rel="noopener">Podlaski Zakątek (Slowhop)</a> · <a href="https://slowhop.com/pl/noclegi/domki-z-balia-podlasie" target="_blank" rel="noopener">Slowhop — domki z balią Podlasie</a> · <a href="https://www.gites.fr/gites_czeremcha_250789.html" target="_blank" rel="noopener">Noclegi w okolicy Czeremchy</a></li>
+      <li>Nocleg: <a href="https://laspokoj.pl/" target="_blank" rel="noopener">LasPokój — strona obiektu</a> · Rozkłady Siemiatycze: <a href="https://www.europodroze.pl/rozklad-jazdy/warszawa-wschodnia/siemiatycze" target="_blank" rel="noopener">Warszawa → Siemiatycze</a> · <a href="https://www.europodroze.pl/rozklad-jazdy/siemiatycze/warszawa" target="_blank" rel="noopener">Siemiatycze → Warszawa</a> · <a href="https://www.europodroze.pl/dworzec-kolejowy/siemiatycze/odjazdy" target="_blank" rel="noopener">odjazdy z Siemiatycz</a> · <a href="https://pomoc.koleo.pl/pytanie/rowery" target="_blank" rel="noopener">KOLEO — ceny przewozu rowerów</a> · Sklepy: © OpenStreetMap (Overpass API)</li>
       <li><a href="https://www.komoot.com/guide/2602728/attractions-around-czeremcha" target="_blank" rel="noopener">Komoot — atrakcje wokół Czeremchy</a> · <a href="https://www.national-geographic.pl/traveler/kierunki/kopalnia-kredy-w-mielniku/" target="_blank" rel="noopener">Kopalnia kredy w Mielniku</a></li>
       <li>Wschód/zachód słońca: obliczenie dla 52,33° N, 23,04° E. Mapa: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>; podkład uproszczony: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a> (domena publiczna).</li>
     </ol>
@@ -668,7 +686,10 @@ const P={
   siedlce:{n:'Siedlce — stacja',c:[52.1677,22.2901],q:'Dworzec PKP Siedlce'},
   wawa:{n:'Warszawa Wschodnia',c:[52.2516,21.0525],q:'Dworzec Warszawa Wschodnia'},
   uszescie:{n:'Rezerwat Góra Uszeście',c:[52.3380,23.0100],q:'Rezerwat przyrody Góra Uszeście'},
-  grabarka:{n:'Święta Góra Grabarka',c:[52.4166,23.0067],q:'Święta Góra Grabarka',maps:'https://maps.app.goo.gl/s3xwKjdoV6Mk2hTs7'}
+  grabarka:{n:'Święta Góra Grabarka',c:[52.4166,23.0067],q:'Święta Góra Grabarka',maps:'https://maps.app.goo.gl/s3xwKjdoV6Mk2hTs7'},
+  laspokoj:{n:'LasPokój — domki',c:[52.36433,22.84500],q:'LasPokój Wólka Nadbużna'},
+  drohiczyn:{n:'Drohiczyn',c:[52.3965,22.6600],q:'Drohiczyn Góra Zamkowa'},
+  milejczyce:{n:'Milejczyce',c:[52.5186,23.1320],q:'Milejczyce'}
 };
 /* Km zielonego szlaku od Czeremchy = 58,5 − km GreenVelo */
 const GREEN=[['czeremcha',0],['zubacze',9.4],['klukowicze',15.8],['tokaryc',20.2],['tokary',22.0],['tokaryg',24.1],['adamowo',31.8],['mielnik',39.3],['oslowo',43.4],['mackowicze',47.9],['stacja',51.0],['siemiatycze',58.5]];
@@ -684,29 +705,28 @@ function greenPts(back){
   return out.map(x=>x.p==='mielnik'?{...x,visit:15,info:'Punkt decyzji ok. 10:00: jeśli jesteśmy tu po 10:20, zawracamy (razem 78,6 km).'}:x).concat(ret);
 }
 const ROUTES={
-  satLight:{label:'Sob · Light',color:'var(--c-light)',hex:'#4f7d5c',type:'bike',pace:14,km:58.5,diff:'łatwa–średnia, długa',
-    src:'Szlak zielony Czeremcha → Siemiatycze, 58,5 km wg GreenVelo (inne źródła 58,7–60,1 km). Start 09:00, meta ok. 14:30.',pts:greenPts(false)},
-  satHard:{label:'Sob · Hard',color:'var(--c-hard)',hex:'#a4532e',type:'bike',pace:20,km:117,diff:'trudna (dystans)',
-    src:'Szlak zielony tam i z powrotem: 2 × 58,5 km. Start 08:00, meta ok. 14:40 (światła obowiązkowe).',pts:greenPts(true)},
-  sunLight:{label:'Nd · Light',color:'var(--c-sun)',hex:'#3e6e8e',type:'bike',pace:14,km:22.0,diff:'łatwa',
-    src:'Szlak czerwony Green Velo na północ: Czeremcha → Dobrowoda 6,6 → Kleszczele 11,0 km (GreenVelo) i z powrotem. Zalew w Repczycach: wydłużenie do wyliczenia.',
-    pts:[{p:'czeremcha',km:0,visit:0,surf:'asfalt',info:'Start 10:00 po wymeldowaniu.'},{p:'dobrowoda',km:6.6,visit:0,surf:'drogi lokalne',info:''},{p:'kleszczele',km:11.0,visit:45,surf:'drogi lokalne',info:'Miasteczko, kawa. Ośrodek rekreacji MOR Green Velo w Repczycach z wieżą 25 m — dojazd do wyliczenia.'},{p:'czeremcha',km:22.0,visit:0,surf:'drogi lokalne',info:'Powrót tą samą drogą; pociąg 15:17.'}]},
-  sunHard:{label:'Nd · Hard',color:'var(--c-hard)',hex:'#a4532e',type:'bike',pace:20,km:98,kmSt:'or',diff:'trudna',
-    src:'Czeremcha → Siemiatycze → Siedlce ≈ 98 km (dystans drogowy, rome2rio). Linia na mapie: propozycja wyznaczona automatycznie po drogach dopuszczonych dla rowerów (OSRM, profil rowerowy, bez dróg ekspresowych) — przed wyjazdem sprawdźcie ją w BRouter lub komoot.',
-    pts:[{p:'czeremcha',km:0,visit:0,surf:'—',info:'Start 08:00.'},{p:'siemiatycze',km:null,visit:20,surf:'drogi lokalne',info:'Przejazd przez Siemiatycze (orientacyjnie po drodze).'},{p:'siedlce',km:98,visit:0,surf:'—',info:'Pociąg IC 1126 15:42 lub TLK 1112 16:25 do Warszawy.',kmSt:'or'}]},
-  sunWawa:{label:'Nd · Hard → Wawa',color:'#7a2f1d',hex:'#7a2f1d',type:'bike',pace:20,km:null,diff:'bardzo trudna (ok. 2 × dystans Siedlec)',
-    src:'Cała droga rowerem do stacji, z której startujemy: Czeremcha → Siemiatycze → Siedlce → Warszawa Wschodnia. Dystans liczy się z trasy po drogach (OSRM). Uwaga: ok. 190–200 km nie zmieści się w jednym listopadowym dniu (wschód 06:58, zachód 15:28) — realnie jako wersja 2-dniowa z noclegiem w okolicy Siedlec.',
-    pts:[{p:'czeremcha',km:0,visit:0,surf:'—',info:'Start 08:00.'},{p:'siemiatycze',km:null,visit:20,surf:'drogi lokalne',info:'Przejazd przez Siemiatycze.'},{p:'siedlce',km:null,visit:30,surf:'—',info:'Koniec dnia 1 w wersji 2-dniowej (nocleg w okolicy) albo przesiadka na pociąg.'},{p:'wawa',km:null,visit:0,surf:'—',info:'Meta: stacja Warszawa Wschodnia.'}]},
-  sunVisit:{label:'Nd · zwiedzanie',color:'var(--c-visit)',hex:'#8a7556',type:'foot',pace:4,km:null,diff:'łatwa',
-    src:'Spacer lub spokojny rower po Czeremsze: stacja i Muzeum Kolejnictwa, Kuzawa z cerkwią św. Barbary. Kilometraż do wyliczenia; Kuzawa leży blisko granicy — sprawdź strefę.',
-    pts:[{p:'czeremcha',km:0,visit:60,surf:'chodnik',info:'Muzeum Kolejnictwa — godziny do sprawdzenia.'},{p:'kuzawa',km:null,visit:30,surf:'droga lokalna',info:'Cerkiew św. Barbary, ogród z „kwiatowym pociągiem”. Blisko granicy.',kmSt:'td'},{p:'czeremcha',km:null,visit:0,surf:'chodnik',info:'Pociąg 15:17.'}]},
   all:{label:'Wszystkie',color:'#c9a55c',hex:'#c9a55c',all:true,pts:[]},
-  friLight:{label:'Pt · rozjazd',color:'var(--c-light)',hex:'#4f7d5c',type:'bike',pace:14,km:18.8,diff:'łatwa',
-    src:'Opcjonalnie po przyjeździe: Czeremcha ⇄ Zubacze szlakiem zielonym, 2 × 9,4 km. Start ok. 13:00, powrót przed 15:00.',
-    pts:[{p:'czeremcha',km:0,visit:0,surf:SURF,info:''},{p:'zubacze',km:9.4,visit:20,surf:SURF,info:INFO.zubacze},{p:'czeremcha',km:18.8,visit:0,surf:SURF,info:''}]}
+  fri1a:{label:'Pt · 1a rano',color:'var(--mk-yellow)',hex:'#b8892f',type:'bike',pace:14,km:null,est:33,diff:'łatwa',
+    src:'Po przyjeździe TLK o 11:58: ze stacji Siemiatycze na Świętą Górę Grabarkę, potem obiad i zwiedzanie Siemiatycz, wieczorem do domków. Dłuższa jazda (4 h) nie zmieści się przed zmrokiem o 15:28 — chyba że wcześniejszym pociągiem przez Siedlce (08:24).',
+    pts:[{p:'stacja',km:null,visit:0,surf:'—',info:'Start ok. 12:10 po przyjeździe TLK 1012.'},{p:'grabarka',km:null,visit:30,surf:'drogi lokalne',info:'Cerkiew, monaster, tysiące krzyży. W cerkwi nie fotografujemy; skromny strój.'},{p:'siemiatycze',km:null,visit:90,surf:'drogi lokalne',info:'Obiad. Kościół Wniebowzięcia NMP, synagoga, sfinksy przy bramie pałacowej. Zakupy.'},{p:'laspokoj',km:null,visit:0,surf:'drogi lokalne',info:'Domki: sauna i kominek. Ostatnie km po zmroku — lampki.'}]},
+  fri1b:{label:'Pt · 1b wieczór',color:'var(--mk-yellow)',hex:'#8a6a2a',type:'bike',pace:14,km:null,est:5,diff:'łatwa, po ciemku',
+    src:'IC 1016 z Warszawy Wschodniej 19:38, w Siemiatyczach 21:13. Ze stacji prosto do domków, po ciemku — lampki obowiązkowo.',
+    pts:[{p:'stacja',km:null,visit:0,surf:'—',info:'Przyjazd 21:13.'},{p:'laspokoj',km:null,visit:0,surf:'drogi lokalne',info:'Domki.'}]},
+  sat2a:{label:'Sob · 2a Light',color:'var(--c-light)',hex:'#4f7d5c',type:'bike',pace:14,km:null,est:57,diff:'łatwa–średnia',
+    src:'Z domków na zielony szlak przy Maćkowiczach i nim do Czeremchy, z odbiciami do Góry Uszeście i w Mielniku (Góra Zamkowa, taras kopalni kredy). Powrót pociągiem 15:17 (TLK) lub 16:26 (REG) do Siemiatycz i ok. 5 km do domków.',
+    pts:[{p:'laspokoj',km:null,visit:0,surf:'—',info:'Start 08:30.'},{p:'mackowicze',km:null,visit:10,surf:SURF,info:INFO.mackowicze},{p:'oslowo',km:null,visit:0,surf:SURF,info:''},{p:'uszescie',km:null,visit:15,surf:'ścieżka, krótko pieszo',info:'Punkt widokowy na zakole Bugu.'},{p:'mielnik',km:null,visit:75,surf:SURF,info:'Ciepły posiłek. Góra Zamkowa i taras kopalni kredy.'},{p:'adamowo',km:null,visit:0,surf:SURF,info:''},{p:'tokary',km:null,visit:0,surf:SURF,info:'Odcinek przy granicy — tylko szlakiem.'},{p:'tokaryc',km:null,visit:10,surf:SURF,info:'Cerkiew.'},{p:'klukowicze',km:null,visit:0,surf:SURF,info:''},{p:'zubacze',km:null,visit:15,surf:SURF,info:INFO.zubacze},{p:'czeremcha',km:null,visit:30,surf:SURF,info:'Kawa. Pociąg TLK 15:17 lub REG 16:26 do Siemiatycz.'}]},
+  sat2b:{label:'Sob · 2b Hard',color:'var(--c-hard)',hex:'#a4532e',type:'bike',pace:20,km:null,est:112,diff:'trudna (dystans)',
+    src:'Pętla: zielonym szlakiem do Czeremchy (ok. 57 km), powrót drogami lokalnymi przez Milejczyce i Siemiatycze. Start 08:00, meta ok. 14:50. Punkt decyzji w Czeremsze — można wrócić pociągiem z Light.',
+    pts:[{p:'laspokoj',km:null,visit:0,surf:'—',info:'Start 08:00.'},{p:'mackowicze',km:null,visit:0,surf:SURF,info:''},{p:'mielnik',km:null,visit:10,surf:SURF,info:'Krótki postój.'},{p:'tokaryc',km:null,visit:0,surf:SURF,info:'Odcinek przy granicy — tylko szlakiem.'},{p:'zubacze',km:null,visit:0,surf:SURF,info:''},{p:'czeremcha',km:null,visit:40,surf:SURF,info:'Ciepły posiłek. Punkt decyzji.'},{p:'milejczyce',km:null,visit:10,surf:'drogi lokalne',info:'Powrót drogami lokalnymi — sprawdź przebieg w komoot.'},{p:'siemiatycze',km:null,visit:15,surf:'drogi lokalne',info:'Zakupy.'},{p:'laspokoj',km:null,visit:0,surf:'drogi lokalne',info:'Meta ok. 14:50, zmrok 15:28.'}]},
+  sun3a:{label:'Nd · 3a',color:'var(--c-sun)',hex:'#3e6e8e',type:'bike',pace:14,km:null,est:37,diff:'łatwa',
+    src:'Po wspólnym spacerze: rowerem do Drohiczyna (zwiedzanie i obiad), potem na stację Siemiatycze i TLK 15:41 do Warszawy (17:20). Bagaż w sakwach.',
+    pts:[{p:'laspokoj',km:null,visit:0,surf:'—',info:'Start 10:00 po spacerze i pożegnaniu z 3b.'},{p:'drohiczyn',km:null,visit:120,surf:'drogi lokalne',info:'Góra Zamkowa, katedra, widok na Bug. Obiad.'},{p:'stacja',km:null,visit:0,surf:'drogi lokalne',info:'TLK 1112 o 15:41 do Warszawy Wschodniej.'}]},
+  sun3b:{label:'Nd · 3b → Wawa',color:'#7a2f1d',hex:'#7a2f1d',type:'bike',pace:20,km:null,est:150,diff:'bardzo trudna — część po zmroku',
+    src:'Z domków przez most na Bugu i Siedlce do stacji Warszawa Wschodnia. Przebieg i km wyznacza mapa (OSRM, profil rowerowy) — przed wyjazdem sprawdźcie w komoot lub BRouter. Punkt zejścia: Siedlce (pociąg IC 15:42).',
+    pts:[{p:'laspokoj',km:null,visit:0,surf:'—',info:'Start 08:30.'},{p:'siedlce',km:null,visit:40,surf:'drogi lokalne',info:'Obiad. Punkt decyzji: IC 1126 15:42 → Warszawa 16:33.'},{p:'wawa',km:null,visit:0,surf:'—',info:'Meta ok. 17:00, po zmroku.'}]}
 };
-const ROUTE_ORDER=['all','friLight','satLight','satHard','sunLight','sunHard','sunWawa','sunVisit'];
-let cur='satLight';
+const ROUTE_ORDER=['all','fri1a','fri1b','sat2a','sat2b','sun3a','sun3b'];
+let cur='sat2a';
 const curR=()=>ROUTES[cur];
 
 /* ---------- Mapa ---------- */
@@ -741,42 +761,27 @@ function initMap(){
   L.control.layers(bases,null,{position:'topright'}).addTo(map);
   [esri,esriTopo,osm,cyc,topo].forEach(t=>{if(t!==tiles)t.on('tileload',()=>tiles.fire('tileload'))});
   let base=L.layerGroup();try{base=buildBase().addTo(map)}catch(e){console.warn(e)}
-  const note=()=>{$('#mapNote').innerHTML=(tileOk?'Podkład: OpenStreetMap. ':'Uproszczony podkład (ten widok blokuje zewnętrzne mapy): Bug, granica, miejscowości. Pełna mapa OSM — po otwarciu pliku HTML w Chrome lub Firefoksie. ')+'Linia ciągła prowadzi drogami przez punkty o przybliżonym położeniu, więc miejscami może odbiegać od szlaku. Kilometraż pochodzi z opisu GreenVelo; na miejscu jedziemy wg znaków szlaku. Przycisk w prawym górnym rogu mapy zmienia podkład (np. rowerowy CyclOSM).'};
+  const note=()=>{$('#mapNote').innerHTML=(tileOk?'Podkład: OpenStreetMap. ':'Uproszczony podkład (ten widok blokuje zewnętrzne mapy): Bug, granica, miejscowości. Pełna mapa OSM — po otwarciu pliku HTML w Chrome lub Firefoksie. ')+'Linia ciągła prowadzi drogami dla rowerów przez punkty trasy (także odbicia do atrakcji), więc miejscami może odbiegać od znaków szlaku — na miejscu jedziemy wg oznakowania. Kilometry liczy mapa (OSRM). Przycisk w prawym górnym rogu zmienia podkład (np. rowerowy CyclOSM).'};
   tiles.on('tileload',()=>{if(!tileOk){tileOk=true;map.removeLayer(base);note()}}); note();
-  layers.rail=L.layerGroup().addTo(map); layers.stay=L.layerGroup().addTo(map); layers.attr=L.layerGroup().addTo(map);
-  const STATIONS=[['czeremcha','Stacja Czeremcha','przyjazd w piątek 12:21, odjazd w niedzielę 15:17'],['stacja','Stacja Siemiatycze','meta Light w sobotę, powrót do Czeremchy 19:16']];
+  layers.rail=L.layerGroup().addTo(map); layers.stay=L.layerGroup().addTo(map); layers.attr=L.layerGroup().addTo(map); layers.shop=L.layerGroup().addTo(map);
+  const STATIONS=[['stacja','Stacja Siemiatycze','przyjazd w piątek 11:58 (1a) lub 21:13 (1b); w sobotę powrót z Czeremchy 15:40 / 16:54; w niedzielę TLK 15:41 do Warszawy'],['czeremcha','Stacja Czeremcha','sobota 2a: pociąg do Siemiatycz 15:17 (TLK) lub 16:26 (REG)']];
   STATIONS.forEach(([k,n,d])=>L.marker(P[k].c,{icon:L.divIcon({className:'',html:'<div class="rail-pin">🚆</div>',iconSize:[30,30],iconAnchor:[15,15],popupAnchor:[0,-14]}),title:n,zIndexOffset:1500}).bindTooltip(n.replace('Stacja ','🚆 '),{permanent:true,direction:'right',offset:[14,0],className:'rail-lbl'}).bindPopup(`<b>${n}</b><br><span class="small">${d}</span><br><a href="#dojazd">Rozkład pociągów</a>`).addTo(layers.rail));
   L.polyline([P.czeremcha.c,P.stacja.c],{color:'#555',weight:3,dashArray:'2 8'}).bindTooltip('Linia kolejowa Czeremcha–Siemiatycze (dalej do Warszawy), schemat').addTo(layers.rail);
-  placeStays();
+  placeStays();loadShops();
   const onRoute=new Set(Object.values(ROUTES).flatMap(r=>r.pts.map(x=>x.p))),seenA={};
   ATTR.forEach(a=>{const k=seenA[a.p]=(seenA[a.p]||0)+1,off=onRoute.has(a.p)||k>1,ang=-0.9+(k-1)*0.95;
     const dx=off?Math.round(30*Math.cos(ang)):0,dy=off?Math.round(30*Math.sin(ang)):0,L1=ALET(a.id);
     L.marker(P[a.p].c,{icon:L.divIcon({className:'',html:`<div class="apin">${L1}${PAID(a)?'<i class="coin">zł</i>':''}</div>`,iconSize:[26,26],iconAnchor:[13-dx,13-dy],popupAnchor:[dx,dy-12],tooltipAnchor:[dx+12,dy]}),title:L1+'. '+a.n,zIndexOffset:1200}).bindTooltip(L1+'. '+a.n).bindPopup(()=>attrPopup(a)).addTo(layers.attr)});
   const box=$('#layerToggles');
-  box.innerHTML=[['route','Wybrana trasa'],['attr','Atrakcje'],['stay','Noclegi'],['rail','Kolej']].map(([k,l])=>`<label><input type="checkbox" data-layer="${k}" checked> ${l}</label>`).join('');
+  box.innerHTML=[['route','Wybrana trasa'],['attr','Atrakcje'],['stay','Domki'],['shop','Sklepy'],['rail','Kolej']].map(([k,l])=>`<label><input type="checkbox" data-layer="${k}" checked> ${l}</label>`).join('');
   box.addEventListener('change',e=>{const k=e.target.dataset.layer;if(!k)return;
     if(k==='route'){e.target.checked?routeLayer.addTo(map):map.removeLayer(routeLayer);return}
     e.target.checked?layers[k].addTo(map):map.removeLayer(layers[k]);
-    if(e.target.checked&&(k==='rail'||k==='stay')){const b=L.latLngBounds(window.__lb?[window.__lb.getSouthWest(),window.__lb.getNorthEast()]:[]);layers[k].eachLayer(l=>{if(l.getLatLng)b.extend(l.getLatLng())});if(b.isValid())map.fitBounds(b.pad(.05))}});
+    if(e.target.checked&&(k==='rail'||k==='stay'||k==='shop')){const b=L.latLngBounds(window.__lb?[window.__lb.getSouthWest(),window.__lb.getNorthEast()]:[]);layers[k].eachLayer(l=>{if(l.getLatLng)b.extend(l.getLatLng())});if(b.isValid())map.fitBounds(b.pad(.05))}});
 }
 
 /* ---------- Pinezki noclegów: położenie miejscowości z OpenStreetMap (Nominatim), zapamiętane w przeglądarce ---------- */
-const STAY_ADDR={
-  arche:{a:'Miedwieżyki 30, 17-332 Milejczyce',q:['Miedwieżyki 30'],v:'Miedwieżyki'},
-  sowa:{a:'Werstok 2, 17-204 Werstok',q:['Werstok 2'],v:'Werstok'},
-  rogacze65:{a:'Rogacze 65, 17-332 Milejczyce',c:[52.50259,23.21949]},
-  rogacze72:{a:'Rogacze 72, 17-332 Milejczyce',c:[52.50380,23.21596]},
-  golub:{a:'Gołubowszczyzna 12, 17-332 Milejczyce',c:[52.49332,23.17958]},
-  saki:{a:'Saki 56, 17-250 Kleszczele',c:[52.631035,23.318361]},
-  podlasie:{a:'ul. Polna 67A, 17-204 Dubicze Cerkiewne',q:['Polna 67A, Dubicze Cerkiewne','Polna 67, Dubicze Cerkiewne'],v:'Polna, Dubicze Cerkiewne'},
-  zakatek:{a:'Bereżyszcze 6, 17-240 Czeremcha',c:[52.49044,23.31035]},
-  szpakowka:{a:'ul. Fabryczna 16a, 17-240 Czeremcha',c:[52.50764,23.34851]},
-  augustynka59:{a:'Augustynka 59, 17-330 Nurzec-Stacja',c:[52.45217,23.15867]},
-  augustynka39:{a:'Augustynka 39, 17-330 Nurzec-Stacja',c:[52.44209,23.14740]},
-  folwark:{a:'Anusin 95, 17-300 Siemiatycze',q:['Anusin 95'],v:'Anusin'},
-  laspokoj:{a:'Wólka Nadbużna, 17-300 Siemiatycze',c:[52.36430,22.84518]},
-  chatanova:{a:'Pokaniewo-Kolonia 40, 17-332 Milejczyce',c:[52.514685,23.016913]}
-};
+const STAY_ADDR={laspokoj:{a:'Wólka Nadbużna, 17-300 Siemiatycze',c:[52.36433,22.84500]}};
 const GEOKEY='podlasie-geo-v3';let geoC={};try{geoC=JSON.parse(localStorage.getItem(GEOKEY)||'{}')}catch(e){}
 async function geocode(q){if(geoC[q])return geoC[q];
   const r=await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&countrycodes=pl&bounded=1&viewbox=22.55,52.75,23.75,52.25&accept-language=pl&q='+encodeURIComponent(q));
@@ -789,7 +794,7 @@ function distHtml(id){const d=DIST[id];if(d===undefined)return '<span class="sma
 async function osrm(prof,a,b){const ck='d:'+prof+':'+a.map(v=>v.toFixed(4))+';'+b.map(v=>v.toFixed(4));if(rCache[ck])return rCache[ck];
   const r=await fetch(`https://routing.openstreetmap.de/${prof}/route/v1/driving/${a[1]},${a[0]};${b[1]},${b[0]}?overview=false`);if(!r.ok)throw 0;const j=await r.json();const rt=j.routes&&j.routes[0];if(!rt)throw 0;
   const v={km:rt.distance/1000,min:rt.duration/60};try{rCache[ck]=v;localStorage.setItem(RKEY,JSON.stringify(rCache))}catch(e){}return v}
-async function distFor(s,c){const st=P.czeremcha.c;let bike=null,car=null;
+async function distFor(s,c){const st=P.stacja.c;let bike=null,car=null;
   try{bike=await osrm('routed-bike',st,c)}catch(e){}try{car=await osrm('routed-car',st,c)}catch(e){}
   DIST[s.id]=bike||car?{bike:bike&&bike.km,car:car&&car.km,carMin:car&&car.min}:null;const el=document.getElementById('dist-'+s.id);if(el)el.innerHTML=distHtml(s.id)}
 async function placeStays(){const used={},n=+(($('#nGuests')||{}).value||8);
@@ -800,11 +805,11 @@ async function placeStays(){const used={},n=+(($('#nGuests')||{}).value||8);
     const cc=i>1?[c[0]+.004*Math.cos(i*2.1),c[1]+.006*Math.sin(i*2.1)]:c;
     if(exact)distFor(s,c);else{DIST[s.id]=null;const el=document.getElementById('dist-'+s.id);if(el)el.innerHTML=distHtml(s.id)}
     const pv=ppVal(s,n);
-    L.marker(cc,{icon:L.divIcon({className:'',html:`<div class="spin"><b>⌂</b>${STAYS.indexOf(s)+1}</div>`,iconSize:[34,24],iconAnchor:[17,12],popupAnchor:[0,-12]}),title:s.n,zIndexOffset:500}).bindTooltip((STAYS.indexOf(s)+1)+'. '+s.n).bindPopup(()=>`<div class="tag">Nocleg${s.pick?' · wybór organizatorki':''}</div><b>${STAYS.indexOf(s)+1}. ${esc(s.n)}</b><div class="small" style="margin:4px 0">📍 <b>${esc(A.a||s.loc)}</b></div><div class="small" style="margin:0 0 4px">Ze stacji Czeremcha: ${distHtml(s.id)}</div><div><b>${pv?(pv.from?'od ':'')+zl(pv.v):'do wyceny'}</b> <span class="small">na osobę · 2 noce</span></div><div class="small" style="margin-top:4px">${house?'Pinezka pod tym adresem (OpenStreetMap).':exact?'Mapa OSM nie zna tego numeru domu — pinezka przy ulicy / w centrum wsi.':'Położenie do sprawdzenia — pinezka umowna przy Czeremsze.'}</div><p style="margin-top:6px"><a href="${s.src}" target="_blank" rel="noopener">Oferta</a> · <a href="${gmaps(s.n+' '+(A.a||s.loc))}" target="_blank" rel="noopener">Google Maps</a> · <a href="#noclegi">Porównanie</a></p>`).addTo(layers.stay)}}
+    L.marker(cc,{icon:L.divIcon({className:'',html:`<div class="spin"><b>⌂</b>${STAYS.indexOf(s)+1}</div>`,iconSize:[34,24],iconAnchor:[17,12],popupAnchor:[0,-12]}),title:s.n,zIndexOffset:500}).bindTooltip((STAYS.indexOf(s)+1)+'. '+s.n).bindPopup(()=>`<div class="tag">Baza · 2 noce</div><b>${STAYS.indexOf(s)+1}. ${esc(s.n)}</b><div class="small" style="margin:4px 0">📍 <b>${esc(A.a||s.loc)}</b></div><div class="small" style="margin:0 0 4px">Ze stacji Siemiatycze: ${distHtml(s.id)}</div><div><b>${lsText(n)}</b></div><div class="small" style="margin-top:4px">${house?'Pinezka pod tym adresem (OpenStreetMap).':exact?'Mapa OSM nie zna tego numeru domu — pinezka przy ulicy / w centrum wsi.':'Położenie do sprawdzenia — pinezka umowna przy Czeremsze.'}</div><p style="margin-top:6px"><a href="https://laspokoj.pl/" target="_blank" rel="noopener">laspokoj.pl</a> · <a href="https://www.google.com/maps/search/?api=1&query=52.36433,22.845" target="_blank" rel="noopener">Google Maps</a> · <a href="#noclegi">Szczegóły</a></p>`).addTo(layers.stay)}}
 function segInfo(r,i){const x=r.pts[i],prev=i?r.pts[i-1]:null;const d=(x.km!=null&&prev&&prev.km!=null)?x.km-prev.km:(i===0?0:null);return{km:x.km,d,ride:d!=null?d/r.pace*60:null}}
 function drawAll(){routeLayer=L.layerGroup();const all=[];
   ROUTE_ORDER.filter(k=>k!=='all').forEach(k=>{const r=ROUTES[k],coords=r.pts.map(x=>P[x.p].c),live=liveKm[k];all.push(...coords);
-    const line=live&&live.geom?L.polyline(live.geom,{color:r.hex,weight:k==='friLight'?3:5,opacity:.85}):L.polyline(coords,{color:r.hex,weight:k==='friLight'?3:4,dashArray:'10 7',opacity:.9});
+    const line=live&&live.geom?L.polyline(live.geom,{color:r.hex,weight:k==='fri1b'?3:5,opacity:.85}):L.polyline(coords,{color:r.hex,weight:k==='fri1b'?3:4,dashArray:'10 7',opacity:.9});
     line.bindTooltip(r.label+(r.km!=null?' · '+fmt(r.km)+' km':''),{sticky:true}).on('click',()=>setRoute(k)).addTo(routeLayer);
     tryRouting(k,[...new Set(r.pts.map(x=>x.p))].map(p=>P[p].c),r.type)});
   const tog=$('#layerToggles input[data-layer="route"]'); if(!tog||tog.checked)routeLayer.addTo(map);
@@ -841,8 +846,8 @@ $('#pointList').addEventListener('click',e=>{const b=e.target.closest('.pt');if(
 function rstats(r){const lv=Object.keys(ROUTES).find(k=>ROUTES[k]===r),km=r.km!=null?r.km:(liveKm[lv]&&liveKm[lv].km)||null, ride=km!=null?km/r.pace*60:null, vis=r.pts.reduce((a,p)=>a+(p.visit||0),0);
   const attrs=new Set(r.pts.map(x=>x.p).filter(p=>ATTR.some(a=>a.p===p))).size;return{km,ride,vis,tot:ride!=null?ride+vis:null,attrs}}
 function renderStats(){const r=curR();
-  if(r.all){const sum=ks=>ks.reduce((a,k)=>a+(ROUTES[k].km||0),0);
-    $('#routeStats').innerHTML=[[String(ROUTE_ORDER.length-1),'tras na mapie'],[fmt(sum(['friLight','satLight','sunLight']))+' km','Light — cały weekend'],[fmt(sum(['friLight','satHard','sunHard']))+' km','Hard — cały weekend'],[String(ATTR.length),'atrakcji'],[String(STAYS.length),'noclegów']]
+  if(r.all){const sum=ks=>ks.reduce((a,k)=>a+(rkm(k)||0),0);
+    $('#routeStats').innerHTML=[[String(ROUTE_ORDER.length-1),'tras na mapie'],[fmt(sum(['fri1a','sat2a','sun3a']))+' km','Light — cały weekend'],[fmt(sum(['fri1a','sat2b','sun3b']))+' km','Hard — cały weekend'],[String(ATTR.length),'atrakcji'],[String(STAYS.length),'noclegów']]
      .map(([v,l])=>`<div class="stat"><div class="v" style="font-size:${v.length>9?'1.15rem':'1.7rem'};color:${r.hex}">${esc(v)}</div><div class="l">${l}</div></div>`).join('');return}
   const s=rstats(r),live=liveKm[cur];
   $('#routeStats').innerHTML=[[s.km!=null?(r.km==null?'≈ ':'')+fmt(s.km)+' km':'—',r.km==null&&s.km!=null?'dystans (po drogach, OSRM)':'dystans (źródło)'],[s.ride!=null?hm(s.ride):'—',(r.type==='foot'?'marsz':'jazda')+' przy '+r.pace+' km/h'],[s.tot!=null?hm(s.tot):'—','z postojami'],[r.diff,'trudność'],[String(s.attrs),'atrakcje']]
@@ -862,18 +867,31 @@ async function tryRouting(key,coords,type){
   liveKm[key]=undefined;
 }
 
+/* ---------- Sklepy spożywcze z OpenStreetMap (Overpass API) ---------- */
+const SHOPKEY='podlasie-shops-v1';
+async function loadShops(){let data=null;try{const c=JSON.parse(localStorage.getItem(SHOPKEY)||'null');if(c&&Date.now()-c.t<864e5)data=c.d}catch(e){}
+  if(!data){try{const q='[out:json][timeout:25];(nwr["shop"~"^(supermarket|convenience|general|greengrocer|bakery)$"](around:9000,52.36433,22.845););out center tags;';
+    const r=await fetch('https://overpass-api.de/api/interpreter',{method:'POST',body:'data='+encodeURIComponent(q),headers:{'Content-Type':'application/x-www-form-urlencoded'}});if(!r.ok)throw 0;data=(await r.json()).elements||[];
+    try{localStorage.setItem(SHOPKEY,JSON.stringify({t:Date.now(),d:data}))}catch(e){}}catch(e){return}}
+  const base=P.laspokoj.c,dist=(a,b)=>{const R=6371,t=Math.PI/180,x=(b[1]-a[1])*t*Math.cos((a[0]+b[0])/2*t),y=(b[0]-a[0])*t;return Math.sqrt(x*x+y*y)*R};
+  const shops=data.map(e=>({c:e.lat!=null?[e.lat,e.lon]:(e.center?[e.center.lat,e.center.lon]:null),t:e.tags||{}})).filter(x=>x.c).map(x=>({...x,d:dist(base,x.c)})).sort((a,b)=>a.d-b.d).slice(0,10);
+  shops.forEach(x=>{const t=x.t,nm=t.name||t.brand||({supermarket:'Supermarket',convenience:'Sklep spożywczy',general:'Sklep',bakery:'Piekarnia',greengrocer:'Warzywniak'}[t.shop]||'Sklep');
+    const adr=[t['addr:street']||t['addr:place'],t['addr:housenumber']].filter(Boolean).join(' ')+(t['addr:city']?', '+t['addr:city']:'');
+    const oh=t.opening_hours?esc(t.opening_hours).replace(/;\s*/g,'<br>'):'brak godzin w OpenStreetMap — sprawdź w Google Maps';
+    L.marker(x.c,{icon:L.divIcon({className:'',html:'<div class="shpin">🛒</div>',iconSize:[24,24],iconAnchor:[12,12],popupAnchor:[0,-12]}),title:nm,zIndexOffset:300}).bindTooltip('🛒 '+nm).bindPopup(`<div class="tag">Sklep · ${fmt(x.d)} km od domków (w linii prostej)</div><b>${esc(nm)}</b>${adr?`<div class="small">${esc(adr)}</div>`:''}<div class="small" style="margin-top:6px"><b>Godziny (OSM):</b><br>${oh}</div><div class="small muted" style="margin-top:6px">22.11 to niedziela niehandlowa — sklepy sieciowe zamknięte. Godziny z OpenStreetMap mogą być nieaktualne.</div><p style="margin-top:6px"><a href="${gmaps(nm+' '+(adr||'Siemiatycze'))}" target="_blank" rel="noopener">Google Maps</a></p>`).addTo(layers.shop)})}
+
 /* ---------- Dzień po dniu ---------- */
 let grp='light';
 const DAYS={
  light:[
-  {n:'Piątek',d:'20 listopada · przyjazd',c:'var(--mk-yellow)',tl:[['10:24','Odjazd z Warszawy Wschodniej, TLK 1012. Rowery w przedziale rowerowym (rezerwacja).'],['12:21','Czeremcha. Bagaże do bazy (zameldowanie wg obiektu).'],['13:00','Opcjonalny rozjazd: Czeremcha ⇄ Zubacze, 18,8 km, drewniana cerkiew z 1895 r.'],['15:00','Powrót przed zmrokiem (15:29). Zakupy w Czeremsze.'],['18:00','Wspólna kolacja, odprawa przed sobotą, przy kominku.']]},
-  {n:'Sobota',d:'21 listopada · 58,5 km',c:'var(--c-light)',tl:[['07:30','Pobudka.'],['08:00','Śniadanie, pakowanie prowiantu i termosów.'],['09:00','Start z Czeremchy szlakiem zielonym.'],['09:45','Zubacze, km 9,4 — cerkiew (15 min).'],['10:45','Tokary, km 20–24 — cerkiew; odcinek przy granicy jedziemy szlakiem.'],['12:15','Mielnik, km 39,3 — obiad, Góra Zamkowa, taras kopalni kredy (ok. 45 min).'],['13:00','Dalej nad Bugiem: Osłowo, Maćkowicze.'],['14:30','Siemiatycze, km 58,5. Meta, ciepła kawa.'],['15:00','Bus z rowerami do Czeremchy (do wyceny) albo odpoczynek w Siemiatyczach i REG 19:16 → 19:44.'],['17:00','Balia i kominek, kolacja, gry.']]},
-  {n:'Niedziela',d:'22 listopada · powrót',c:'var(--c-sun)',tl:[['08:30','Śniadanie, sprzątanie, wymeldowanie (godzina wg obiektu).'],['10:00','Wariant A: rowerem na północ szlakiem czerwonym Green Velo do Kleszczel (11 km) i z powrotem, razem 22 km.'],['10:00','Wariant B: zwiedzanie Czeremchy — Muzeum Kolejnictwa (godziny do sprawdzenia), Kuzawa.'],['13:30','Obiad w Czeremsze, rowery na stację.'],['15:17','TLK 1112 do Warszawy Wschodniej (17:21). W Siedlcach o 16:25 dosiada się grupa Hard.']]}
+  {n:'Piątek',d:'20 listopada · 1a lub 1b',c:'var(--mk-yellow)',tl:[['1a','Rano — dla obu grup:'],['10:24','TLK 1012 z Warszawy Wschodniej (rower: rezerwacja 11,90 zł).'],['11:58','Siemiatycze. Start rowerem ze stacji.'],['13:00','Święta Góra Grabarka (30 min).'],['14:30','Siemiatycze: obiad, kościół, synagoga, sfinksy. Zakupy.'],['16:30','Do domków, ok. 8 km z lampkami (zmrok 15:28).'],['17:00','Sauna i kominek (w cenie), balia za dopłatą.'],['1b','Wieczorem — dla obu grup:'],['19:38','IC 1016 z Warszawy Wschodniej (miejsce na rower sprawdź przy zakupie).'],['21:13','Siemiatycze. Ok. 5 km rowerem do domków, po ciemku.']]},
+  {n:'Sobota',d:'21 listopada · 2a · ≈ 57 km',c:'var(--c-light)',tl:[['07:00','Pobudka, śniadanie.'],['08:30','Start z domków na zielony szlak: Maćkowicze, most kolejowy w Olendrach (z zewnątrz).'],['09:45','Góra Uszeście — punkt widokowy (15 min).'],['10:15','Mielnik: Góra Zamkowa, taras kopalni kredy, ciepły posiłek (ok. 75 min).'],['12:30','Adamowo, Tokary — cerkiew (10 min). Przy granicy tylko szlakiem.'],['13:45','Zubacze — drewniana cerkiew (15 min).'],['14:45','Czeremcha, ok. 57 km. Kawa.'],['15:17','TLK 1112 → Siemiatycze 15:40 (rower 11,90 zł) albo REG 16:26 → 16:54 (rower 8,50 zł).'],['17:20','Domki: sauna, balia, kolacja.']]},
+  {n:'Niedziela',d:'22 listopada · 3a · ≈ 37 km',c:'var(--c-sun)',tl:[['08:00','Śniadanie, pakowanie do sakw, wymeldowanie (godzina do ustalenia).'],['09:00','Wspólnie z 3b: spacer ścieżką przyrodniczą w Wólce Nadbużnej i pożegnanie.'],['10:00','Rowerem do Drohiczyna, ok. 17 km.'],['11:15','Drohiczyn: Góra Zamkowa, katedra, widok na Bug. Obiad.'],['13:30','Drohiczyn → stacja Siemiatycze, ok. 20 km.'],['15:41','TLK 1112 do Warszawy Wschodniej (17:20).']]}
  ],
  hard:[
-  {n:'Piątek',d:'20 listopada · przyjazd',c:'var(--mk-yellow)',tl:[['10:24','Odjazd z Warszawy Wschodniej, TLK 1012.'],['12:21','Czeremcha, bagaże do bazy.'],['13:00','Rozjazd do Zubaczy i z powrotem (18,8 km): sprawdzenie świateł, ustalenie tempa i kolejności prowadzenia.'],['18:00','Kolacja węglowodanowa, ładowanie lampek i powerbanków, wcześnie spać.']]},
-  {n:'Sobota',d:'21 listopada · 117 km',c:'var(--c-hard)',tl:[['07:00','Pobudka i śniadanie.'],['08:00','Start z Czeremchy. Tempo ok. 20 km/h.'],['10:00','Mielnik, km 39,3 — 10 min. Punkt decyzji: jeśli jesteśmy tu po 10:20, zawracamy (razem 78,6 km).'],['11:05','Siemiatycze, km 58,5 — postój 35 min, ciepły posiłek.'],['11:40','Powrót tą samą trasą przez Mielnik i Tokary.'],['14:40','Czeremcha, km 117. Zapas do zmroku (15:28) ok. 50 min, światła obowiązkowe.'],['17:00','Balia, kolacja, regeneracja.']]},
-  {n:'Niedziela',d:'22 listopada · ≈ 98 km',c:'var(--c-hard)',tl:[['07:00','Pobudka, śniadanie, wymeldowanie (bagaż do pociągu jedzie z grupą Light).'],['08:00','Start Czeremcha → Siedlce, trasa z BRouter (bez S8 i dróg ekspresowych).'],['10:30','Postój w połowie trasy (orientacyjnie okolice Siemiatycz/Drohiczyna).'],['13:45','Siedlce, ok. 98 km. Obiad.'],['15:42','IC 1126 do Warszawy (16:33) albo TLK 1112 o 16:25 razem z grupą Light (17:21).'],['—','Wersja 2-dniowa do Warszawy: nocleg w okolicy Siedlec, w poniedziałek dalsza jazda — dystans do wyliczenia.']]}
+  {n:'Piątek',d:'20 listopada · 1a lub 1b',c:'var(--mk-yellow)',tl:[['1a','Rano — dla obu grup:'],['10:24','TLK 1012 z Warszawy Wschodniej (rower: rezerwacja 11,90 zł).'],['11:58','Siemiatycze. Start rowerem ze stacji.'],['13:00','Święta Góra Grabarka (30 min).'],['14:30','Siemiatycze: obiad, kościół, synagoga, sfinksy. Zakupy.'],['16:30','Do domków, ok. 8 km z lampkami (zmrok 15:28).'],['17:00','Sauna i kominek (w cenie), balia za dopłatą.'],['1b','Wieczorem — dla obu grup:'],['19:38','IC 1016 z Warszawy Wschodniej (miejsce na rower sprawdź przy zakupie).'],['21:13','Siemiatycze. Ok. 5 km rowerem do domków, po ciemku.']]},
+  {n:'Sobota',d:'21 listopada · 2b · ≈ 112 km',c:'var(--c-hard)',tl:[['07:00','Pobudka, śniadanie.'],['08:00','Start z domków zielonym szlakiem do Czeremchy. Tempo ok. 20 km/h.'],['09:00','Mielnik — 10 min.'],['11:00','Czeremcha, ok. 57 km — ciepły posiłek (40 min). Punkt decyzji: przy złej pogodzie powrót pociągiem z Light.'],['11:40','Powrót pętlą przez Milejczyce i Siemiatycze.'],['14:50','Domki, ok. 112 km. Zmrok 15:28.'],['17:00','Sauna, balia, kolacja.']]},
+  {n:'Niedziela',d:'22 listopada · 3b · ≈ 150 km',c:'#7a2f1d',tl:[['07:00','Pobudka, śniadanie.'],['08:00','Krótko z grupą 3a: spacer i pożegnanie (max 30 min).'],['08:30','Start do Warszawy: most na Bugu, Siedlce, Mińsk Mazowiecki.'],['12:30','Siedlce, ok. 75 km — obiad. Punkt decyzji: IC 1126 15:42 → Warszawa 16:33.'],['15:28','Zachód słońca — dalej tylko z mocnym oświetleniem.'],['ok. 17:00','Warszawa Wschodnia. Bez biletu powrotnego.']]}
  ]};
 function renderDays(){$('#daysBox').innerHTML=DAYS[grp].map(d=>`<article class="day"><span class="stripe" style="background:${d.c}"></span><div><div class="dname">${d.n}</div><div class="ddate">${d.d}</div></div><ol class="tl">${d.tl.map(([t,x])=>`<li><time>${t}</time><div>${esc(x)}</div></li>`).join('')}</ol></article>`).join('');
   $$('#groupSeg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g===grp))}
@@ -892,6 +910,7 @@ const ATTR=[
   {id:'kuzawa',www:[['Wikipedia — Kuzawa','https://en.wikipedia.org/wiki/Kuzawa'],['komoot — cerkiew w Kuzawie','https://www.komoot.com/highlight/6337253']],p:'kuzawa',km:'—',t:'cerkwie',n:'Kuzawa',d:'Cerkiew św. Barbary i przydomowy ogród z „kwiatowym pociągiem”. Wieś blisko granicy — sprawdź strefę.',visit:30,price:'z zewnątrz bezpłatnie',hours:'do sprawdzenia',src:'komoot'},
   {id:'kleszczele',p:'kleszczele',km:'N 11,0',t:'miasta',n:'Kleszczele i zalew Repczyce',d:'Miasteczko na czerwonym szlaku Green Velo; w Repczycach ośrodek rekreacji z pomostami, wiatą z miejscem na ognisko i wieżą 25 m.',visit:45,price:'bezpłatnie',hours:'teren otwarty',src:'GreenVelo, komoot'},
   {id:'uszescie',p:'uszescie',km:'≈ 41',t:'widoki',n:'Rezerwat Góra Uszeście',d:'Stromy stok doliny Bugu z murawami kserotermicznymi tuż za Mielnikiem. Punkt widokowy na krawędzi ok. 30-metrowej skarpy nad zakolem rzeki.',visit:20,price:'bezpłatnie',hours:'teren otwarty, tylko wyznaczone ścieżki',src:'komoot, hajnowka.pl'},
+  {id:'drohiczyn',www:[['Wikipedia','https://pl.wikipedia.org/wiki/Drohiczyn']],p:'drohiczyn',km:'—',t:'miasta',n:'Drohiczyn',d:'Dawna stolica Podlasia na wysokiej skarpie nad Bugiem: Góra Zamkowa (grodzisko), katedra Trójcy Przenajświętszej, zespoły klasztorne i rozległy widok na dolinę rzeki. Niedziela 3a.',visit:60,price:'bezpłatnie z zewnątrz',hours:'teren otwarty; wnętrza do sprawdzenia',src:'Wikipedia'},
   {id:'grabarka',www:[['grabarka.pl','http://www.grabarka.pl/'],['Portal turystyczny powiatu','https://podlasie.siemiatycze.pl/en/351-siematycze-orthodox-monastery-complex-in-grabarka']],tel:'+48 85 655 00 10',p:'grabarka',maps:'https://maps.app.goo.gl/s3xwKjdoV6Mk2hTs7',km:'Mielnik +12,7',t:'cerkwie',n:'Święta Góra Grabarka',d:'Najważniejsze sanktuarium prawosławne w Polsce: cerkiew, żeński monaster, tysiące krzyży i cudowne źródełko. Odbicie z Mielnika przez Moszczonę Królewską (12,7 km w jedną stronę, wg GreenVelo) — opcja dla Hard lub na luźniejszy dzień. W cerkwi nie fotografujemy; obowiązuje skromny strój.',visit:45,price:'bezpłatnie (ofiara mile widziana)',hours:'cerkiew: pn–pt 10–17, sob 11–17, nd 13–17 (serwis nieoficjalny)',src:'GreenVelo, nocowanie.pl'}
 ];
 const ACC={cerkwie:'var(--mk-blue)',widoki:'var(--mk-green)',muzea:'var(--mk-yellow)',miasta:'var(--mk-red)'};
@@ -927,6 +946,7 @@ const PHOTO={
   kuzawa:{url:'https://lh3.googleusercontent.com/grass-cs/AABkmLdyaGS958mZBAX-qeGA4kMFxZQI2LhwabOcUooavz3Rpp2wT1GYXD32M0HodQ6gDvZna0yLoKb4irb7Qa4a6YNk3LKINGjNsvsjIcVfWBJC17xmm08tFztmu_gA8_CVEWaRARyFfw=w960-h640-k-no',page:'https://www.google.com/maps/search/?api=1&query=Cerkiew+%C5%9Bw.+Barbary+Kuzawa',author:'użytkownik Map Google',site:'Mapy Google',cat:'Church of Saint Barbara in Kuzawa',cat2:'Kuzawa'},
   kleszczele:{file:'Cerkiew Kleszczele Polska.JPG',cat:'Kleszczele'},
   uszescie:{cat:'Góra Uszeście',cat2:'Western Bug in Poland'},
+  drohiczyn:{cat:'Drohiczyn'},
   grabarka:{url:'https://lh3.googleusercontent.com/grass-cs/AABkmLcG0bf1i95K2R6rS-cC-29tjmGJpNkLvHrrKMwjTyJpfmF2YMwrNhEbfylXRO6Ntcyg45q4s1ZqPI1fdsRhsLLBQynVTP57pkP6oROdqjd9WoL3nms9x3Kb8SWdH4esRIdjAl1bmkEazMQ=w960-h1200-n-k-no',page:'https://maps.app.goo.gl/s3xwKjdoV6Mk2hTs7',author:'użytkownik Map Google',site:'Mapy Google',cat:'Grabarka',cat2:'Holy Mount Grabarka'}
 };
 const CAPI='https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&prop=imageinfo&iiprop=url|size|extmetadata&iiextmetadatafilter=Artist|LicenseShortName&iiurlwidth=';
@@ -956,69 +976,50 @@ function closeDlg(){const d=$('#dlg');d.close?d.close():d.removeAttribute('open'
 $('#dlgClose').addEventListener('click',closeDlg); $('#dlg').addEventListener('click',e=>{if(e.target.id==='dlg')closeDlg()});
 
 /* ---------- Noclegi ---------- */
-const STAYS=[
-  {id:'arche',price:{tot:2034,n:10},avail:'dostępny 20–22.11 (Booking, stan 7.11)',img:'https://cf.bstatic.com/xdata/images/hotel/max1024x768/574979613.jpg?k=0f458ffefa3ca2c848d86c3758fd966f5ae299c27629f711584fd7ac36887b1f&o=',pick:true,n:'Arche Siedlisko Miedwieżyki',loc:'Miedwieżyki, gm. Milejczyce',cap:12,bed:'3 ecoboxy po 4 os. (29 m²: sypialnia z łóżkiem podwójnym, pokój z piętrowym łóżkiem, salon z aneksem i rozkładaną sofą, łazienka); w obiekcie 10 domków',eq:'domki z kontenerów z recyklingu, ogrzewanie i klimatyzacja, aneks z płytą indukcyjną, pościel i ręczniki; miejsce na ognisko, skraj lasu, bez recepcji',balia:'brak informacji; kominka w domkach nie ma',night:null,src:'https://www.booking.com/hotel/pl/arche-siedlisko-miedwiezyki.pl.html?checkin=2026-11-20&checkout=2026-11-22&group_adults=8&no_rooms=3',plus:'wybór organizatorki; do startu szlaku w Czeremsze trzeba dojechać (transfer albo rowerem)'},
-  {id:'sowa',price:{tot:1600,n:8},avail:'dostępny 20–22.11 (Booking, stan 7.11)',img:'https://cf.bstatic.com/xdata/images/hotel/max1024x768/265195561.jpg?k=52466c59e27601f943683e217ccc1cfd14b3b37db80e8a3eda206f33b28d3185&o=',n:'SOWA Stara Plebania',loc:'Werstok, gm. Dubicze Cerkiewne',cap:9,bed:'dom 160 m², 3 sypialnie, 3 łazienki',eq:'cały dom; taras, Wi-Fi, klimatyzacja, zmywarka; ocena 9,6',balia:'brak informacji',src:'https://www.booking.com/hotel/pl/sowa-werstok.pl.html?checkin=2026-11-20&checkout=2026-11-22&group_adults=8&no_rooms=3',plus:'dom dla 9 z łazienką przy każdej sypialni; dalej od trasy — transfer lub ok. 15 km rowerem'},
-  {id:'rogacze65',price:{tot:2332,n:10},avail:'dostępny 20–22.11 (Booking, stan 7.11)',img:'https://cf.bstatic.com/xdata/images/hotel/max1024x768/473387493.jpg?k=2b2f584bb0b77282627722c29fcc2af6b838525dd32e4bc2f1ac10803b096095&o=',n:'Arche Siedlisko Rogacze 65',loc:'Rogacze, gm. Milejczyce',cap:12,bed:'domki Arche po 4 os.; dla 8 os. 2 domki, dla 10 os. 3 domki',eq:'domek z aneksem kuchennym (standard sieci Arche Siedlisko — szczegóły w ofercie)',balia:'brak informacji',night:null,src:'https://www.booking.com/hotel/pl/arche-siedlisko-rogacze-65.pl.html?checkin=2026-11-20&checkout=2026-11-22&group_adults=10&no_rooms=5',plus:'okolice Milejczyc — dojazd do Czeremchy jak przy Miedwieżykach'},
-  {id:'rogacze72',price:{tot:2246,n:10},avail:'dostępny 20–22.11 (Booking, stan 7.11)',img:'https://cf.bstatic.com/xdata/images/hotel/max1024x768/403950033.jpg?k=bf6c1b9b0b44b4412f00f1d325539e08d259802573dbf7fad16d5a6b2ade372d&o=',n:'Arche Siedlisko Rogacze 72',loc:'Rogacze, gm. Milejczyce',cap:12,bed:'domki Arche po 4 os.; dla 8 os. 2 domki, dla 10 os. 3 domki',eq:'domek z aneksem kuchennym (standard sieci Arche Siedlisko — szczegóły w ofercie)',balia:'brak informacji',night:null,src:'https://www.booking.com/hotel/pl/arche-siedlisko-rogacze.pl.html?checkin=2026-11-20&checkout=2026-11-22&group_adults=10&no_rooms=5',plus:'okolice Milejczyc — dojazd do Czeremchy jak przy Miedwieżykach'},
-  {id:'golub',price:{tot:2246,n:10},avail:'zostały miejsca tylko dla 6 os. (Booking, stan 7.11; cena podana dla 10 dorosłych)',img:'https://cf.bstatic.com/xdata/images/hotel/max1024x768/482504149.jpg?k=c0ed7f139f8c55a24602c8d88adec62ee5fc8b4382ee59eb999b23aeea3448ff&o=',n:'Arche Siedlisko Gołubowszczyzna',loc:'Gołubowszczyzna, gm. Milejczyce',cap:6,bed:'domki Arche po 4 os.; dla 8 os. 2 domki, dla 10 os. 3 domki',eq:'domek z aneksem kuchennym (standard sieci Arche Siedlisko — szczegóły w ofercie)',balia:'brak informacji',night:null,src:'https://www.booking.com/hotel/pl/arche-siedlisko-golubowszczyzna.pl.html?checkin=2026-11-20&checkout=2026-11-22&group_adults=10&no_rooms=5',plus:'okolice Milejczyc — dojazd do Czeremchy jak przy Miedwieżykach'},
-  {id:'saki',price:{tot:2800,n:10},avail:'dostępny 20–22.11 (Booking, stan 7.11)',img:'https://cf.bstatic.com/xdata/images/hotel/max1024x768/498640435.jpg?k=2ddbbca726b9a0aa545d4c822ba539f0d725b584caa87ac1dab79ea54faaa1be&o=',n:'Wakacyjny Dom w Sakach',loc:'Saki, gm. Kleszczele',cap:14,bed:'dom 150 m², 5 sypialni, 2 łazienki',eq:'cały dom na wyłączność; zmywarka, pralka, patio, Wi-Fi; ocena gości 9,9/10',balia:'brak informacji',night:null,src:'https://www.booking.com/hotel/pl/wakacyjny-dom-w-sakach.pl.html?checkin=2026-11-20&checkout=2026-11-22&group_adults=10&no_rooms=5',plus:'najlepszy kandydat na 8–10 osób pod jednym dachem; dojazd do stacji Czeremcha rowerem ok. 10 km (orientacyjnie)'},
-  {id:'podlasie',price:{tot:2052,n:8},avail:'dostępny 20–22.11 (Booking, stan 7.11)',img:'https://cf.bstatic.com/xdata/images/hotel/max1024x768/616986530.jpg?k=d77c6c7577f6b169f8a0e98350f13c3e5ee4ee167493372bd1742d6ed006713f&o=',n:'Siedlisko Podlasie',loc:'Dubicze Cerkiewne',cap:9,bed:'3 sypialnie, 1 łazienka',eq:'cały dom; kominek, w pełni wyposażona kuchnia, miejsce na ognisko, ogrodzony teren; „bez dodatkowych opłat”',balia:'brak informacji',src:'https://www.booking.com/hotel/pl/siedlisko-podlasie-dubicze-cerkiewne1.pl.html?checkin=2026-11-20&checkout=2026-11-22&group_adults=8&no_rooms=3',plus:'kominek, dom dla 9; dalej od trasy — potrzebny transfer lub 16 km rowerem'},
-  {id:'zakatek',price:{tot:1318,n:6},avail:'dostępny, tylko 6 os. 20–22.11 (Booking, stan 7.11)',img:'https://photos.slowhop-static.net/photos/291549/product/1024/bb2b08904ba1607860c6ded8b9dc22a1-68f16406b7776.webp',n:'Podlaski Zakątek — Duży Zakątek',loc:'Bereżyszcze, gm. Czeremcha',cap:6,bed:'62 m², 2 sypialnie (2 łóżka podwójne) + sofa',eq:'kominek, aneks ze zmywarką, hamak; wypożyczenie rowerów 30 zł/dzień; Mały Zakątek nieczynny po 15.11',balia:'balia zewnętrzna (bez hydromasażu): 180 zł/dzień + rozpalenie',src:'https://slowhop.com/en/places/3338-podlaski-zakatek.html',plus:'jedyna potwierdzona balia w okolicy; tylko dla 6 os.'},
-  {id:'szpakowka',price:{tot:1040,n:5},avail:'dostępne dla 5 os. (Booking, stan 7.11)',img:'https://cf.bstatic.com/xdata/images/hotel/max1024x768/914035220.jpg?k=85f8d5fcf2a38813bf863f56801cdb7e8441f44ed70b6789ad9ecb5dc9f1699c&o=',n:'Gościniec Szpakówka',loc:'Czeremcha',cap:5,bed:'pokoje z łazienkami; na nasz termin miejsca dla 5 os.',eq:'pensjonat 3*, ogród, taras, parking; ocena 9,8/10 (102 opinie, Booking)',balia:'brak informacji',night:null,nightNote:'Booking: od ok. 52 USD/noc za pokój 2 os.',src:'https://www.booking.com/hotel/pl/gosciniec-szpakowka.pl.html',plus:'opcja pokojowa w Czeremsze, blisko stacji'},
-  {id:'augustynka59',price:{tot:2108,n:10},avail:'dostępny 20–22.11 (Booking, stan 7.11)',n:'Arche Siedlisko Augustynka 59',loc:'Augustynka, gm. Nurzec-Stacja',cap:10,bed:'domki Arche: 4 + 3 + 3 os. (wg wyszukiwania Booking dla 10 os.)',eq:'domki z aneksem kuchennym (standard sieci Arche Siedlisko — szczegóły w ofercie)',balia:'brak informacji',src:'https://www.booking.com/hotel/pl/arche-siedlisko-augustynka-59.pl.html?checkin=2026-11-20&checkout=2026-11-22&group_adults=10&no_rooms=5',plus:'okolice Grabarki i Nurca — daleko od Czeremchy, potrzebny transfer'},
-  {id:'augustynka39',img:'https://cf.bstatic.com/xdata/images/hotel/max1024x768/498641219.jpg?k=9760521ba7b0fc86bd68df2cc2014d5ad97ecfee8fb3e982f0482d25d632891c&o=',price:{tot:2108,n:10},avail:'dostępny 20–22.11 (Booking, stan 7.11)',n:'Arche Siedlisko Augustynka 39',loc:'Augustynka, gm. Nurzec-Stacja',cap:10,bed:'domki Arche (szczegóły w ofercie)',eq:'domki z aneksem kuchennym (standard sieci Arche Siedlisko — szczegóły w ofercie)',balia:'brak informacji',src:'https://www.booking.com/searchresults.pl.html?ss=Arche+Siedlisko+Augustynka+39&checkin=2026-11-20&checkout=2026-11-22&group_adults=10&no_rooms=5',plus:'okolice Grabarki i Nurca — daleko od Czeremchy, potrzebny transfer'},
-  {id:'folwark',img:'https://cf.bstatic.com/xdata/images/hotel/max1024x768/57302659.jpg?k=230fc4c45094a25220e6e6a40cd8b9f74e09a6b56efc954ab28ae0787b61735b&o=',price:{tot:2920,n:10},avail:'dostępny 20–22.11 (Booking, stan 7.11)',n:'Folwark Księżnej Anny',loc:'Anusin 95, gm. Siemiatycze',cap:11,bed:'4 pokoje/apartamenty: 4 + 2 + 2 + 3 os. (wg wyszukiwania Booking)',eq:'szczegóły w ofercie',balia:'brak informacji',src:'https://www.booking.com/hotel/pl/folwark-ksieznej-anny.pl.html?checkin=2026-11-20&checkout=2026-11-22&group_adults=10&no_rooms=5',plus:'blisko mety Light w Siemiatyczach; do Czeremchy daleko — transfer'},
-  {id:'laspokoj',img:'https://cf.bstatic.com/xdata/images/hotel/max1024x768/867157269.jpg?k=ee7c0c2d444fcab6b9c20af8761822764831978beaa2f2e170ec51495eec7beb&o=',price:{tot:2600,n:10},avail:'dostępny 20–22.11 (Booking, stan 7.11)',n:'LasPokój',loc:'Wólka Nadbużna, gm. Siemiatycze',cap:12,bed:'2 obiekty po 6 os. (wg wyszukiwania Booking)',eq:'szczegóły w ofercie; cena z opłatami',balia:'brak informacji',src:'https://www.booking.com/hotel/pl/laspokoj.pl.html?checkin=2026-11-20&checkout=2026-11-22&group_adults=10&no_rooms=5',plus:'nad Bugiem, blisko Siemiatycz; do Czeremchy daleko — transfer'},
-  {id:'chatanova',img:'https://cf.bstatic.com/xdata/images/hotel/max1024x768/417390202.jpg?k=9fbc8f4878e9fa6aa035757020ff92773cb87b99cd47635084a505cc0536c645&o=',price:{tot:2322,n:10},avail:'dostępny 20–22.11 (Booking, stan 7.11)',n:'Chata Nova',loc:'Pokaniewo-Kolonia, gm. Milejczyce',cap:10,bed:'kilka domków/pokoi łącznie dla 10 os. (wg wyszukiwania Booking)',eq:'szczegóły w ofercie',balia:'brak informacji',src:'https://www.booking.com/hotel/pl/chata-nova.pl.html?checkin=2026-11-20&checkout=2026-11-22&group_adults=10&no_rooms=5',plus:'okolice Milejczyc — dojazd do Czeremchy jak przy Miedwieżykach'}
-];
-function ppBlock(s,n){const p=s.price;
-  return `<div class="pp"><span class="pp-l">Koszt na osobę · 2 noce</span>${p?`<b class="num">${zl(p.tot/p.n)}</b><span class="pp-n">${zl(p.tot)} za 2 noce ÷ ${p.n} os. · Booking, 20–22.11 ${ST.ok}</span>`:`<b>do wyceny</b><span class="pp-n">brak ceny dla grupy na 20–22.11 ${ST.td}</span>`}</div>`}
-function renderStays(){const n=+$('#nGuests').value;
-  $('#stayGrid').innerHTML=STAYS.map(s=>{const p=s.price;
-   return `<article class="card stay">${s.img?`<a class="stay-img top" href="${s.src}" target="_blank" rel="noopener"><img src="${s.img}" alt="${esc(s.n)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('off');this.remove()"><span>Zobacz galerię w ofercie →</span></a>`:`<a class="stay-ph top" href="${s.src}" target="_blank" rel="noopener"><span>Zdjęcia obiektu</span><b>Zobacz galerię w ofercie →</b></a>`}
-   <div class="tag">${esc(s.loc)}</div><h3><span class="snum"><b>⌂</b>${STAYS.indexOf(s)+1}</span>${esc(s.n)}</h3>${s.pick?'<p style="margin:6px 0 0"><span class="st ok">Wybór organizatorki</span></p>':''}${ppBlock(s,n)}
-   <dl class="kv" style="margin-top:8px"><dt>Adres</dt><dd>${esc((STAY_ADDR[s.id]||{}).a||s.loc)}</dd><dt>Termin 20–22.11</dt><dd>${s.avail?esc(s.avail)+' '+ST.ok:ST.td}</dd><dt>Ze stacji Czeremcha</dt><dd id="dist-${s.id}">${distHtml(s.id)}</dd><dt>Miejsca</dt><dd>${s.cap==null?'do sprawdzenia':s.cap} ${s.cap!=null&&s.cap<n?'<span class="st td">za mało dla '+n+'</span>':''}</dd><dt>Układ</dt><dd>${esc(s.bed)}</dd><dt>Wyposażenie</dt><dd>${esc(s.eq)}</dd><dt>Balia/sauna</dt><dd>${esc(s.balia)}</dd>
-   <dt>2 noce</dt><dd>${p?zl(p.tot)+' dla '+p.n+' os.':'—'}</dd><dt>Dla ${n} os.</dt><dd class="num">${p?'ok. '+zl(p.tot/p.n*n)+' (przeliczone na osobę)':'—'}</dd></dl>
-   <p class="small muted" style="margin-top:8px">${esc(s.plus)}</p>
-   <div class="btns" style="margin-top:10px"><a class="btn sec small" href="${s.src}" target="_blank" rel="noopener">Oferta</a><a class="btn sec small" href="${gmaps(s.n+' '+s.loc)}" target="_blank" rel="noopener">Mapa i zdjęcia</a></div></article>`}).join('')}
+const STAYS=[{id:'laspokoj',n:'LasPokój',loc:'Wólka Nadbużna',cap:12}];
+const LS={night:600,max:6,balia:300,nights:2};
+const LS_IMG=['2024/05/LASPOKOJ-00106-scaled.jpg','2024/05/LASPOKOJ-00130-scaled.jpg','2024/05/LASPOKOJ-00054-scaled.jpg','2024/05/LASPOKOJ-00132-768x1024.jpg','2024/05/LASPOKOJ-00018-1024x768.jpg','2024/06/LASPOKOJ-Bug-01.jpg'].map(p=>'https://laspokoj.pl/wp-content/uploads/'+p);
+function lsCost(n,balia){n=Math.max(2,n);const d=Math.ceil(n/LS.max),stay=d*LS.night*LS.nights,b=balia?d*LS.balia:0;return{d,stay,b,tot:stay+b,per:(stay+b)/n}}
+function lsText(n){const c=lsCost(n,false);return zl(c.per)+' na osobę · 2 noce ('+n+' os., '+c.d+(c.d>1?' domki':' domek')+')'}
+function renderStays(){const n=+$('#nGuests').value,b=$('#lsBalia').checked,c=lsCost(n,b);
+  $('#lsGallery').innerHTML=LS_IMG.map((u,i)=>`<a href="https://laspokoj.pl/" target="_blank" rel="noopener"><img src="${u}" alt="LasPokój — zdjęcie ${i+1}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.remove()"></a>`).join('');
+  $('#lsCost').innerHTML=`<span class="pp-l">Koszt na osobę · 2 noce · ${n} os.</span><b class="num">${zl(c.per)}</b><span class="pp-n">${c.d} × domek × 2 doby × 600 zł = ${zl(c.stay)}${b?' + balia '+zl(c.b):''} ÷ ${n} os. ${ST.ok}</span>`;
+  $('#lsTable').innerHTML=`<thead><tr><th>Osoby</th><th class="r">Domki</th><th class="r">Razem</th><th class="r">Na osobę</th></tr></thead><tbody>`+[2,3,4,5,6,8,10,12].map(k=>{const x=lsCost(k,b);return `<tr${k===n?' style="font-weight:600"':''}><td>${k}</td><td class="r">${x.d}</td><td class="r">${zl(x.tot)}</td><td class="r">${zl(x.per)}</td></tr>`}).join('')+`</tbody>`;
+  const el=$('#dist-laspokoj');if(el)el.innerHTML=distHtml('laspokoj')}
+$('#lsBalia').addEventListener('change',renderStays);
 $('#nGuests').addEventListener('change',renderStays);
 
 /* ---------- Koszty kolei ---------- */
-const FARE={wwaCz:61,czWwa:61,siedWwa:34,reg:12,bikeIC:11.9};
-function renderTrain(){
-  const light=FARE.wwaCz+FARE.czWwa+2*FARE.bikeIC, hard=FARE.wwaCz+FARE.siedWwa+2*FARE.bikeIC;
-  $('#trainCost').innerHTML=`<thead><tr><th>Grupa</th><th class="r">Light</th><th class="r">Hard</th></tr></thead><tbody>`+[1,6,8,10].map(n=>`<tr><td>${n===1?'1 osoba':n+' osób'}</td><td class="r">${zl(light*n)}</td><td class="r">${zl(hard*n)}</td></tr>`).join('')+`</tbody>`;
+const FARE={wwaSie:50,sieWwa:50,czSie:19,siedWwa:34,bikeIC:11.9,bikeREG:8.5};
+const TR={fri:FARE.wwaSie+FARE.bikeIC,satTLK:FARE.czSie+FARE.bikeIC,satREG:FARE.czSie+FARE.bikeREG,sun3a:FARE.sieWwa+FARE.bikeIC,sun3bS:FARE.siedWwa+FARE.bikeIC};
+function renderTrain(){const z=v=>v.toLocaleString('pl-PL',{minimumFractionDigits:2,maximumFractionDigits:2})+' zł';
+  const rows=[['Piątek 1a / 1b: Warszawa → Siemiatycze + rower',TR.fri,TR.fri],['Sobota 2a: Czeremcha → Siemiatycze, REG + rower',TR.satREG,0],['Sobota 2a: wariant TLK 15:17 + rower',TR.satTLK,null],['Niedziela 3a: Siemiatycze → Warszawa + rower',TR.sun3a,null],['Niedziela 3b: rowerem do Warszawy',null,0],['Niedziela 3b: awaryjnie Siedlce → Warszawa + rower',null,TR.sun3bS]];
+  $('#trainCost').innerHTML=`<thead><tr><th>Odcinek</th><th class="r">Light</th><th class="r">Hard</th></tr></thead><tbody>`+rows.map(([l,a,b])=>`<tr><td>${l}</td><td class="r">${a==null?'—':z(a)}</td><td class="r">${b==null?'—':z(b)}</td></tr>`).join('')+`<tr style="font-weight:600"><td>Razem (REG w sobotę, 3b rowerem)</td><td class="r">${z(TR.fri+TR.satREG+TR.sun3a)}</td><td class="r">${z(TR.fri)}</td></tr></tbody>`;
 }
 
 /* ---------- Budżet ---------- */
-const EXTRAS=[{id:'x_bus',l:'Bus z przyczepką Siemiatycze → Czeremcha (sobota)'},{id:'x_balia',l:'Balia / sauna (jeśli nie w cenie)'},{id:'x_rent',l:'Wypożyczenie rowerów na miejscu'},{id:'x_museum',l:'Muzea (Czeremcha, Mielnik)'},{id:'x_hardnight',l:'Nocleg Hard w okolicy Siedlec (wersja 2-dniowa)'},{id:'x_guide',l:'Lokalna przewodniczka'}];
-function renderBudgetInputs(){$('#bStay').innerHTML=STAYS.map(s=>`<option value="${s.id}">${esc(s.n)}${s.price?'':' (do wyceny)'}</option>`).join('');
-  $('#bExtras').innerHTML=EXTRAS.map(x=>`<label><input type="checkbox" id="${x.id}" ${['x_bus','x_balia'].includes(x.id)?'checked':''}> <span>${esc(x.l)} ${ST.td}</span></label>`).join('')}
-function budgetFor(n,sid,o){const s=STAYS.find(x=>x.id===sid);const h=Math.min(o.hard,n),l=n-h;
-  const conf=[['Rowery PKP IC (2 × 11,90 zł × '+n+')',2*FARE.bikeIC*n]];
-  const orient=[['Pociąg Light: 61 + 61 zł × '+l,(FARE.wwaCz+FARE.czWwa)*l],['Pociąg Hard: 61 + 34 zł × '+h,(FARE.wwaCz+FARE.siedWwa)*h],['Jedzenie ('+o.food+' zł/os.)',o.food*n]];
-  if(s.price)orient.push(['Nocleg '+s.n+' ('+zl(s.price.tot/s.price.n)+' × '+n+' os.)',s.price.tot/s.price.n*n]);
-  const todo=[];if(!s.price)todo.push('Nocleg: '+s.n);if(s.cap!=null&&s.cap<n)todo.push('Dodatkowe miejsca — obiekt mieści '+s.cap+' os.');EXTRAS.forEach(x=>{if(o.extras.includes(x.id))todo.push(x.l)});
-  const sc=conf.reduce((a,b)=>a+b[1],0),so=orient.reduce((a,b)=>a+b[1],0),res=(sc+so)*o.reserve/100,tot=sc+so+res;
-  return{conf,orient,todo,res,tot,per:tot/n,transport:conf[0][1]+orient[0][1]+orient[1][1],stay:s.price?s.price.tot/s.price.n*n:null}}
-const readOpts=()=>({hard:+$('#bHard').value||0,food:+$('#bFood').value||0,reserve:+$('#bReserve').value||0,extras:EXTRAS.filter(x=>$('#'+x.id).checked).map(x=>x.id)});
+function renderBudgetInputs(){}
+function budgetFor(n,o){const c=lsCost(n,o.balia);const lt=TR.fri+(o.sat==='tlk'?TR.satTLK:TR.satREG)+TR.sun3a, ht=TR.fri+(o.sun3b==='siedlce'?TR.sun3bS:0);
+  return{c,lt,ht,perL:lt+c.per,perH:ht+c.per}}
+const readOpts=()=>({sat:$('#bSat').value,sun3b:$('#bSun3b').value,balia:$('#bBalia').checked});
 let lastB=null;
-function renderBudget(){const n=+$('#bN').value,sid=$('#bStay').value,o=readOpts(),b=budgetFor(n,sid,o);lastB={n,b};
-  $('#bPer').textContent=zl(b.per);$('#bTotal').innerHTML=`Grupa ${n} os.: <b>${zl(b.tot)}</b> (w tym rezerwa ${zl(b.res)}). Pozycje „do wyceny” nie są wliczone.`;
-  const li=a=>a.map(([l,v])=>`<li>${esc(l)}: <b class="num">${zl(v)}</b></li>`).join('');
-  $('#bBuckets').innerHTML=`<div class="bucket ok"><h4>1. Potwierdzone</h4><ul>${li(b.conf)}</ul></div><div class="bucket or"><h4>2. Orientacyjne</h4><ul>${li(b.orient)}</ul></div><div class="bucket td"><h4>3. Do wyceny (${b.todo.length})</h4><ul>${b.todo.map(t=>`<li>${esc(t)}</li>`).join('')||'<li>brak</li>'}</ul></div>`;
-  $('#bCompare').innerHTML=`<thead><tr><th>Grupa</th><th class="r">Razem</th><th class="r">Na osobę</th><th class="r">Transport</th><th class="r">Noclegi</th><th class="r">Atrakcje / dodatki</th></tr></thead><tbody>`+[6,8,10].map(k=>{const x=budgetFor(k,sid,{...o,hard:Math.min(o.hard,k)});return `<tr><td>${k} os.</td><td class="r">${zl(x.tot)}</td><td class="r">${zl(x.per)}</td><td class="r">${zl(x.transport)}</td><td class="r">${x.stay!=null?zl(x.stay):'do wyceny'}</td><td class="r">do wyceny</td></tr>`}).join('')+`</tbody>`;
+function renderBudget(){const n=+$('#bN').value,o=readOpts(),b=budgetFor(n,o);lastB={n,b};
+  const z=v=>v.toLocaleString('pl-PL',{minimumFractionDigits:2,maximumFractionDigits:2})+' zł';
+  $('#bPerL').textContent=z(b.perL);$('#bPerH').textContent=z(b.perH);
+  $('#bTotal').innerHTML=`Nocleg dla ${n} os.: ${b.c.d} ${b.c.d>1?'domki':'domek'} × 2 doby × 600 zł = <b>${zl(b.c.stay)}</b>${o.balia?' + balia '+zl(b.c.b):''}, czyli ${z(b.c.per)} na osobę. Bez jedzenia.`;
+  $('#bBuckets').innerHTML=`<div class="bucket ok"><h4>Light</h4><ul><li>Nocleg: <b class="num">${z(b.c.per)}</b></li><li>Pociąg tam + rower: <b class="num">${z(TR.fri)}</b></li><li>Sobota 2a, pociąg + rower: <b class="num">${z(o.sat==='tlk'?TR.satTLK:TR.satREG)}</b></li><li>Niedziela 3a, pociąg + rower: <b class="num">${z(TR.sun3a)}</b></li></ul></div><div class="bucket or"><h4>Hard</h4><ul><li>Nocleg: <b class="num">${z(b.c.per)}</b></li><li>Pociąg tam + rower: <b class="num">${z(TR.fri)}</b></li><li>Sobota 2b: <b class="num">0 zł</b></li><li>Niedziela 3b: <b class="num">${o.sun3b==='siedlce'?z(TR.sun3bS):'0 zł (rowerem do Warszawy)'}</b></li></ul></div><div class="bucket td"><h4>Do sprawdzenia</h4><ul><li>Ceny biletów to ceny „od” (EuroPodróże); ulgi obniżą kwotę</li><li>Czy IC 1016 (1b) przewozi rowery</li><li>Muzea i wstępy (💰)</li></ul></div>`;
+  $('#bCompare').innerHTML=`<thead><tr><th>Osoby</th><th class="r">Domki</th><th class="r">Nocleg / os.</th><th class="r">Light / os.</th><th class="r">Hard / os.</th></tr></thead><tbody>`+[2,3,4,5,6,8,10,12].map(k=>{const x=budgetFor(k,o);return `<tr${k===n?' style="font-weight:600"':''}><td>${k}</td><td class="r">${x.c.d}</td><td class="r">${z(x.c.per)}</td><td class="r">${z(x.perL)}</td><td class="r">${z(x.perH)}</td></tr>`}).join('')+`</tbody>`;
   renderNumbers()}
-['#bN','#bStay','#bHard','#bFood','#bReserve','#bExtras'].forEach(s=>['input','change'].forEach(ev=>$(s).addEventListener(ev,renderBudget)));
+['#bN','#bSat','#bSun3b','#bBalia'].forEach(s=>['input','change'].forEach(ev=>$(s).addEventListener(ev,renderBudget)));
 
 /* ---------- W liczbach ---------- */
 let numG='light';
+function rkm(k){const r=ROUTES[k],l=liveKm[k];return l&&l.km?l.km:r.est}
 function renderNumbers(){if(!lastB)return;
-  const L1=numG==='light';const fri=18.8, sat=L1?58.5:117, sun=L1?22:98;const bike=fri+sat+sun;
-  const ride=(fri/14+sat/(L1?14:20)+sun/(L1?14:20))*60;
-  const attrs=L1?ATTR.filter(a=>!['kuzawa','muzeum'].includes(a.id)).length:6;
-  $('#numbers').innerHTML=[[fmt(bike),'km łącznie (z piątkowym rozjazdem)'],[fmt(bike),'km rowerem'],['—','km pieszo (zwiedzanie, do wyliczenia)'],[String(attrs),'atrakcje po drodze'],[hm(ride),'czas jazdy'],['2','noclegi'],[zl(lastB.b.tot),'koszt grupy ('+lastB.n+' os.)'],[zl(lastB.b.per),'na osobę']]
+  const L1=numG==='light',ks=L1?['fri1a','sat2a','sun3a']:['fri1a','sat2b','sun3b'];const km=ks.map(rkm),bike=km.reduce((a,b)=>a+b,0);
+  const ride=ks.reduce((a,k,i)=>a+km[i]/ROUTES[k].pace*60,0);
+  const per=L1?lastB.b.perL:lastB.b.perH;
+  $('#numbers').innerHTML=[['≈ '+fmt(bike,0),'km rowerem (1a + '+(L1?'2a + 3a':'2b + 3b')+')'],[hm(ride),'czas jazdy'],[String(L1?7:5),'atrakcji po drodze'],['2','noce w LasPokoju'],[zl(per),'na osobę (podróż + nocleg)'],[String(lastB.n),'osób w kalkulatorze']]
    .map(([v,l])=>`<div class="stat"><div class="v" style="font-size:${v.length>9?'1.25rem':'1.9rem'};color:${L1?'#b9d3bf':'#e2b08f'}">${v}</div><div class="l">${l}</div></div>`).join('');
   $$('#numSeg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g===numG))}
 $('#numSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(b){numG=b.dataset.g;renderNumbers()}});
@@ -1105,7 +1106,7 @@ function drawHero(){const c=$('#heroCanvas'),r=c.getBoundingClientRect(),dpr=Mat
 /* ---------- Start ---------- */
 renderRouteSeg();renderDays();renderAttr();renderStays();renderTrain();renderBudgetInputs();renderBudget();renderCL();
 try{initMap()}catch(e){console.warn(e)}
-setRoute('satLight');
+setRoute('sat2a');
 heroPhoto();drawHero();addEventListener('resize',()=>{clearTimeout(window.__h);window.__h=setTimeout(drawHero,150)});
 initCaps();
 </script>
