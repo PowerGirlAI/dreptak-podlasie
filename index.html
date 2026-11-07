@@ -222,6 +222,9 @@ a{text-underline-offset:3px;text-decoration-thickness:1px}
 .layers label{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--b-line);border-radius:999px;padding:6px 12px;font-size:.82rem;cursor:pointer;user-select:none;background:var(--b-card)}
 .layers input{accent-color:var(--forest-2)}
 .pin{width:26px;height:26px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:grid;place-items:center;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.rail-pin{width:30px;height:30px;border-radius:8px;background:#1f2a33;border:2px solid #fff;display:grid;place-items:center;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,.45)}
+.leaflet-tooltip.rail-lbl{background:#1f2a33;color:#fff;border:0;font:600 11px/1 var(--f-body);padding:5px 7px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+.leaflet-tooltip.rail-lbl:before{display:none}
 .pin span{transform:rotate(45deg);font:600 11px/1 var(--f-body);color:#fff}
 .maplbl{position:absolute;transform:translate(-50%,12px);white-space:nowrap;font:500 11px/1 var(--f-body);color:var(--muted);text-shadow:0 0 3px var(--map-bg),0 0 3px var(--map-bg),0 0 3px var(--map-bg);pointer-events:none}
 .maplbl.water{color:var(--river);font:italic 400 15px/1 var(--f-display);transform:translate(-50%,-50%)}
@@ -668,11 +671,12 @@ const ROUTES={
   sunVisit:{label:'Nd · zwiedzanie',color:'var(--c-visit)',hex:'#8a7556',type:'foot',pace:4,km:null,diff:'łatwa',
     src:'Spacer lub spokojny rower po Czeremsze: stacja i Muzeum Kolejnictwa, Kuzawa z cerkwią św. Barbary. Kilometraż do wyliczenia; Kuzawa leży blisko granicy — sprawdź strefę.',
     pts:[{p:'czeremcha',km:0,visit:60,surf:'chodnik',info:'Muzeum Kolejnictwa — godziny do sprawdzenia.'},{p:'kuzawa',km:null,visit:30,surf:'droga lokalna',info:'Cerkiew św. Barbary, ogród z „kwiatowym pociągiem”. Blisko granicy.',kmSt:'td'},{p:'czeremcha',km:null,visit:0,surf:'chodnik',info:'Pociąg 15:17.'}]},
+  all:{label:'Wszystkie',color:'#c9a55c',hex:'#c9a55c',all:true,pts:[]},
   friLight:{label:'Pt · rozjazd',color:'var(--c-light)',hex:'#4f7d5c',type:'bike',pace:14,km:18.8,diff:'łatwa',
     src:'Opcjonalnie po przyjeździe: Czeremcha ⇄ Zubacze szlakiem zielonym, 2 × 9,4 km. Start ok. 13:00, powrót przed 15:00.',
     pts:[{p:'czeremcha',km:0,visit:0,surf:SURF,info:''},{p:'zubacze',km:9.4,visit:20,surf:SURF,info:INFO.zubacze},{p:'czeremcha',km:18.8,visit:0,surf:SURF,info:''}]}
 };
-const ROUTE_ORDER=['friLight','satLight','satHard','sunLight','sunHard','sunVisit'];
+const ROUTE_ORDER=['all','friLight','satLight','satHard','sunLight','sunHard','sunVisit'];
 let cur='satLight';
 const curR=()=>ROUTES[cur];
 
@@ -711,19 +715,45 @@ function initMap(){
   const note=()=>{$('#mapNote').innerHTML=(tileOk?'Podkład: OpenStreetMap. ':'Uproszczony podkład (ten widok blokuje zewnętrzne mapy): Bug, granica, miejscowości. Pełna mapa OSM — po otwarciu pliku HTML w Chrome lub Firefoksie. ')+'Linia ciągła prowadzi drogami przez punkty o przybliżonym położeniu, więc miejscami może odbiegać od szlaku. Kilometraż pochodzi z opisu GreenVelo; na miejscu jedziemy wg znaków szlaku. Przycisk w prawym górnym rogu mapy zmienia podkład (np. rowerowy CyclOSM).'};
   tiles.on('tileload',()=>{if(!tileOk){tileOk=true;map.removeLayer(base);note()}}); note();
   layers.rail=L.layerGroup().addTo(map); layers.stay=L.layerGroup().addTo(map); layers.attr=L.layerGroup().addTo(map);
-  [['czeremcha','Stacja Czeremcha'],['stacja','Stacja Siemiatycze'],['siedlce','Stacja Siedlce']].forEach(([k,n])=>L.marker(P[k].c,{icon:pinIcon('🚆','#333'),title:n}).bindPopup(`<b>${n}</b><br><a href="#dojazd">Rozkład</a>`).addTo(layers.rail));
+  const STATIONS=[['czeremcha','Stacja Czeremcha','przyjazd w piątek 12:21, odjazd w niedzielę 15:17'],['stacja','Stacja Siemiatycze','meta Light w sobotę, powrót do Czeremchy 19:16'],['siedlce','Stacja Siedlce','meta Hard w niedzielę, IC 15:42 lub TLK 16:25']];
+  STATIONS.forEach(([k,n,d])=>L.marker(P[k].c,{icon:L.divIcon({className:'',html:'<div class="rail-pin">🚆</div>',iconSize:[30,30],iconAnchor:[15,15],popupAnchor:[0,-14]}),title:n,zIndexOffset:1500}).bindTooltip(n.replace('Stacja ','🚆 '),{permanent:true,direction:'right',offset:[14,0],className:'rail-lbl'}).bindPopup(`<b>${n}</b><br><span class="small">${d}</span><br><a href="#dojazd">Rozkład pociągów</a>`).addTo(layers.rail));
   L.polyline([P.czeremcha.c,P.stacja.c,P.siedlce.c],{color:'#555',weight:3,dashArray:'2 8'}).bindTooltip('Linia kolejowa Czeremcha–Siedlce–Warszawa (schemat)').addTo(layers.rail);
-  L.marker(P.czeremcha.c,{icon:pinIcon('⌂','#4f7d5c'),title:'Baza noclegowa'}).bindPopup('<b>Baza: okolice Czeremchy</b><br><a href="#noclegi">Porównanie noclegów</a>').addTo(layers.stay);
+  placeStays();
   ATTR.forEach(a=>{if(['czeremcha','mielnik','siemiatycze'].includes(a.p)&&!a.pin)return;L.marker(P[a.p].c,{icon:pinIcon('★','#7d4f6f'),title:a.n}).bindTooltip(a.n).bindPopup(()=>attrPopup(a)).addTo(layers.attr)});
   const box=$('#layerToggles');
   box.innerHTML=[['route','Wybrana trasa'],['attr','Atrakcje'],['stay','Noclegi'],['rail','Kolej']].map(([k,l])=>`<label><input type="checkbox" data-layer="${k}" checked> ${l}</label>`).join('');
   box.addEventListener('change',e=>{const k=e.target.dataset.layer;if(!k)return;
     if(k==='route'){e.target.checked?routeLayer.addTo(map):map.removeLayer(routeLayer);return}
-    e.target.checked?layers[k].addTo(map):map.removeLayer(layers[k])});
+    e.target.checked?layers[k].addTo(map):map.removeLayer(layers[k]);
+    if(e.target.checked&&(k==='rail'||k==='stay')){const b=L.latLngBounds(window.__lb?[window.__lb.getSouthWest(),window.__lb.getNorthEast()]:[]);layers[k].eachLayer(l=>{if(l.getLatLng)b.extend(l.getLatLng())});if(b.isValid())map.fitBounds(b.pad(.05))}});
 }
+
+/* ---------- Pinezki noclegów: położenie miejscowości z OpenStreetMap (Nominatim), zapamiętane w przeglądarce ---------- */
+const STAY_GEO={arche:'Milejczyce',sowa:'Werstok',rogacze65:'Rogacze',rogacze72:'Rogacze',golub:'Gołubowszczyzna',saki:'Saki',lipowe:null,pompka:'Czeremcha',podlasie:'Dubicze Cerkiewne',zakatek:'Bereżyszcze',szpakowka:'Fabryczna 16a, Czeremcha',urszulanka:'Gajki'};
+const GEOKEY='dreptak-geo-v1';let geoC={};try{geoC=JSON.parse(localStorage.getItem(GEOKEY)||'{}')}catch(e){}
+async function geocode(q){if(geoC[q])return geoC[q];
+  const r=await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=pl&bounded=1&viewbox=22.85,52.75,23.75,52.3&accept-language=pl&q='+encodeURIComponent(q));
+  if(!r.ok)throw 0;const j=await r.json();if(!j[0])return null;const c=[+j[0].lat,+j[0].lon];geoC[q]=c;try{localStorage.setItem(GEOKEY,JSON.stringify(geoC))}catch(e){}return c}
+function ppVal(s,n){if(s.unit){const k=Math.ceil(n/s.unit.cap);return{v:k*s.unit.p/n,from:false}}if(s.night)return{v:s.night*2/Math.min(n,s.cap||n),from:false};if(s.pp)return{v:s.pp,from:true};return null}
+async function placeStays(){const used={},n=+(($('#nGuests')||{}).value||8);
+  for(const s of STAYS){const q=STAY_GEO[s.id];let c=null,exact=false;
+    if(q){const cached=!!geoC[q];try{c=await geocode(q);exact=!!c}catch(e){}if(!cached)await new Promise(r=>setTimeout(r,1100))}
+    if(!c)c=P.czeremcha.c;
+    const key=c[0].toFixed(3)+','+c[1].toFixed(3),i=used[key]=(used[key]||0)+1;
+    const cc=i>1?[c[0]+.004*Math.cos(i*2.1),c[1]+.006*Math.sin(i*2.1)]:c;
+    const pv=ppVal(s,n);
+    L.marker(cc,{icon:pinIcon('⌂',s.pick?'#c9a55c':'#4f7d5c'),title:s.n,zIndexOffset:500}).bindTooltip(s.n).bindPopup(`<div class="tag">Nocleg${s.pick?' · wybór organizatorki':''}</div><b>${esc(s.n)}</b><div class="small" style="margin:4px 0">${esc(s.loc)}</div><div><b>${pv?(pv.from?'od ':'')+zl(pv.v):'do wyceny'}</b> <span class="small">na osobę · 2 noce</span></div><div class="small" style="margin-top:4px">${exact?'Pinezka w miejscowości (OpenStreetMap), nie pod adresem obiektu.':'Dokładne położenie do sprawdzenia — pinezka umowna przy Czeremsze.'}</div><p style="margin-top:6px"><a href="${s.src}" target="_blank" rel="noopener">Oferta</a> · <a href="${gmaps(s.n+' '+s.loc)}" target="_blank" rel="noopener">Google Maps</a> · <a href="#noclegi">Porównanie</a></p>`).addTo(layers.stay)}}
 function segInfo(r,i){const x=r.pts[i],prev=i?r.pts[i-1]:null;const d=(x.km!=null&&prev&&prev.km!=null)?x.km-prev.km:(i===0?0:null);return{km:x.km,d,ride:d!=null?d/r.pace*60:null}}
+function drawAll(){routeLayer=L.layerGroup();const all=[];
+  ROUTE_ORDER.filter(k=>k!=='all').forEach(k=>{const r=ROUTES[k],coords=r.pts.map(x=>P[x.p].c),live=liveKm[k];all.push(...coords);
+    const line=live&&live.geom?L.polyline(live.geom,{color:r.hex,weight:k==='friLight'?3:5,opacity:.85}):L.polyline(coords,{color:r.hex,weight:k==='friLight'?3:4,dashArray:'10 7',opacity:.9});
+    line.bindTooltip(r.label+(r.km!=null?' · '+fmt(r.km)+' km':''),{sticky:true}).on('click',()=>setRoute(k)).addTo(routeLayer);
+    tryRouting(k,[...new Set(r.pts.map(x=>x.p))].map(p=>P[p].c),r.type)});
+  const tog=$('#layerToggles input[data-layer="route"]'); if(!tog||tog.checked)routeLayer.addTo(map);
+  window.__lb=L.latLngBounds(all).pad(.08);map.invalidateSize();map.fitBounds(window.__lb)}
 function drawRoute(){
   if(!map)return; if(routeLayer)map.removeLayer(routeLayer);
+  if(cur==='all'){drawAll();return}
   const r=curR(); routeLayer=L.layerGroup();
   const coords=r.pts.map(x=>P[x.p].c), live=liveKm[cur];
   if(live&&live.geom)L.polyline(live.geom,{color:r.hex,weight:5,opacity:.9}).addTo(routeLayer);
@@ -745,13 +775,18 @@ function pointPopup(i){const r=curR(),x=r.pts[i],p=P[x.p],s=segInfo(r,i);
 function renderRouteSeg(){$('#routeSeg').innerHTML=ROUTE_ORDER.map(k=>`<button type="button" data-r="${k}" aria-pressed="${k===cur}"><i style="background:${ROUTES[k].color}"></i>${esc(ROUTES[k].label)}</button>`).join('')}
 $('#routeSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setRoute(b.dataset.r)});
 function renderPoints(){const r=curR();
+  if(r.all){$('#pointList').innerHTML=`<div class="card small"><b>Wszystkie trasy</b><br>Kliknij trasę na liście lub na mapie, aby zobaczyć jej punkty.</div>`+ROUTE_ORDER.filter(k=>k!=='all').map(k=>{const x=ROUTES[k];return `<button class="pt" type="button" data-r="${k}"><span class="n" style="background:${x.hex}"></span><span><b>${esc(x.label)}</b><span class="meta num">${x.km!=null?fmt(x.km)+' km':'km do wyliczenia'} · ${esc(x.diff)}</span></span></button>`}).join('');return}
   $('#pointList').innerHTML=`<div class="card small"><b>${esc(r.label)}</b> · ${esc(r.diff)}<br>${esc(r.src)}</div>`+r.pts.map((x,i)=>{const s=segInfo(r,i);
    return `<button class="pt" type="button" data-i="${i}"><span class="n" style="background:${r.hex}">${i+1}</span><span><b>${esc(P[x.p].n)}${x.ret?' (powrót)':''}</b><span class="meta num">${s.km!=null?fmt(s.km)+' km':'km do wyliczenia'}${s.d!=null&&i?' · +'+fmt(s.d)+' km':''}${x.visit?' · postój '+x.visit+' min':''}</span>${x.kmSt==='td'?' <span class="st td">do sprawdzenia</span>':''}</span></button>`}).join('')}
-$('#pointList').addEventListener('click',e=>{const b=e.target.closest('.pt');if(!b)return;const i=+b.dataset.i,r=curR();
+$('#pointList').addEventListener('click',e=>{const b=e.target.closest('.pt');if(!b)return;if(b.dataset.r){setRoute(b.dataset.r);return}const i=+b.dataset.i,r=curR();
   if(map){map.setView(P[r.pts[i].p].c,12);routeLayer.eachLayer(l=>{if(l.options&&l.options.title===(r.pts.findIndex(x=>x.p===r.pts[i].p)+1)+'. '+P[r.pts[i].p].n)l.openPopup()})}else openDlg(P[r.pts[i].p].n,'Punkt '+(i+1),pointPopup(i))});
 function rstats(r){const km=r.km, ride=km!=null?km/r.pace*60:null, vis=r.pts.reduce((a,p)=>a+(p.visit||0),0);
   const attrs=new Set(r.pts.map(x=>x.p).filter(p=>ATTR.some(a=>a.p===p))).size;return{km,ride,vis,tot:ride!=null?ride+vis:null,attrs}}
-function renderStats(){const r=curR(),s=rstats(r),live=liveKm[cur];
+function renderStats(){const r=curR();
+  if(r.all){const sum=ks=>ks.reduce((a,k)=>a+(ROUTES[k].km||0),0);
+    $('#routeStats').innerHTML=[[String(ROUTE_ORDER.length-1),'tras na mapie'],[fmt(sum(['friLight','satLight','sunLight']))+' km','Light — cały weekend'],[fmt(sum(['friLight','satHard','sunHard']))+' km','Hard — cały weekend'],[String(ATTR.length),'atrakcji'],[String(STAYS.length),'noclegów']]
+     .map(([v,l])=>`<div class="stat"><div class="v" style="font-size:${v.length>9?'1.15rem':'1.7rem'};color:${r.hex}">${esc(v)}</div><div class="l">${l}</div></div>`).join('');return}
+  const s=rstats(r),live=liveKm[cur];
   $('#routeStats').innerHTML=[[s.km!=null?fmt(s.km)+' km':'—','dystans (źródło)'],[s.ride!=null?hm(s.ride):'—',(r.type==='foot'?'marsz':'jazda')+' przy '+r.pace+' km/h'],[s.tot!=null?hm(s.tot):'—','z postojami'],[r.diff,'trudność'],[String(s.attrs),'atrakcje']]
    .map(([v,l])=>`<div class="stat"><div class="v" style="font-size:${v.length>9?'1.15rem':'1.7rem'};color:${r.hex}">${esc(v)}</div><div class="l">${l}</div></div>`).join('')}
 function setRoute(k){cur=k;renderRouteSeg();renderPoints();try{drawRoute()}catch(e){console.warn(e)}renderStats()}
@@ -759,7 +794,7 @@ async function tryRouting(key,coords,type){
   if(liveKm[key]!==undefined||key==='sunHard')return; liveKm[key]=null;
   const url=`https://routing.openstreetmap.de/${type==='foot'?'routed-foot':'routed-bike'}/route/v1/driving/${coords.map(c=>c[1]+','+c[0]).join(';')}?overview=full&geometries=geojson`;
   try{const ctl=new AbortController();setTimeout(()=>ctl.abort(),8000);const res=await fetch(url,{signal:ctl.signal});if(!res.ok)throw 0;const j=await res.json();const rt=j.routes&&j.routes[0];if(!rt)throw 0;
-    liveKm[key]={km:rt.distance/1000,geom:rt.geometry.coordinates.map(c=>[c[1],c[0]])};if(key===cur){drawRoute();renderStats()}}catch(e){}
+    liveKm[key]={km:rt.distance/1000,geom:rt.geometry.coordinates.map(c=>[c[1],c[0]])};if(key===cur||cur==='all'){drawRoute();if(key===cur)renderStats()}}catch(e){}
 }
 
 /* ---------- Dzień po dniu ---------- */
