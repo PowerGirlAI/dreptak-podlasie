@@ -409,7 +409,7 @@ footer a{color:var(--heather)}
       <div class="d" role="rowheader">Pt<span>20.11</span></div>
       <div class="lt"><b>1a · rano</b> — TLK 10:24 → Siemiatycze 11:58. Pętla <span data-km="fri1a">ok. 33 km</span>: Święta Góra Grabarka, potem obiad i zwiedzanie Siemiatycz, wieczorem domki.<br><b>1b · wieczorem</b> — IC 19:38 → Siemiatycze 21:13, kilka km rowerem do domków.</div>
       <div class="d" role="rowheader">Sob<span>21.11</span></div>
-      <div class="lt"><div class="km" data-km="sat2a">≈ 60 km</div><span class="small">Z domków od razu na drogę nr 19 w Turnej, potem zielonym szlakiem do Czeremchy: Maćkowicze, Góra Uszeście, Mielnik (obiad, Góra Zamkowa, kopalnia kredy), Tokary, Zubacze. Start 09:00, powrót pociągiem REG 16:26 do Siemiatycz (16:54) i rowerem do domków.</span></div>
+      <div class="lt"><div class="km" data-km="sat2a">≈ 60 km</div><span class="small">Z domków przez Siemiatycze do Maćkowicz, potem zielonym szlakiem do Czeremchy: Maćkowicze, Góra Uszeście, Mielnik (obiad, Góra Zamkowa, kopalnia kredy), Tokary, Zubacze. Start 09:00, powrót pociągiem REG 16:26 do Siemiatycz (16:54) i rowerem do domków.</span></div>
       <div class="d" role="rowheader">Nd<span>22.11</span></div>
       <div class="lt"><div class="km" data-km="sun3a">≈ 37 km</div><span class="small">Spacer ścieżką przyrodniczą, rowerem do Drohiczyna: Góra Zamkowa, katedra, widok na Bug, obiad. Potem na stację Siemiatycze i TLK 15:41 do Warszawy.</span></div>
     </div>
@@ -423,7 +423,7 @@ footer a{color:var(--heather)}
 
 <section class="band t-meadow" id="mapa">
   <div class="wrap">
-    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak zielony · mapa</div><h2>Mapa wyprawy</h2><p>Wybierz wariant dnia. Trasy prowadzą po drogach dla rowerów, razem z odbiciami do atrakcji i powrotem na szlak; kilometry liczy mapa. Na mapie są też domki (⌂), stacje (🚆) i najbliższe sklepy spożywcze (🛒) z godzinami otwarcia.</p></div>
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak zielony · mapa</div><h2>Mapa wyprawy</h2><p>Wybierz wariant dnia. Trasy prowadzą po drogach dla rowerów, razem z odbiciami do atrakcji i powrotem na szlak; kilometry liczy mapa. Na mapie są też domki (⌂), stacje (🚆) i sklepy spożywcze przy trasach (🛒, do 400 m od trasy) z godzinami otwarcia.</p></div>
     <div class="seg" role="group" aria-label="Trasa" id="routeSeg"></div>
     <div class="layers" id="layerToggles"></div>
     <div class="map-layout">
@@ -695,8 +695,8 @@ const ROUTES={
     src:'IC 1016 z Warszawy Wschodniej 19:38, w Siemiatyczach 21:13. Ze stacji prosto do domków, po ciemku — lampki obowiązkowo.',
     pts:[{p:'stacja',km:null,visit:0,surf:'—',info:'Przyjazd 21:13.'},{p:'laspokoj',km:null,visit:0,surf:'drogi lokalne',info:'Domki.'}]},
   sat2a:{label:'Sob · szlak do Czeremchy',color:'var(--c-light)',hex:'#4f7d5c',type:'bike',pace:14,km:null,est:60,diff:'łatwa–średnia',
-    src:'Z domków od razu na drogę nr 19 w Turnej Małej i dalej na zielony szlak przy Maćkowiczach i nim do Czeremchy, z odbiciami do Góry Uszeście i w Mielniku (Góra Zamkowa, taras kopalni kredy). Powrót pociągiem REG 16:26 do Siemiatycz (16:54) i ok. 5 km do domków.',
-    pts:[{p:'laspokoj',km:null,visit:0,surf:'—',info:'Start 09:00.'},{p:'dk19',km:null,visit:0,surf:'droga krajowa nr 19 (pobocze)',info:'Od razu na drogę nr 19/62 w Turnej Małej, nią na północ i na zielony szlak przy Maćkowiczach — bez objazdu przez Drohiczyn.'},{p:'mackowicze',km:null,visit:10,surf:SURF,info:INFO.mackowicze},{p:'oslowo',km:null,visit:0,surf:SURF,info:''},{p:'uszescie',km:null,visit:15,surf:'ścieżka, krótko pieszo',info:'Punkt widokowy na zakole Bugu.'},{p:'mielnik',km:null,visit:75,surf:SURF,info:'Ciepły posiłek. Góra Zamkowa i taras kopalni kredy.'},{p:'adamowo',km:null,visit:0,surf:SURF,info:''},{p:'tokary',km:null,visit:0,surf:SURF,info:'Odcinek przy granicy — tylko szlakiem.'},{p:'tokaryc',km:null,visit:10,surf:SURF,info:'Cerkiew.'},{p:'klukowicze',km:null,visit:0,surf:SURF,info:''},{p:'zubacze',km:null,visit:15,surf:SURF,info:INFO.zubacze},{p:'czeremcha',km:null,visit:30,surf:SURF,info:'Kawa, ciepły posiłek. Pociąg REG 16:26 do Siemiatycz (16:54).'}]},
+    src:'Z domków przez Siemiatycze do Maćkowicz i dalej zielonym szlakiem do Czeremchy, z odbiciami do Góry Uszeście i w Mielniku (Góra Zamkowa, taras kopalni kredy). Powrót pociągiem REG 16:26 do Siemiatycz (16:54) i ok. 5 km do domków.',
+    pts:[{p:'laspokoj',km:null,visit:0,surf:'—',info:'Start 09:00.'},{p:'mackowicze',km:null,visit:10,surf:SURF,info:INFO.mackowicze},{p:'oslowo',km:null,visit:0,surf:SURF,info:''},{p:'uszescie',km:null,visit:15,surf:'ścieżka, krótko pieszo',info:'Punkt widokowy na zakole Bugu.'},{p:'mielnik',km:null,visit:75,surf:SURF,info:'Ciepły posiłek. Góra Zamkowa i taras kopalni kredy.'},{p:'adamowo',km:null,visit:0,surf:SURF,info:''},{p:'tokary',km:null,visit:0,surf:SURF,info:'Odcinek przy granicy — tylko szlakiem.'},{p:'tokaryc',km:null,visit:10,surf:SURF,info:'Cerkiew.'},{p:'klukowicze',km:null,visit:0,surf:SURF,info:''},{p:'zubacze',km:null,visit:15,surf:SURF,info:INFO.zubacze},{p:'czeremcha',km:null,visit:30,surf:SURF,info:'Kawa, ciepły posiłek. Pociąg REG 16:26 do Siemiatycz (16:54).'}]},
   sun3a:{label:'Nd · Drohiczyn',color:'var(--c-sun)',hex:'#3e6e8e',type:'bike',pace:14,km:null,est:37,diff:'łatwa',
     src:'Po spacerze i wymeldowaniu: rowerem do Drohiczyna (Góra Zamkowa, katedra, widok na dolinę Bugu, obiad), potem na stację Siemiatycze i TLK 15:41 do Warszawy (17:20). Bagaż w sakwach.',
     pts:[{p:'laspokoj',km:null,visit:0,surf:'—',info:'Start 10:00 po wymeldowaniu.'},{p:'drohiczyn',km:null,visit:120,surf:'drogi lokalne',info:'Góra Zamkowa, katedra, klasztory, punkt widokowy nad Bugiem. Obiad.'},{p:'stacja',km:null,visit:0,surf:'drogi lokalne',info:'TLK 1112 o 15:41 do Warszawy Wschodniej.'}]}
@@ -832,7 +832,7 @@ function renderStats(){const r=curR();
 function setRoute(k){cur=k;renderRouteSeg();renderPoints();try{drawRoute()}catch(e){console.warn(e)}renderStats()}
 const wpts=r=>r.pts.map(x=>x.p).filter((p,i,a)=>!i||p!==a[i-1]);
 const gdir=r=>{const w=wpts(r).map(p=>P[p].c.join(','));return 'https://www.google.com/maps/dir/?api=1&travelmode=bicycling&origin='+w[0]+'&destination='+w[w.length-1]+(w.length>2?'&waypoints='+w.slice(1,-1).join('|'):'')};
-const RKEY='podlasie-route-v4';let rCache={};try{rCache=JSON.parse(localStorage.getItem(RKEY)||'{}')}catch(e){}
+const RKEY='podlasie-route-v5';let rCache={};try{rCache=JSON.parse(localStorage.getItem(RKEY)||'{}')}catch(e){}
 async function tryRouting(key,coords,type){
   if(key==='sat2a'&&!window.__dk19ok)return;
   if(liveKm[key]!==undefined)return; liveKm[key]=null;
@@ -848,13 +848,17 @@ async function tryRouting(key,coords,type){
 }
 
 /* ---------- Sklepy spożywcze z OpenStreetMap (Overpass API) ---------- */
-const SHOPKEY='podlasie-shops-v1';
+const SHOPKEY='podlasie-shops-v2';let SHOPS=null;
 async function loadShops(){let data=null;try{const c=JSON.parse(localStorage.getItem(SHOPKEY)||'null');if(c&&Date.now()-c.t<864e5)data=c.d}catch(e){}
-  if(!data){try{const q='[out:json][timeout:25];(nwr["shop"~"^(supermarket|convenience|general|greengrocer|bakery)$"](around:9000,52.36433,22.845););out center tags;';
+  if(!data){try{const q='[out:json][timeout:25];(nwr["shop"~"^(supermarket|convenience|general|greengrocer|bakery)$"](52.30,22.60,52.54,23.37););out center tags;';
     const r=await fetch('https://overpass-api.de/api/interpreter',{method:'POST',body:'data='+encodeURIComponent(q),headers:{'Content-Type':'application/x-www-form-urlencoded'}});if(!r.ok)throw 0;data=(await r.json()).elements||[];
     try{localStorage.setItem(SHOPKEY,JSON.stringify({t:Date.now(),d:data}))}catch(e){}}catch(e){return}}
-  const base=P.laspokoj.c,dist=(a,b)=>{const R=6371,t=Math.PI/180,x=(b[1]-a[1])*t*Math.cos((a[0]+b[0])/2*t),y=(b[0]-a[0])*t;return Math.sqrt(x*x+y*y)*R};
-  const shops=data.map(e=>({c:e.lat!=null?[e.lat,e.lon]:(e.center?[e.center.lat,e.center.lon]:null),t:e.tags||{}})).filter(x=>x.c).map(x=>({...x,d:dist(base,x.c)})).sort((a,b)=>a.d-b.d).slice(0,10);
+  const base=P.laspokoj.c;SHOPS=data.map(e=>({c:e.lat!=null?[e.lat,e.lon]:(e.center?[e.center.lat,e.center.lon]:null),t:e.tags||{}})).filter(x=>x.c).map(x=>({...x,d:shDist(base,x.c)}));placeShops()}
+const shDist=(a,b)=>{const R=6371,t=Math.PI/180,x=(b[1]-a[1])*t*Math.cos((a[0]+b[0])/2*t),y=(b[0]-a[0])*t;return Math.sqrt(x*x+y*y)*R};
+/* tylko sklepy przy trasach (do 400 m od linii trasy) */
+function placeShops(){if(!SHOPS||!layers.shop)return;const ks=Object.keys(ROUTES).filter(k=>k!=='all'),gs=ks.map(k=>liveKm[k]&&liveKm[k].geom).filter(Boolean);if(gs.length<ks.length)return;
+  layers.shop.clearLayers();const near=c=>gs.some(g=>{for(let i=0;i<g.length;i++){if(Math.abs(g[i][0]-c[0])<.01&&shDist(g[i],c)<.4)return true}return false});
+  const shops=SHOPS.filter(x=>near(x.c));
   shops.forEach(x=>{const t=x.t,nm=t.name||t.brand||({supermarket:'Supermarket',convenience:'Sklep spożywczy',general:'Sklep',bakery:'Piekarnia',greengrocer:'Warzywniak'}[t.shop]||'Sklep');
     const adr=[t['addr:street']||t['addr:place'],t['addr:housenumber']].filter(Boolean).join(' ')+(t['addr:city']?', '+t['addr:city']:'');
     const oh=t.opening_hours?esc(t.opening_hours).replace(/;\s*/g,'<br>'):'brak godzin w OpenStreetMap — sprawdź w Google Maps';
@@ -880,7 +884,7 @@ function updKm(){$$('[data-km]').forEach(el=>{const k=el.dataset.km;if(ROUTES[k]
 
 /* ---------- Dystanse (na żywo z OSRM) ---------- */
 const PLANS=[['Max','piątek rano (1a) + sobota + niedziela',['fri1a','sat2a','sun3a'],'#9fd0ad'],['Min','piątek wieczorem (1b) + sobota + niedziela',['fri1b','sat2a','sun3a'],'#9fd0ad']];
-let kmT=null;function afterKm(){clearTimeout(kmT);kmT=setTimeout(()=>{renderKm();updKm();try{renderNumbers()}catch(e){}renderPoints()},200)}
+let kmT=null;function afterKm(){clearTimeout(kmT);kmT=setTimeout(()=>{placeShops();renderKm();updKm();try{renderNumbers()}catch(e){}renderPoints()},200)}
 function kmTxt(k){const l=liveKm[k];return l&&l.km?fmt(l.km)+' km':'ok. '+fmt(ROUTES[k].est,0)+' km'}
 function renderKm(){if(!$('#kmTable'))return;const ks=['fri1a','fri1b','sat2a','sun3a'];const live=ks.every(k=>liveKm[k]&&liveKm[k].km);
   $('#kmTable').innerHTML=`<thead><tr><th>Trasa</th><th class="r">Kilometry</th><th class="r">Jazda</th><th>Mapy Google</th></tr></thead><tbody>`+ks.map(k=>{const r=ROUTES[k];return `<tr><td><i class="dot" style="display:inline-block;width:9px;height:9px;border-radius:50%;background:${r.hex};margin-right:6px"></i>${esc(r.label)}</td><td class="r num">${kmTxt(k)}</td><td class="r">${hm(rkm(k)/r.pace*60)}</td><td><a href="${gdir(r)}" target="_blank" rel="noopener">trasa rowerowa ↗</a></td></tr>`}).join('')+`</tbody>`;
@@ -894,7 +898,7 @@ let grp='light';
 const DAYS={
  light:[
   {n:'Piątek',d:'20 listopada · 1a lub 1b',c:'var(--mk-yellow)',tl:[['1a','Rano — dla obu grup:'],['10:24','TLK 1012 z Warszawy Wschodniej (rower: rezerwacja 11,90 zł).'],['11:58','Siemiatycze. Start rowerem ze stacji.'],['13:00','Święta Góra Grabarka (30 min).'],['14:30','Siemiatycze: obiad, kościół, synagoga, sfinksy. Zakupy.'],['16:30','Do domków, ok. 8 km z lampkami (zmrok 15:28).'],['17:00','Sauna i kominek (w cenie), balia za dopłatą.'],['1b','Wieczorem — dla obu grup:'],['19:38','IC 1016 z Warszawy Wschodniej (miejsce na rower sprawdź przy zakupie).'],['21:13','Siemiatycze. Ok. 5 km rowerem do domków, po ciemku.']]},
-  {n:'Sobota',d:'21 listopada · {sat2a}',c:'var(--c-light)',tl:[['07:30','Pobudka, śniadanie.'],['09:00','Start z domków od razu na drogę nr 19 w Turnej Małej, dalej zielonym szlakiem: Maćkowicze, most kolejowy w Olendrach (z zewnątrz).'],['10:15','Góra Uszeście — punkt widokowy (15 min).'],['10:45','Mielnik: Góra Zamkowa, taras kopalni kredy, ciepły posiłek (ok. 75 min).'],['13:00','Adamowo, Tokary — cerkiew (10 min). Przy granicy tylko szlakiem.'],['14:15','Zubacze — drewniana cerkiew (15 min).'],['15:30','Czeremcha. Kawa, ciepły posiłek (zmrok ok. 15:28 — lampki).'],['16:26','REG 10482 → Siemiatycze 16:54 (rower 8,50 zł).'],['17:20','Domki: sauna, balia, kolacja.']]},
+  {n:'Sobota',d:'21 listopada · {sat2a}',c:'var(--c-light)',tl:[['07:30','Pobudka, śniadanie.'],['09:00','Start z domków przez Siemiatycze do Maćkowicz, dalej zielonym szlakiem: most kolejowy w Olendrach (z zewnątrz).'],['10:15','Góra Uszeście — punkt widokowy (15 min).'],['10:45','Mielnik: Góra Zamkowa, taras kopalni kredy, ciepły posiłek (ok. 75 min).'],['13:00','Adamowo, Tokary — cerkiew (10 min). Przy granicy tylko szlakiem.'],['14:15','Zubacze — drewniana cerkiew (15 min).'],['15:30','Czeremcha. Kawa, ciepły posiłek (zmrok ok. 15:28 — lampki).'],['16:26','REG 10482 → Siemiatycze 16:54 (rower 8,50 zł).'],['17:20','Domki: sauna, balia, kolacja.']]},
   {n:'Niedziela',d:'22 listopada · Drohiczyn · {sun3a}',c:'var(--c-sun)',tl:[['08:00','Śniadanie.'],['09:00','Spacer ścieżką przyrodniczą w Wólce Nadbużnej.'],['09:45','Pakowanie do sakw, wymeldowanie (godzina do ustalenia).'],['10:00','Rowerem do Drohiczyna.'],['11:15','Drohiczyn: Góra Zamkowa, katedra, klasztory, widok na Bug. Obiad.'],['13:30','Drohiczyn → stacja Siemiatycze.'],['15:41','TLK 1112 do Warszawy Wschodniej (17:20).']]}
  ]};
 DAYS.hard=DAYS.light;
