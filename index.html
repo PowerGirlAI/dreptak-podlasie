@@ -708,7 +708,7 @@ const ROUTES={
     pts:[{p:'stacja',km:null,visit:0,surf:'—',info:'Przyjazd 21:13.'},{p:'laspokoj',km:null,visit:0,surf:'drogi lokalne',info:'Domki.'}]},
   sat2a:{label:'Sob · szlak do Czeremchy',color:'var(--c-light)',hex:'#4f7d5c',type:'bike',pace:14,km:null,est:60,diff:'łatwa–średnia',
     src:'Z domków przez Siemiatycze do Maćkowicz i dalej zielonym szlakiem do Czeremchy, z odbiciami do Góry Uszeście i w Mielniku (Góra Zamkowa, taras kopalni kredy). Powrót pociągiem REG 16:26 do Siemiatycz (16:54) i ok. 5 km do domków.',
-    pts:[{p:'laspokoj',km:null,visit:0,surf:'—',info:'Start 09:00.'},{p:'mackowicze',km:null,visit:10,surf:SURF,info:INFO.mackowicze},{p:'oslowo',km:null,visit:0,surf:SURF,info:''},{p:'uszescie',km:null,visit:15,surf:'ścieżka, krótko pieszo',info:'Punkt widokowy na zakole Bugu.'},{p:'mielnik',km:null,visit:75,surf:SURF,info:'Ciepły posiłek. Góra Zamkowa i taras kopalni kredy.'},{p:'adamowo',km:null,visit:0,surf:SURF,info:''},{p:'tokary',km:null,visit:0,surf:SURF,info:'Odcinek przy granicy — tylko szlakiem.'},{p:'tokaryc',km:null,visit:10,surf:SURF,info:'Cerkiew.'},{p:'klukowicze',km:null,visit:0,surf:SURF,info:''},{p:'zubacze',km:null,visit:15,surf:SURF,info:INFO.zubacze},{p:'czeremcha',km:null,visit:30,surf:SURF,info:'Kawa, ciepły posiłek. Pociąg REG 16:26 do Siemiatycz (16:54).'}]},
+    pts:[{p:'laspokoj',km:null,visit:0,surf:'—',info:'Start 09:00.'},{p:'mackowicze',km:null,visit:10,surf:SURF,info:INFO.mackowicze},{p:'uszescie',km:null,visit:15,surf:'ścieżka, krótko pieszo',info:'Punkt widokowy na zakole Bugu.'},{p:'mielnik',km:null,visit:75,surf:SURF,info:'Ciepły posiłek. Góra Zamkowa i taras kopalni kredy.'},{p:'tokaryc',km:null,visit:10,surf:SURF,info:'Cerkiew. Odcinek przy granicy — tylko szlakiem.'},{p:'zubacze',km:null,visit:15,surf:SURF,info:INFO.zubacze},{p:'czeremcha',km:null,visit:30,surf:SURF,info:'Kawa, ciepły posiłek. Pociąg REG 16:26 do Siemiatycz (16:54).'}]},
   sun3a:{label:'Nd · Drohiczyn',color:'var(--c-sun)',hex:'#3e6e8e',type:'bike',pace:14,km:null,est:37,diff:'łatwa',
     src:'Po spacerze i wymeldowaniu: rowerem do Drohiczyna (Góra Zamkowa, katedra, widok na dolinę Bugu, obiad), potem na stację Siemiatycze i TLK 15:41 do Warszawy (17:20). Bagaż w sakwach.',
     pts:[{p:'laspokoj',km:null,visit:0,surf:'—',info:'Start 10:00 po wymeldowaniu.'},{p:'drohiczyn',km:null,visit:120,surf:'drogi lokalne',info:'Góra Zamkowa, katedra, klasztory, punkt widokowy nad Bugiem. Obiad.'},{p:'stacja',km:null,visit:0,surf:'drogi lokalne',info:'TLK 1112 o 15:41 do Warszawy Wschodniej.'}]}
@@ -727,7 +727,7 @@ function buildBase(){
   if(BASE){BASE.rivers.forEach(r=>L.polyline(r,{color:cssv('--river'),weight:5,opacity:.85,lineCap:'round',smoothFactor:1.5,interactive:false}).addTo(g));
     BASE.border.forEach(b=>L.polyline(b,{color:cssv('--brick'),weight:2,dashArray:'10 6 2 6',opacity:.9,interactive:false}).addTo(g));}
   const lbl=(c,t,cls)=>L.marker(c,{icon:L.divIcon({className:'',html:`<span class="maplbl ${cls||''}">${t}</span>`,iconSize:[0,0]}),interactive:false,keyboard:false}).addTo(g);
-  [['czeremcha','Czeremcha'],['zubacze','Zubacze'],['klukowicze','Klukowicze'],['tokary','Tokary'],['adamowo','Adamowo'],['mielnik','Mielnik'],['oslowo','Osłowo'],['mackowicze','Maćkowicze'],['stacja','Siemiatycze-Stacja'],['siemiatycze','Siemiatycze'],['kleszczele','Kleszczele'],['dobrowoda','Dobrowoda'],['siedlce','Siedlce']].forEach(([k,t])=>lbl(P[k].c,t));
+  [['czeremcha','Czeremcha'],['zubacze','Zubacze'],['mielnik','Mielnik'],['mackowicze','Maćkowicze'],['stacja','Siemiatycze-Stacja'],['siemiatycze','Siemiatycze'],['kleszczele','Kleszczele'],['dobrowoda','Dobrowoda']].forEach(([k,t])=>lbl(P[k].c,t));
   lbl([52.315,22.98],'Bug','water'); lbl([52.45,23.6],'BIAŁORUŚ','country'); lbl([52.3,22.55],'POLSKA','country'); lbl([52.47,23.45],'granica państwa','bord');
   return g;
 }
@@ -844,7 +844,7 @@ function renderStats(){const r=curR();
 function setRoute(k){cur=k;renderRouteSeg();renderPoints();try{drawRoute()}catch(e){console.warn(e)}renderStats()}
 const wpts=r=>r.pts.map(x=>x.p).filter((p,i,a)=>!i||p!==a[i-1]);
 const gdir=r=>{const w=wpts(r).map(p=>P[p].c.join(','));return 'https://www.google.com/maps/dir/?api=1&travelmode=bicycling&origin='+w[0]+'&destination='+w[w.length-1]+(w.length>2?'&waypoints='+w.slice(1,-1).join('|'):'')};
-const RKEY='podlasie-route-v5';let rCache={};try{rCache=JSON.parse(localStorage.getItem(RKEY)||'{}')}catch(e){}
+const RKEY='podlasie-route-v6';let rCache={};try{rCache=JSON.parse(localStorage.getItem(RKEY)||'{}')}catch(e){}
 async function tryRouting(key,coords,type){
   if(key==='sat2a'&&!window.__dk19ok)return;
   if(liveKm[key]!==undefined)return; liveKm[key]=null;
