@@ -655,6 +655,7 @@ const P={
   kleszczele:{n:'Kleszczele',c:[52.5733,23.3270],q:'Kleszczele'},
   kuzawa:{n:'Kuzawa',c:[52.5250,23.3900],q:'Cerkiew św. Barbary Kuzawa'},
   siedlce:{n:'Siedlce — stacja',c:[52.1677,22.2901],q:'Dworzec PKP Siedlce'},
+  wawa:{n:'Warszawa Wschodnia',c:[52.2516,21.0525],q:'Dworzec Warszawa Wschodnia'},
   uszescie:{n:'Rezerwat Góra Uszeście',c:[52.3380,23.0100],q:'Rezerwat przyrody Góra Uszeście'},
   grabarka:{n:'Święta Góra Grabarka',c:[52.4166,23.0067],q:'Święta Góra Grabarka',maps:'https://maps.app.goo.gl/s3xwKjdoV6Mk2hTs7'}
 };
@@ -682,6 +683,9 @@ const ROUTES={
   sunHard:{label:'Nd · Hard',color:'var(--c-hard)',hex:'#a4532e',type:'bike',pace:20,km:98,kmSt:'or',diff:'trudna',
     src:'Czeremcha → Siemiatycze → Siedlce ≈ 98 km (dystans drogowy, rome2rio). Linia na mapie: propozycja wyznaczona automatycznie po drogach dopuszczonych dla rowerów (OSRM, profil rowerowy, bez dróg ekspresowych) — przed wyjazdem sprawdźcie ją w BRouter lub komoot.',
     pts:[{p:'czeremcha',km:0,visit:0,surf:'—',info:'Start 08:00.'},{p:'siemiatycze',km:null,visit:20,surf:'drogi lokalne',info:'Przejazd przez Siemiatycze (orientacyjnie po drodze).'},{p:'siedlce',km:98,visit:0,surf:'—',info:'Pociąg IC 1126 15:42 lub TLK 1112 16:25 do Warszawy.',kmSt:'or'}]},
+  sunWawa:{label:'Nd · Hard → Wawa',color:'#7a2f1d',hex:'#7a2f1d',type:'bike',pace:20,km:null,diff:'bardzo trudna (ok. 2 × dystans Siedlec)',
+    src:'Cała droga rowerem do stacji, z której startujemy: Czeremcha → Siemiatycze → Siedlce → Warszawa Wschodnia. Dystans liczy się z trasy po drogach (OSRM). Uwaga: ok. 190–200 km nie zmieści się w jednym listopadowym dniu (wschód 06:58, zachód 15:28) — realnie jako wersja 2-dniowa z noclegiem w okolicy Siedlec.',
+    pts:[{p:'czeremcha',km:0,visit:0,surf:'—',info:'Start 08:00.'},{p:'siemiatycze',km:null,visit:20,surf:'drogi lokalne',info:'Przejazd przez Siemiatycze.'},{p:'siedlce',km:null,visit:30,surf:'—',info:'Koniec dnia 1 w wersji 2-dniowej (nocleg w okolicy) albo przesiadka na pociąg.'},{p:'wawa',km:null,visit:0,surf:'—',info:'Meta: stacja Warszawa Wschodnia.'}]},
   sunVisit:{label:'Nd · zwiedzanie',color:'var(--c-visit)',hex:'#8a7556',type:'foot',pace:4,km:null,diff:'łatwa',
     src:'Spacer lub spokojny rower po Czeremsze: stacja i Muzeum Kolejnictwa, Kuzawa z cerkwią św. Barbary. Kilometraż do wyliczenia; Kuzawa leży blisko granicy — sprawdź strefę.',
     pts:[{p:'czeremcha',km:0,visit:60,surf:'chodnik',info:'Muzeum Kolejnictwa — godziny do sprawdzenia.'},{p:'kuzawa',km:null,visit:30,surf:'droga lokalna',info:'Cerkiew św. Barbary, ogród z „kwiatowym pociągiem”. Blisko granicy.',kmSt:'td'},{p:'czeremcha',km:null,visit:0,surf:'chodnik',info:'Pociąg 15:17.'}]},
@@ -690,7 +694,7 @@ const ROUTES={
     src:'Opcjonalnie po przyjeździe: Czeremcha ⇄ Zubacze szlakiem zielonym, 2 × 9,4 km. Start ok. 13:00, powrót przed 15:00.',
     pts:[{p:'czeremcha',km:0,visit:0,surf:SURF,info:''},{p:'zubacze',km:9.4,visit:20,surf:SURF,info:INFO.zubacze},{p:'czeremcha',km:18.8,visit:0,surf:SURF,info:''}]}
 };
-const ROUTE_ORDER=['all','friLight','satLight','satHard','sunLight','sunHard','sunVisit'];
+const ROUTE_ORDER=['all','friLight','satLight','satHard','sunLight','sunHard','sunWawa','sunVisit'];
 let cur='satLight';
 const curR=()=>ROUTES[cur];
 
@@ -797,14 +801,14 @@ function renderPoints(){const r=curR();
    return `<button class="pt" type="button" data-i="${i}"><span class="n" style="background:${r.hex}">${i+1}</span><span><b>${esc(P[x.p].n)}${x.ret?' (powrót)':''}</b><span class="meta num">${s.km!=null?fmt(s.km)+' km':'km do wyliczenia'}${s.d!=null&&i?' · +'+fmt(s.d)+' km':''}${x.visit?' · postój '+x.visit+' min':''}</span>${x.kmSt==='td'?' <span class="st td">do sprawdzenia</span>':''}</span></button>`}).join('')}
 $('#pointList').addEventListener('click',e=>{const b=e.target.closest('.pt');if(!b)return;if(b.dataset.r){setRoute(b.dataset.r);return}const i=+b.dataset.i,r=curR();
   if(map){map.setView(P[r.pts[i].p].c,12);routeLayer.eachLayer(l=>{if(l.options&&l.options.title===(r.pts.findIndex(x=>x.p===r.pts[i].p)+1)+'. '+P[r.pts[i].p].n)l.openPopup()})}else openDlg(P[r.pts[i].p].n,'Punkt '+(i+1),pointPopup(i))});
-function rstats(r){const km=r.km, ride=km!=null?km/r.pace*60:null, vis=r.pts.reduce((a,p)=>a+(p.visit||0),0);
+function rstats(r){const lv=Object.keys(ROUTES).find(k=>ROUTES[k]===r),km=r.km!=null?r.km:(liveKm[lv]&&liveKm[lv].km)||null, ride=km!=null?km/r.pace*60:null, vis=r.pts.reduce((a,p)=>a+(p.visit||0),0);
   const attrs=new Set(r.pts.map(x=>x.p).filter(p=>ATTR.some(a=>a.p===p))).size;return{km,ride,vis,tot:ride!=null?ride+vis:null,attrs}}
 function renderStats(){const r=curR();
   if(r.all){const sum=ks=>ks.reduce((a,k)=>a+(ROUTES[k].km||0),0);
     $('#routeStats').innerHTML=[[String(ROUTE_ORDER.length-1),'tras na mapie'],[fmt(sum(['friLight','satLight','sunLight']))+' km','Light — cały weekend'],[fmt(sum(['friLight','satHard','sunHard']))+' km','Hard — cały weekend'],[String(ATTR.length),'atrakcji'],[String(STAYS.length),'noclegów']]
      .map(([v,l])=>`<div class="stat"><div class="v" style="font-size:${v.length>9?'1.15rem':'1.7rem'};color:${r.hex}">${esc(v)}</div><div class="l">${l}</div></div>`).join('');return}
   const s=rstats(r),live=liveKm[cur];
-  $('#routeStats').innerHTML=[[s.km!=null?fmt(s.km)+' km':'—','dystans (źródło)'],[s.ride!=null?hm(s.ride):'—',(r.type==='foot'?'marsz':'jazda')+' przy '+r.pace+' km/h'],[s.tot!=null?hm(s.tot):'—','z postojami'],[r.diff,'trudność'],[String(s.attrs),'atrakcje']]
+  $('#routeStats').innerHTML=[[s.km!=null?(r.km==null?'≈ ':'')+fmt(s.km)+' km':'—',r.km==null&&s.km!=null?'dystans (po drogach, OSRM)':'dystans (źródło)'],[s.ride!=null?hm(s.ride):'—',(r.type==='foot'?'marsz':'jazda')+' przy '+r.pace+' km/h'],[s.tot!=null?hm(s.tot):'—','z postojami'],[r.diff,'trudność'],[String(s.attrs),'atrakcje']]
    .map(([v,l])=>`<div class="stat"><div class="v" style="font-size:${v.length>9?'1.15rem':'1.7rem'};color:${r.hex}">${esc(v)}</div><div class="l">${l}</div></div>`).join('')}
 function setRoute(k){cur=k;renderRouteSeg();renderPoints();try{drawRoute()}catch(e){console.warn(e)}renderStats()}
 const RKEY='dreptak-route-v2';let rCache={};try{rCache=JSON.parse(localStorage.getItem(RKEY)||'{}')}catch(e){}
