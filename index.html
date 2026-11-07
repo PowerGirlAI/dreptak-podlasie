@@ -715,9 +715,9 @@ function initMap(){
   const note=()=>{$('#mapNote').innerHTML=(tileOk?'Podkład: OpenStreetMap. ':'Uproszczony podkład (ten widok blokuje zewnętrzne mapy): Bug, granica, miejscowości. Pełna mapa OSM — po otwarciu pliku HTML w Chrome lub Firefoksie. ')+'Linia ciągła prowadzi drogami przez punkty o przybliżonym położeniu, więc miejscami może odbiegać od szlaku. Kilometraż pochodzi z opisu GreenVelo; na miejscu jedziemy wg znaków szlaku. Przycisk w prawym górnym rogu mapy zmienia podkład (np. rowerowy CyclOSM).'};
   tiles.on('tileload',()=>{if(!tileOk){tileOk=true;map.removeLayer(base);note()}}); note();
   layers.rail=L.layerGroup().addTo(map); layers.stay=L.layerGroup().addTo(map); layers.attr=L.layerGroup().addTo(map);
-  const STATIONS=[['czeremcha','Stacja Czeremcha','przyjazd w piątek 12:21, odjazd w niedzielę 15:17'],['stacja','Stacja Siemiatycze','meta Light w sobotę, powrót do Czeremchy 19:16'],['siedlce','Stacja Siedlce','meta Hard w niedzielę, IC 15:42 lub TLK 16:25']];
+  const STATIONS=[['czeremcha','Stacja Czeremcha','przyjazd w piątek 12:21, odjazd w niedzielę 15:17'],['stacja','Stacja Siemiatycze','meta Light w sobotę, powrót do Czeremchy 19:16']];
   STATIONS.forEach(([k,n,d])=>L.marker(P[k].c,{icon:L.divIcon({className:'',html:'<div class="rail-pin">🚆</div>',iconSize:[30,30],iconAnchor:[15,15],popupAnchor:[0,-14]}),title:n,zIndexOffset:1500}).bindTooltip(n.replace('Stacja ','🚆 '),{permanent:true,direction:'right',offset:[14,0],className:'rail-lbl'}).bindPopup(`<b>${n}</b><br><span class="small">${d}</span><br><a href="#dojazd">Rozkład pociągów</a>`).addTo(layers.rail));
-  L.polyline([P.czeremcha.c,P.stacja.c,P.siedlce.c],{color:'#555',weight:3,dashArray:'2 8'}).bindTooltip('Linia kolejowa Czeremcha–Siedlce–Warszawa (schemat)').addTo(layers.rail);
+  L.polyline([P.czeremcha.c,P.stacja.c],{color:'#555',weight:3,dashArray:'2 8'}).bindTooltip('Linia kolejowa Czeremcha–Siemiatycze (dalej do Warszawy), schemat').addTo(layers.rail);
   placeStays();
   ATTR.forEach(a=>{if(['czeremcha','mielnik','siemiatycze'].includes(a.p)&&!a.pin)return;L.marker(P[a.p].c,{icon:pinIcon('★','#7d4f6f'),title:a.n}).bindTooltip(a.n).bindPopup(()=>attrPopup(a)).addTo(layers.attr)});
   const box=$('#layerToggles');
