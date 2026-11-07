@@ -237,6 +237,8 @@ a{text-underline-offset:3px;text-decoration-thickness:1px}
 .rail-pin{width:30px;height:30px;border-radius:8px;background:#1f2a33;border:2px solid #fff;display:grid;place-items:center;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,.45)}
 .leaflet-tooltip.rail-lbl{background:#1f2a33;color:#fff;border:0;font:600 11px/1 var(--f-body);padding:5px 7px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
 .leaflet-tooltip.rail-lbl:before{display:none}
+.apin{width:26px;height:26px;border-radius:6px;background:#7a3f8f;border:2px solid #fff;color:#fff;display:grid;place-items:center;font:700 12px/1 var(--f-body);box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.alet{display:inline-grid;place-items:center;width:1.5em;height:1.5em;margin-right:.45em;border-radius:6px;background:#7a3f8f;color:#fff;font:700 .7em/1 var(--f-body);vertical-align:.18em}
 .pin span{transform:rotate(45deg);font:600 11px/1 var(--f-body);color:#fff}
 .maplbl{position:absolute;transform:translate(-50%,12px);white-space:nowrap;font:500 11px/1 var(--f-body);color:var(--muted);text-shadow:0 0 3px var(--map-bg),0 0 3px var(--map-bg),0 0 3px var(--map-bg);pointer-events:none}
 .maplbl.water{color:var(--river);font:italic 400 15px/1 var(--f-display);transform:translate(-50%,-50%)}
@@ -731,7 +733,10 @@ function initMap(){
   STATIONS.forEach(([k,n,d])=>L.marker(P[k].c,{icon:L.divIcon({className:'',html:'<div class="rail-pin">🚆</div>',iconSize:[30,30],iconAnchor:[15,15],popupAnchor:[0,-14]}),title:n,zIndexOffset:1500}).bindTooltip(n.replace('Stacja ','🚆 '),{permanent:true,direction:'right',offset:[14,0],className:'rail-lbl'}).bindPopup(`<b>${n}</b><br><span class="small">${d}</span><br><a href="#dojazd">Rozkład pociągów</a>`).addTo(layers.rail));
   L.polyline([P.czeremcha.c,P.stacja.c],{color:'#555',weight:3,dashArray:'2 8'}).bindTooltip('Linia kolejowa Czeremcha–Siemiatycze (dalej do Warszawy), schemat').addTo(layers.rail);
   placeStays();
-  ATTR.forEach(a=>{if(['czeremcha','mielnik','siemiatycze'].includes(a.p)&&!a.pin)return;L.marker(P[a.p].c,{icon:pinIcon('★','#7d4f6f'),title:a.n}).bindTooltip(a.n).bindPopup(()=>attrPopup(a)).addTo(layers.attr)});
+  const onRoute=new Set(Object.values(ROUTES).flatMap(r=>r.pts.map(x=>x.p))),seenA={};
+  ATTR.forEach(a=>{const k=seenA[a.p]=(seenA[a.p]||0)+1,off=onRoute.has(a.p)||k>1,ang=-0.9+(k-1)*0.95;
+    const dx=off?Math.round(30*Math.cos(ang)):0,dy=off?Math.round(30*Math.sin(ang)):0,L1=ALET(a.id);
+    L.marker(P[a.p].c,{icon:L.divIcon({className:'',html:`<div class="apin">${L1}</div>`,iconSize:[26,26],iconAnchor:[13-dx,13-dy],popupAnchor:[dx,dy-12],tooltipAnchor:[dx+12,dy]}),title:L1+'. '+a.n,zIndexOffset:1200}).bindTooltip(L1+'. '+a.n).bindPopup(()=>attrPopup(a)).addTo(layers.attr)});
   const box=$('#layerToggles');
   box.innerHTML=[['route','Wybrana trasa'],['attr','Atrakcje'],['stay','Noclegi'],['rail','Kolej']].map(([k,l])=>`<label><input type="checkbox" data-layer="${k}" checked> ${l}</label>`).join('');
   box.addEventListener('change',e=>{const k=e.target.dataset.layer;if(!k)return;
@@ -754,7 +759,7 @@ async function placeStays(){const used={},n=+(($('#nGuests')||{}).value||8);
     const key=c[0].toFixed(3)+','+c[1].toFixed(3),i=used[key]=(used[key]||0)+1;
     const cc=i>1?[c[0]+.004*Math.cos(i*2.1),c[1]+.006*Math.sin(i*2.1)]:c;
     const pv=ppVal(s,n);
-    L.marker(cc,{icon:pinIcon('⌂',s.pick?'#c9a55c':'#4f7d5c'),title:s.n,zIndexOffset:500}).bindTooltip(s.n).bindPopup(`<div class="tag">Nocleg${s.pick?' · wybór organizatorki':''}</div><b>${esc(s.n)}</b><div class="small" style="margin:4px 0">${esc(s.loc)}</div><div><b>${pv?(pv.from?'od ':'')+zl(pv.v):'do wyceny'}</b> <span class="small">na osobę · 2 noce</span></div><div class="small" style="margin-top:4px">${exact?'Pinezka w miejscowości (OpenStreetMap), nie pod adresem obiektu.':'Dokładne położenie do sprawdzenia — pinezka umowna przy Czeremsze.'}</div><p style="margin-top:6px"><a href="${s.src}" target="_blank" rel="noopener">Oferta</a> · <a href="${gmaps(s.n+' '+s.loc)}" target="_blank" rel="noopener">Google Maps</a> · <a href="#noclegi">Porównanie</a></p>`).addTo(layers.stay)}}
+    L.marker(cc,{icon:pinIcon('⌂','#c9a55c'),title:s.n,zIndexOffset:500}).bindTooltip(s.n).bindPopup(`<div class="tag">Nocleg${s.pick?' · wybór organizatorki':''}</div><b>${esc(s.n)}</b><div class="small" style="margin:4px 0">${esc(s.loc)}</div><div><b>${pv?(pv.from?'od ':'')+zl(pv.v):'do wyceny'}</b> <span class="small">na osobę · 2 noce</span></div><div class="small" style="margin-top:4px">${exact?'Pinezka w miejscowości (OpenStreetMap), nie pod adresem obiektu.':'Dokładne położenie do sprawdzenia — pinezka umowna przy Czeremsze.'}</div><p style="margin-top:6px"><a href="${s.src}" target="_blank" rel="noopener">Oferta</a> · <a href="${gmaps(s.n+' '+s.loc)}" target="_blank" rel="noopener">Google Maps</a> · <a href="#noclegi">Porównanie</a></p>`).addTo(layers.stay)}}
 function segInfo(r,i){const x=r.pts[i],prev=i?r.pts[i-1]:null;const d=(x.km!=null&&prev&&prev.km!=null)?x.km-prev.km:(i===0?0:null);return{km:x.km,d,ride:d!=null?d/r.pace*60:null}}
 function drawAll(){routeLayer=L.layerGroup();const all=[];
   ROUTE_ORDER.filter(k=>k!=='all').forEach(k=>{const r=ROUTES[k],coords=r.pts.map(x=>P[x.p].c),live=liveKm[k];all.push(...coords);
@@ -850,11 +855,12 @@ const ATTR=[
 ];
 const ACC={cerkwie:'var(--mk-blue)',widoki:'var(--mk-green)',muzea:'var(--mk-yellow)',miasta:'var(--mk-red)'};
 let attrF='all';
-function attrPopup(a){return `<div class="tag">${esc(a.t)} · km ${esc(a.km)}</div><b>${esc(a.n)}</b><p class="small" style="margin:4px 0">${esc(a.d)}</p><div class="small">⏱ ok. ${a.visit} min · 💳 ${esc(a.price)}<br>🕘 ${esc(a.hours)}</div><p style="margin-top:8px"><button class="btn small" type="button" onclick="attrDetails('${a.id}')">Szczegóły</button></p>`}
+function attrPopup(a){return `<div class="tag">${esc(a.t)} · km ${esc(a.km)}</div><b>${ALET(a.id)}. ${esc(a.n)}</b><p class="small" style="margin:4px 0">${esc(a.d)}</p><div class="small">⏱ ok. ${a.visit} min · 💳 ${esc(a.price)}<br>🕘 ${esc(a.hours)}</div><p style="margin-top:8px"><button class="btn small" type="button" onclick="attrDetails('${a.id}')">Szczegóły</button></p>`}
+const ALET=id=>String.fromCharCode(65+ATTR.findIndex(x=>x.id===id));
 function renderAttr(){setTimeout(()=>fillPhotos($('#attrGrid')),0);
   $('#attrFilters').innerHTML=[['all','Wszystkie'],['cerkwie','Cerkwie'],['widoki','Widoki'],['muzea','Muzea'],['miasta','Miasteczka']].map(([k,l])=>`<button type="button" data-f="${k}" aria-pressed="${k===attrF}">${l}</button>`).join('');
   $('#attrGrid').innerHTML=ATTR.filter(a=>attrF==='all'||a.t===attrF).map(a=>{const sure=!/sprawdz|umówieniu/.test(a.hours+a.price);
-   return `<article class="card attr" style="--acc:${ACC[a.t]}"><div class="top"><span class="tag">${esc(a.t)}</span><span class="kmchip">km ${esc(a.km)}</span></div><h3>${esc(a.n)}</h3><figure class="ph" data-ph="${a.id}"><span class="ph-empty">Wczytuję zdjęcie…</span></figure><p class="small">${esc(a.d)}</p>
+   return `<article class="card attr" style="--acc:${ACC[a.t]}"><div class="top"><span class="tag">${esc(a.t)}</span><span class="kmchip">km ${esc(a.km)}</span></div><h3><span class="alet">${ALET(a.id)}</span>${esc(a.n)}</h3><figure class="ph" data-ph="${a.id}"><span class="ph-empty">Wczytuję zdjęcie…</span></figure><p class="small">${esc(a.d)}</p>
    <dl class="kv"><dt>Zwiedzanie</dt><dd>ok. ${a.visit} min</dd><dt>Wstęp</dt><dd>${esc(a.price)}</dd><dt>Listopad</dt><dd>${esc(a.hours)} ${sure?ST.or:ST.td}</dd></dl>
    <div class="btns"><button class="btn sec small" type="button" onclick="attrDetails('${a.id}')">Szczegóły</button><a class="btn sec small" href="${a.maps||gmaps(a.n)}" target="_blank" rel="noopener">Google Maps</a></div></article>`}).join('')}
 $('#attrFilters').addEventListener('click',e=>{const b=e.target.closest('button');if(b){attrF=b.dataset.f;renderAttr()}});
