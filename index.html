@@ -238,6 +238,8 @@ a{text-underline-offset:3px;text-decoration-thickness:1px}
 .leaflet-tooltip.rail-lbl{background:#1f2a33;color:#fff;border:0;font:600 11px/1 var(--f-body);padding:5px 7px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
 .leaflet-tooltip.rail-lbl:before{display:none}
 .apin{width:26px;height:26px;border-radius:6px;background:#7a3f8f;border:2px solid #fff;color:#fff;display:grid;place-items:center;font:700 12px/1 var(--f-body);box-shadow:0 2px 6px rgba(0,0,0,.4)}
+.apin{position:relative}.coin{position:absolute;right:-9px;top:-9px;width:17px;height:17px;border-radius:50%;background:#e2b24a;color:#3a2a06;border:1.5px solid #fff;font:700 8px/14px var(--f-body);text-align:center;font-style:normal}
+.paid{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:999px;background:rgba(226,178,74,.18);color:#c99a2e;font:600 .62rem/1.4 var(--f-body);letter-spacing:.04em;vertical-align:.25em}
 .alet{display:inline-grid;place-items:center;width:1.5em;height:1.5em;margin-right:.45em;border-radius:6px;background:#7a3f8f;color:#fff;font:700 .7em/1 var(--f-body);vertical-align:.18em}
 .pin span{transform:rotate(45deg);font:600 11px/1 var(--f-body);color:#fff}
 .maplbl{position:absolute;transform:translate(-50%,12px);white-space:nowrap;font:500 11px/1 var(--f-body);color:var(--muted);text-shadow:0 0 3px var(--map-bg),0 0 3px var(--map-bg),0 0 3px var(--map-bg);pointer-events:none}
@@ -740,7 +742,7 @@ function initMap(){
   const onRoute=new Set(Object.values(ROUTES).flatMap(r=>r.pts.map(x=>x.p))),seenA={};
   ATTR.forEach(a=>{const k=seenA[a.p]=(seenA[a.p]||0)+1,off=onRoute.has(a.p)||k>1,ang=-0.9+(k-1)*0.95;
     const dx=off?Math.round(30*Math.cos(ang)):0,dy=off?Math.round(30*Math.sin(ang)):0,L1=ALET(a.id);
-    L.marker(P[a.p].c,{icon:L.divIcon({className:'',html:`<div class="apin">${L1}</div>`,iconSize:[26,26],iconAnchor:[13-dx,13-dy],popupAnchor:[dx,dy-12],tooltipAnchor:[dx+12,dy]}),title:L1+'. '+a.n,zIndexOffset:1200}).bindTooltip(L1+'. '+a.n).bindPopup(()=>attrPopup(a)).addTo(layers.attr)});
+    L.marker(P[a.p].c,{icon:L.divIcon({className:'',html:`<div class="apin">${L1}${PAID(a)?'<i class="coin">zł</i>':''}</div>`,iconSize:[26,26],iconAnchor:[13-dx,13-dy],popupAnchor:[dx,dy-12],tooltipAnchor:[dx+12,dy]}),title:L1+'. '+a.n,zIndexOffset:1200}).bindTooltip(L1+'. '+a.n).bindPopup(()=>attrPopup(a)).addTo(layers.attr)});
   const box=$('#layerToggles');
   box.innerHTML=[['route','Wybrana trasa'],['attr','Atrakcje'],['stay','Noclegi'],['rail','Kolej']].map(([k,l])=>`<label><input type="checkbox" data-layer="${k}" checked> ${l}</label>`).join('');
   box.addEventListener('change',e=>{const k=e.target.dataset.layer;if(!k)return;
@@ -859,12 +861,13 @@ const ATTR=[
 ];
 const ACC={cerkwie:'var(--mk-blue)',widoki:'var(--mk-green)',muzea:'var(--mk-yellow)',miasta:'var(--mk-red)'};
 let attrF='all';
-function attrPopup(a){return `<div class="tag">${esc(a.t)} · km ${esc(a.km)}</div><b>${ALET(a.id)}. ${esc(a.n)}</b><p class="small" style="margin:4px 0">${esc(a.d)}</p><div class="small">⏱ ok. ${a.visit} min · 💳 ${esc(a.price)}<br>🕘 ${esc(a.hours)}</div><p style="margin-top:8px"><button class="btn small" type="button" onclick="attrDetails('${a.id}')">Szczegóły</button></p>`}
+function attrPopup(a){return `<div class="tag">${esc(a.t)} · km ${esc(a.km)}</div><b>${ALET(a.id)}. ${esc(a.n)}${PAID(a)?' 💰':''}</b><p class="small" style="margin:4px 0">${esc(a.d)}</p><div class="small">⏱ ok. ${a.visit} min · 💳 ${esc(a.price)}<br>🕘 ${esc(a.hours)}</div><p style="margin-top:8px"><button class="btn small" type="button" onclick="attrDetails('${a.id}')">Szczegóły</button></p>`}
+const PAID=a=>!/bezpłatnie/.test(a.price);
 const ALET=id=>String.fromCharCode(65+ATTR.findIndex(x=>x.id===id));
 function renderAttr(){setTimeout(()=>fillPhotos($('#attrGrid')),0);
   $('#attrFilters').innerHTML=[['all','Wszystkie'],['cerkwie','Cerkwie'],['widoki','Widoki'],['muzea','Muzea'],['miasta','Miasteczka']].map(([k,l])=>`<button type="button" data-f="${k}" aria-pressed="${k===attrF}">${l}</button>`).join('');
   $('#attrGrid').innerHTML=ATTR.filter(a=>attrF==='all'||a.t===attrF).map(a=>{const sure=!/sprawdz|umówieniu/.test(a.hours+a.price);
-   return `<article class="card attr" style="--acc:${ACC[a.t]}"><div class="top"><span class="tag">${esc(a.t)}</span><span class="kmchip">km ${esc(a.km)}</span></div><h3><span class="alet">${ALET(a.id)}</span>${esc(a.n)}</h3><figure class="ph" data-ph="${a.id}"><span class="ph-empty">Wczytuję zdjęcie…</span></figure><p class="small">${esc(a.d)}</p>
+   return `<article class="card attr" style="--acc:${ACC[a.t]}"><div class="top"><span class="tag">${esc(a.t)}</span><span class="kmchip">km ${esc(a.km)}</span></div><h3><span class="alet">${ALET(a.id)}</span>${esc(a.n)}${PAID(a)?' <span class="paid" title="Wstęp prawdopodobnie płatny — cena do sprawdzenia">💰 płatne?</span>':''}</h3><figure class="ph" data-ph="${a.id}"><span class="ph-empty">Wczytuję zdjęcie…</span></figure><p class="small">${esc(a.d)}</p>
    <dl class="kv"><dt>Zwiedzanie</dt><dd>ok. ${a.visit} min</dd><dt>Wstęp</dt><dd>${esc(a.price)}</dd><dt>Listopad</dt><dd>${esc(a.hours)} ${sure?ST.or:ST.td}</dd></dl>
    <div class="btns"><button class="btn sec small" type="button" onclick="attrDetails('${a.id}')">Szczegóły</button><a class="btn sec small" href="${a.maps||gmaps(a.n)}" target="_blank" rel="noopener">Google Maps</a></div></article>`}).join('')}
 $('#attrFilters').addEventListener('click',e=>{const b=e.target.closest('button');if(b){attrF=b.dataset.f;renderAttr()}});
