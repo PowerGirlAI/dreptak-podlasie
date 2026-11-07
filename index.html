@@ -760,11 +760,26 @@ function initMap(){
 }
 
 /* ---------- Pinezki noclegów: położenie miejscowości z OpenStreetMap (Nominatim), zapamiętane w przeglądarce ---------- */
-const STAY_GEO={arche:'Milejczyce',sowa:'Werstok',rogacze65:'Rogacze',rogacze72:'Rogacze',golub:'Gołubowszczyzna',saki:'Saki',podlasie:'Dubicze Cerkiewne',zakatek:['Berezyszcze 6, Czeremcha','Bereżyszcze 6','Bereżyszcze'],szpakowka:'Fabryczna 16a, Czeremcha',augustynka59:['Augustynka 59','Augustynka'],augustynka39:['Augustynka 39','Augustynka'],folwark:['Anusin 95','Anusin'],laspokoj:'Wólka Nadbużna',chatanova:'Milejczyce'};
-const GEOKEY='dreptak-geo-v1';let geoC={};try{geoC=JSON.parse(localStorage.getItem(GEOKEY)||'{}')}catch(e){}
+const STAY_ADDR={
+  arche:{a:'Miedwieżyki, gm. Milejczyce',v:'Miedwieżyki'},
+  sowa:{a:'Werstok (Stara Plebania)',v:'Werstok'},
+  rogacze65:{a:'Rogacze 65, gm. Milejczyce',q:['Rogacze 65'],v:'Rogacze'},
+  rogacze72:{a:'Rogacze 72, gm. Milejczyce',q:['Rogacze 72'],v:'Rogacze'},
+  golub:{a:'Gołubowszczyzna, gm. Milejczyce',v:'Gołubowszczyzna'},
+  saki:{a:'Saki, gm. Kleszczele',v:'Saki'},
+  podlasie:{a:'Dubicze Cerkiewne',v:'Dubicze Cerkiewne'},
+  zakatek:{a:'Bereżyszcze 6, gm. Czeremcha',q:['Bereżyszcze 6','Berezyszcze 6'],v:'Bereżyszcze'},
+  szpakowka:{a:'ul. Fabryczna 16a, Czeremcha',q:['Fabryczna 16a, Czeremcha','Fabryczna 16A, Czeremcha','Fabryczna 16, Czeremcha'],v:'Fabryczna, Czeremcha'},
+  augustynka59:{a:'Augustynka 59, 17-330 Nurzec',q:['Augustynka 59'],v:'Augustynka'},
+  augustynka39:{a:'Augustynka 39, 17-330 Augustynka',q:['Augustynka 39'],v:'Augustynka'},
+  folwark:{a:'Anusin 95, 17-300 Siemiatycze',q:['Anusin 95'],v:'Anusin'},
+  laspokoj:{a:'Wólka Nadbużna, gm. Siemiatycze',v:'Wólka Nadbużna'},
+  chatanova:{a:'Milejczyce',v:'Milejczyce'}
+};
+const GEOKEY='podlasie-geo-v3';let geoC={};try{geoC=JSON.parse(localStorage.getItem(GEOKEY)||'{}')}catch(e){}
 async function geocode(q){if(geoC[q])return geoC[q];
-  const r=await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=pl&bounded=1&viewbox=22.55,52.75,23.75,52.25&accept-language=pl&q='+encodeURIComponent(q));
-  if(!r.ok)throw 0;const j=await r.json();if(!j[0])return null;const c=[+j[0].lat,+j[0].lon];geoC[q]=c;try{localStorage.setItem(GEOKEY,JSON.stringify(geoC))}catch(e){}return c}
+  const r=await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&addressdetails=1&countrycodes=pl&bounded=1&viewbox=22.55,52.75,23.75,52.25&accept-language=pl&q='+encodeURIComponent(q));
+  if(!r.ok)throw 0;const j=await r.json();if(!j[0])return null;const v={c:[+j[0].lat,+j[0].lon],house:!!(j[0].address&&j[0].address.house_number)};geoC[q]=v;try{localStorage.setItem(GEOKEY,JSON.stringify(geoC))}catch(e){}return v}
 function ppVal(s,n){return s.price?{v:s.price.tot/s.price.n,from:false}:null}
 const DIST={};
 const dmin=m=>m<60?Math.round(m)+' min':Math.floor(m/60)+' h '+String(Math.round(m%60)).padStart(2,'0')+' min';
@@ -777,14 +792,14 @@ async function distFor(s,c){const st=P.czeremcha.c;let bike=null,car=null;
   try{bike=await osrm('routed-bike',st,c)}catch(e){}try{car=await osrm('routed-car',st,c)}catch(e){}
   DIST[s.id]=bike||car?{bike:bike&&bike.km,car:car&&car.km,carMin:car&&car.min}:null;const el=document.getElementById('dist-'+s.id);if(el)el.innerHTML=distHtml(s.id)}
 async function placeStays(){const used={},n=+(($('#nGuests')||{}).value||8);
-  for(const s of STAYS){const qs=[].concat(STAY_GEO[s.id]||[]);let c=null,exact=false;
-    for(const q of qs){if(c)break;const cached=!!geoC[q];try{c=await geocode(q);exact=!!c}catch(e){}if(!cached)await new Promise(r=>setTimeout(r,1100))}
+  for(const s of STAYS){const A=STAY_ADDR[s.id]||{};let c=null,exact=false,house=false;
+    for(const q of [...(A.q||[]),A.v].filter(Boolean)){if(c)break;const cached=!!geoC[q];try{const g=await geocode(q);if(g&&(g.house||q===A.v)){c=g.c;exact=true;house=g.house}}catch(e){}if(!cached)await new Promise(r=>setTimeout(r,1100))}
     if(!c)c=P.czeremcha.c;
     const key=c[0].toFixed(3)+','+c[1].toFixed(3),i=used[key]=(used[key]||0)+1;
     const cc=i>1?[c[0]+.004*Math.cos(i*2.1),c[1]+.006*Math.sin(i*2.1)]:c;
     if(exact)distFor(s,c);else{DIST[s.id]=null;const el=document.getElementById('dist-'+s.id);if(el)el.innerHTML=distHtml(s.id)}
     const pv=ppVal(s,n);
-    L.marker(cc,{icon:L.divIcon({className:'',html:`<div class="spin"><b>⌂</b>${STAYS.indexOf(s)+1}</div>`,iconSize:[34,24],iconAnchor:[17,12],popupAnchor:[0,-12]}),title:s.n,zIndexOffset:500}).bindTooltip((STAYS.indexOf(s)+1)+'. '+s.n).bindPopup(`<div class="tag">Nocleg${s.pick?' · wybór organizatorki':''}</div><b>${STAYS.indexOf(s)+1}. ${esc(s.n)}</b><div class="small" style="margin:4px 0">${esc(s.loc)}</div><div><b>${pv?(pv.from?'od ':'')+zl(pv.v):'do wyceny'}</b> <span class="small">na osobę · 2 noce</span></div><div class="small" style="margin-top:4px">${exact?'Pinezka w miejscowości (OpenStreetMap), nie pod adresem obiektu.':'Dokładne położenie do sprawdzenia — pinezka umowna przy Czeremsze.'}</div><p style="margin-top:6px"><a href="${s.src}" target="_blank" rel="noopener">Oferta</a> · <a href="${gmaps(s.n+' '+s.loc)}" target="_blank" rel="noopener">Google Maps</a> · <a href="#noclegi">Porównanie</a></p>`).addTo(layers.stay)}}
+    L.marker(cc,{icon:L.divIcon({className:'',html:`<div class="spin"><b>⌂</b>${STAYS.indexOf(s)+1}</div>`,iconSize:[34,24],iconAnchor:[17,12],popupAnchor:[0,-12]}),title:s.n,zIndexOffset:500}).bindTooltip((STAYS.indexOf(s)+1)+'. '+s.n).bindPopup(`<div class="tag">Nocleg${s.pick?' · wybór organizatorki':''}</div><b>${STAYS.indexOf(s)+1}. ${esc(s.n)}</b><div class="small" style="margin:4px 0">📍 <b>${esc(A.a||s.loc)}</b></div><div><b>${pv?(pv.from?'od ':'')+zl(pv.v):'do wyceny'}</b> <span class="small">na osobę · 2 noce</span></div><div class="small" style="margin-top:4px">${house?'Pinezka pod tym adresem (OpenStreetMap).':exact?(A.q?'Mapa OSM nie zna tego numeru domu — pinezka w centrum wsi.':'Booking podaje numer domu dopiero po rezerwacji — pinezka w centrum wsi.'):'Położenie do sprawdzenia — pinezka umowna przy Czeremsze.'}</div><p style="margin-top:6px"><a href="${s.src}" target="_blank" rel="noopener">Oferta</a> · <a href="${gmaps(s.n+' '+(A.a||s.loc))}" target="_blank" rel="noopener">Google Maps</a> · <a href="#noclegi">Porównanie</a></p>`).addTo(layers.stay)}}
 function segInfo(r,i){const x=r.pts[i],prev=i?r.pts[i-1]:null;const d=(x.km!=null&&prev&&prev.km!=null)?x.km-prev.km:(i===0?0:null);return{km:x.km,d,ride:d!=null?d/r.pace*60:null}}
 function drawAll(){routeLayer=L.layerGroup();const all=[];
   ROUTE_ORDER.filter(k=>k!=='all').forEach(k=>{const r=ROUTES[k],coords=r.pts.map(x=>P[x.p].c),live=liveKm[k];all.push(...coords);
@@ -962,7 +977,7 @@ function renderStays(){const n=+$('#nGuests').value;
   $('#stayGrid').innerHTML=STAYS.map(s=>{const p=s.price;
    return `<article class="card stay">${s.img?`<a class="stay-img top" href="${s.src}" target="_blank" rel="noopener"><img src="${s.img}" alt="${esc(s.n)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('off');this.remove()"><span>Zobacz galerię w ofercie →</span></a>`:`<a class="stay-ph top" href="${s.src}" target="_blank" rel="noopener"><span>Zdjęcia obiektu</span><b>Zobacz galerię w ofercie →</b></a>`}
    <div class="tag">${esc(s.loc)}</div><h3><span class="snum"><b>⌂</b>${STAYS.indexOf(s)+1}</span>${esc(s.n)}</h3>${s.pick?'<p style="margin:6px 0 0"><span class="st ok">Wybór organizatorki</span></p>':''}${ppBlock(s,n)}
-   <dl class="kv" style="margin-top:8px"><dt>Termin 20–22.11</dt><dd>${s.avail?esc(s.avail)+' '+ST.ok:ST.td}</dd><dt>Ze stacji Czeremcha</dt><dd id="dist-${s.id}">${distHtml(s.id)}</dd><dt>Miejsca</dt><dd>${s.cap==null?'do sprawdzenia':s.cap} ${s.cap!=null&&s.cap<n?'<span class="st td">za mało dla '+n+'</span>':''}</dd><dt>Układ</dt><dd>${esc(s.bed)}</dd><dt>Wyposażenie</dt><dd>${esc(s.eq)}</dd><dt>Balia/sauna</dt><dd>${esc(s.balia)}</dd>
+   <dl class="kv" style="margin-top:8px"><dt>Adres</dt><dd>${esc((STAY_ADDR[s.id]||{}).a||s.loc)}${(STAY_ADDR[s.id]||{}).q?'':' <span class="small">(numer domu po rezerwacji)</span>'}</dd><dt>Termin 20–22.11</dt><dd>${s.avail?esc(s.avail)+' '+ST.ok:ST.td}</dd><dt>Ze stacji Czeremcha</dt><dd id="dist-${s.id}">${distHtml(s.id)}</dd><dt>Miejsca</dt><dd>${s.cap==null?'do sprawdzenia':s.cap} ${s.cap!=null&&s.cap<n?'<span class="st td">za mało dla '+n+'</span>':''}</dd><dt>Układ</dt><dd>${esc(s.bed)}</dd><dt>Wyposażenie</dt><dd>${esc(s.eq)}</dd><dt>Balia/sauna</dt><dd>${esc(s.balia)}</dd>
    <dt>2 noce</dt><dd>${p?zl(p.tot)+' dla '+p.n+' os.':'—'}</dd><dt>Dla ${n} os.</dt><dd class="num">${p?'ok. '+zl(p.tot/p.n*n)+' (przeliczone na osobę)':'—'}</dd></dl>
    <p class="small muted" style="margin-top:8px">${esc(s.plus)}</p>
    <div class="btns" style="margin-top:10px"><a class="btn sec small" href="${s.src}" target="_blank" rel="noopener">Oferta</a><a class="btn sec small" href="${gmaps(s.n+' '+s.loc)}" target="_blank" rel="noopener">Mapa i zdjęcia</a></div></article>`}).join('')}
