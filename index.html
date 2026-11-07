@@ -106,6 +106,14 @@ a{text-underline-offset:3px;text-decoration-thickness:1px}
 .nav .brand small{font:500 .66rem/1 var(--f-body);letter-spacing:.18em;text-transform:uppercase;color:#a9b6ae}
 .nav a{color:#c9d2cc;text-decoration:none;font-size:.86rem;font-weight:500;white-space:nowrap;display:flex;gap:8px;align-items:center;letter-spacing:.01em}
 .nav a:hover{color:#fff}
+.nav .brand{align-items:center}
+.logo{width:30px;height:30px;border-radius:50%;background:#fff;padding:2px;object-fit:contain;flex:none}
+.hero-club{display:flex;align-items:center;gap:16px}
+.logo-lg{width:64px;height:64px;border-radius:50%;background:#fff;padding:4px;object-fit:contain;flex:none;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.stay-ph{display:grid;place-items:center;gap:6px;aspect-ratio:3/2;margin:4px -22px 10px;border-block:1px solid var(--b-line);background:linear-gradient(135deg,var(--b-bg),var(--b-card));text-decoration:none;color:var(--b-fg)!important;text-align:center;padding:12px}
+.stay-ph b{font:500 1.25rem/1.1 var(--f-display)}
+.stay-ph span{font:500 .66rem/1.3 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--b-muted)}
+.stay-ph:hover b{text-decoration:underline}
 .nav a i{width:6px;height:6px;border-radius:50%;display:inline-block}
 
 /* hero */
@@ -300,7 +308,7 @@ footer a{color:var(--heather)}
 
 <nav class="nav" aria-label="Sekcje">
   <div class="wrap">
-    <span class="brand">Dreptak <small>Podlasie · XI 2026</small></span>
+    <span class="brand"><img class="logo" src="https://dreptak.il.pw.edu.pl/wp-content/uploads/2017/02/cropped-logo-dreptakcz-1.png" alt="KTW Dreptak" width="30" height="30" onerror="this.remove()">Dreptak <small>Podlasie · XI 2026</small></span>
     <a href="#uklad"><i style="background:#b8695a"></i>Układ</a><a href="#mapa"><i style="background:#6f9a7a"></i>Mapa</a><a href="#dni"><i style="background:#c9a55c"></i>Dzień po dniu</a><a href="#hard"><i style="background:#c27d4e"></i>Hard</a><a href="#atrakcje"><i style="background:#6f8fb0"></i>Atrakcje</a><a href="#noclegi"><i style="background:#a08467"></i>Noclegi</a><a href="#dojazd"><i style="background:#9aa3a8"></i>Koleje</a><a href="#budzet"><i style="background:#b07a9c"></i>Budżet</a><a href="#lista"><i style="background:#6aa9b0"></i>Co zabrać</a><a href="#zgloszenie"><i style="background:#8f7fb8"></i>Zgłoszenie</a>
   </div>
 </nav>
@@ -311,7 +319,7 @@ footer a{color:var(--heather)}
   <div class="hero-shade" aria-hidden="true"></div>
   <p class="hero-credit" id="heroCredit"></p>
   <div class="wrap">
-    <div class="trailtag">KTW Dreptak · Politechnika Warszawska</div>
+    <div class="hero-club"><img class="logo-lg" src="https://dreptak.il.pw.edu.pl/wp-content/uploads/2017/02/cropped-logo-dreptakcz-1.png" alt="Logo KTW Dreptak" width="64" height="64" onerror="this.remove()"><div class="trailtag">KTW Dreptak · Politechnika Warszawska</div></div>
     <h1>Babski weekend <em>na Podlasiu</em></h1>
     <p class="sub">Trzy dni przygody, kilometry na szlaku, podlaskie klimaty i wieczory przy kominku.</p>
     <dl class="facts">
@@ -421,7 +429,7 @@ footer a{color:var(--heather)}
 
 <section class="band t-hearth edge" id="noclegi">
   <div class="wrap">
-    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Przy kominku · noclegi</div><h2>Baza w Czeremsze</h2><p>Czeremcha ma stację, z której ruszamy w piątek, sobotę i niedzielę. Obiekty niżej mają 6–13 miejsc. Ceny i dostępność na 20–22.11: <span class="st td">do sprawdzenia</span> we wszystkich przypadkach.</p></div>
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Przy kominku · noclegi</div><h2>Baza w Czeremsze</h2><p>Czeremcha ma stację, z której ruszamy w piątek, sobotę i niedzielę. Obiekty sprawdzone 7.11 w Booking.com, AlohaCamp, Slowhop i Airbnb; mają od 6 do 14 miejsc. Zdjęcia obiektów należą do właścicieli, więc pokazujemy je przez link do oferty. Ceny i dostępność na 20–22.11: <span class="st td">do sprawdzenia</span> we wszystkich przypadkach.</p></div>
     <div class="field" style="max-width:260px"><label for="nGuests">Liczba uczestniczek</label><select id="nGuests"><option>6</option><option selected>8</option><option>10</option></select></div>
     <div class="grid g3" id="stayGrid"></div>
   </div>
@@ -593,7 +601,9 @@ const P={
   dobrowoda:{n:'Dobrowoda',c:[52.5550,23.3400],q:'Dobrowoda, gmina Kleszczele'},
   kleszczele:{n:'Kleszczele',c:[52.5733,23.3270],q:'Kleszczele'},
   kuzawa:{n:'Kuzawa',c:[52.5250,23.3900],q:'Cerkiew św. Barbary Kuzawa'},
-  siedlce:{n:'Siedlce — stacja',c:[52.1677,22.2901],q:'Dworzec PKP Siedlce'}
+  siedlce:{n:'Siedlce — stacja',c:[52.1677,22.2901],q:'Dworzec PKP Siedlce'},
+  uszescie:{n:'Rezerwat Góra Uszeście',c:[52.3380,23.0100],q:'Rezerwat przyrody Góra Uszeście'},
+  grabarka:{n:'Święta Góra Grabarka',c:[52.4280,23.0040],q:'Święta Góra Grabarka'}
 };
 /* Km zielonego szlaku od Czeremchy = 58,5 − km GreenVelo */
 const GREEN=[['czeremcha',0],['zubacze',9.4],['klukowicze',15.8],['tokaryc',20.2],['tokary',22.0],['tokaryg',24.1],['adamowo',31.8],['mielnik',39.3],['oslowo',43.4],['mackowicze',47.9],['stacja',51.0],['siemiatycze',58.5]];
@@ -745,7 +755,9 @@ const ATTR=[
   {id:'siemiatycze',p:'siemiatycze',pin:true,km:'58,5',t:'miasta',n:'Siemiatycze',d:'Miasto księżnej Jabłonowskiej: kościół Wniebowzięcia NMP, klasztor, synagoga, szkoła talmudyczna, cerkiew, sfinksy przy bramie pałacowej.',visit:30,price:'bezpłatnie z zewnątrz',hours:'wnętrza do sprawdzenia',src:'GreenVelo'},
   {id:'muzeum',p:'czeremcha',pin:true,km:'0',t:'muzea',n:'Muzeum Kolejnictwa w Czeremsze',d:'Pamiątki dawnego węzła kolejowego, który przed wojną łączył wschód Polski z centrum.',visit:60,price:'do sprawdzenia',hours:'do sprawdzenia',src:'komoot, wprost.pl'},
   {id:'kuzawa',p:'kuzawa',km:'—',t:'cerkwie',n:'Kuzawa',d:'Cerkiew św. Barbary i przydomowy ogród z „kwiatowym pociągiem”. Wieś blisko granicy — sprawdź strefę.',visit:30,price:'z zewnątrz bezpłatnie',hours:'do sprawdzenia',src:'komoot'},
-  {id:'kleszczele',p:'kleszczele',km:'N 11,0',t:'miasta',n:'Kleszczele i zalew Repczyce',d:'Miasteczko na czerwonym szlaku Green Velo; w Repczycach ośrodek rekreacji z pomostami, wiatą z miejscem na ognisko i wieżą 25 m.',visit:45,price:'bezpłatnie',hours:'teren otwarty',src:'GreenVelo, komoot'}
+  {id:'kleszczele',p:'kleszczele',km:'N 11,0',t:'miasta',n:'Kleszczele i zalew Repczyce',d:'Miasteczko na czerwonym szlaku Green Velo; w Repczycach ośrodek rekreacji z pomostami, wiatą z miejscem na ognisko i wieżą 25 m.',visit:45,price:'bezpłatnie',hours:'teren otwarty',src:'GreenVelo, komoot'},
+  {id:'uszescie',p:'uszescie',km:'≈ 41',t:'widoki',n:'Rezerwat Góra Uszeście',d:'Stromy stok doliny Bugu z murawami kserotermicznymi tuż za Mielnikiem. Punkt widokowy na krawędzi ok. 30-metrowej skarpy nad zakolem rzeki.',visit:20,price:'bezpłatnie',hours:'teren otwarty, tylko wyznaczone ścieżki',src:'komoot, hajnowka.pl'},
+  {id:'grabarka',p:'grabarka',km:'Mielnik +12,7',t:'cerkwie',n:'Święta Góra Grabarka',d:'Najważniejsze sanktuarium prawosławne w Polsce: cerkiew, żeński monaster, tysiące krzyży i cudowne źródełko. Odbicie z Mielnika przez Moszczonę Królewską (12,7 km w jedną stronę, wg GreenVelo) — opcja dla Hard lub na luźniejszy dzień. W cerkwi nie fotografujemy; obowiązuje skromny strój.',visit:45,price:'bezpłatnie (ofiara mile widziana)',hours:'cerkiew: pn–pt 10–17, sob 11–17, nd 13–17 (serwis nieoficjalny)',src:'GreenVelo, nocowanie.pl'}
 ];
 const ACC={cerkwie:'var(--mk-blue)',widoki:'var(--mk-green)',muzea:'var(--mk-yellow)',miasta:'var(--mk-red)'};
 let attrF='all';
@@ -776,7 +788,9 @@ const PHOTO={
   siemiatycze:{file:'Kościół Wniebowzięcia NMP w Siemiatyczach.JPG',cat:'Church of the Assumption of Virgin Mary in Siemiatycze'},
   muzeum:{cat:'Czeremcha train station',cat2:'Czeremcha (Podlaskie Voivodeship)'},
   kuzawa:{cat:'Church of Saint Barbara in Kuzawa',cat2:'Kuzawa'},
-  kleszczele:{file:'Cerkiew Kleszczele Polska.JPG',cat:'Kleszczele'}
+  kleszczele:{file:'Cerkiew Kleszczele Polska.JPG',cat:'Kleszczele'},
+  uszescie:{cat:'Góra Uszeście',cat2:'Western Bug in Poland'},
+  grabarka:{cat:'Grabarka',cat2:'Holy Mount Grabarka'}
 };
 const CAPI='https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&prop=imageinfo&iiprop=url|size|extmetadata&iiextmetadatafilter=Artist|LicenseShortName&iiurlwidth=';
 const photoCache={};
@@ -805,19 +819,21 @@ $('#dlgClose').addEventListener('click',closeDlg); $('#dlg').addEventListener('c
 
 /* ---------- Noclegi ---------- */
 const STAYS=[
-  {id:'pompka',n:'Stara Pompka (3 studia)',loc:'Czeremcha, ok. 0,9 km od centrum',cap:10,bed:'Norka 2 os. + Folk Art Studio 4 os. + Studio na Górze 4 os.',eq:'Wi-Fi, patio, pralka (Studio na Górze); styl ludowy; najbliżej stacji',balia:'brak informacji',night:null,src:'https://www.gites.fr/gites_czeremcha_250789.html',plus:'pieszo na pociąg'},
-  {id:'lipowe',n:'Lipowe Zapłocie',loc:'gm. Czeremcha, ok. 7,9 km od centrum',cap:13,bed:'3 apartamenty po 4–5 os.',eq:'patio; zwierzęta mile widziane',balia:'brak informacji',night:null,src:'https://www.gites.fr/gites_czeremcha_250789.html',plus:'jedyna opcja na 10+ w jednym miejscu'},
-  {id:'zakatek',n:'Podlaski Zakątek — Duży Zakątek',loc:'Bereżyszcze, ok. 4–5 km od stacji',cap:6,bed:'62 m², 2 sypialnie (2 łóżka podwójne) + sofa (Mały Zakątek nieczynny po 15.11)',eq:'kominek, aneks ze zmywarką; wypożyczenie rowerów 30 zł/dzień',balia:'balia zewnętrzna: 180 zł/dzień + rozpalenie 50–230 zł (opis sprzeczny)',night:512,nightNote:'cena z listingu Slowhop, nie na nasz termin',src:'https://slowhop.com/en/places/3338-podlaski-zakatek.html',plus:'kominek i balia'},
-  {id:'urszulanka',n:'Siedlisko Urszulanka / Gajki',loc:'gm. Czeremcha, ok. 5,5 km od centrum',cap:7,bed:'3 sypialnie',eq:'patio',balia:'brak informacji',night:null,src:'https://www.gites.fr/gites_czeremcha_250789.html',plus:'dom dla 7'},
-  {id:'urszulanka2',n:'Siedlisko Urszulanka Dom',loc:'Policzna, ok. 11,4 km od Czeremchy',cap:8,bed:'3 jednostki po 2–4 os.',eq:'patio; zwierzęta mile widziane',balia:'brak informacji',night:null,src:'https://www.gites.fr/gites_czeremcha_250789.html',plus:'dalej od stacji'},
-  {id:'arche',n:'Arche Siedliska (Miedwieżyki, Rogacze, Gołubowszczyzna)',loc:'gm. Milejczyce, 6–11 km od Czeremchy',cap:12,bed:'3 domy po 4 os., 2 sypialnie',eq:'klimatyzacja; trzy osobne lokalizacje',balia:'brak informacji',night:null,src:'https://www.gites.fr/gites_czeremcha_250789.html',plus:'rezerwa, gdy brak wolnych'}
+  {id:'saki',n:'Wakacyjny Dom w Sakach',loc:'Saki, gm. Kleszczele · ok. 5 km od Kleszczel, ok. 10 km od Czeremchy',cap:14,bed:'dom 150 m², 5 sypialni, 2 łazienki',eq:'cały dom na wyłączność; zmywarka, pralka, patio, Wi-Fi; ocena gości 9,9/10',balia:'brak informacji',night:null,src:'https://www.booking.com/hotel/pl/wakacyjny-dom-w-sakach.pl.html',plus:'najlepszy kandydat na 8–10 osób pod jednym dachem; dojazd do stacji Czeremcha rowerem ok. 10 km (orientacyjnie)'},
+  {id:'lipowe',n:'Lipowe Zapłocie',loc:'gm. Czeremcha · ok. 7,9 km od centrum',cap:13,bed:'3 apartamenty po 4–5 os.',eq:'patio; zwierzęta mile widziane',balia:'brak informacji',night:null,src:'https://www.booking.com/hotel/pl/lipowe-zaplocie.pl.html',plus:'cała grupa w jednym miejscu, osobne apartamenty'},
+  {id:'pompka',n:'Stara Pompka — 3 studia',loc:'Czeremcha · ok. 0,9 km od centrum, pieszo na pociąg',cap:10,bed:'Folk Art Studio 4 os. (35 m², kominek) + Studio na Górze 4 os. + Norka Niziołka 2 os. (kominek)',eq:'aneksy kuchenne, ogród, taras, grill, Wi-Fi; oceny 9,6–9,8 (Booking), 5,0 (Airbnb)',balia:'brak',night:null,nightNote:'Booking: studia od ok. 85–96 USD/noc za 2 os. — cena za 4 os. i na nasz termin do sprawdzenia',src:'https://www.booking.com/hotel/pl/stara-pompka-studio-na-gorze.pl.html',plus:'najbliżej stacji; trzy osobne studia w jednym obejściu'},
+  {id:'podlasie',n:'Siedlisko Podlasie',loc:'Dubicze Cerkiewne · ok. 16 km od Czeremchy',cap:9,bed:'3 sypialnie, 1 łazienka',eq:'cały dom; kominek, w pełni wyposażona kuchnia, miejsce na ognisko, ogrodzony teren; „bez dodatkowych opłat”',balia:'brak informacji',night:735,nightNote:'AlohaCamp „od 173 €/noc” przeliczone na zł — orientacyjnie',src:'https://alohacamp.com/pl/property/siedlisko-podlasie-10631',plus:'kominek, dom dla 9; dalej od trasy — potrzebny transfer lub 16 km rowerem'},
+  {id:'zakatek',n:'Podlaski Zakątek — Duży Zakątek',loc:'Bereżyszcze · ok. 4–5 km od stacji',cap:6,bed:'62 m², 2 sypialnie (2 łóżka podwójne) + sofa',eq:'kominek, aneks ze zmywarką, hamak; wypożyczenie rowerów 30 zł/dzień; Mały Zakątek nieczynny po 15.11',balia:'balia zewnętrzna (bez hydromasażu): 180 zł/dzień + rozpalenie',night:512,nightNote:'cena z listingu Slowhop, nie na nasz termin',src:'https://slowhop.com/en/places/3338-podlaski-zakatek.html',plus:'jedyna potwierdzona balia w okolicy; tylko dla 6 os.'},
+  {id:'szpakowka',n:'Gościniec Szpakówka',loc:'Czeremcha, ul. Fabryczna 16a',cap:null,bed:'pokoje z łazienkami (liczba do sprawdzenia)',eq:'pensjonat 3*, ogród, taras, parking; ocena 9,8/10 (102 opinie, Booking)',balia:'brak informacji',night:null,nightNote:'Booking: od ok. 52 USD/noc za pokój 2 os.',src:'https://www.booking.com/hotel/pl/gosciniec-szpakowka.pl.html',plus:'opcja pokojowa w Czeremsze, blisko stacji'},
+  {id:'urszulanka',n:'Siedlisko Urszulanka / Gajki',loc:'gm. Czeremcha · ok. 5,5 km od centrum',cap:7,bed:'3 sypialnie',eq:'kuchnia; według opinii kominki w sypialniach i brak sąsiadów; ocena 9,1/10',balia:'brak informacji',night:null,nightNote:'Booking: od ok. 58 USD/noc za 2 os.',src:'https://www.booking.com/hotel/pl/siedlisko-urszulanka-gajki.pl.html',plus:'dom dla 7 — przy 8+ potrzebny drugi obiekt'}
 ];
 function renderStays(){const n=+$('#nGuests').value;
   $('#stayGrid').innerHTML=STAYS.map(s=>{const per=s.night?s.night*2/Math.min(n,s.cap):null;
    return `<article class="card"><div class="tag">${esc(s.loc)}</div><h3>${esc(s.n)}</h3>
-   <dl class="kv" style="margin-top:8px"><dt>Miejsca</dt><dd>${s.cap} ${s.cap<n?'<span class="st td">za mało dla '+n+'</span>':''}</dd><dt>Układ</dt><dd>${esc(s.bed)}</dd><dt>Wyposażenie</dt><dd>${esc(s.eq)}</dd><dt>Balia/sauna</dt><dd>${esc(s.balia)}</dd>
+   <a class="stay-ph" href="${s.src}" target="_blank" rel="noopener"><span>Zdjęcia obiektu</span><b>Zobacz galerię w ofercie →</b></a>
+   <dl class="kv" style="margin-top:8px"><dt>Miejsca</dt><dd>${s.cap==null?'do sprawdzenia':s.cap} ${s.cap!=null&&s.cap<n?'<span class="st td">za mało dla '+n+'</span>':''}</dd><dt>Układ</dt><dd>${esc(s.bed)}</dd><dt>Wyposażenie</dt><dd>${esc(s.eq)}</dd><dt>Balia/sauna</dt><dd>${esc(s.balia)}</dd>
    <dt>Za noc</dt><dd>${s.night?zl(s.night)+' za dom '+ST.or:'<span class="st td">do wyceny</span>'}</dd><dt>2 noce</dt><dd>${s.night?zl(s.night*2):'—'}</dd>
-   <dt>Na osobę</dt><dd class="num">${s.night?[6,8,10].map(k=>k<=s.cap?k+' os.: '+zl(s.night*2/k):'').filter(Boolean).join(' · '):'—'}</dd><dt>Termin</dt><dd>${ST.td}</dd></dl>
+   <dt>Na osobę</dt><dd class="num">${s.night?[6,8,10].map(k=>k<=(s.cap||0)?k+' os.: '+zl(s.night*2/k):'').filter(Boolean).join(' · '):'—'}</dd><dt>Termin</dt><dd>${ST.td}</dd></dl>
    <p class="small muted" style="margin-top:8px">${esc(s.plus)}${s.nightNote?' · '+esc(s.nightNote):''}</p>
    <div class="btns" style="margin-top:10px"><a class="btn sec small" href="${s.src}" target="_blank" rel="noopener">Oferta</a><a class="btn sec small" href="${gmaps(s.n+' '+s.loc)}" target="_blank" rel="noopener">Mapa i zdjęcia</a></div></article>`}).join('')}
 $('#nGuests').addEventListener('change',renderStays);
@@ -837,7 +853,7 @@ function budgetFor(n,sid,o){const s=STAYS.find(x=>x.id===sid);const h=Math.min(o
   const conf=[['Rowery PKP IC (2 × 11,90 zł × '+n+')',2*FARE.bikeIC*n]];
   const orient=[['Pociąg Light: 61 + 61 zł × '+l,(FARE.wwaCz+FARE.czWwa)*l],['Pociąg Hard: 61 + 34 zł × '+h,(FARE.wwaCz+FARE.siedWwa)*h],['Jedzenie ('+o.food+' zł/os.)',o.food*n]];
   if(s.night)orient.push(['Nocleg '+s.n+' (2 × '+s.night+' zł)',s.night*2]);
-  const todo=[];if(!s.night)todo.push('Nocleg: '+s.n);if(s.cap<n)todo.push('Dodatkowe miejsca — obiekt mieści '+s.cap+' os.');EXTRAS.forEach(x=>{if(o.extras.includes(x.id))todo.push(x.l)});
+  const todo=[];if(!s.night)todo.push('Nocleg: '+s.n);if(s.cap!=null&&s.cap<n)todo.push('Dodatkowe miejsca — obiekt mieści '+s.cap+' os.');EXTRAS.forEach(x=>{if(o.extras.includes(x.id))todo.push(x.l)});
   const sc=conf.reduce((a,b)=>a+b[1],0),so=orient.reduce((a,b)=>a+b[1],0),res=(sc+so)*o.reserve/100,tot=sc+so+res;
   return{conf,orient,todo,res,tot,per:tot/n,transport:conf[0][1]+orient[0][1]+orient[1][1],stay:s.night?s.night*2:null}}
 const readOpts=()=>({hard:+$('#bHard').value||0,food:+$('#bFood').value||0,reserve:+$('#bReserve').value||0,extras:EXTRAS.filter(x=>$('#'+x.id).checked).map(x=>x.id)});
