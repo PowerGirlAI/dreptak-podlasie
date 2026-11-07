@@ -106,6 +106,21 @@ a{text-underline-offset:3px;text-decoration-thickness:1px}
 .nav .brand small{font:500 .66rem/1 var(--f-body);letter-spacing:.18em;text-transform:uppercase;color:#a9b6ae}
 .nav a{color:#c9d2cc;text-decoration:none;font-size:.86rem;font-weight:500;white-space:nowrap;display:flex;gap:8px;align-items:center;letter-spacing:.01em}
 .nav a:hover{color:#fff}
+.nav .links{display:flex;gap:26px;align-items:center}
+.burger{display:none;margin-left:auto;width:42px;height:42px;border:1px solid rgba(255,255,255,.18);border-radius:8px;background:transparent;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:0}
+.burger span{display:block;width:18px;height:1.5px;background:#eef0eb;transition:transform .2s,opacity .2s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+@media (max-width:900px){
+  .nav .wrap{overflow:visible;flex-wrap:wrap;gap:0;padding-block:10px}
+  .burger{display:flex}
+  .nav .links{display:none;flex-basis:100%;flex-direction:column;align-items:stretch;gap:0;padding:8px 0 6px;max-height:calc(100vh - 80px);overflow:auto}
+  .nav.open .links{display:flex}
+  .nav .links a{padding:13px 4px;font-size:1rem;border-top:1px solid rgba(255,255,255,.08)}
+  .nav .links a i{width:8px;height:8px}
+}
+
 .nav .brand{align-items:center}
 .logo{width:30px;height:30px;border-radius:50%;background:#fff;padding:2px;object-fit:contain;flex:none}
 .hero-club{display:flex;align-items:center;gap:16px}
@@ -309,7 +324,8 @@ footer a{color:var(--heather)}
 <nav class="nav" aria-label="Sekcje">
   <div class="wrap">
     <span class="brand"><img class="logo" src="https://dreptak.il.pw.edu.pl/wp-content/uploads/2017/02/cropped-logo-dreptakcz-1.png" alt="KTW Dreptak" width="30" height="30" onerror="this.remove()">Dreptak <small>Podlasie · XI 2026</small></span>
-    <a href="#uklad"><i style="background:#b8695a"></i>Układ</a><a href="#mapa"><i style="background:#6f9a7a"></i>Mapa</a><a href="#dni"><i style="background:#c9a55c"></i>Dzień po dniu</a><a href="#hard"><i style="background:#c27d4e"></i>Hard</a><a href="#atrakcje"><i style="background:#6f8fb0"></i>Atrakcje</a><a href="#noclegi"><i style="background:#a08467"></i>Noclegi</a><a href="#dojazd"><i style="background:#9aa3a8"></i>Koleje</a><a href="#budzet"><i style="background:#b07a9c"></i>Budżet</a><a href="#lista"><i style="background:#6aa9b0"></i>Co zabrać</a><a href="#zgloszenie"><i style="background:#8f7fb8"></i>Zgłoszenie</a>
+    <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="navLinks" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="links" id="navLinks"><a href="#uklad"><i style="background:#b8695a"></i>Układ</a><a href="#mapa"><i style="background:#6f9a7a"></i>Mapa</a><a href="#dni"><i style="background:#c9a55c"></i>Dzień po dniu</a><a href="#hard"><i style="background:#c27d4e"></i>Hard</a><a href="#atrakcje"><i style="background:#6f8fb0"></i>Atrakcje</a><a href="#noclegi"><i style="background:#a08467"></i>Noclegi</a><a href="#dojazd"><i style="background:#9aa3a8"></i>Koleje</a><a href="#budzet"><i style="background:#b07a9c"></i>Budżet</a><a href="#lista"><i style="background:#6aa9b0"></i>Co zabrać</a><a href="#zgloszenie"><i style="background:#8f7fb8"></i>Zgłoszenie</a></div>
   </div>
 </nav>
 
@@ -949,6 +965,14 @@ function drawHero(){const c=$('#heroCanvas'),r=c.getBoundingClientRect(),dpr=Mat
   g.strokeStyle='rgba(230,195,218,.32)';g.lineWidth=1.5;g.stroke();
   const v=g.createLinearGradient(0,0,W,0);v.addColorStop(0,'rgba(19,27,23,.9)');v.addColorStop(.55,'rgba(19,27,23,.45)');v.addColorStop(1,'rgba(19,27,23,.05)');g.fillStyle=v;g.fillRect(0,0,W,H)}
 
+
+/* Menu „hamburger” na telefonie */
+(()=>{const nav=document.querySelector('.nav'),btn=document.getElementById('burger');if(!nav||!btn)return;
+  const set=o=>{nav.classList.toggle('open',o);btn.setAttribute('aria-expanded',o?'true':'false')};
+  btn.addEventListener('click',()=>set(!nav.classList.contains('open')));
+  nav.querySelectorAll('.links a').forEach(a=>a.addEventListener('click',()=>set(false)));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});
+  document.addEventListener('click',e=>{if(!nav.contains(e.target))set(false)})})();
 /* ---------- Start ---------- */
 renderRouteSeg();renderDays();renderAttr();renderStays();renderTrain();renderBudgetInputs();renderBudget();renderCL();
 try{initMap()}catch(e){console.warn(e)}
