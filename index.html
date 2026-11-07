@@ -678,7 +678,7 @@ const ROUTES={
     src:'Szlak czerwony Green Velo na północ: Czeremcha → Dobrowoda 6,6 → Kleszczele 11,0 km (GreenVelo) i z powrotem. Zalew w Repczycach: wydłużenie do wyliczenia.',
     pts:[{p:'czeremcha',km:0,visit:0,surf:'asfalt',info:'Start 10:00 po wymeldowaniu.'},{p:'dobrowoda',km:6.6,visit:0,surf:'drogi lokalne',info:''},{p:'kleszczele',km:11.0,visit:45,surf:'drogi lokalne',info:'Miasteczko, kawa. Ośrodek rekreacji MOR Green Velo w Repczycach z wieżą 25 m — dojazd do wyliczenia.'},{p:'czeremcha',km:22.0,visit:0,surf:'drogi lokalne',info:'Powrót tą samą drogą; pociąg 15:17.'}]},
   sunHard:{label:'Nd · Hard',color:'var(--c-hard)',hex:'#a4532e',type:'bike',pace:20,km:98,kmSt:'or',diff:'trudna',
-    src:'Czeremcha → Siedlce ≈ 98 km (dystans drogowy samochodem, rome2rio). Trasę rowerową wyznaczcie w BRouter; na mapie tylko schemat.',
+    src:'Czeremcha → Siemiatycze → Siedlce ≈ 98 km (dystans drogowy, rome2rio). Linia na mapie: propozycja wyznaczona automatycznie po drogach dopuszczonych dla rowerów (OSRM, profil rowerowy, bez dróg ekspresowych) — przed wyjazdem sprawdźcie ją w BRouter lub komoot.',
     pts:[{p:'czeremcha',km:0,visit:0,surf:'—',info:'Start 08:00.'},{p:'siemiatycze',km:null,visit:20,surf:'drogi lokalne',info:'Przejazd przez Siemiatycze (orientacyjnie po drodze).'},{p:'siedlce',km:98,visit:0,surf:'—',info:'Pociąg IC 1126 15:42 lub TLK 1112 16:25 do Warszawy.',kmSt:'or'}]},
   sunVisit:{label:'Nd · zwiedzanie',color:'var(--c-visit)',hex:'#8a7556',type:'foot',pace:4,km:null,diff:'łatwa',
     src:'Spacer lub spokojny rower po Czeremsze: stacja i Muzeum Kolejnictwa, Kuzawa z cerkwią św. Barbary. Kilometraż do wyliczenia; Kuzawa leży blisko granicy — sprawdź strefę.',
@@ -769,7 +769,7 @@ function drawRoute(){
   const r=curR(); routeLayer=L.layerGroup();
   const coords=r.pts.map(x=>P[x.p].c), live=liveKm[cur];
   if(live&&live.geom)L.polyline(live.geom,{color:r.hex,weight:5,opacity:.9}).addTo(routeLayer);
-  else L.polyline(coords,{color:r.hex,weight:5,dashArray:'10 7',opacity:.95}).bindTooltip('Schemat — kilometraż wg źródła').addTo(routeLayer);
+  else L.polyline(coords,{color:r.hex,weight:5,dashArray:'10 7',opacity:.95}).bindTooltip('Wczytuję przebieg po drogach… (do tego czasu schemat)').addTo(routeLayer);
   const seen=new Set();
   r.pts.forEach((x,i)=>{if(seen.has(x.p))return;seen.add(x.p);
     L.marker(P[x.p].c,{icon:pinIcon(String(i+1),r.hex),title:(i+1)+'. '+P[x.p].n,zIndexOffset:1000}).bindTooltip((i+1)+'. '+P[x.p].n,{direction:'top',offset:[0,-24]}).bindPopup(()=>pointPopup(i)).addTo(routeLayer)});
@@ -802,11 +802,18 @@ function renderStats(){const r=curR();
   $('#routeStats').innerHTML=[[s.km!=null?fmt(s.km)+' km':'—','dystans (źródło)'],[s.ride!=null?hm(s.ride):'—',(r.type==='foot'?'marsz':'jazda')+' przy '+r.pace+' km/h'],[s.tot!=null?hm(s.tot):'—','z postojami'],[r.diff,'trudność'],[String(s.attrs),'atrakcje']]
    .map(([v,l])=>`<div class="stat"><div class="v" style="font-size:${v.length>9?'1.15rem':'1.7rem'};color:${r.hex}">${esc(v)}</div><div class="l">${l}</div></div>`).join('')}
 function setRoute(k){cur=k;renderRouteSeg();renderPoints();try{drawRoute()}catch(e){console.warn(e)}renderStats()}
+const RKEY='dreptak-route-v2';let rCache={};try{rCache=JSON.parse(localStorage.getItem(RKEY)||'{}')}catch(e){}
 async function tryRouting(key,coords,type){
-  if(liveKm[key]!==undefined||key==='sunHard')return; liveKm[key]=null;
-  const url=`https://routing.openstreetmap.de/${type==='foot'?'routed-foot':'routed-bike'}/route/v1/driving/${coords.map(c=>c[1]+','+c[0]).join(';')}?overview=full&geometries=geojson`;
-  try{const ctl=new AbortController();setTimeout(()=>ctl.abort(),8000);const res=await fetch(url,{signal:ctl.signal});if(!res.ok)throw 0;const j=await res.json();const rt=j.routes&&j.routes[0];if(!rt)throw 0;
-    liveKm[key]={km:rt.distance/1000,geom:rt.geometry.coordinates.map(c=>[c[1],c[0]])};if(key===cur||cur==='all'){drawRoute();if(key===cur)renderStats()}}catch(e){}
+  if(liveKm[key]!==undefined)return; liveKm[key]=null;
+  const prof=type==='foot'?'routed-foot':'routed-bike', ck=prof+':'+coords.map(c=>c.map(v=>v.toFixed(4)).join(',')).join(';');
+  if(rCache[ck]){liveKm[key]=rCache[ck];if(key===cur||cur==='all'){drawRoute();if(key===cur)renderStats()}return}
+  const url=`https://routing.openstreetmap.de/${prof}/route/v1/driving/${coords.map(c=>c[1]+','+c[0]).join(';')}?overview=full&geometries=geojson`;
+  for(let attempt=0;attempt<2;attempt++){
+    try{const ctl=new AbortController();const t=setTimeout(()=>ctl.abort(),20000);const res=await fetch(url,{signal:ctl.signal});clearTimeout(t);if(!res.ok)throw 0;const j=await res.json();const rt=j.routes&&j.routes[0];if(!rt)throw 0;
+      const v={km:rt.distance/1000,geom:rt.geometry.coordinates.map(c=>[+c[1].toFixed(5),+c[0].toFixed(5)])};liveKm[key]=v;
+      try{rCache[ck]=v;localStorage.setItem(RKEY,JSON.stringify(rCache))}catch(e){}
+      if(key===cur||cur==='all'){drawRoute();if(key===cur)renderStats()}return}catch(e){await new Promise(r=>setTimeout(r,1500))}}
+  liveKm[key]=undefined;
 }
 
 /* ---------- Dzień po dniu ---------- */
