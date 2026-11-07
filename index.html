@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0;font-family:system-ui,sans-serif;font-size:14px}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Dreptak na Podlasiu</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+ .leaflet-pane, .leaflet-tile, .leaflet-marker-icon, .leaflet-marker-shadow, .leaflet-tile-container, .leaflet-pane > svg, .leaflet-pane > canvas, .leaflet-zoom-box, .leaflet-image-layer, .leaflet-layer { position: absolute; left: 0; top: 0; } .leaflet-container { overflow: hidden; } .leaflet-tile, .leaflet-marker-icon, .leaflet-marker-shadow { -webkit-user-select: none; -moz-user-select: none; user-select: none; -webkit-user-drag: none; } .leaflet-tile::selection { background: transparent; } .leaflet-safari .leaflet-tile { image-rendering: -webkit-optimize-contrast; } .leaflet-safari .leaflet-tile-container { width: 1600px; height: 1600px; -webkit-transform-origin: 0 0; } .leaflet-marker-icon, .leaflet-marker-shadow { display: block; } .leaflet-container .leaflet-overlay-pane svg { max-width: none !important; max-height: none !important; } .leaflet-container .leaflet-marker-pane img, .leaflet-container .leaflet-shadow-pane img, .leaflet-container .leaflet-tile-pane img, .leaflet-container img.leaflet-image-layer, .leaflet-container .leaflet-tile { max-width: none !important; max-height: none !important; width: auto; padding: 0; } .leaflet-container img.leaflet-tile { mix-blend-mode: plus-lighter; } .leaflet-container.leaflet-touch-zoom { -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y; } .leaflet-container.leaflet-touch-drag { -ms-touch-action: pinch-zoom; touch-action: none; touch-action: pinch-zoom; } .leaflet-container.leaflet-touch-drag.leaflet-touch-zoom { -ms-touch-action: none; touch-action: none; } .leaflet-container { -webkit-tap-highlight-color: transparent; } .leaflet-container a { -webkit-tap-highlight-color: rgba(51, 181, 229, 0.4); } .leaflet-tile { filter: inherit; visibility: hidden; } .leaflet-tile-loaded { visibility: inherit; } .leaflet-zoom-box { width: 0; height: 0; -moz-box-sizing: border-box; box-sizing: border-box; z-index: 800; } .leaflet-overlay-pane svg { -moz-user-select: none; } .leaflet-pane { z-index: 400; } .leaflet-tile-pane { z-index: 200; } .leaflet-overlay-pane { z-index: 400; } .leaflet-shadow-pane { z-index: 500; } .leaflet-marker-pane { z-index: 600; } .leaflet-tooltip-pane { z-index: 650; } .leaflet-popup-pane { z-index: 700; } .leaflet-map-pane canvas { z-index: 100; } .leaflet-map-pane svg { z-index: 200; } .leaflet-vml-shape { width: 1px; height: 1px; } .leaflet-control { position: relative; z-index: 800; pointer-events: visiblePainted; pointer-events: auto; } .leaflet-top, .leaflet-bottom { position: absolute; z-index: 1000; pointer-events: none; } .leaflet-top { top: 0; } .leaflet-right { right: 0; } .leaflet-bottom { bottom: 0; } .leaflet-left { left: 0; } .leaflet-control { float: left; clear: both; } .leaflet-right .leaflet-control { float: right; } .leaflet-top .leaflet-control { margin-top: 10px; } .leaflet-bottom .leaflet-control { margin-bottom: 10px; } .leaflet-left .leaflet-control { margin-left: 10px; } .leaflet-right .leaflet-control { margin-right: 10px; } .leaflet-fade-anim .leaflet-popup { opacity: 0; -webkit-transition: opacity 0.2s linear; -moz-transition: opacity 0.2s linear; transition: opacity 0.2s linear; } .leaflet-fade-anim .leaflet-map-pane .leaflet-popup { opacity: 1; } .leaflet-zoom-animated { -webkit-transform-origin: 0 0; -ms-transform-origin: 0 0; transform-origin: 0 0; } svg.leaflet-zoom-animated { will-change: transform; } .leaflet-zoom-anim .leaflet-zoom-animated { -webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1); -moz-transition: -moz-transform 0.25s cubic-bezier(0,0,0.25,1); transition: transform 0.25s cubic-bezier(0,0,0.25,1); } .leaflet-zoom-anim .leaflet-tile, .leaflet-pan-anim .leaflet-tile { -webkit-transition: none; -moz-transition: none; transition: none; } .leaflet-zoom-anim .leaflet-zoom-hide { visibility: hidden; } .leaflet-interactive { cursor: pointer; } .leaflet-grab { cursor: -webkit-grab; cursor: -moz-grab; cursor: grab; } .leaflet-crosshair, .leaflet-crosshair .leaflet-interactive { cursor: crosshair; } .leaflet-popup-pane, .leaflet-control { cursor: auto; } .leaflet-dragging .leaflet-grab, .leaflet-dragging .leaflet-grab .leaflet-interactive, .leaflet-dragging .leaflet-marker-draggable { cursor: move; cursor: -webkit-grabbing; cursor: -moz-grabbing; cursor: grabbing; } .leaflet-marker-icon, .leaflet-marker-shadow, .leaflet-image-layer, .leaflet-pane > svg path, .leaflet-tile-container { pointer-events: none; } .leaflet-marker-icon.leaflet-interactive, .leaflet-image-layer.leaflet-interactive, .leaflet-pane > svg path.leaflet-interactive, svg.leaflet-image-layer.leaflet-interactive path { pointer-events: visiblePainted; pointer-events: auto; } .leaflet-container { background: #ddd; outline-offset: 1px; } .leaflet-container a { color: #0078A8; } .leaflet-zoom-box { border: 2px dotted #38f; background: rgba(255,255,255,0.5); } .leaflet-container { font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; font-size: 12px; font-size: 0.75rem; line-height: 1.5; } .leaflet-bar { box-shadow: 0 1px 5px rgba(0,0,0,0.65); border-radius: 4px; } .leaflet-bar a { background-color: #fff; border-bottom: 1px solid #ccc; width: 26px; height: 26px; line-height: 26px; display: block; text-align: center; text-decoration: none; color: black; } .leaflet-bar a, .leaflet-control-layers-toggle { background-position: 50% 50%; background-repeat: no-repeat; display: block; } .leaflet-bar a:hover, .leaflet-bar a:focus { background-color: #f4f4f4; } .leaflet-bar a:first-child { border-top-left-radius: 4px; border-top-right-radius: 4px; } .leaflet-bar a:last-child { border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; border-bottom: none; } .leaflet-bar a.leaflet-disabled { cursor: default; background-color: #f4f4f4; color: #bbb; } .leaflet-touch .leaflet-bar a { width: 30px; height: 30px; line-height: 30px; } .leaflet-touch .leaflet-bar a:first-child { border-top-left-radius: 2px; border-top-right-radius: 2px; } .leaflet-touch .leaflet-bar a:last-child { border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; } .leaflet-control-zoom-in, .leaflet-control-zoom-out { font: bold 18px 'Lucida Console', Monaco, monospace; text-indent: 1px; } .leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out { font-size: 22px; } .leaflet-control-layers { box-shadow: 0 1px 5px rgba(0,0,0,0.4); background: #fff; border-radius: 5px; } .leaflet-touch .leaflet-control-layers-toggle { width: 44px; height: 44px; } .leaflet-control-layers .leaflet-control-layers-list, .leaflet-control-layers-expanded .leaflet-control-layers-toggle { display: none; } .leaflet-control-layers-expanded .leaflet-control-layers-list { display: block; position: relative; } .leaflet-control-layers-expanded { padding: 6px 10px 6px 6px; color: #333; background: #fff; } .leaflet-control-layers-scrollbar { overflow-y: scroll; overflow-x: hidden; padding-right: 5px; } .leaflet-control-layers-selector { margin-top: 2px; position: relative; top: 1px; } .leaflet-control-layers label { display: block; font-size: 13px; font-size: 1.08333em; } .leaflet-control-layers-separator { height: 0; border-top: 1px solid #ddd; margin: 5px -10px 5px -6px; } .leaflet-container .leaflet-control-attribution { background: #fff; background: rgba(255, 255, 255, 0.8); margin: 0; } .leaflet-control-attribution, .leaflet-control-scale-line { padding: 0 5px; color: #333; line-height: 1.4; } .leaflet-control-attribution a { text-decoration: none; } .leaflet-control-attribution a:hover, .leaflet-control-attribution a:focus { text-decoration: underline; } .leaflet-attribution-flag { display: inline !important; vertical-align: baseline !important; width: 1em; height: 0.6669em; } .leaflet-left .leaflet-control-scale { margin-left: 5px; } .leaflet-bottom .leaflet-control-scale { margin-bottom: 5px; } .leaflet-control-scale-line { border: 2px solid #777; border-top: none; line-height: 1.1; padding: 2px 5px 1px; white-space: nowrap; -moz-box-sizing: border-box; box-sizing: border-box; background: rgba(255, 255, 255, 0.8); text-shadow: 1px 1px #fff; } .leaflet-control-scale-line:not(:first-child) { border-top: 2px solid #777; border-bottom: none; margin-top: -2px; } .leaflet-control-scale-line:not(:first-child):not(:last-child) { border-bottom: 2px solid #777; } .leaflet-touch .leaflet-control-attribution, .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar { box-shadow: none; } .leaflet-touch .leaflet-control-layers, .leaflet-touch .leaflet-bar { border: 2px solid rgba(0,0,0,0.2); background-clip: padding-box; } .leaflet-popup { position: absolute; text-align: center; margin-bottom: 20px; } .leaflet-popup-content-wrapper { padding: 1px; text-align: left; border-radius: 12px; } .leaflet-popup-content { margin: 13px 24px 13px 20px; line-height: 1.3; font-size: 13px; font-size: 1.08333em; min-height: 1px; } .leaflet-popup-content p { margin: 17px 0; margin: 1.3em 0; } .leaflet-popup-tip-container { width: 40px; height: 20px; position: absolute; left: 50%; margin-top: -1px; margin-left: -20px; overflow: hidden; pointer-events: none; } .leaflet-popup-tip { width: 17px; height: 17px; padding: 1px; margin: -10px auto 0; pointer-events: auto; -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); } .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: white; color: #333; box-shadow: 0 3px 14px rgba(0,0,0,0.4); } .leaflet-container a.leaflet-popup-close-button { position: absolute; top: 0; right: 0; border: none; text-align: center; width: 24px; height: 24px; font: 16px/24px Tahoma, Verdana, sans-serif; color: #757575; text-decoration: none; background: transparent; } .leaflet-container a.leaflet-popup-close-button:hover, .leaflet-container a.leaflet-popup-close-button:focus { color: #585858; } .leaflet-popup-scrolled { overflow: auto; } .leaflet-oldie .leaflet-popup-content-wrapper { -ms-zoom: 1; } .leaflet-oldie .leaflet-popup-tip { width: 24px; margin: 0 auto; -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)"; filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678); } .leaflet-oldie .leaflet-control-zoom, .leaflet-oldie .leaflet-control-layers, .leaflet-oldie .leaflet-popup-content-wrapper, .leaflet-oldie .leaflet-popup-tip { border: 1px solid #999; } .leaflet-div-icon { background: #fff; border: 1px solid #666; } .leaflet-tooltip { position: absolute; padding: 6px; background-color: #fff; border: 1px solid #fff; border-radius: 3px; color: #222; white-space: nowrap; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; pointer-events: none; box-shadow: 0 1px 3px rgba(0,0,0,0.4); } .leaflet-tooltip.leaflet-interactive { cursor: pointer; pointer-events: auto; } .leaflet-tooltip-top:before, .leaflet-tooltip-bottom:before, .leaflet-tooltip-left:before, .leaflet-tooltip-right:before { position: absolute; pointer-events: none; border: 6px solid transparent; background: transparent; content: ""; } .leaflet-tooltip-bottom { margin-top: 6px; } .leaflet-tooltip-top { margin-top: -6px; } .leaflet-tooltip-bottom:before, .leaflet-tooltip-top:before { left: 50%; margin-left: -6px; } .leaflet-tooltip-top:before { bottom: 0; margin-bottom: -12px; border-top-color: #fff; } .leaflet-tooltip-bottom:before { top: 0; margin-top: -12px; margin-left: -6px; border-bottom-color: #fff; } .leaflet-tooltip-left { margin-left: -6px; } .leaflet-tooltip-right { margin-left: 6px; } .leaflet-tooltip-left:before, .leaflet-tooltip-right:before { top: 50%; margin-top: -6px; } .leaflet-tooltip-left:before { right: 0; margin-right: -12px; border-left-color: #fff; } .leaflet-tooltip-right:before { left: 0; margin-left: -12px; border-right-color: #fff; } @media print { .leaflet-control { -webkit-print-color-adjust: exact; print-color-adjust: exact; } } 
+/* Koncepcja: strona jak sieć szlaków PTTK — każda sekcja to inny znakowany szlak (kolor znaku) i inny krajobraz Podlasia (las, kreda, drewno, kolej, szron). */
+:root{
+  /* wspólne */
+  --fg:#1d241f; --muted:#5b6359; --line:#d9cfbb;
+  --forest:#1f4a33; --forest-2:#2e6a49; --moss:#6f8f4e; --brick:#b8502b; --wood:#8a5a36;
+  --ok:#2f7a45; --ok-bg:#dcefdf; --warn:#8a5d00; --warn-bg:#fbefcf; --todo:#a03a2a; --todo-bg:#f7dcd5;
+  --mk-green:#2f8a46; --mk-red:#c8382c; --mk-blue:#2d5fb8; --mk-yellow:#e3b425; --mk-black:#222;
+  --c-light:#2f8a46; --c-hard:#c2451f; --c-sun:#2d5fb8; --c-visit:#8a5a36; --c-rail:#333;
+  --river:#6f9cc2; --map-bg:#efe9da;
+  --shadow:0 1px 2px rgba(40,30,20,.08),0 10px 28px rgba(40,30,20,.10);
+  --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif; --f-body:"Source Sans 3","Segoe UI",Roboto,Arial,sans-serif; --r:14px;
+  /* krajobrazy jasne (zmieniają się w trybie ciemnym) */
+  --chalk-bg:#fbfaf6; --chalk-card:#ffffff; --chalk-line:#e4e0d6;
+  --meadow-bg:#e7efe1; --meadow-card:#fbfdf8; --meadow-line:#cddcc4;
+  --sand-bg:#f1e6d2; --sand-card:#fffaf1; --sand-line:#ddcdb0;
+  --frost-bg:#e6edf2; --frost-card:#fbfdff; --frost-line:#cbd8e2;
+  --clay-bg:#f6e1d6; --clay-card:#fff8f4; --clay-line:#e8c6b4;
+  /* krajobrazy ciemne (te same w obu motywach) */
+  --pine-bg:#183a28; --pine-card:#21482f; --pine-line:#2f5c40; --pine-fg:#f1efe6; --pine-muted:#bcccbd;
+  --hearth-bg:#3a2619; --hearth-card:#4a3122; --hearth-line:#5e4130; --hearth-fg:#f6ead9; --hearth-muted:#d6bfa3;
+  --rail-bg:#23272a; --rail-card:#2e3337; --rail-line:#41484d; --rail-fg:#eef0f1; --rail-muted:#aeb6bb; --signal:#f2c230;
+  --ember-bg:#7a2e14; --ember-card:#8c3a1d; --ember-line:#a24c2b; --ember-fg:#fff3ea; --ember-muted:#f3c9b3;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --fg:#eef0ea; --muted:#a8b0a6; --line:#34403a; --forest:#8fc7a2; --forest-2:#6fb088; --brick:#e48a63; --wood:#c99a6c;
+  --ok:#86d29b; --ok-bg:#1f3a28; --warn:#e9c46a; --warn-bg:#3a3018; --todo:#f19a87; --todo-bg:#45231c;
+  --river:#4f7fa6; --map-bg:#1b2420; --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+  --chalk-bg:#161b18; --chalk-card:#1e2420; --chalk-line:#303832;
+  --meadow-bg:#142019; --meadow-card:#1b2a21; --meadow-line:#2b3d31;
+  --sand-bg:#211b14; --sand-card:#2b2219; --sand-line:#3d3226;
+  --frost-bg:#141b20; --frost-card:#1b242b; --frost-line:#2c3943;
+  --clay-bg:#24160f; --clay-card:#2f1d14; --clay-line:#4a2c1f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --fg:#eef0ea; --muted:#a8b0a6; --line:#34403a; --forest:#8fc7a2; --forest-2:#6fb088; --brick:#e48a63; --wood:#c99a6c;
+  --ok:#86d29b; --ok-bg:#1f3a28; --warn:#e9c46a; --warn-bg:#3a3018; --todo:#f19a87; --todo-bg:#45231c;
+  --river:#4f7fa6; --map-bg:#1b2420; --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+  --chalk-bg:#161b18; --chalk-card:#1e2420; --chalk-line:#303832;
+  --meadow-bg:#142019; --meadow-card:#1b2a21; --meadow-line:#2b3d31;
+  --sand-bg:#211b14; --sand-card:#2b2219; --sand-line:#3d3226;
+  --frost-bg:#141b20; --frost-card:#1b242b; --frost-line:#2c3943;
+  --clay-bg:#24160f; --clay-card:#2f1d14; --clay-line:#4a2c1f; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--chalk-bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:1001;background:#10261a}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.05;text-wrap:balance;margin:0}
+h2{font-size:clamp(2.1rem,6vw,3.3rem);font-weight:800;text-transform:uppercase;letter-spacing:.005em}
+h3{font-size:1.45rem;font-weight:700}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--mk-yellow);outline-offset:2px}
+.small{font-size:.88rem} .num{font-variant-numeric:tabular-nums}
+
+/* ---- pasy krajobrazowe ---- */
+.band{--b-bg:var(--chalk-bg);--b-card:var(--chalk-card);--b-line:var(--chalk-line);--b-fg:var(--fg);--b-muted:var(--muted);--b-link:var(--forest-2);--b-mark:var(--mk-green);
+  background:var(--b-bg);color:var(--b-fg);padding-block:64px;position:relative}
+.band a{color:var(--b-link)}
+.t-chalk{--b-bg:var(--chalk-bg);--b-card:var(--chalk-card);--b-line:var(--chalk-line);--b-mark:var(--mk-red)}
+.t-meadow{--b-bg:var(--meadow-bg);--b-card:var(--meadow-card);--b-line:var(--meadow-line);--b-mark:var(--mk-green)}
+.t-sand{--b-bg:var(--sand-bg);--b-card:var(--sand-card);--b-line:var(--sand-line);--b-mark:var(--mk-yellow);--b-link:var(--wood)}
+.t-frost{--b-bg:var(--frost-bg);--b-card:var(--frost-card);--b-line:var(--frost-line);--b-mark:var(--mk-blue);--b-link:var(--mk-blue)}
+.t-clay{--b-bg:var(--clay-bg);--b-card:var(--clay-card);--b-line:var(--clay-line);--b-mark:var(--mk-red);--b-link:var(--brick)}
+.t-pine{--b-bg:var(--pine-bg);--b-card:var(--pine-card);--b-line:var(--pine-line);--b-fg:var(--pine-fg);--b-muted:var(--pine-muted);--b-link:#bfe3c8;--b-mark:var(--mk-green)}
+.t-hearth{--b-bg:var(--hearth-bg);--b-card:var(--hearth-card);--b-line:var(--hearth-line);--b-fg:var(--hearth-fg);--b-muted:var(--hearth-muted);--b-link:#f2c79a;--b-mark:var(--mk-yellow)}
+.t-rail{--b-bg:var(--rail-bg);--b-card:var(--rail-card);--b-line:var(--rail-line);--b-fg:var(--rail-fg);--b-muted:var(--rail-muted);--b-link:var(--signal);--b-mark:var(--mk-black)}
+.t-ember{--b-bg:var(--ember-bg);--b-card:var(--ember-card);--b-line:var(--ember-line);--b-fg:var(--ember-fg);--b-muted:var(--ember-muted);--b-link:#ffd9c2;--b-mark:var(--mk-red)}
+.t-pine,.t-hearth,.t-rail,.t-ember{color-scheme:dark}
+/* poszarpana krawędź pasa: zarys lasu na górze ciemnych pasów */
+.edge::before{content:"";position:absolute;left:0;right:0;top:-22px;height:23px;background:var(--b-bg);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 23' preserveAspectRatio='none'%3E%3Cpath d='M0 23V16l6-8 6 8 5-12 6 12 4-6 5 6 6-14 6 14 5-9 5 9 6-11 6 11 4-5 5 5 6-13 6 13 5-8 6 8 4-6 5 6 6-12 4 12V23z'/%3E%3C/svg%3E") 0 0/240px 23px repeat-x;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 23' preserveAspectRatio='none'%3E%3Cpath d='M0 23V16l6-8 6 8 5-12 6 12 4-6 5 6 6-14 6 14 5-9 5 9 6-11 6 11 4-5 5 5 6-13 6 13 5-8 6 8 4-6 5 6 6-12 4 12V23z'/%3E%3C/svg%3E") 0 0/240px 23px repeat-x}
+.muted{color:var(--b-muted,var(--muted))}
+
+/* znak szlaku */
+.mark{display:inline-flex;flex-direction:column;width:28px;height:21px;border-radius:2px;overflow:hidden;flex:none;box-shadow:0 0 0 1px rgba(0,0,0,.15)}
+.mark i{flex:1;background:#fff}.mark i:nth-child(2){background:var(--b-mark,var(--mk-green))}
+.sec-head{display:grid;gap:10px;margin-bottom:26px;max-width:72ch}
+.trailtag{display:inline-flex;align-items:center;gap:10px;font:700 .95rem var(--f-display);letter-spacing:.14em;text-transform:uppercase;color:var(--b-muted)}
+.sec-head p{color:var(--b-muted)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:1000;background:#10261a;color:#fff}
+.nav .wrap{display:flex;gap:18px;align-items:center;padding-block:10px;overflow-x:auto;scrollbar-width:none}
+.nav .wrap::-webkit-scrollbar{display:none}
+.nav .brand{font:800 1.05rem var(--f-display);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;display:flex;gap:8px;align-items:center;--b-mark:var(--mk-green)}
+.nav a{color:#e3ece0;text-decoration:none;font-weight:600;font-size:.92rem;white-space:nowrap;display:flex;gap:6px;align-items:center}
+.nav a:hover{color:#fff;text-decoration:underline}
+.nav a i{width:8px;height:8px;border-radius:2px;display:inline-block}
+
+/* hero */
+.hero{position:relative;color:#fff;background:#183a28;overflow:hidden}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero .wrap{position:relative;padding-block:56px 64px;display:grid;gap:22px}
+.hero h1{font-size:clamp(2.9rem,10vw,6.6rem);font-weight:800;text-transform:uppercase;max-width:11ch;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.hero .sub{font-size:clamp(1.1rem,2.6vw,1.4rem);max-width:46ch;color:#f3eadb}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:rgba(255,253,248,.14);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 12px;font-weight:600;font-size:.92rem;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.chips .chip:nth-child(1){background:#2f8a46;border-color:#4fae66}
+.chips .chip:nth-child(2){background:#2d5fb8;border-color:#5583d6}
+.chips .chip:nth-child(3){background:#e3b425;border-color:#f2cd5a;color:#1d241f}
+.chips .chip:nth-child(4){background:#c2451f;border-color:#e0683f}
+.chips .chip:nth-child(5){background:#8a5a36;border-color:#b07b52}
+.hero .trailtag{color:#e7dcc7;--b-mark:var(--mk-green)}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:10px;border:2px solid transparent;padding:10px 18px;font:700 1.1rem var(--f-display);letter-spacing:.04em;text-transform:uppercase;cursor:pointer;text-decoration:none;background:var(--brick);color:#fff;transition:transform .15s,filter .15s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.08);color:#fff}
+.btn.ghost{background:transparent;border-color:currentColor;color:inherit}
+.btn.sec{background:var(--b-card);color:var(--b-fg);border-color:var(--b-line)}
+.btn.small{font-size:.95rem;padding:6px 12px}
+.hero .btn.ghost{color:#fff}
+
+/* status */
+.st{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:1px 9px;font-size:.76rem;font-weight:700;white-space:nowrap;vertical-align:middle}
+.st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.st.ok{background:var(--ok-bg);color:var(--ok)} .st.or{background:var(--warn-bg);color:var(--warn)} .st.td{background:var(--todo-bg);color:var(--todo)}
+
+/* karty i siatki */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr))}
+.card{background:var(--b-card);border:1px solid var(--b-line);border-radius:var(--r);padding:18px;min-width:0;color:var(--b-fg)}
+.card.raise{box-shadow:var(--shadow)}
+.card h3{margin-bottom:6px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.93rem;margin:0}
+.kv dt{color:var(--b-muted)} .kv dd{margin:0;font-weight:600}
+.tag{font:700 .78rem var(--f-body);text-transform:uppercase;letter-spacing:.06em;color:var(--b-muted)}
+
+/* macierz weekendu */
+.matrix{display:grid;grid-template-columns:120px repeat(2,minmax(0,1fr));gap:2px;border-radius:16px;overflow:hidden;background:var(--b-line);border:1px solid var(--b-line)}
+.matrix>div{background:var(--b-card);padding:14px 16px;min-width:0}
+.matrix .h{font:800 1.3rem var(--f-display);text-transform:uppercase;letter-spacing:.04em;display:flex;gap:8px;align-items:center}
+.matrix .d{font:800 1.4rem var(--f-display);text-transform:uppercase;display:grid;align-content:start;gap:2px}
+.matrix .d span{font:600 .85rem var(--f-body);color:var(--b-muted);text-transform:none}
+.matrix .km{font:800 2rem/1 var(--f-display);font-variant-numeric:tabular-nums}
+.matrix .lt .km{color:var(--c-light)} .matrix .hd .km{color:var(--c-hard)}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+@media (max-width:640px){.matrix{grid-template-columns:1fr 1fr}.matrix .d{grid-column:1/-1;background:var(--b-bg)}.matrix .corner{display:none}}
+
+.alerts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));margin-top:20px}
+.alert{border-radius:12px;padding:14px 16px;background:var(--b-card);border:1px solid var(--b-line);border-left:5px solid var(--warn)}
+.alert.td{border-left-color:var(--todo)}
+.alert strong{display:block;margin-bottom:4px}
+
+/* przełączniki */
+.seg{display:inline-flex;flex-wrap:wrap;background:var(--b-line);border-radius:12px;padding:4px;gap:4px}
+.seg button{border:0;background:transparent;color:var(--b-fg);font:700 1.02rem var(--f-display);letter-spacing:.04em;text-transform:uppercase;padding:8px 13px;border-radius:9px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.seg button[aria-pressed="true"]{background:var(--b-card);box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.seg button i{width:10px;height:10px;border-radius:50%}
+
+/* mapa */
+.map-layout{display:grid;gap:16px;grid-template-columns:minmax(0,1fr) 360px;margin-top:14px}
+@media (max-width:900px){.map-layout{grid-template-columns:1fr}}
+#map{height:min(70vh,580px);min-height:380px;border-radius:var(--r);border:1px solid var(--b-line);background:var(--map-bg);z-index:0}
+.leaflet-container{font-family:var(--f-body);background:var(--map-bg)}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--chalk-card);color:var(--fg)}
+.leaflet-popup-content{margin:12px 14px;min-width:220px}
+.leaflet-tooltip{background:var(--chalk-card);color:var(--fg);border-color:var(--chalk-line)}
+.layers{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.layers label{display:inline-flex;align-items:center;gap:6px;background:var(--b-card);border:1px solid var(--b-line);border-radius:999px;padding:5px 11px;font-size:.9rem;font-weight:600;cursor:pointer;user-select:none}
+.pin{width:28px;height:28px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:grid;place-items:center;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+.pin span{transform:rotate(45deg);font:700 13px/1 var(--f-display);color:#fff}
+.maplbl{position:absolute;transform:translate(-50%,12px);white-space:nowrap;font:600 12px/1 var(--f-body);color:var(--muted);text-shadow:0 0 3px var(--map-bg),0 0 3px var(--map-bg),0 0 3px var(--map-bg);pointer-events:none}
+.maplbl.water{color:var(--river);font-style:italic;font-size:14px;transform:translate(-50%,-50%)}
+.maplbl.country{font:800 18px/1 var(--f-display);letter-spacing:.3em;color:var(--wood);opacity:.55;transform:translate(-50%,-50%)}
+.maplbl.bord{color:var(--brick);font-size:11px;transform:translate(-50%,-50%)}
+.mapnote{font-size:.85rem;color:var(--b-muted);margin-top:8px}
+.leaflet-control-layers-toggle{width:40px;height:40px;display:grid;place-items:center;text-decoration:none;font-size:20px}
+.leaflet-control-layers-toggle::before{content:"🗺️"}
+.leaflet-control-layers{color:#222}
+.pts{max-height:min(70vh,580px);overflow:auto;display:grid;gap:8px;align-content:start}
+.pt{display:grid;grid-template-columns:30px 1fr;gap:10px;background:var(--b-card);border:1px solid var(--b-line);border-radius:12px;padding:10px 12px;cursor:pointer;text-align:left;color:var(--b-fg);font:inherit;width:100%}
+.pt:hover{border-color:var(--b-mark)}
+.pt .n{width:30px;height:30px;border-radius:50%;color:#fff;display:grid;place-items:center;font:800 15px var(--f-display)}
+.pt b{display:block} .pt .meta{font-size:.82rem;color:var(--b-muted)}
+.statrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px}
+.stat{background:var(--b-card);border:1px solid var(--b-line);border-radius:12px;padding:10px 12px}
+.stat .v{font:800 1.7rem/1 var(--f-display);font-variant-numeric:tabular-nums}
+.stat .l{font-size:.8rem;color:var(--b-muted);margin-top:4px}
+
+/* dni */
+.days{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr))}
+.day{position:relative;background:var(--b-card);border:1px solid var(--b-line);border-radius:18px;padding:20px;display:grid;gap:12px;align-content:start}
+.day .dname{font:800 2.3rem/1 var(--f-display);text-transform:uppercase}
+.day .ddate{font:600 .95rem var(--f-body);color:var(--b-muted)}
+.day .stripe{position:absolute;inset:0 0 auto 0;height:6px;border-radius:18px 18px 0 0}
+.tl{list-style:none;margin:0;padding:0}
+.tl li{display:grid;grid-template-columns:58px 1fr;gap:12px;padding:9px 0;border-bottom:1px dashed var(--b-line)}
+.tl li:last-child{border-bottom:0}
+.tl time{font:700 1.12rem var(--f-display);color:var(--brick);font-variant-numeric:tabular-nums}
+.t-sand .tl time{color:var(--wood)}
+
+/* tabele */
+.tbl{overflow-x:auto;border:1px solid var(--b-line);border-radius:12px;background:var(--b-card)}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--b-line);vertical-align:top}
+th{font:700 1rem var(--f-display);letter-spacing:.03em;text-transform:uppercase;color:var(--b-muted);white-space:nowrap;background:var(--b-bg)}
+tr:last-child td{border-bottom:0}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+.t-rail th{color:var(--signal)}
+.dep{font:800 1.5rem/1 var(--f-display);color:var(--signal);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+
+/* hard */
+.bigkm{font:800 clamp(3.4rem,11vw,6rem)/.9 var(--f-display);font-variant-numeric:tabular-nums}
+.bigkm small{font-size:.35em;letter-spacing:.08em;display:block;margin-top:6px;font-weight:700}
+
+/* atrakcje */
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.filters button{border:1px solid var(--b-line);background:var(--b-card);color:var(--b-fg);border-radius:999px;padding:5px 12px;cursor:pointer;font:inherit;font-weight:600;font-size:.9rem}
+.filters button[aria-pressed="true"]{background:var(--mk-blue);color:#fff;border-color:var(--mk-blue)}
+.attr{display:grid;gap:8px;align-content:start;border-top:4px solid var(--acc,var(--b-line))}
+.attr .top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;flex-wrap:wrap}
+.kmchip{font:800 1rem var(--f-display);background:var(--b-bg);border:1px solid var(--b-line);border-radius:6px;padding:1px 8px;font-variant-numeric:tabular-nums}
+
+/* kalkulatory, formularze */
+.calc{display:grid;gap:16px;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+@media (max-width:860px){.calc{grid-template-columns:1fr}}
+.field{display:grid;gap:5px;margin-bottom:12px}
+.field label,.fl{font-weight:700;font-size:.92rem}
+input[type=text],input[type=email],input[type=tel],input[type=number],select,textarea{font:inherit;color:var(--fg);background:var(--chalk-bg);border:1px solid var(--chalk-line);border-radius:9px;padding:9px 11px;width:100%}
+textarea{min-height:84px;resize:vertical}
+.checks{display:grid;gap:6px}
+.checks label{display:flex;gap:9px;align-items:flex-start;font-size:.95rem;cursor:pointer}
+.checks input{margin-top:4px;accent-color:var(--forest-2);flex:none}
+.bucket{border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.bucket.ok{background:var(--ok-bg);color:var(--fg)}.bucket.or{background:var(--warn-bg);color:var(--fg)}.bucket.td{background:var(--todo-bg);color:var(--fg)}
+.bucket h4{font-size:1.1rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:4px}
+.bucket ul{margin:0;padding-left:18px;font-size:.9rem}
+.total{font:800 2.6rem/1 var(--f-display);color:var(--brick);font-variant-numeric:tabular-nums}
+.formgrid{display:grid;gap:12px 16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.formgrid .full{grid-column:1/-1}
+.copybox{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap;font-family:ui-monospace,Menlo,monospace;font-size:.88rem;background:var(--b-bg);border-radius:8px;padding:6px 10px}
+.formcard{background:var(--chalk-card);color:var(--fg);border-radius:18px;padding:20px;--b-card:var(--chalk-card);--b-line:var(--chalk-line);--b-fg:var(--fg);--b-muted:var(--muted);--b-bg:var(--chalk-bg)}
+.cl{columns:2 280px;column-gap:20px}
+.cl fieldset{break-inside:avoid;border:1px solid var(--b-line);border-radius:12px;background:var(--b-card);margin:0 0 16px;padding:12px 14px}
+.cl legend{font:700 1.2rem var(--f-display);text-transform:uppercase;letter-spacing:.03em;padding:0 6px}
+.progress{height:8px;background:var(--b-line);border-radius:99px;overflow:hidden;margin-block:10px}
+.progress i{display:block;height:100%;background:var(--mk-blue);width:0;transition:width .3s}
+
+dialog{border:0;border-radius:18px;padding:0;max-width:min(640px,calc(100vw - 32px));width:100%;background:var(--chalk-card);color:var(--fg);box-shadow:var(--shadow)}
+dialog::backdrop{background:rgba(10,20,14,.55)}
+dialog .dh{background:#183a28;color:#fff;padding:18px 20px;display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+dialog .db{padding:18px 20px;display:grid;gap:12px;--b-muted:var(--muted)}
+.x{background:transparent;border:0;color:#fff;font-size:1.6rem;line-height:1;cursor:pointer}
+.photo-slot{border:1px dashed var(--chalk-line);border-radius:10px;padding:8px 12px;font-size:.86rem;color:var(--muted);background:var(--chalk-bg)}
+footer{padding-block:40px;color:var(--muted);font-size:.9rem;background:var(--chalk-bg)}
+footer ol{padding-left:20px;display:grid;gap:4px}
+footer a{color:var(--forest-2)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{.nav,.hero canvas,#map,.layers,.btns,#zgloszenie,dialog,.noprint,.edge::before{display:none!important}.band{background:#fff!important;color:#000!important;padding-block:12px}}
+</style>
+
+<nav class="nav" aria-label="Sekcje">
+  <div class="wrap">
+    <span class="brand"><span class="mark"><i></i><i></i><i></i></span>KTW Dreptak</span>
+    <a href="#uklad"><i style="background:var(--mk-red)"></i>Układ</a><a href="#mapa"><i style="background:var(--mk-green)"></i>Mapa</a><a href="#dni"><i style="background:var(--mk-yellow)"></i>Dzień po dniu</a><a href="#hard"><i style="background:var(--c-hard)"></i>Hard</a><a href="#atrakcje"><i style="background:var(--mk-blue)"></i>Atrakcje</a><a href="#noclegi"><i style="background:var(--mk-yellow)"></i>Noclegi</a><a href="#dojazd"><i style="background:#888"></i>Koleje</a><a href="#budzet"><i style="background:var(--mk-red)"></i>Budżet</a><a href="#lista"><i style="background:var(--mk-blue)"></i>Co zabrać</a><a href="#zgloszenie"><i style="background:var(--mk-green)"></i>Zgłoszenie</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>KTW Dreptak · Politechnika Warszawska</div>
+    <h1>Babski weekend na Podlasiu</h1>
+    <p class="sub">„Trzy dni przygody, kilometry na szlaku, podlaskie klimaty i wieczory przy kominku”.</p>
+    <div class="chips"><span class="chip">📅 20–22 listopada 2026</span><span class="chip">🌙 3 dni / 2 noclegi w Czeremsze</span><span class="chip">👭 6–10 uczestniczek</span><span class="chip">🚴 Light 58,5 km · Hard 117 km</span><span class="chip">🔥 balia, kominek</span></div>
+    <div class="btns"><a class="btn" href="#mapa">Odkryj trasy</a><a class="btn ghost" href="#budzet">Zobacz koszty</a><a class="btn ghost" href="#zgloszenie">Zgłoś udział</a></div>
+    <p class="small" style="color:#e7dcc7">Oznaczenia: <span class="st ok">potwierdzone</span> <span class="st or">orientacyjne</span> <span class="st td">do sprawdzenia</span> · stan wiedzy 27.10.2026</p>
+  </div>
+</header>
+
+<main>
+<section class="band t-chalk" id="uklad">
+  <div class="wrap">
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak czerwony · układ</div><h2>Kto co robi</h2><p>Baza na obie noce w okolicy Czeremchy, przy stacji. Sobota: zielony szlak rowerowy Czeremcha – Siemiatycze. Niedziela: Light w drugą stronę, Hard rowerem w kierunku Warszawy. Wszystkie spotykają się w tym samym pociągu do Warszawy.</p></div>
+    <div class="matrix" role="table" aria-label="Plan dla grup Light i Hard">
+      <div class="corner" role="columnheader"></div>
+      <div class="h lt" role="columnheader"><i class="dot" style="background:var(--c-light)"></i>Light</div>
+      <div class="h hd" role="columnheader"><i class="dot" style="background:var(--c-hard)"></i>Hard</div>
+      <div class="d" role="rowheader">Pt<span>20.11</span></div>
+      <div class="lt"><b>Pociąg do Czeremchy 12:21</b><br><span class="small">Opcjonalny rozjazd do cerkwi w Zubaczach i z powrotem: 18,8 km.</span></div>
+      <div class="hd"><b>Jak Light</b><br><span class="small">Kontrola świateł i ustawienie tempa na sobotę.</span></div>
+      <div class="d" role="rowheader">Sob<span>21.11</span></div>
+      <div class="lt"><div class="km">58,5 km</div><span class="small">Czeremcha → Mielnik → Siemiatycze, ok. 4–5 h jazdy. Powrót do bazy busem albo pociągiem.</span></div>
+      <div class="hd"><div class="km">117 km</div><span class="small">Czeremcha → Siemiatycze i z powrotem rowerem. Start o świcie, 6–6,5 h jazdy.</span></div>
+      <div class="d" role="rowheader">Nd<span>22.11</span></div>
+      <div class="lt"><div class="km">22 km</div><span class="small">Czeremcha ⇄ Kleszczele szlakiem Green Velo (na północ) albo zwiedzanie. Pociąg 15:17.</span></div>
+      <div class="hd"><div class="km">≈ 98 km</div><span class="small">Czeremcha → Siedlce rowerem, z Siedlec pociąg (dosiadacie się do tego samego TLK). Do Warszawy w 1 dzień — nie.</span></div>
+    </div>
+    <div class="alerts">
+      <div class="alert"><strong>Strefa buforowa <span class="st ok">potwierdzone</span></strong><p class="small">Zakaz przebywania przy granicy z Białorusią obowiązuje od 1.09.2026 przez 90 dni, w tym w zasięgu placówki SG w Czeremsze. Pas 200 m od granicy (szerzej przy rezerwatach); miejscowości i szlaki co do zasady wyłączone. Okolice „Tokary, granica” i Kuzawy: <span class="st td">do sprawdzenia</span> tuż przed wyjazdem.</p></div>
+      <div class="alert"><strong>Dzień ma 8,5 h <span class="st ok">wyliczone</span></strong><p class="small">21.11: wschód 06:58, zachód 15:28. Hard startuje o 07:15 z pełnym oświetleniem, Light o 09:00. Rano szron na drewnianych mostkach i asfalcie w lesie.</p></div>
+      <div class="alert td"><strong>Rozkład i rowery <span class="st td">do sprawdzenia</span></strong><p class="small">Godziny pochodzą z wyszukiwarki (stan 27.10). Potwierdź je na 20–22.11. W PKP Intercity rezerwacja roweru jest obowiązkowa (11,90 zł), a liczba miejsc ograniczona.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band t-meadow" id="mapa">
+  <div class="wrap">
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak zielony · mapa</div><h2>Mapa wyprawy</h2><p>Wybierz dzień i grupę. Kilometraż pochodzi z opisów szlaków GreenVelo, a nie z linii prostej. W podglądzie aplikacji widać uproszczony podkład; pełna mapa OSM działa w pliku HTML otwartym w przeglądarce.</p></div>
+    <div class="seg" role="group" aria-label="Trasa" id="routeSeg"></div>
+    <div class="layers" id="layerToggles"></div>
+    <div class="map-layout">
+      <div><div id="map" role="region" aria-label="Interaktywna mapa tras"></div><p class="mapnote" id="mapNote"></p></div>
+      <div class="pts" id="pointList" aria-label="Punkty trasy"></div>
+    </div>
+    <div class="statrow" id="routeStats"></div>
+  </div>
+</section>
+
+<section class="band t-sand" id="dni">
+  <div class="wrap">
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak żółty · harmonogram</div><h2>Dzień po dniu</h2><p>Godziny dopasowane do pociągów i do zmroku o 15:28. Przełącz grupę w karcie dnia.</p></div>
+    <div class="seg" role="group" aria-label="Grupa" id="groupSeg" style="margin-bottom:16px">
+      <button type="button" data-g="light" aria-pressed="true"><i style="background:var(--c-light)"></i>Light</button>
+      <button type="button" data-g="hard" aria-pressed="false"><i style="background:var(--c-hard)"></i>Hard</button>
+    </div>
+    <div class="days" id="daysBox"></div>
+  </div>
+</section>
+
+<section class="band t-ember edge" id="hard">
+  <div class="wrap">
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak dla twardych</div><h2>Hard: 117 + 98 km</h2><p>Dwa długie dni pod rząd w listopadzie. Wykonalne dla zgranej grupy w tempie ok. 20 km/h, pod warunkiem startu o świcie i jazdy bez długich postojów.</p></div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="bigkm">117<small>KM · SOBOTA · TAM I Z POWROTEM</small></div>
+        <dl class="kv" style="margin-top:14px">
+          <dt>Trasa</dt><dd>szlak zielony Czeremcha → Siemiatycze (58,5 km) i z powrotem tą samą drogą <span class="st ok">km wg GreenVelo</span></dd>
+          <dt>Czas jazdy</dt><dd>ok. 5 h 50 min przy 20 km/h + ok. 1 h postojów</dd>
+          <dt>Okno</dt><dd>07:15 → ok. 14:05; zapas do zmroku ok. 1 h 20 min</dd>
+          <dt>Nawierzchnia</dt><dd>głównie asfalt drogami lokalnymi <span class="st or">wg opisu szlaku</span></dd>
+          <dt>Punkt decyzji</dt><dd>Mielnik (km 39,3) ok. 09:15. Przy opóźnieniu ponad 30 min grupa zawraca stąd: razem 78,6 km.</dd>
+          <dt>Plan B</dt><dd>wysiadka w Siemiatyczach i powrót busem z grupą Light</dd>
+        </dl>
+      </div>
+      <div class="card">
+        <div class="bigkm">≈ 98<small>KM · NIEDZIELA · CZEREMCHA → SIEDLCE</small></div>
+        <dl class="kv" style="margin-top:14px">
+          <dt>Dystans</dt><dd>98 km to odległość drogowa samochodem <span class="st or">orientacyjne</span>. Trasę rowerową wyznacz w <a href="https://brouter.de/brouter-web/" target="_blank" rel="noopener">BRouter</a> (bez dróg ekspresowych i S8).</dd>
+          <dt>Czas</dt><dd>ok. 5 h jazdy + postoje; start 07:15, meta ok. 13:30–14:00</dd>
+          <dt>Pociąg z Siedlec</dt><dd>IC 1126 15:42 → Warszawa Wsch. 16:33 albo TLK 1112 16:25 → 17:21 — ten sam pociąg, którym jedzie grupa Light z Czeremchy (15:17). <span class="st or">orientacyjne</span></dd>
+          <dt>Rowery</dt><dd>rezerwacja miejsca Siedlce → Warszawa, 11,90 zł</dd>
+          <dt>Warszawa rowerem</dt><dd>ok. 190 km w sumie — tylko w 2 dni (nocleg w okolicy Siedlec, powrót w poniedziałek). Dystans drugiego dnia: <span class="st td">do wyliczenia</span>.</dd>
+        </dl>
+      </div>
+    </div>
+    <p class="small muted" style="margin-top:14px">Obowiązkowo: przednie i tylne światło z zapasem baterii, odblaski, kask, dętka i łyżki na każdą osobę, telefon z mapą offline. Nie rekomendujemy Hard bez sprawdzenia prognozy w czwartek przed wyjazdem (wiatr, deszcz, temperatura poniżej zera).</p>
+  </div>
+</section>
+
+<section class="band t-frost" id="atrakcje">
+  <div class="wrap">
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak niebieski · atrakcje</div><h2>Co po drodze</h2><p>Liczby przy nazwach to kilometr zielonego szlaku licząc od Czeremchy. W listopadzie część miejsc działa krócej albo wcale. Zdjęć nie osadzamy bez sprawdzonej licencji — każda karta prowadzi do zdjęć w Mapach Google i Wikimedia Commons.</p></div>
+    <div class="filters" id="attrFilters"></div>
+    <div class="grid g3" id="attrGrid"></div>
+    <div class="card" style="margin-top:16px" id="geocaching">
+      <h3>🧭 Geocaching <span class="st td">brak zweryfikowanych skrytek</span></h3>
+      <p class="small" style="margin-top:6px">Nie udało się potwierdzić statusu ani współrzędnych skrytek wzdłuż szlaku: OpenCaching pokazuje je dopiero po zalogowaniu, a Geocaching.com nie udostępnia ich publicznie. Warstwa skrytek jest pusta, licznik pokazuje 0. Zaloguj się w <a href="https://opencaching.pl/" target="_blank" rel="noopener">OpenCaching.pl</a> lub <a href="https://www.geocaching.com/play/map" target="_blank" rel="noopener">Geocaching.com</a>, wybierz skrytki przy szlaku ze świeżym logiem i wyślij kody organizatorce. Pomijamy skrytki w pasie przygranicznym, w schronach Linii Mołotowa i na terenie kopalni.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band t-hearth edge" id="noclegi">
+  <div class="wrap">
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Przy kominku · noclegi</div><h2>Baza w Czeremsze</h2><p>Czeremcha ma stację, z której ruszamy w piątek, sobotę i niedzielę. Obiekty niżej mają 6–13 miejsc. Ceny i dostępność na 20–22.11: <span class="st td">do sprawdzenia</span> we wszystkich przypadkach.</p></div>
+    <div class="field" style="max-width:260px"><label for="nGuests">Liczba uczestniczek</label><select id="nGuests"><option>6</option><option selected>8</option><option>10</option></select></div>
+    <div class="grid g3" id="stayGrid"></div>
+  </div>
+</section>
+
+<section class="band t-rail" id="dojazd">
+  <div class="wrap">
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak czarny · koleje</div><h2>Pociągi</h2><p>Jedna linia łączy wszystko: Warszawa Wschodnia – Siedlce – Siemiatycze – Czeremcha. Godziny z wyszukiwarki EuroPodróże (stan 27.10.2026) — <span class="st td">potwierdź na 20–22.11</span>.</p></div>
+    <div class="tbl"><table>
+      <thead><tr><th>Kiedy</th><th>Odjazd</th><th>Przyjazd</th><th>Pociąg</th><th class="r">Bilet od</th><th>Kto</th></tr></thead>
+      <tbody>
+        <tr><td>Pt 20.11</td><td><span class="dep">10:24</span><br>Warszawa Wsch.</td><td><span class="dep">12:21</span><br>Czeremcha</td><td>TLK 1012 „Bocian”, bez przesiadek, 1 h 57 min</td><td class="r">61 zł</td><td>wszystkie</td></tr>
+        <tr><td>Pt 20.11 — po pracy</td><td><span class="dep">19:38</span><br>Warszawa Wsch.</td><td><span class="dep">21:37</span><br>Czeremcha</td><td>IC 1016 „Żubr”</td><td class="r">61 zł</td><td>spóźnione</td></tr>
+        <tr><td>Sob 21.11</td><td><span class="dep">19:16</span><br>Siemiatycze</td><td><span class="dep">19:44</span><br>Czeremcha</td><td>REG 10488 (Polregio), 28 min</td><td class="r">12 zł</td><td>Light, jeśli nie bus</td></tr>
+        <tr><td>Nd 22.11</td><td><span class="dep">15:17</span><br>Czeremcha</td><td><span class="dep">17:21</span><br>Warszawa Wsch.</td><td>TLK 1112 „Bocian”: Siemiatycze 15:40, Siedlce 16:25</td><td class="r">61 zł</td><td>Light, zwiedzanie</td></tr>
+        <tr><td>Nd 22.11</td><td><span class="dep">16:25</span><br>Siedlce</td><td><span class="dep">17:21</span><br>Warszawa Wsch.</td><td>ten sam TLK 1112 — wspólny powrót</td><td class="r">34 zł</td><td>Hard</td></tr>
+        <tr><td>Nd 22.11</td><td><span class="dep">15:42</span><br>Siedlce</td><td><span class="dep">16:33</span><br>Warszawa Wsch.</td><td>IC 1126 „Podlasie”</td><td class="r">34 zł</td><td>Hard (wcześniej)</td></tr>
+      </tbody></table></div>
+    <div class="grid g2" style="margin-top:16px">
+      <div class="card"><h3>Rowery w pociągu</h3>
+        <dl class="kv" style="margin-top:8px">
+          <dt>PKP Intercity</dt><dd>11,90 zł w jedną stronę, rezerwacja obowiązkowa <span class="st ok">potwierdzone</span></dd>
+          <dt>Bez rezerwacji</dt><dd>tylko przy wolnych miejscach, + 20 zł opłaty pokładowej</dd>
+          <dt>Polregio (sobota)</dt><dd>opłata za rower <span class="st td">do sprawdzenia</span></dd>
+          <dt>6–10 rowerów</dt><dd>może się nie zmieścić w jednym składzie — rezerwujcie od razu po otwarciu sprzedaży <span class="st td">do sprawdzenia</span></dd>
+          <dt>Bus sobotni</dt><dd>Siemiatycze → Czeremcha z przyczepką na rowery <span class="st td">do wyceny</span></dd>
+        </dl></div>
+      <div class="card"><h3>Koszt kolei dla grupy</h3><p class="small muted">Bilety normalne „od” + rowery tam i z powrotem. Ulgi studenckie obniżą kwotę.</p><div class="tbl" style="margin-top:10px"><table id="trainCost"></table></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="band t-clay" id="budzet">
+  <div class="wrap">
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak czerwony · budżet</div><h2>Ile to kosztuje</h2><p>Pozycje „do wyceny” nie wchodzą do sumy. Zmieniaj liczbę osób, nocleg, podział Light/Hard i dodatki.</p></div>
+    <div class="calc">
+      <div class="card">
+        <div class="formgrid">
+          <div class="field"><label for="bN">Uczestniczki</label><select id="bN"><option>6</option><option selected>8</option><option>10</option></select></div>
+          <div class="field"><label for="bHard">W tym Hard</label><input type="number" id="bHard" min="0" max="10" value="3"></div>
+          <div class="field"><label for="bStay">Nocleg</label><select id="bStay"></select></div>
+          <div class="field"><label for="bFood">Jedzenie na osobę (Twoje założenie, zł)</label><input type="number" id="bFood" min="0" step="10" value="150"></div>
+          <div class="field"><label for="bReserve">Rezerwa (%)</label><input type="number" id="bReserve" min="0" max="50" value="10"></div>
+        </div>
+        <div class="fl">Dodatki</div><div class="checks" id="bExtras" style="margin-top:8px"></div>
+      </div>
+      <div class="card" aria-live="polite">
+        <div class="fl">Na osobę</div><div class="total" id="bPer">—</div>
+        <p class="small muted" id="bTotal"></p>
+        <div id="bBuckets" style="margin-top:12px"></div>
+        <div class="tbl" style="margin-top:12px"><table id="bCompare"></table></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band t-pine edge" id="liczby">
+  <div class="wrap">
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Na mecie</div><h2>Twój weekend w liczbach</h2></div>
+    <div class="seg" role="group" aria-label="Grupa" id="numSeg"><button type="button" data-g="light" aria-pressed="true"><i style="background:var(--c-light)"></i>Light</button><button type="button" data-g="hard" aria-pressed="false"><i style="background:var(--c-hard)"></i>Hard</button></div>
+    <div class="statrow" id="numbers"></div>
+    <div class="card" style="margin-top:18px"><h3>Dlaczego warto?</h3><p style="margin-top:8px;max-width:70ch">Zielony szlak prowadzi od kolejowej Czeremchy przez drewniane cerkwie w Zubaczach i Tokarach do Mielnika, gdzie kredowa odkrywka świeci bielą, a z Góry Zamkowej widać zakola Bugu. W listopadzie jest tu pusto i cicho. Jedziemy pociągiem, rowerem i na własnych nogach, a wieczorem siedzimy w balii, suszymy rękawiczki przy kominku i porównujemy liczniki.</p></div>
+  </div>
+</section>
+
+<section class="band t-frost" id="lista">
+  <div class="wrap">
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Szlak niebieski · ekwipunek</div><h2>Co zabrać</h2><p>Zaznaczenia zapamiętuje Twoja przeglądarka.</p></div>
+    <div class="progress" aria-hidden="true"><i id="clBar"></i></div>
+    <div class="btns noprint" style="margin-bottom:14px">
+      <button class="btn sec small" type="button" id="clAll">Zaznacz wszystko</button><button class="btn sec small" type="button" id="clNone">Wyczyść</button>
+      <button class="btn sec small" type="button" id="clSave" hidden>Zapisz listę (.txt)</button><button class="btn sec small" type="button" id="clPrint" hidden>Drukuj</button>
+      <span class="small muted" id="clCount" style="align-self:center"></span>
+    </div>
+    <div class="cl" id="checklist"></div>
+  </div>
+</section>
+
+<section class="band t-pine" id="zgloszenie">
+  <div class="wrap">
+    <div class="sec-head"><div class="trailtag"><span class="mark"><i></i><i></i><i></i></span>Start</div><h2>Jadę z Dreptakiem na Podlasie!</h2><p>Zgłoszenie trafia do bazy tej strony. Listę „Kto jedzie” (imię, grupa, plan na weekend) widzą wszystkie uczestniczki. E-mail, telefon, ograniczenia i uwagi widzi tylko organizatorka.</p></div>
+    <div class="card" style="margin-bottom:16px" id="pubPanel"><h3>Kto jedzie <span id="pubCount" class="small muted"></span></h3><div class="tbl" style="margin-top:10px"><table id="pubTable"><tbody><tr><td>Lista pojawi się po wczytaniu bazy zgłoszeń (wymaga zalogowania do claude.ai).</td></tr></tbody></table></div></div>
+    <div class="formcard">
+      <div class="alert td" id="formStatus" style="margin-bottom:14px"><strong>Sprawdzam połączenie z bazą zgłoszeń…</strong><p class="small">Do tego czasu formularz niczego nie zapisuje.</p></div>
+      <form id="regForm" novalidate>
+        <div class="formgrid">
+          <div class="field"><label for="fName">Imię i nazwisko *</label><input type="text" id="fName" required autocomplete="name"></div>
+          <div class="field"><label for="fEmail">E-mail *</label><input type="email" id="fEmail" required autocomplete="email"></div>
+          <div class="field"><label for="fPhone">Telefon (opcjonalnie)</label><input type="tel" id="fPhone" autocomplete="tel"></div>
+          <div class="field"><label for="fVariant">Grupa</label><select id="fVariant"><option>LIGHT BIKE</option><option>HARD BIKE</option><option>tylko zwiedzanie / trekking</option><option selected>jeszcze nie wiem</option></select></div>
+          <div class="field"><label for="fSun">Niedziela</label><select id="fSun"><option>Light: Czeremcha ⇄ Kleszczele</option><option>zwiedzanie Czeremchy</option><option>Hard: rowerem do Siedlec + pociąg</option><option>Hard: 2 dni rowerem do Warszawy</option><option selected>jeszcze nie wiem</option></select></div>
+          <div class="field"><label for="fSatBack">Sobota: powrót z Siemiatycz</label><select id="fSatBack"><option>bus</option><option>pociąg 19:16</option><option>rowerem (Hard)</option><option selected>jeszcze nie wiem</option></select></div>
+          <div class="field"><label for="fOwnBike">Własny rower?</label><select id="fOwnBike"><option>tak</option><option>nie</option><option>jeszcze nie wiem</option></select></div>
+          <div class="field"><label for="fTrainBike">Miejsce na rower w pociągu?</label><select id="fTrainBike"><option>tak, w obie strony</option><option>tylko w jedną stronę</option><option>nie</option></select></div>
+          <div class="field"><label for="fStay">Preferencje noclegu</label><select id="fStay"><option>bez preferencji</option><option>blisko stacji w Czeremsze</option><option>dom z balią/sauną</option><option>najtańsza opcja</option></select></div>
+          <div class="field"><label for="fSauna">Sauna / balia</label><select id="fSauna"><option>chętnie</option><option>może</option><option>nie</option></select></div>
+          <div class="field full"><label for="fLimits">Ograniczenia ważne dla aktywności (opcjonalnie)</label><textarea id="fLimits"></textarea></div>
+          <div class="field full"><label for="fNotes">Uwagi organizacyjne</label><textarea id="fNotes"></textarea></div>
+          <div class="field full checks"><label><input type="checkbox" id="fConsent" required> Zgadzam się na przetwarzanie moich danych przez organizatorkę wyjazdu KTW Dreptak wyłącznie w celu obsługi zgłoszenia. *</label></div>
+        </div>
+        <div class="btns" style="margin-top:8px"><button class="btn" type="submit" id="fSubmit" disabled>Wyślij zgłoszenie</button></div>
+        <p class="small" id="fMsg" role="status" style="margin-top:10px"></p>
+      </form>
+      <h3 style="margin-top:18px">Płatność</h3>
+      <dl class="kv" style="margin-top:8px">
+        <dt>Zaliczka na noclegi</dt><dd>kwota do uzupełnienia po wybraniu obiektu i ustaleniu podziału kosztów</dd>
+        <dt>Numer konta organizatorki</dt><dd>[DO UZUPEŁNIENIA]</dd>
+        <dt>Tytuł przelewu</dt><dd><span class="copybox"><span id="payTitle">Dreptak Podlasie 20–22.11.2026 – [Imię i nazwisko]</span><button type="button" class="btn sec small" id="copyTitle">Kopiuj</button></span></dd>
+      </dl>
+      <div id="orgPanel" hidden style="margin-top:18px"><h3>Zgłoszenia (widok organizatorki)</h3><div class="tbl" style="margin-top:10px"><table id="orgTable"></table></div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h3 style="color:var(--fg);margin-bottom:10px">Źródła (sprawdzone 27.10.2026)</h3>
+    <ol>
+      <li><a href="https://greenvelo.pl/en/detal/1211-greenvelo-czeremcha-siemiatycze-bicycle-trail" target="_blank" rel="noopener">GreenVelo — szlak zielony Czeremcha–Siemiatycze, 58,5 km</a></li>
+      <li><a href="https://greenvelo.pl/en/detal/1213-greenvelo-hajnowka-piaski-bicycle-trail" target="_blank" rel="noopener">GreenVelo — szlak czerwony Hajnówka–Piaski (Kleszczele km 47,1, Czeremcha km 58,1)</a></li>
+      <li><a href="https://bielsk.eu/hajnowka/59670-strefa-buforowa-przy-granicy-z-bialorusia-przedluzona-o-kolejne-90-dni-2" target="_blank" rel="noopener">Strefa buforowa od 1.09.2026 na 90 dni</a> · <a href="https://www.strazgraniczna.pl/" target="_blank" rel="noopener">Straż Graniczna</a></li>
+      <li>Rozkłady: <a href="https://www.europodroze.pl/rozklad-jazdy/warszawa/czeremcha" target="_blank" rel="noopener">Warszawa → Czeremcha</a> · <a href="https://www.europodroze.pl/rozklad-jazdy/czeremcha/warszawa-wschodnia" target="_blank" rel="noopener">Czeremcha → Warszawa</a> · <a href="https://www.europodroze.pl/rozklad-jazdy/czeremcha/siemiatycze" target="_blank" rel="noopener">Czeremcha → Siemiatycze</a> · <a href="https://www.europodroze.pl/rozklad-jazdy/siemiatycze/czeremcha" target="_blank" rel="noopener">Siemiatycze → Czeremcha</a> · <a href="https://www.europodroze.pl/rozklad-jazdy/siedlce/warszawa-wschodnia" target="_blank" rel="noopener">Siedlce → Warszawa</a></li>
+      <li><a href="https://www.intercity.pl/pl/site/dla-pasazera/oferty/krajowe/przewoz-rowerow.html" target="_blank" rel="noopener">PKP Intercity — przewóz rowerów</a> · <a href="https://www.intercity.pl/pl/dokumenty/Przepisy%20i%20taryfy/Cennik_uslug_przewozowych_PKP_Intercity_tekst_ujednolicony_obowiazuje_od_23.07.2026_r.pdf" target="_blank" rel="noopener">Cennik od 23.07.2026</a></li>
+      <li><a href="https://www.rome2rio.com/s/Siedlce/Czeremcha" target="_blank" rel="noopener">Rome2rio — Siedlce–Czeremcha, ok. 98 km drogą</a></li>
+      <li>Noclegi: <a href="https://slowhop.com/en/places/3338-podlaski-zakatek.html" target="_blank" rel="noopener">Podlaski Zakątek (Slowhop)</a> · <a href="https://slowhop.com/pl/noclegi/domki-z-balia-podlasie" target="_blank" rel="noopener">Slowhop — domki z balią Podlasie</a> · <a href="https://www.gites.fr/gites_czeremcha_250789.html" target="_blank" rel="noopener">Noclegi w okolicy Czeremchy</a></li>
+      <li><a href="https://www.komoot.com/guide/2602728/attractions-around-czeremcha" target="_blank" rel="noopener">Komoot — atrakcje wokół Czeremchy</a> · <a href="https://www.national-geographic.pl/traveler/kierunki/kopalnia-kredy-w-mielniku/" target="_blank" rel="noopener">Kopalnia kredy w Mielniku</a></li>
+      <li>Wschód/zachód słońca: obliczenie dla 52,33° N, 23,04° E. Mapa: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>; podkład uproszczony: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a> (domena publiczna).</li>
+    </ol>
+    <p style="margin-top:14px">Położenie punktów na mapie jest orientacyjne. Nawigujcie z linków Google Maps i według oznakowania szlaku.</p>
+  </div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dlgTitle"><div class="dh"><div><div class="tag" id="dlgTag" style="color:#e7d6bf"></div><h3 id="dlgTitle"></h3></div><button class="x" type="button" id="dlgClose" aria-label="Zamknij">×</button></div><div class="db" id="dlgBody"></div></dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+"use strict";
+/* Zawsze startuj od nagłówka; linki w menu przewijaj bez zmiany adresu */
+try{if('scrollRestoration' in history)history.scrollRestoration='manual'}catch(e){}
+if(location.hash&&location.hash!=='#zgloszenie'){try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
+addEventListener('load',()=>{if(location.hash==='#zgloszenie'){const z=document.getElementById('zgloszenie');z&&z.scrollIntoView()}else scrollTo(0,0)});
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const t=document.getElementById(a.getAttribute('href').slice(1));if(!t)return;e.preventDefault();t.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})});
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const fmt=(n,d=1)=>Number(n).toLocaleString('pl-PL',{minimumFractionDigits:d,maximumFractionDigits:d});
+const zl=n=>Math.round(n).toLocaleString('pl-PL')+' zł';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const gmaps=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
+const commons=q=>'https://commons.wikimedia.org/w/index.php?search='+encodeURIComponent(q)+'&title=Special:MediaSearch&type=image';
+const ST={ok:'<span class="st ok">potwierdzone</span>',or:'<span class="st or">orientacyjne</span>',td:'<span class="st td">do sprawdzenia</span>'};
+function hm(min){min=Math.round(min);return Math.floor(min/60)+' h '+String(min%60).padStart(2,'0')+' min'}
+function clock(min){min=Math.round(min);return Math.floor(min/60)+':'+String(min%60).padStart(2,'0')}
+
+/* Punkty — współrzędne orientacyjne */
+const P={
+  czeremcha:{n:'Czeremcha — stacja',c:[52.5165,23.3460],q:'Stacja kolejowa Czeremcha'},
+  zubacze:{n:'Zubacze — drewniana cerkiew',c:[52.4800,23.3100],q:'Cerkiew Zubacze'},
+  klukowicze:{n:'Klukowicze',c:[52.4300,23.2550],q:'Klukowicze, gmina Nurzec-Stacja'},
+  tokaryc:{n:'Tokary — cerkiew',c:[52.4050,23.2450],q:'Cerkiew Tokary'},
+  tokary:{n:'Tokary',c:[52.3950,23.2350],q:'Tokary, gmina Mielnik'},
+  tokaryg:{n:'Tokary, granica',c:[52.3860,23.2400],q:'Tokary przejście graniczne'},
+  adamowo:{n:'Adamowo',c:[52.3560,23.1300],q:'Adamowo, gmina Mielnik'},
+  mielnik:{n:'Mielnik',c:[52.3337,23.0430],q:'Mielnik, podlaskie'},
+  oslowo:{n:'Osłowo',c:[52.3500,22.9900],q:'Osłowo, gmina Mielnik'},
+  mackowicze:{n:'Maćkowicze',c:[52.3690,22.9350],q:'Maćkowicze cerkiew'},
+  stacja:{n:'Stacja Siemiatycze',c:[52.3800,22.8900],q:'Stacja kolejowa Siemiatycze'},
+  siemiatycze:{n:'Siemiatycze — centrum',c:[52.4277,22.8630],q:'Siemiatycze kościół Wniebowzięcia NMP'},
+  dobrowoda:{n:'Dobrowoda',c:[52.5550,23.3400],q:'Dobrowoda, gmina Kleszczele'},
+  kleszczele:{n:'Kleszczele',c:[52.5733,23.3270],q:'Kleszczele'},
+  kuzawa:{n:'Kuzawa',c:[52.5250,23.3900],q:'Cerkiew św. Barbary Kuzawa'},
+  siedlce:{n:'Siedlce — stacja',c:[52.1677,22.2901],q:'Dworzec PKP Siedlce'}
+};
+/* Km zielonego szlaku od Czeremchy = 58,5 − km GreenVelo */
+const GREEN=[['czeremcha',0],['zubacze',9.4],['klukowicze',15.8],['tokaryc',20.2],['tokary',22.0],['tokaryg',24.1],['adamowo',31.8],['mielnik',39.3],['oslowo',43.4],['mackowicze',47.9],['stacja',51.0],['siemiatycze',58.5]];
+const VISIT={zubacze:15,tokaryc:10,mielnik:45,mackowicze:10,siemiatycze:30};
+const SURF='asfalt, drogi lokalne o małym ruchu';
+const INFO={tokaryg:'Odcinek przy granicy — sprawdź strefę buforową. Nie zbaczaj w stronę granicy.',mielnik:'Obiad. Góra Zamkowa (grodzisko, widok na Bug) i taras widokowy kopalni kredy (+ok. 2 km). Punkt decyzji dla Hard.',siemiatycze:'Meta Light. Kościół Wniebowzięcia NMP, synagoga, sfinksy przy bramie pałacowej.',stacja:'Stacja Siemiatycze — pociąg REG 19:16 do Czeremchy.',zubacze:'Drewniana cerkiew z 1895 r. i dzwonnica.',mackowicze:'Cerkiew; dalej most kolejowy w Olendrach i schrony Linii Mołotowa (tylko z zewnątrz).'};
+
+function greenPts(back){
+  const out=GREEN.map(([p,km])=>({p,km,visit:back?0:(VISIT[p]||0),surf:SURF,info:INFO[p]||'',kmSt:p==='tokaryg'?'td':''}));
+  if(!back)return out;
+  out[out.length-1].visit=40;
+  const ret=[...GREEN].reverse().slice(1).filter(([p])=>['mielnik','tokaryg','zubacze','czeremcha'].includes(p)).map(([p,km])=>({p,km:117-km,visit:0,surf:SURF,info:p==='czeremcha'?'Meta Hard, ok. 14:15.':'Powrót tą samą trasą.',kmSt:p==='tokaryg'?'td':'',ret:true}));
+  return out.map(x=>x.p==='mielnik'?{...x,visit:15,info:'Punkt decyzji 09:45: jeśli opóźnienie > 30 min, zawracamy (razem 78,6 km).'}:x).concat(ret);
+}
+const ROUTES={
+  satLight:{label:'Sob · Light',color:'var(--c-light)',hex:'#2f8a46',type:'bike',pace:14,km:58.5,diff:'łatwa–średnia, długa',
+    src:'Szlak zielony Czeremcha → Siemiatycze, 58,5 km wg GreenVelo (inne źródła 58,7–60,1 km). Start 09:00, meta ok. 14:30.',pts:greenPts(false)},
+  satHard:{label:'Sob · Hard',color:'var(--c-hard)',hex:'#c2451f',type:'bike',pace:20,km:117,diff:'trudna (dystans)',
+    src:'Szlak zielony tam i z powrotem: 2 × 58,5 km. Start 07:15 z oświetleniem, meta ok. 14:15.',pts:greenPts(true)},
+  sunLight:{label:'Nd · Light',color:'var(--c-sun)',hex:'#2d5fb8',type:'bike',pace:14,km:22.0,diff:'łatwa',
+    src:'Szlak czerwony Green Velo na północ: Czeremcha → Dobrowoda 6,6 → Kleszczele 11,0 km (GreenVelo) i z powrotem. Zalew w Repczycach: wydłużenie do wyliczenia.',
+    pts:[{p:'czeremcha',km:0,visit:0,surf:'asfalt',info:'Start 10:00 po wymeldowaniu.'},{p:'dobrowoda',km:6.6,visit:0,surf:'drogi lokalne',info:''},{p:'kleszczele',km:11.0,visit:45,surf:'drogi lokalne',info:'Miasteczko, kawa. Ośrodek rekreacji MOR Green Velo w Repczycach z wieżą 25 m — dojazd do wyliczenia.'},{p:'czeremcha',km:22.0,visit:0,surf:'drogi lokalne',info:'Powrót tą samą drogą; pociąg 15:17.'}]},
+  sunHard:{label:'Nd · Hard',color:'var(--c-hard)',hex:'#c2451f',type:'bike',pace:20,km:98,kmSt:'or',diff:'trudna',
+    src:'Czeremcha → Siedlce ≈ 98 km (dystans drogowy samochodem, rome2rio). Trasę rowerową wyznaczcie w BRouter; na mapie tylko schemat.',
+    pts:[{p:'czeremcha',km:0,visit:0,surf:'—',info:'Start 07:15.'},{p:'siemiatycze',km:null,visit:20,surf:'drogi lokalne',info:'Przejazd przez Siemiatycze (orientacyjnie po drodze).'},{p:'siedlce',km:98,visit:0,surf:'—',info:'Pociąg IC 1126 15:42 lub TLK 1112 16:25 do Warszawy.',kmSt:'or'}]},
+  sunVisit:{label:'Nd · zwiedzanie',color:'var(--c-visit)',hex:'#8a5a36',type:'foot',pace:4,km:null,diff:'łatwa',
+    src:'Spacer lub spokojny rower po Czeremsze: stacja i Muzeum Kolejnictwa, Kuzawa z cerkwią św. Barbary. Kilometraż do wyliczenia; Kuzawa leży blisko granicy — sprawdź strefę.',
+    pts:[{p:'czeremcha',km:0,visit:60,surf:'chodnik',info:'Muzeum Kolejnictwa — godziny do sprawdzenia.'},{p:'kuzawa',km:null,visit:30,surf:'droga lokalna',info:'Cerkiew św. Barbary, ogród z „kwiatowym pociągiem”. Blisko granicy.',kmSt:'td'},{p:'czeremcha',km:null,visit:0,surf:'chodnik',info:'Pociąg 15:17.'}]},
+  friLight:{label:'Pt · rozjazd',color:'var(--c-light)',hex:'#2f8a46',type:'bike',pace:14,km:18.8,diff:'łatwa',
+    src:'Opcjonalnie po przyjeździe: Czeremcha ⇄ Zubacze szlakiem zielonym, 2 × 9,4 km. Start ok. 13:00, powrót przed 15:00.',
+    pts:[{p:'czeremcha',km:0,visit:0,surf:SURF,info:''},{p:'zubacze',km:9.4,visit:20,surf:SURF,info:INFO.zubacze},{p:'czeremcha',km:18.8,visit:0,surf:SURF,info:''}]}
+};
+const ROUTE_ORDER=['friLight','satLight','satHard','sunLight','sunHard','sunVisit'];
+let cur='satLight';
+const curR=()=>ROUTES[cur];
+
+/* ---------- Mapa ---------- */
+const BASE={"rivers":[[[52.4837,22.5128],[52.4794,22.5192],[52.4696,22.5234],[52.4678,22.5466],[52.4551,22.5443],[52.4306,22.5395],[52.4168,22.5408],[52.4171,22.5618],[52.4037,22.5616],[52.4022,22.587],[52.3924,22.6117],[52.3892,22.6527],[52.3905,22.6929],[52.3887,22.7161],[52.3875,22.7391],[52.3744,22.7655],[52.3742,22.8029],[52.3636,22.8248],[52.3616,22.8482],[52.3628,22.8721],[52.3741,22.9127],[52.3742,22.9371],[52.3638,22.9628],[52.3497,22.9788],[52.3354,23.0034],[52.3235,23.0443],[52.3081,23.0502],[52.2942,23.0466],[52.2824,23.0699],[52.2971,23.0947],[52.2972,23.117],[52.283,23.1325],[52.2817,23.1577],[52.2812,23.2012],[52.2548,23.2014],[52.2399,23.1987],[52.227,23.207],[52.2157,23.2428],[52.2156,23.265],[52.2155,23.2873],[52.2145,23.309],[52.213,23.3305],[52.2024,23.3518],[52.2013,23.3758],[52.2013,23.3995],[52.1878,23.398],[52.1745,23.4216],[52.1753,23.4638],[52.1767,23.491],[52.173,23.5123],[52.1605,23.4895],[52.1478,23.5052],[52.136,23.5127],[52.1323,23.5347],[52.1216,23.5121],[52.1188,23.5543],[52.1189,23.5951],[52.1079,23.6162],[52.0934,23.6217],[52.0821,23.6447],[52.0663,23.6442],[52.0514,23.6609],[52.0264,23.6613],[52.0101,23.661],[51.9858,23.685],[51.9734,23.6663],[51.96,23.6368]],[[52.0809,23.682],[52.0827,23.7194],[52.1069,23.7511],[52.0927,23.7749],[52.0926,23.827]],[[52.1606,23.6842],[52.1475,23.6434],[52.146,23.641],[52.1464,23.6197],[52.1478,23.5961],[52.1478,23.5525]],[[52.1892,23.6852],[52.2022,23.6876],[52.2272,23.6875],[52.2281,23.686]],[[52.4037,23.7755],[52.4027,23.7969],[52.4032,23.819]],[[52.5097,22.5202],[52.5239,22.5156],[52.5385,22.5018],[52.5475,22.4945],[52.5499,22.4835]],[[52.603,22.4104],[52.6037,22.388],[52.6294,22.3672]],[[52.6829,22.234],[52.6837,22.2122],[52.6842,22.1667]]],"border":[[[51.9733,23.6468],[51.9868,23.6612],[51.9935,23.6756],[52.0104,23.6648],[52.0493,23.6504],[52.0611,23.6432],[52.0729,23.6432],[52.0847,23.636],[52.0898,23.6252],[52.0915,23.6144],[52.0982,23.6108],[52.1067,23.6036],[52.1151,23.5964],[52.1219,23.5784],[52.1202,23.5316],[52.1252,23.5136],[52.159,23.4848],[52.1624,23.4884],[52.1742,23.492],[52.181,23.4884],[52.1708,23.4704],[52.1759,23.4632],[52.181,23.456],[52.186,23.4488],[52.1759,23.438],[52.1776,23.4272],[52.1827,23.42],[52.186,23.4056],[52.1827,23.3912],[52.1843,23.3876],[52.1928,23.3948],[52.1995,23.3948],[52.2012,23.3732],[52.2147,23.312],[52.2232,23.3012],[52.2198,23.2832],[52.2316,23.2112],[52.2401,23.1896],[52.2586,23.1968],[52.2722,23.1932],[52.2806,23.1824],[52.2857,23.1752],[52.289,23.168],[52.289,23.1644],[52.3481,23.2112],[52.365,23.2292],[52.3954,23.2688],[52.5102,23.3912],[52.5541,23.4812],[52.5862,23.5676],[52.6149,23.7368]]]};
+let map=null, routeLayer=null, layers={}, liveKm={};
+function cssv(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+function pinIcon(label,color){return L.divIcon({className:'',html:`<div class="pin" style="background:${color}"><span>${esc(label)}</span></div>`,iconSize:[28,28],iconAnchor:[14,28],popupAnchor:[0,-26]})}
+function buildBase(){
+  const g=L.layerGroup();
+  if(BASE){BASE.rivers.forEach(r=>L.polyline(r,{color:cssv('--river'),weight:5,opacity:.85,lineCap:'round',smoothFactor:1.5,interactive:false}).addTo(g));
+    BASE.border.forEach(b=>L.polyline(b,{color:cssv('--brick'),weight:2,dashArray:'10 6 2 6',opacity:.9,interactive:false}).addTo(g));}
+  const lbl=(c,t,cls)=>L.marker(c,{icon:L.divIcon({className:'',html:`<span class="maplbl ${cls||''}">${t}</span>`,iconSize:[0,0]}),interactive:false,keyboard:false}).addTo(g);
+  [['czeremcha','Czeremcha'],['zubacze','Zubacze'],['klukowicze','Klukowicze'],['tokary','Tokary'],['adamowo','Adamowo'],['mielnik','Mielnik'],['oslowo','Osłowo'],['mackowicze','Maćkowicze'],['stacja','Siemiatycze-Stacja'],['siemiatycze','Siemiatycze'],['kleszczele','Kleszczele'],['dobrowoda','Dobrowoda'],['siedlce','Siedlce']].forEach(([k,t])=>lbl(P[k].c,t));
+  lbl([52.315,22.98],'Bug','water'); lbl([52.45,23.6],'BIAŁORUŚ','country'); lbl([52.3,22.55],'POLSKA','country'); lbl([52.47,23.45],'granica państwa','bord');
+  return g;
+}
+function initMap(){
+  if(!window.L){$('#map').innerHTML='<div style="padding:20px">Nie udało się wczytać biblioteki mapy. Lista punktów obok działa normalnie.</div>';return}
+  map=L.map('map',{scrollWheelZoom:false}).setView([52.42,23.1],10);
+  try{let rt;new ResizeObserver(()=>{clearTimeout(rt);rt=setTimeout(()=>{map.invalidateSize();if(window.__lb)map.fitBounds(window.__lb)},120)}).observe($('#map'))}catch(e){}
+  addEventListener('load',()=>{map.invalidateSize();if(window.__lb)map.fitBounds(window.__lb)});
+  let tileOk=false;
+  const OSMA='© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+  const esri=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Tiles © Esri — Esri, HERE, Garmin, © OpenStreetMap'});
+  const esriTopo=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:19,attribution:'Tiles © Esri — Esri, HERE, Garmin, © OpenStreetMap'});
+  const osm=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:OSMA});
+  const isFile=location.protocol==='file:';
+  const tiles=isFile?esri:osm; tiles.addTo(map);
+  const cyc=L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',{subdomains:'abc',maxZoom:18,attribution:OSMA+', <a href="https://www.cyclosm.org">CyclOSM</a>'});
+  const topo=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{subdomains:'abc',maxZoom:17,attribution:OSMA+', SRTM, <a href="https://opentopomap.org">OpenTopoMap</a>'});
+  const bases=isFile?{'Mapa (Esri)':esri,'Topograficzna (Esri)':esriTopo,'Rowerowa (CyclOSM)':cyc,'OpenTopoMap':topo}:{'OpenStreetMap':osm,'Mapa (Esri)':esri,'Topograficzna (Esri)':esriTopo,'Rowerowa (CyclOSM)':cyc,'OpenTopoMap':topo};
+  L.control.layers(bases,null,{position:'topright'}).addTo(map);
+  [esri,esriTopo,osm,cyc,topo].forEach(t=>{if(t!==tiles)t.on('tileload',()=>tiles.fire('tileload'))});
+  let base=L.layerGroup();try{base=buildBase().addTo(map)}catch(e){console.warn(e)}
+  const note=()=>{$('#mapNote').innerHTML=(tileOk?'Podkład: OpenStreetMap. ':'Uproszczony podkład (ten widok blokuje zewnętrzne mapy): Bug, granica, miejscowości. Pełna mapa OSM — po otwarciu pliku HTML w Chrome lub Firefoksie. ')+'Linia ciągła prowadzi drogami przez punkty o przybliżonym położeniu, więc miejscami może odbiegać od szlaku. Kilometraż pochodzi z opisu GreenVelo; na miejscu jedziemy wg znaków szlaku. Przycisk w prawym górnym rogu mapy zmienia podkład (np. rowerowy CyclOSM).'};
+  tiles.on('tileload',()=>{if(!tileOk){tileOk=true;map.removeLayer(base);note()}}); note();
+  layers.rail=L.layerGroup().addTo(map); layers.stay=L.layerGroup().addTo(map); layers.attr=L.layerGroup().addTo(map);
+  [['czeremcha','Stacja Czeremcha'],['stacja','Stacja Siemiatycze'],['siedlce','Stacja Siedlce']].forEach(([k,n])=>L.marker(P[k].c,{icon:pinIcon('🚆','#333'),title:n}).bindPopup(`<b>${n}</b><br><a href="#dojazd">Rozkład</a>`).addTo(layers.rail));
+  L.polyline([P.czeremcha.c,P.stacja.c,P.siedlce.c],{color:'#555',weight:3,dashArray:'2 8'}).bindTooltip('Linia kolejowa Czeremcha–Siedlce–Warszawa (schemat)').addTo(layers.rail);
+  L.marker(P.czeremcha.c,{icon:pinIcon('⌂','#6f8f4e'),title:'Baza noclegowa'}).bindPopup('<b>Baza: okolice Czeremchy</b><br><a href="#noclegi">Porównanie noclegów</a>').addTo(layers.stay);
+  ATTR.forEach(a=>{if(['czeremcha','mielnik','siemiatycze'].includes(a.p)&&!a.pin)return;L.marker(P[a.p].c,{icon:pinIcon('★','#8a5a36'),title:a.n}).bindTooltip(a.n).bindPopup(()=>attrPopup(a)).addTo(layers.attr)});
+  const box=$('#layerToggles');
+  box.innerHTML=[['route','🚴 Wybrana trasa'],['attr','📍 Atrakcje'],['stay','🏡 Noclegi'],['rail','🚆 Kolej'],['geo','🧭 Geocaching']].map(([k,l])=>`<label><input type="checkbox" data-layer="${k}" ${k==='geo'?'':'checked'}> ${l}</label>`).join('');
+  box.addEventListener('change',e=>{const k=e.target.dataset.layer;if(!k)return;
+    if(k==='geo'){e.target.checked=false;openDlg('Geocaching','Brak zweryfikowanych skrytek','<p>Nie pokazujemy skrytek bez potwierdzonego statusu i współrzędnych. Instrukcja jest w sekcji „Co po drodze”.</p>');return}
+    if(k==='route'){e.target.checked?routeLayer.addTo(map):map.removeLayer(routeLayer);return}
+    e.target.checked?layers[k].addTo(map):map.removeLayer(layers[k])});
+}
+function segInfo(r,i){const x=r.pts[i],prev=i?r.pts[i-1]:null;const d=(x.km!=null&&prev&&prev.km!=null)?x.km-prev.km:(i===0?0:null);return{km:x.km,d,ride:d!=null?d/r.pace*60:null}}
+function drawRoute(){
+  if(!map)return; if(routeLayer)map.removeLayer(routeLayer);
+  const r=curR(); routeLayer=L.layerGroup();
+  const coords=r.pts.map(x=>P[x.p].c), live=liveKm[cur];
+  if(live&&live.geom)L.polyline(live.geom,{color:r.hex,weight:5,opacity:.9}).addTo(routeLayer);
+  else L.polyline(coords,{color:r.hex,weight:5,dashArray:'10 7',opacity:.95}).bindTooltip('Schemat — kilometraż wg źródła').addTo(routeLayer);
+  const seen=new Set();
+  r.pts.forEach((x,i)=>{if(seen.has(x.p))return;seen.add(x.p);
+    L.marker(P[x.p].c,{icon:pinIcon(String(i+1),r.hex),title:(i+1)+'. '+P[x.p].n,zIndexOffset:1000}).bindTooltip((i+1)+'. '+P[x.p].n,{direction:'top',offset:[0,-24]}).bindPopup(()=>pointPopup(i)).addTo(routeLayer)});
+  const tog=$('#layerToggles input[data-layer="route"]'); if(!tog||tog.checked)routeLayer.addTo(map);
+  window.__lb=L.latLngBounds(coords).pad(.12);map.invalidateSize();map.fitBounds(window.__lb);
+  tryRouting(cur,[...new Set(r.pts.map(x=>x.p))].map(p=>P[p].c),r.type);
+}
+function pointPopup(i){const r=curR(),x=r.pts[i],p=P[x.p],s=segInfo(r,i);
+  return `<div class="tag">Punkt ${i+1} · ${esc(r.label)}</div><b>${esc(p.n)}</b>
+  <div class="small" style="margin-top:6px;display:grid;gap:2px">
+   <span>📍 od startu: <b>${s.km!=null?fmt(s.km)+' km':'do wyliczenia'}</b> ${x.kmSt?ST[x.kmSt]:''}</span>
+   <span>↔ od poprzedniego: ${s.d!=null?fmt(s.d)+' km':'—'} · ⏱ ${s.ride!=null?hm(s.ride):'—'}</span>
+   <span>🏛 postój: ${x.visit?x.visit+' min':'—'} · 🛤 ${esc(x.surf)}</span>${x.info?`<span>ℹ️ ${esc(x.info)}</span>`:''}</div>
+  <div class="photo-slot" style="margin-top:6px"><a href="${commons(p.n)}" target="_blank" rel="noopener">Zdjęcia (Commons)</a> · <a href="${gmaps(p.q)}" target="_blank" rel="noopener">Google Maps</a></div>`}
+function renderRouteSeg(){$('#routeSeg').innerHTML=ROUTE_ORDER.map(k=>`<button type="button" data-r="${k}" aria-pressed="${k===cur}"><i style="background:${ROUTES[k].color}"></i>${esc(ROUTES[k].label)}</button>`).join('')}
+$('#routeSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setRoute(b.dataset.r)});
+function renderPoints(){const r=curR();
+  $('#pointList').innerHTML=`<div class="card small"><b>${esc(r.label)}</b> · ${esc(r.diff)}<br>${esc(r.src)}</div>`+r.pts.map((x,i)=>{const s=segInfo(r,i);
+   return `<button class="pt" type="button" data-i="${i}"><span class="n" style="background:${r.hex}">${i+1}</span><span><b>${esc(P[x.p].n)}${x.ret?' (powrót)':''}</b><span class="meta num">${s.km!=null?fmt(s.km)+' km':'km do wyliczenia'}${s.d!=null&&i?' · +'+fmt(s.d)+' km':''}${x.visit?' · postój '+x.visit+' min':''}</span>${x.kmSt==='td'?' <span class="st td">do sprawdzenia</span>':''}</span></button>`}).join('')}
+$('#pointList').addEventListener('click',e=>{const b=e.target.closest('.pt');if(!b)return;const i=+b.dataset.i,r=curR();
+  if(map){map.setView(P[r.pts[i].p].c,12);routeLayer.eachLayer(l=>{if(l.options&&l.options.title===(r.pts.findIndex(x=>x.p===r.pts[i].p)+1)+'. '+P[r.pts[i].p].n)l.openPopup()})}else openDlg(P[r.pts[i].p].n,'Punkt '+(i+1),pointPopup(i))});
+function rstats(r){const km=r.km, ride=km!=null?km/r.pace*60:null, vis=r.pts.reduce((a,p)=>a+(p.visit||0),0);
+  const attrs=new Set(r.pts.map(x=>x.p).filter(p=>ATTR.some(a=>a.p===p))).size;return{km,ride,vis,tot:ride!=null?ride+vis:null,attrs}}
+function renderStats(){const r=curR(),s=rstats(r),live=liveKm[cur];
+  $('#routeStats').innerHTML=[[s.km!=null?fmt(s.km)+' km':'—','dystans (źródło)'],[s.ride!=null?hm(s.ride):'—',(r.type==='foot'?'marsz':'jazda')+' przy '+r.pace+' km/h'],[s.tot!=null?hm(s.tot):'—','z postojami'],[r.diff,'trudność'],[String(s.attrs),'atrakcje'],['0','zweryfikowane skrytki']]
+   .map(([v,l])=>`<div class="stat"><div class="v" style="font-size:${v.length>9?'1.15rem':'1.7rem'};color:${r.hex}">${esc(v)}</div><div class="l">${l}</div></div>`).join('')}
+function setRoute(k){cur=k;renderRouteSeg();renderPoints();try{drawRoute()}catch(e){console.warn(e)}renderStats()}
+async function tryRouting(key,coords,type){
+  if(liveKm[key]!==undefined||key==='sunHard')return; liveKm[key]=null;
+  const url=`https://routing.openstreetmap.de/${type==='foot'?'routed-foot':'routed-bike'}/route/v1/driving/${coords.map(c=>c[1]+','+c[0]).join(';')}?overview=full&geometries=geojson`;
+  try{const ctl=new AbortController();setTimeout(()=>ctl.abort(),8000);const res=await fetch(url,{signal:ctl.signal});if(!res.ok)throw 0;const j=await res.json();const rt=j.routes&&j.routes[0];if(!rt)throw 0;
+    liveKm[key]={km:rt.distance/1000,geom:rt.geometry.coordinates.map(c=>[c[1],c[0]])};if(key===cur){drawRoute();renderStats()}}catch(e){}
+}
+
+/* ---------- Dzień po dniu ---------- */
+let grp='light';
+const DAYS={
+ light:[
+  {n:'Piątek',d:'20 listopada · przyjazd',c:'var(--mk-yellow)',tl:[['10:24','Odjazd z Warszawy Wschodniej, TLK 1012. Rowery w przedziale rowerowym (rezerwacja).'],['12:21','Czeremcha. Bagaże do bazy (zameldowanie wg obiektu).'],['13:00','Opcjonalny rozjazd: Czeremcha ⇄ Zubacze, 18,8 km, drewniana cerkiew z 1895 r.'],['15:00','Powrót przed zmrokiem (15:29). Zakupy w Czeremsze.'],['18:00','Wspólna kolacja, odprawa przed sobotą, przy kominku.']]},
+  {n:'Sobota',d:'21 listopada · 58,5 km',c:'var(--c-light)',tl:[['08:00','Śniadanie, pakowanie prowiantu i termosów.'],['09:00','Start z Czeremchy szlakiem zielonym.'],['09:45','Zubacze, km 9,4 — cerkiew (15 min).'],['10:45','Tokary, km 20–24 — cerkiew; odcinek przy granicy jedziemy szlakiem.'],['12:15','Mielnik, km 39,3 — obiad, Góra Zamkowa, taras kopalni kredy (ok. 45 min).'],['13:00','Dalej nad Bugiem: Osłowo, Maćkowicze.'],['14:30','Siemiatycze, km 58,5. Meta, ciepła kawa.'],['15:00','Bus z rowerami do Czeremchy (do wyceny) albo odpoczynek w Siemiatyczach i REG 19:16 → 19:44.'],['17:00','Balia i kominek, kolacja, gry.']]},
+  {n:'Niedziela',d:'22 listopada · powrót',c:'var(--c-sun)',tl:[['08:30','Śniadanie, sprzątanie, wymeldowanie (godzina wg obiektu).'],['10:00','Wariant A: rowerem na północ szlakiem czerwonym Green Velo do Kleszczel (11 km) i z powrotem, razem 22 km.'],['10:00','Wariant B: zwiedzanie Czeremchy — Muzeum Kolejnictwa (godziny do sprawdzenia), Kuzawa.'],['13:30','Obiad w Czeremsze, rowery na stację.'],['15:17','TLK 1112 do Warszawy Wschodniej (17:21). W Siedlcach o 16:25 dosiada się grupa Hard.']]}
+ ],
+ hard:[
+  {n:'Piątek',d:'20 listopada · przyjazd',c:'var(--mk-yellow)',tl:[['10:24','Odjazd z Warszawy Wschodniej, TLK 1012.'],['12:21','Czeremcha, bagaże do bazy.'],['13:00','Rozjazd do Zubaczy i z powrotem (18,8 km): sprawdzenie świateł, ustalenie tempa i kolejności prowadzenia.'],['18:00','Kolacja węglowodanowa, ładowanie lampek i powerbanków, wcześnie spać.']]},
+  {n:'Sobota',d:'21 listopada · 117 km',c:'var(--c-hard)',tl:[['06:15','Śniadanie.'],['07:15','Start z oświetleniem (wschód 06:58). Tempo ok. 20 km/h.'],['09:15','Mielnik, km 39,3 — 15 min. Punkt decyzji: przy opóźnieniu ponad 30 min zawracamy (razem 78,6 km).'],['10:30','Siemiatycze, km 58,5 — postój 40 min, ciepły posiłek.'],['11:10','Powrót tą samą trasą przez Mielnik i Tokary.'],['14:05','Czeremcha, km 117. Zapas do zmroku ok. 1 h 20 min.'],['17:00','Balia, kolacja, regeneracja.']]},
+  {n:'Niedziela',d:'22 listopada · ≈ 98 km',c:'var(--c-hard)',tl:[['06:15','Śniadanie, wymeldowanie (bagaż do pociągu jedzie z grupą Light).'],['07:15','Start Czeremcha → Siedlce, trasa z BRouter (bez S8 i dróg ekspresowych).'],['10:30','Postój w połowie trasy (orientacyjnie okolice Siemiatycz/Drohiczyna).'],['13:30','Siedlce, ok. 98 km. Obiad.'],['15:42','IC 1126 do Warszawy (16:33) albo TLK 1112 o 16:25 razem z grupą Light (17:21).'],['—','Wersja 2-dniowa do Warszawy: nocleg w okolicy Siedlec, w poniedziałek dalsza jazda — dystans do wyliczenia.']]}
+ ]};
+function renderDays(){$('#daysBox').innerHTML=DAYS[grp].map(d=>`<article class="day"><span class="stripe" style="background:${d.c}"></span><div><div class="dname">${d.n}</div><div class="ddate">${d.d}</div></div><ol class="tl">${d.tl.map(([t,x])=>`<li><time>${t}</time><div>${esc(x)}</div></li>`).join('')}</ol></article>`).join('');
+  $$('#groupSeg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g===grp))}
+$('#groupSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(b){grp=b.dataset.g;renderDays()}});
+
+/* ---------- Atrakcje ---------- */
+const ATTR=[
+  {id:'zubacze',p:'zubacze',km:'9,4',t:'cerkwie',n:'Cerkiew w Zubaczach',d:'Drewniana cerkiew Opieki Matki Bożej z 1895 r. z dzwonnicą z tego samego okresu.',visit:15,price:'z zewnątrz bezpłatnie',hours:'wnętrze: do sprawdzenia',src:'komoot'},
+  {id:'tokary',p:'tokaryc',km:'20,2',t:'cerkwie',n:'Tokary — cerkiew',d:'Wieś na zielonym szlaku tuż przy granicy, z cerkwią. Okolice przejścia granicznego tylko po szlaku.',visit:10,price:'z zewnątrz bezpłatnie',hours:'do sprawdzenia',src:'GreenVelo'},
+  {id:'zamkowa',p:'mielnik',pin:true,km:'39,3',t:'widoki',n:'Góra Zamkowa w Mielniku',d:'Grodzisko z XI–XII w. z resztkami zamku i fosą. Najlepszy widok na zakola Bugu.',visit:25,price:'bezpłatnie',hours:'teren otwarty',src:'GreenVelo'},
+  {id:'kopalnia',p:'mielnik',km:'≈ 40',t:'widoki',n:'Taras widokowy kopalni kredy',d:'Jedyna czynna odkrywkowa kopalnia kredy w Polsce, oglądana z tarasu przy ul. Białej. Na teren kopalni nie wchodzimy.',visit:20,price:'do sprawdzenia',hours:'do sprawdzenia',src:'NG Traveler'},
+  {id:'centrum',p:'mielnik',km:'39,3',t:'muzea',n:'Centrum Historii Ziemi Mielnickiej',d:'Dzieje Mielnika, m.in. przywilej mielnicki z 1501 r. W Mielniku są też prywatne muzea: etnograficzne i geologiczne.',visit:40,price:'do sprawdzenia',hours:'w listopadzie możliwe tylko po umówieniu',src:'GreenVelo, hajnowka.pl'},
+  {id:'mackowicze',p:'mackowicze',km:'47,9',t:'cerkwie',n:'Maćkowicze i most w Olendrach',d:'Cerkiew przy szlaku, dalej stalowy most kolejowy i schrony Linii Mołotowa — oglądamy tylko z zewnątrz.',visit:10,price:'bezpłatnie',hours:'teren otwarty',src:'GreenVelo, decathlon-outdoor'},
+  {id:'siemiatycze',p:'siemiatycze',pin:true,km:'58,5',t:'miasta',n:'Siemiatycze',d:'Miasto księżnej Jabłonowskiej: kościół Wniebowzięcia NMP, klasztor, synagoga, szkoła talmudyczna, cerkiew, sfinksy przy bramie pałacowej.',visit:30,price:'bezpłatnie z zewnątrz',hours:'wnętrza do sprawdzenia',src:'GreenVelo'},
+  {id:'muzeum',p:'czeremcha',pin:true,km:'0',t:'muzea',n:'Muzeum Kolejnictwa w Czeremsze',d:'Pamiątki dawnego węzła kolejowego, który przed wojną łączył wschód Polski z centrum.',visit:60,price:'do sprawdzenia',hours:'do sprawdzenia',src:'komoot, wprost.pl'},
+  {id:'kuzawa',p:'kuzawa',km:'—',t:'cerkwie',n:'Kuzawa',d:'Cerkiew św. Barbary i przydomowy ogród z „kwiatowym pociągiem”. Wieś blisko granicy — sprawdź strefę.',visit:30,price:'z zewnątrz bezpłatnie',hours:'do sprawdzenia',src:'komoot'},
+  {id:'kleszczele',p:'kleszczele',km:'N 11,0',t:'miasta',n:'Kleszczele i zalew Repczyce',d:'Miasteczko na czerwonym szlaku Green Velo; w Repczycach ośrodek rekreacji z pomostami, wiatą z miejscem na ognisko i wieżą 25 m.',visit:45,price:'bezpłatnie',hours:'teren otwarty',src:'GreenVelo, komoot'}
+];
+const ACC={cerkwie:'var(--mk-blue)',widoki:'var(--mk-green)',muzea:'var(--mk-yellow)',miasta:'var(--mk-red)'};
+let attrF='all';
+function attrPopup(a){return `<div class="tag">${esc(a.t)} · km ${esc(a.km)}</div><b>${esc(a.n)}</b><p class="small" style="margin:4px 0">${esc(a.d)}</p><div class="small">⏱ ok. ${a.visit} min · 💳 ${esc(a.price)}<br>🕘 ${esc(a.hours)}</div><p style="margin-top:8px"><button class="btn small" type="button" onclick="attrDetails('${a.id}')">Szczegóły</button></p>`}
+function renderAttr(){
+  $('#attrFilters').innerHTML=[['all','Wszystkie'],['cerkwie','Cerkwie'],['widoki','Widoki'],['muzea','Muzea'],['miasta','Miasteczka']].map(([k,l])=>`<button type="button" data-f="${k}" aria-pressed="${k===attrF}">${l}</button>`).join('');
+  $('#attrGrid').innerHTML=ATTR.filter(a=>attrF==='all'||a.t===attrF).map(a=>{const sure=!/sprawdz|umówieniu/.test(a.hours+a.price);
+   return `<article class="card attr" style="--acc:${ACC[a.t]}"><div class="top"><span class="tag">${esc(a.t)}</span><span class="kmchip">km ${esc(a.km)}</span></div><h3>${esc(a.n)}</h3><p class="small">${esc(a.d)}</p>
+   <dl class="kv"><dt>Zwiedzanie</dt><dd>ok. ${a.visit} min</dd><dt>Wstęp</dt><dd>${esc(a.price)}</dd><dt>Listopad</dt><dd>${esc(a.hours)} ${sure?ST.or:ST.td}</dd></dl>
+   <div class="btns"><button class="btn sec small" type="button" onclick="attrDetails('${a.id}')">Szczegóły</button><a class="btn sec small" href="${gmaps(a.n)}" target="_blank" rel="noopener">Google Maps</a></div></article>`}).join('')}
+$('#attrFilters').addEventListener('click',e=>{const b=e.target.closest('button');if(b){attrF=b.dataset.f;renderAttr()}});
+function attrDetails(id){const a=ATTR.find(x=>x.id===id);
+  openDlg(a.n,a.t+' · km '+a.km,`<p>${esc(a.d)}</p><dl class="kv"><dt>Zwiedzanie</dt><dd>ok. ${a.visit} min</dd><dt>Wstęp</dt><dd>${esc(a.price)}</dd><dt>Listopad</dt><dd>${esc(a.hours)}</dd><dt>Rezerwacja</dt><dd>do sprawdzenia</dd><dt>Źródło</dt><dd>${esc(a.src)}</dd></dl>
+  <div class="photo-slot">Zdjęć nie osadzamy bez potwierdzonej licencji: <a href="${commons(a.n)}" target="_blank" rel="noopener">Wikimedia Commons</a> · <a href="${gmaps(a.n)}" target="_blank" rel="noopener">Mapy Google</a></div>
+  <p class="small"><b>Dojazd:</b> ${a.km.startsWith('N')?'szlak czerwony z Czeremchy na północ (niedziela, Light)':a.km==='—'||a.km==='0'?'pieszo lub rowerem z bazy w Czeremsze':'zielony szlak, km '+esc(a.km)+' od Czeremchy (sobota)'}.</p>`)}
+window.attrDetails=attrDetails;
+
+/* ---------- Dialog ---------- */
+function openDlg(t,tag,html){$('#dlgTitle').textContent=t;$('#dlgTag').textContent=tag;$('#dlgBody').innerHTML=html;const d=$('#dlg');d.showModal?(d.open||d.showModal()):d.setAttribute('open','')}
+function closeDlg(){const d=$('#dlg');d.close?d.close():d.removeAttribute('open')}
+$('#dlgClose').addEventListener('click',closeDlg); $('#dlg').addEventListener('click',e=>{if(e.target.id==='dlg')closeDlg()});
+
+/* ---------- Noclegi ---------- */
+const STAYS=[
+  {id:'pompka',n:'Stara Pompka (3 studia)',loc:'Czeremcha, ok. 0,9 km od centrum',cap:10,bed:'Norka 2 os. + Folk Art Studio 4 os. + Studio na Górze 4 os.',eq:'Wi-Fi, patio, pralka (Studio na Górze); styl ludowy; najbliżej stacji',balia:'brak informacji',night:null,src:'https://www.gites.fr/gites_czeremcha_250789.html',plus:'pieszo na pociąg'},
+  {id:'lipowe',n:'Lipowe Zapłocie',loc:'gm. Czeremcha, ok. 7,9 km od centrum',cap:13,bed:'3 apartamenty po 4–5 os.',eq:'patio; zwierzęta mile widziane',balia:'brak informacji',night:null,src:'https://www.gites.fr/gites_czeremcha_250789.html',plus:'jedyna opcja na 10+ w jednym miejscu'},
+  {id:'zakatek',n:'Podlaski Zakątek — Duży Zakątek',loc:'Bereżyszcze, ok. 4–5 km od stacji',cap:6,bed:'62 m², 2 sypialnie (2 łóżka podwójne) + sofa (Mały Zakątek nieczynny po 15.11)',eq:'kominek, aneks ze zmywarką; wypożyczenie rowerów 30 zł/dzień',balia:'balia zewnętrzna: 180 zł/dzień + rozpalenie 50–230 zł (opis sprzeczny)',night:512,nightNote:'cena z listingu Slowhop, nie na nasz termin',src:'https://slowhop.com/en/places/3338-podlaski-zakatek.html',plus:'kominek i balia'},
+  {id:'urszulanka',n:'Siedlisko Urszulanka / Gajki',loc:'gm. Czeremcha, ok. 5,5 km od centrum',cap:7,bed:'3 sypialnie',eq:'patio',balia:'brak informacji',night:null,src:'https://www.gites.fr/gites_czeremcha_250789.html',plus:'dom dla 7'},
+  {id:'urszulanka2',n:'Siedlisko Urszulanka Dom',loc:'Policzna, ok. 11,4 km od Czeremchy',cap:8,bed:'3 jednostki po 2–4 os.',eq:'patio; zwierzęta mile widziane',balia:'brak informacji',night:null,src:'https://www.gites.fr/gites_czeremcha_250789.html',plus:'dalej od stacji'},
+  {id:'arche',n:'Arche Siedliska (Miedwieżyki, Rogacze, Gołubowszczyzna)',loc:'gm. Milejczyce, 6–11 km od Czeremchy',cap:12,bed:'3 domy po 4 os., 2 sypialnie',eq:'klimatyzacja; trzy osobne lokalizacje',balia:'brak informacji',night:null,src:'https://www.gites.fr/gites_czeremcha_250789.html',plus:'rezerwa, gdy brak wolnych'}
+];
+function renderStays(){const n=+$('#nGuests').value;
+  $('#stayGrid').innerHTML=STAYS.map(s=>{const per=s.night?s.night*2/Math.min(n,s.cap):null;
+   return `<article class="card"><div class="tag">${esc(s.loc)}</div><h3>${esc(s.n)}</h3>
+   <dl class="kv" style="margin-top:8px"><dt>Miejsca</dt><dd>${s.cap} ${s.cap<n?'<span class="st td">za mało dla '+n+'</span>':''}</dd><dt>Układ</dt><dd>${esc(s.bed)}</dd><dt>Wyposażenie</dt><dd>${esc(s.eq)}</dd><dt>Balia/sauna</dt><dd>${esc(s.balia)}</dd>
+   <dt>Za noc</dt><dd>${s.night?zl(s.night)+' za dom '+ST.or:'<span class="st td">do wyceny</span>'}</dd><dt>2 noce</dt><dd>${s.night?zl(s.night*2):'—'}</dd>
+   <dt>Na osobę</dt><dd class="num">${s.night?[6,8,10].map(k=>k<=s.cap?k+' os.: '+zl(s.night*2/k):'').filter(Boolean).join(' · '):'—'}</dd><dt>Termin</dt><dd>${ST.td}</dd></dl>
+   <p class="small muted" style="margin-top:8px">${esc(s.plus)}${s.nightNote?' · '+esc(s.nightNote):''}</p>
+   <div class="btns" style="margin-top:10px"><a class="btn sec small" href="${s.src}" target="_blank" rel="noopener">Oferta</a><a class="btn sec small" href="${gmaps(s.n+' '+s.loc)}" target="_blank" rel="noopener">Mapa i zdjęcia</a></div></article>`}).join('')}
+$('#nGuests').addEventListener('change',renderStays);
+
+/* ---------- Koszty kolei ---------- */
+const FARE={wwaCz:61,czWwa:61,siedWwa:34,reg:12,bikeIC:11.9};
+function renderTrain(){
+  const light=FARE.wwaCz+FARE.czWwa+2*FARE.bikeIC, hard=FARE.wwaCz+FARE.siedWwa+2*FARE.bikeIC;
+  $('#trainCost').innerHTML=`<thead><tr><th>Grupa</th><th class="r">Light</th><th class="r">Hard</th></tr></thead><tbody>`+[1,6,8,10].map(n=>`<tr><td>${n===1?'1 osoba':n+' osób'}</td><td class="r">${zl(light*n)}</td><td class="r">${zl(hard*n)}</td></tr>`).join('')+`</tbody>`;
+}
+
+/* ---------- Budżet ---------- */
+const EXTRAS=[{id:'x_bus',l:'Bus z przyczepką Siemiatycze → Czeremcha (sobota)'},{id:'x_balia',l:'Balia / sauna (jeśli nie w cenie)'},{id:'x_rent',l:'Wypożyczenie rowerów na miejscu'},{id:'x_museum',l:'Muzea (Czeremcha, Mielnik)'},{id:'x_hardnight',l:'Nocleg Hard w okolicy Siedlec (wersja 2-dniowa)'},{id:'x_guide',l:'Lokalna przewodniczka'}];
+function renderBudgetInputs(){$('#bStay').innerHTML=STAYS.map(s=>`<option value="${s.id}">${esc(s.n)}${s.night?'':' (do wyceny)'}</option>`).join('');
+  $('#bExtras').innerHTML=EXTRAS.map(x=>`<label><input type="checkbox" id="${x.id}" ${['x_bus','x_balia'].includes(x.id)?'checked':''}> <span>${esc(x.l)} ${ST.td}</span></label>`).join('')}
+function budgetFor(n,sid,o){const s=STAYS.find(x=>x.id===sid);const h=Math.min(o.hard,n),l=n-h;
+  const conf=[['Rowery PKP IC (2 × 11,90 zł × '+n+')',2*FARE.bikeIC*n]];
+  const orient=[['Pociąg Light: 61 + 61 zł × '+l,(FARE.wwaCz+FARE.czWwa)*l],['Pociąg Hard: 61 + 34 zł × '+h,(FARE.wwaCz+FARE.siedWwa)*h],['Jedzenie ('+o.food+' zł/os.)',o.food*n]];
+  if(s.night)orient.push(['Nocleg '+s.n+' (2 × '+s.night+' zł)',s.night*2]);
+  const todo=[];if(!s.night)todo.push('Nocleg: '+s.n);if(s.cap<n)todo.push('Dodatkowe miejsca — obiekt mieści '+s.cap+' os.');EXTRAS.forEach(x=>{if(o.extras.includes(x.id))todo.push(x.l)});
+  const sc=conf.reduce((a,b)=>a+b[1],0),so=orient.reduce((a,b)=>a+b[1],0),res=(sc+so)*o.reserve/100,tot=sc+so+res;
+  return{conf,orient,todo,res,tot,per:tot/n,transport:conf[0][1]+orient[0][1]+orient[1][1],stay:s.night?s.night*2:null}}
+const readOpts=()=>({hard:+$('#bHard').value||0,food:+$('#bFood').value||0,reserve:+$('#bReserve').value||0,extras:EXTRAS.filter(x=>$('#'+x.id).checked).map(x=>x.id)});
+let lastB=null;
+function renderBudget(){const n=+$('#bN').value,sid=$('#bStay').value,o=readOpts(),b=budgetFor(n,sid,o);lastB={n,b};
+  $('#bPer').textContent=zl(b.per);$('#bTotal').innerHTML=`Grupa ${n} os.: <b>${zl(b.tot)}</b> (w tym rezerwa ${zl(b.res)}). Pozycje „do wyceny” nie są wliczone.`;
+  const li=a=>a.map(([l,v])=>`<li>${esc(l)}: <b class="num">${zl(v)}</b></li>`).join('');
+  $('#bBuckets').innerHTML=`<div class="bucket ok"><h4>1. Potwierdzone</h4><ul>${li(b.conf)}</ul></div><div class="bucket or"><h4>2. Orientacyjne</h4><ul>${li(b.orient)}</ul></div><div class="bucket td"><h4>3. Do wyceny (${b.todo.length})</h4><ul>${b.todo.map(t=>`<li>${esc(t)}</li>`).join('')||'<li>brak</li>'}</ul></div>`;
+  $('#bCompare').innerHTML=`<thead><tr><th>Grupa</th><th class="r">Razem</th><th class="r">Na osobę</th><th class="r">Transport</th><th class="r">Noclegi</th><th class="r">Atrakcje / dodatki</th></tr></thead><tbody>`+[6,8,10].map(k=>{const x=budgetFor(k,sid,{...o,hard:Math.min(o.hard,k)});return `<tr><td>${k} os.</td><td class="r">${zl(x.tot)}</td><td class="r">${zl(x.per)}</td><td class="r">${zl(x.transport)}</td><td class="r">${x.stay!=null?zl(x.stay):'do wyceny'}</td><td class="r">do wyceny</td></tr>`}).join('')+`</tbody>`;
+  renderNumbers()}
+['#bN','#bStay','#bHard','#bFood','#bReserve','#bExtras'].forEach(s=>['input','change'].forEach(ev=>$(s).addEventListener(ev,renderBudget)));
+
+/* ---------- W liczbach ---------- */
+let numG='light';
+function renderNumbers(){if(!lastB)return;
+  const L1=numG==='light';const fri=18.8, sat=L1?58.5:117, sun=L1?22:98;const bike=fri+sat+sun;
+  const ride=(fri/14+sat/(L1?14:20)+sun/(L1?14:20))*60;
+  const attrs=L1?ATTR.filter(a=>!['kuzawa','muzeum'].includes(a.id)).length:6;
+  $('#numbers').innerHTML=[[fmt(bike),'km łącznie (z piątkowym rozjazdem)'],[fmt(bike),'km rowerem'],['—','km pieszo (zwiedzanie, do wyliczenia)'],[String(attrs),'atrakcje po drodze'],['0','skrytki (zweryfikowane)'],[hm(ride),'czas jazdy'],['2','noclegi'],[zl(lastB.b.tot),'koszt grupy ('+lastB.n+' os.)'],[zl(lastB.b.per),'na osobę']]
+   .map(([v,l])=>`<div class="stat"><div class="v" style="font-size:${v.length>9?'1.25rem':'1.9rem'};color:${L1?'#9fdcb0':'#f3a07c'}">${v}</div><div class="l">${l}</div></div>`).join('');
+  $$('#numSeg button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.g===numG))}
+$('#numSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(b){numG=b.dataset.g;renderNumbers()}});
+
+/* ---------- Checklista ---------- */
+const CL={'Odzież':['bielizna termiczna','warstwa ocieplająca','kurtka przeciwdeszczowa i przeciwwiatrowa','spodnie odpowiednie do aktywności','ciepłe rękawiczki (dwie pary dla Hard)','czapka lub opaska pod kask','zapasowe skarpety','odzież na wieczór'],
+ 'Sprzęt rowerowy':['sprawny rower po przeglądzie','oświetlenie przednie i tylne + zapasowe baterie','kask','odblaski','zapasowa dętka lub zestaw naprawczy','pompka i podstawowe narzędzia','wodoodporne sakwy','powerbank'],
+ 'Trekking i nawigacja':['wygodne obuwie z dobrą przyczepnością','mapa offline (zielony i czerwony szlak)','naładowany telefon','latarka czołowa','termos','woda i prowiant','apteczka','dokumenty i ubezpieczenie'],
+ 'Geocaching':['telefon z mapami offline','aplikacja geocachingowa','długopis','małe przedmioty na wymianę (jeśli zasady skrytki pozwalają)'],
+ 'Na nocleg':['ręcznik i klapki do balii/sauny','strój kąpielowy','kosmetyki','wygodne ubranie','gry planszowe (jeśli chcesz)']};
+const CLKEY='dreptak-podlasie-cl';let clS={};try{clS=JSON.parse(localStorage.getItem(CLKEY)||'{}')}catch(e){}
+function renderCL(){let i=0;$('#checklist').innerHTML=Object.entries(CL).map(([g,it])=>`<fieldset><legend>${g}</legend><div class="checks">${it.map(x=>`<label><input type="checkbox" id="cl${i++}" data-k="${esc(g+'|'+x)}" ${clS[g+'|'+x]?'checked':''}> ${esc(x)}</label>`).join('')}</div></fieldset>`).join('');updCL()}
+function updCL(){const a=$$('#checklist input'),on=a.filter(x=>x.checked).length;$('#clBar').style.width=(on/a.length*100)+'%';$('#clCount').textContent=on+' z '+a.length}
+const saveCL=()=>{try{localStorage.setItem(CLKEY,JSON.stringify(clS))}catch(e){}};
+$('#checklist').addEventListener('change',e=>{clS[e.target.dataset.k]=e.target.checked;saveCL();updCL()});
+$('#clAll').addEventListener('click',()=>{$$('#checklist input').forEach(x=>{x.checked=true;clS[x.dataset.k]=true});saveCL();updCL()});
+$('#clNone').addEventListener('click',()=>{$$('#checklist input').forEach(x=>{x.checked=false;clS[x.dataset.k]=false});saveCL();updCL()});
+const clText=()=>'Dreptak Podlasie 20–22.11.2026 — co zabrać\n\n'+Object.entries(CL).map(([g,it])=>g.toUpperCase()+'\n'+it.map(x=>(clS[g+'|'+x]?'[x] ':'[ ] ')+x).join('\n')).join('\n\n');
+
+/* ---------- Formularz i środowisko ---------- */
+$('#copyTitle').addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('#payTitle').textContent);$('#copyTitle').textContent='Skopiowano'}catch(e){const r=document.createRange();r.selectNodeContents($('#payTitle'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('#copyTitle').textContent='Zaznaczono'}setTimeout(()=>$('#copyTitle').textContent='Kopiuj',2500)});
+$('#fName').addEventListener('input',()=>{$('#payTitle').textContent='Dreptak Podlasie 20–22.11.2026 – '+($('#fName').value.trim()||'[Imię i nazwisko]')});
+const inViewer=!!(window.claude&&typeof window.claude.use==='function');
+function fStatus(kind,t,x){const s=$('#formStatus');s.className='alert'+(kind?' '+kind:'');s.innerHTML=`<strong>${t}</strong><p class="small">${x}</p>`}
+const FF=[['fName','name'],['fEmail','email'],['fPhone','phone'],['fVariant','variant'],['fSun','sunday'],['fSatBack','satBack'],['fOwnBike','ownBike'],['fTrainBike','trainBike'],['fStay','stay'],['fSauna','sauna'],['fLimits','limits'],['fNotes','notes']];
+function readForm(){const o={};FF.forEach(([i,k])=>o[k]=$('#'+i).value.trim());o.consent=true;o.updatedAt=new Date().toISOString();return o}
+function fillForm(d){FF.forEach(([i,k])=>{if(d[k]!=null)$('#'+i).value=d[k]});$('#fConsent').checked=!!d.consent;$('#fName').dispatchEvent(new Event('input'))}
+function renderOrg(rows){$('#orgTable').innerHTML=`<thead><tr><th>Osoba</th><th>Kontakt</th><th>Grupa</th><th>Niedziela</th><th>Rower</th><th>Uwagi</th></tr></thead><tbody>`+(rows.length?rows.map(r=>`<tr><td>${esc(r.name||'')}</td><td class="small">${esc(r.email||'')}<br>${esc(r.phone||'')}</td><td>${esc(r.variant||'')}<br><span class="small">sob.: ${esc(r.satBack||'')}</span></td><td class="small">${esc(r.sunday||'')}</td><td class="small">${esc(r.ownBike||'')} / ${esc(r.trainBike||'')}</td><td class="small">${esc(r.limits||'')} ${esc(r.notes||'')}</td></tr>`).join(''):'<tr><td colspan="6">Brak zgłoszeń.</td></tr>')+'</tbody>'}
+function renderPub(rows){rows.sort((a,b)=>String(a.updatedAt||'').localeCompare(String(b.updatedAt||'')));$('#pubCount').textContent='('+rows.length+')';
+  $('#pubTable').innerHTML=`<thead><tr><th>#</th><th>Imię i nazwisko</th><th>Grupa</th><th>Sobota — powrót</th><th>Niedziela</th><th>Własny rower</th><th>Balia/sauna</th></tr></thead><tbody>`+(rows.length?rows.map((r,i)=>`<tr><td class="num">${i+1}</td><td>${esc(r.name||'')}</td><td>${esc(r.variant||'')}</td><td class="small">${esc(r.satBack||'')}</td><td class="small">${esc(r.sunday||'')}</td><td>${esc(r.ownBike||'')}</td><td>${esc(r.sauna||'')}</td></tr>`).join(''):'<tr><td colspan="7">Jeszcze nikt się nie zgłosił — bądź pierwsza!</td></tr>')+'</tbody>'}
+async function initCaps(){
+  if(!inViewer){$('#clPrint').hidden=false;$('#clPrint').onclick=()=>window.print();$('#clSave').hidden=false;$('#clSave').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([clText()],{type:'text/plain'}));a.download='dreptak-podlasie-checklista.txt';a.click()};
+    const AURL='https://claude.ai/artifact/PxpTrK2Du9YAzRfJw1Ub1h#zgloszenie';$('#regForm').hidden=true;
+    const s=$('#formStatus');s.className='alert';s.innerHTML=`<strong>Zgłoszenia zbieramy na stronie w claude.ai</strong><p class="small" style="margin:4px 0 10px">Tam zapisuje się formularz i lista „Kto jedzie”. Potrzebne jest darmowe konto claude.ai.</p><a class="btn" href="${AURL}" target="_blank" rel="noopener">Zgłoś się</a>`;
+    $('#pubTable').innerHTML=`<tbody><tr><td>Aktualna lista uczestniczek: <a href="${AURL}" target="_blank" rel="noopener">strona zgłoszeń</a>.</td></tr></tbody>`;return}
+  const dl=await claude.use('downloads');if(dl){$('#clSave').hidden=false;$('#clSave').onclick=async()=>{try{await dl.save({filename:'dreptak-podlasie-checklista.txt',data:clText()})}catch(e){}}}
+  const [db,user]=await Promise.all([claude.use('db'),claude.use('user')]);
+  if(!db||!user){fStatus('td','Zgłoszenia niedostępne w tym widoku','Baza działa po zalogowaniu do claude.ai na stronie udostępnionej z prawem „Contributor”. Nic nie zostało zapisane.');return}
+  let uid=null;try{uid=await user.id()}catch(e){}
+  if(!uid){fStatus('td','Nie udało się rozpoznać konta','Zaloguj się, aby wysłać zgłoszenie. Nic nie zostało zapisane.');return}
+  const ref=db.doc('zgloszenia/'+uid);
+  try{const s=await ref.get();const d=s.exists?s.data():null;if(d&&d.name){fillForm(d);fStatus('','Masz już zgłoszenie','Możesz je poprawić i wysłać ponownie.')}else fStatus('','Formularz połączony z bazą zgłoszeń','Po wysłaniu zobaczysz potwierdzenie zapisu.')}catch(e){fStatus('','Formularz połączony z bazą zgłoszeń','Po wysłaniu zobaczysz potwierdzenie zapisu.')}
+  $('#fSubmit').disabled=false;
+  $('#regForm').addEventListener('submit',async ev=>{ev.preventDefault();
+    for(const [s,l] of [['#fName','imię i nazwisko'],['#fEmail','e-mail']])if(!$(s).value.trim()){$('#fMsg').textContent='Uzupełnij pole: '+l+'.';$(s).focus();return}
+    if(!/^\S+@\S+\.\S+$/.test($('#fEmail').value.trim())){$('#fMsg').textContent='Podaj poprawny adres e-mail.';return}
+    if(!$('#fConsent').checked){$('#fMsg').textContent='Zaznacz zgodę na przetwarzanie danych.';return}
+    $('#fSubmit').disabled=true;$('#fMsg').textContent='Zapisuję…';
+    try{const fd=readForm();await ref.set(fd);await db.doc('lista/'+uid).set({name:fd.name,variant:fd.variant,satBack:fd.satBack,sunday:fd.sunday,ownBike:fd.ownBike,sauna:fd.sauna,updatedAt:fd.updatedAt});$('#fMsg').innerHTML='<b>Zgłoszenie zapisane.</b> Organizatorka odezwie się z kwotą zaliczki po wyborze noclegu.'}catch(e){$('#fMsg').textContent='Nie udało się zapisać zgłoszenia ('+(e&&e.code||'błąd')+'). Spróbuj ponownie.'}
+    $('#fSubmit').disabled=false});
+  try{db.collection('lista').onSnapshot(qs=>renderPub(qs.docs.map(d=>d.data())),()=>{})}catch(e){}
+  try{if(await user.isOwner()){$('#orgPanel').hidden=false;db.collection('zgloszenia').onSnapshot(qs=>renderOrg(qs.docs.map(d=>d.data())),()=>{})}}catch(e){}
+}
+
+/* ---------- Hero: zielony szlak przez las (canvas) ---------- */
+function drawHero(){const c=$('#heroCanvas'),r=c.getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1);c.width=r.width*dpr;c.height=r.height*dpr;const g=c.getContext('2d');g.scale(dpr,dpr);const W=r.width,H=r.height;
+  const sky=g.createLinearGradient(0,0,0,H);sky.addColorStop(0,'#203d2e');sky.addColorStop(.5,'#4d6a4c');sky.addColorStop(.72,'#c9874f');sky.addColorStop(1,'#132a1d');g.fillStyle=sky;g.fillRect(0,0,W,H);
+  let seed=11;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
+  g.fillStyle='rgba(240,225,200,.16)';g.fillRect(0,H*.58,W,H*.08);
+  [[.6,'#3a5a42',.5],[.68,'#2a4a34',.68],[.78,'#1d3a28',.85],[.9,'#13281c',1]].forEach(([y,col,s])=>{g.fillStyle=col;for(let x=-20;x<W+20;x+=13*s+rnd()*10){const h=(40+rnd()*60)*s*(H/440),by=H*y;g.beginPath();g.moveTo(x,by-h);g.lineTo(x-10*s,by);g.lineTo(x+10*s,by);g.closePath();g.fill()}g.fillRect(0,H*y,W,H)});
+  // zielony szlak — znak na pniu i ścieżka
+  g.strokeStyle='rgba(240,230,210,.35)';g.lineWidth=2;g.setLineDash([10,8]);g.beginPath();g.moveTo(-10,H*.97);g.bezierCurveTo(W*.35,H*.86,W*.55,H*.98,W+10,H*.88);g.stroke();g.setLineDash([]);
+  const tx=W*.86,ty=H*.42;g.fillStyle='#0f2016';g.fillRect(tx-9,ty,18,H-ty);g.fillStyle='#fff';g.fillRect(tx-8,ty+30,16,14);g.fillStyle='#2f8a46';g.fillRect(tx-8,ty+34.5,16,5);
+  // kopuła cerkwi
+  const cx=W*.7,cy=H*.6;g.fillStyle='#13281c';g.fillRect(cx-12,cy-26,24,34);g.beginPath();g.ellipse(cx,cy-30,10,12,0,0,Math.PI*2);g.fill();g.fillRect(cx-1,cy-56,2,16);g.fillRect(cx-5,cy-51,10,2);
+  g.fillStyle='rgba(0,0,0,.22)';g.fillRect(0,0,W,H)}
+
+/* ---------- Start ---------- */
+renderRouteSeg();renderDays();renderAttr();renderStays();renderTrain();renderBudgetInputs();renderBudget();renderCL();
+try{initMap()}catch(e){console.warn(e)}
+setRoute('satLight');
+drawHero();addEventListener('resize',()=>{clearTimeout(window.__h);window.__h=setTimeout(drawHero,150)});
+initCaps();
+</script>
+
+</body>
+</html>
