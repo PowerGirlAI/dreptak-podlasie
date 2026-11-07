@@ -254,11 +254,13 @@ a{text-underline-offset:3px;text-decoration-thickness:1px}
 .ls-gallery img{width:100%;height:100%;object-fit:cover;display:block;max-width:100%}
 .shpin.food{border-color:#b05a2a}
 .shpin{width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid #2f7d4f;display:grid;place-items:center;font-size:12px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
-.wx-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
-@media (max-width:640px){.wx-grid{grid-template-columns:1fr}}
-.wx-day{display:grid;gap:3px;padding:12px;border:1px solid var(--b-line);border-radius:10px;font-size:.82rem}
-.wx-day b{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
-.wx-t{font:500 1.6rem/1.1 var(--f-display)}
+.wx-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.wx-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.wx-day{display:grid;justify-items:center;text-align:center;gap:2px;padding:10px 6px;border:1px solid var(--b-line);border-radius:10px;font-size:.76rem;line-height:1.3}
+.wx-day b{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+.wx-ic{font-size:1.5rem;line-height:1.2}
+.wx-t{font:500 1.35rem/1.1 var(--f-display);font-variant-numeric:tabular-nums}
+.wx-t small{font-size:.8em;opacity:.6}
 .lt-card{border-left:4px solid var(--c-light)}
 .lt-card .bigkm{color:#7fb08c}
 .lt-card,.light-card{border-color:rgba(143,194,157,.45);background:linear-gradient(180deg,rgba(79,125,92,.22),rgba(79,125,92,.08))}
@@ -414,16 +416,9 @@ footer a{color:var(--heather)}
       <div class="d" role="rowheader">Nd<span>22.11</span></div>
       <div class="lt"><div class="km" data-km="sun3a">≈ 37 km</div><span class="small">Spacer ścieżką przyrodniczą, rowerem do Drohiczyna: Góra Zamkowa, katedra, widok na Bug, obiad. Potem na stację Siemiatycze i TLK 15:41 do Warszawy.</span></div>
     </div>
-    <div class="card wx" style="margin-top:18px">
-      <div class="tag">Prognoza pogody · Siemiatycze <span class="st or">prognoza długoterminowa</span></div>
-      <h3>Pogoda na weekend</h3>
-      <div class="wx-grid" id="wxGrid">
-        <div class="wx-day"><b>Pt 20.11</b><span class="wx-t">6° / −1°</span><span>chmury i słońce</span><span>wiatr SW 15 km/h, porywy 28</span><span>opady 25%, 0 mm</span></div>
-        <div class="wx-day"><b>Sob 21.11</b><span class="wx-t">5° / −3°</span><span>rosnące zachmurzenie</span><span>wiatr ENE 4 km/h, porywy 6</span><span>opady 25%, 0 mm</span></div>
-        <div class="wx-day"><b>Nd 22.11</b><span class="wx-t">2° max</span><span>pochmurno, możliwy śnieg</span><span>wiatr S 15 km/h</span><span>śnieg ok. 1,5 cm (Interia)</span></div>
-      </div>
-      <p class="small muted" style="margin-top:10px">Źródła: AccuWeather (pt, sob) i Interia Pogoda (nd), stan 7.11.2026 — prognoza na 2 tygodnie naprzód jest mało pewna. Noce z przymrozkiem: szron na mostkach i asfalcie rano, rękawiczki i ochraniacze na buty. Sobota zapowiada się najspokojniej (słaby wiatr) — dobry dzień na najdłuższy odcinek.</p>
-      <p class="small" id="wxLive" style="margin-top:6px"></p>
+    <div class="card wx" style="margin-top:18px;padding:16px 18px">
+      <div class="wx-head"><span class="tag" style="margin:0">Pogoda · Siemiatycze</span><span class="small muted" id="wxSrc">Open-Meteo, odświeża się przy otwarciu</span></div>
+      <div class="wx-grid" id="wxLive"><div class="small muted">Wczytuję prognozę…</div></div>
     </div>
     <div class="alerts">
       <div class="alert"><strong>Dzień ma 8,5 h <span class="st ok">wyliczone</span></strong><p class="small">21.11: wschód 06:58, zachód 15:28. Pobudka najwcześniej 7:00. Dojazdy do domków po zmroku (piątek, sobota) — przednie i tylne światło obowiązkowo.</p></div>
@@ -881,11 +876,13 @@ function placeShops(){if(!SHOPS||!layers.shop)return;const ks=Object.keys(ROUTES
     L.marker(x.c,{icon:L.divIcon({className:'',html:`<div class="shpin${x.food?' food':''}">${ic}</div>`,iconSize:[24,24],iconAnchor:[12,12],popupAnchor:[0,-12]}),title:nm,zIndexOffset:300}).bindTooltip(ic+' '+nm).bindPopup(`<div class="tag">${kind} · ${fmt(x.d)} km od domków (w linii prostej)</div><b>${esc(nm)}</b>${adr?`<div class="small">${esc(adr)}</div>`:''}${t.phone?`<div class="small"><a href="tel:${esc(t.phone)}">${esc(t.phone)}</a></div>`:''}<div class="small" style="margin-top:6px"><b>Godziny (OSM):</b><br>${oh}</div><div class="small muted" style="margin-top:6px">${note}</div><p style="margin-top:6px"><a href="${gmaps(nm+' '+(adr||t['addr:city']||''))}" target="_blank" rel="noopener">Google Maps</a></p>`).addTo(x.food?layers.food:layers.shop)})}
 
 /* ---------- Prognoza na żywo (Open-Meteo, bez klucza) ---------- */
+const WXC=c=>c===0?['☀️','słonecznie']:c<=2?['🌤️','przejaśnienia']:c===3?['☁️','pochmurno']:c<=48?['🌫️','mgła']:c<=57?['🌦️','mżawka']:c<=67?['🌧️','deszcz']:c<=77?['🌨️','śnieg']:c<=82?['🌧️','przelotny deszcz']:c<=86?['🌨️','przelotny śnieg']:['⛈️','burza'];
 async function loadWeather(){const el=$('#wxLive');if(!el)return;try{
-  const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.3643&longitude=22.845&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max&timezone=Europe%2FWarsaw&start_date=2026-11-20&end_date=2026-11-22');
-  if(!r.ok)throw 0;const j=await r.json(),d=j.daily;if(!d||!d.time)throw 0;const n=['Pt','Sob','Nd'];
-  el.innerHTML='<b>Aktualnie wg Open-Meteo:</b> '+d.time.map((t,i)=>`${n[i]} ${Math.round(d.temperature_2m_max[i])}° / ${Math.round(d.temperature_2m_min[i])}°, opady ${fmt(d.precipitation_sum[i])} mm${d.snowfall_sum[i]>0?' (śnieg '+fmt(d.snowfall_sum[i])+' cm)':''}, wiatr do ${Math.round(d.wind_speed_10m_max[i])} km/h`).join(' · ')+' <span class="st or">aktualizuje się przy każdym otwarciu</span>';
-}catch(e){el.textContent=''}}
+  const r=await fetch('https://api.open-meteo.com/v1/forecast?latitude=52.3643&longitude=22.845&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,snowfall_sum,wind_speed_10m_max&timezone=Europe%2FWarsaw&start_date=2026-11-20&end_date=2026-11-22');
+  if(!r.ok)throw 0;const j=await r.json(),d=j.daily;if(!d||!d.time)throw 0;const n=['Pt 20.11','Sob 21.11','Nd 22.11'];
+  el.innerHTML=d.time.map((t,i)=>{const [ic,lb]=WXC(d.weather_code?d.weather_code[i]:3),sn=d.snowfall_sum[i],pr=d.precipitation_sum[i];
+    return `<div class="wx-day"><b>${n[i]}</b><span class="wx-ic" aria-hidden="true">${ic}</span><span class="wx-t">${Math.round(d.temperature_2m_max[i])}° <small>/ ${Math.round(d.temperature_2m_min[i])}°</small></span><span>${lb}</span><span class="muted">💨 ${Math.round(d.wind_speed_10m_max[i])} km/h</span><span class="muted">${sn>0?'❄ '+fmt(sn)+' cm':'💧 '+fmt(pr)+' mm'}</span></div>`}).join('');
+}catch(e){el.innerHTML='<div class="small muted">Prognoza chwilowo niedostępna — sprawdź bliżej wyjazdu.</div>'}}
 loadWeather();
 
 /* ---------- Najbliższy punkt drogi nr 19 przy domkach (OpenStreetMap / Overpass) ---------- */
