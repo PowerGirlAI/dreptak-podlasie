@@ -252,6 +252,10 @@ a{text-underline-offset:3px;text-decoration-thickness:1px}
 .ls-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:10px}
 .ls-gallery a{display:block;aspect-ratio:4/3;overflow:hidden;border-radius:10px;background:var(--b-bg)}
 .ls-gallery img{width:100%;height:100%;object-fit:cover;display:block;max-width:100%}
+.navbox{margin-top:10px;padding-top:10px;border-top:1px solid var(--b-line)}
+.navbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.navbtn{display:inline-flex;align-items:center;padding:9px 14px;border-radius:999px;background:#1a73e8;color:#fff!important;text-decoration:none!important;font-weight:600;font-size:.82rem}
+.navbtn:hover{background:#1558b0}
 .shpin.food{border-color:#b05a2a}
 .shpin{width:24px;height:24px;border-radius:50%;background:#fff;border:2px solid #2f7d4f;display:grid;place-items:center;font-size:12px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
 .wx-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
@@ -823,7 +827,7 @@ function renderRouteSeg(){$('#routeSeg').innerHTML=ROUTE_ORDER.map(k=>`<button t
 $('#routeSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setRoute(b.dataset.r)});
 function renderPoints(){const r=curR();
   if(r.all){$('#pointList').innerHTML=`<div class="card small"><b>Wszystkie trasy</b><br>Kliknij trasę na liście lub na mapie, aby zobaczyć jej punkty.</div>`+ROUTE_ORDER.filter(k=>k!=='all').map(k=>{const x=ROUTES[k];return `<button class="pt" type="button" data-r="${k}"><span class="n" style="background:${x.hex}"></span><span><b>${esc(x.label)}</b><span class="meta num">${rkm(k)!=null?'ok. '+fmt(rkm(k))+' km':'km do wyliczenia'} · ${esc(x.diff)}</span></span></button>`}).join('');return}
-  $('#pointList').innerHTML=`<div class="card small"><b>${esc(r.label)}</b> · ${esc(r.diff)}<br>${esc(r.src)}<br><a href="${gdir(r)}" target="_blank" rel="noopener">Otwórz trasę w Mapach Google (rower) ↗</a> — tam zobaczysz km wg Google</div>`+r.pts.map((x,i)=>{const s=segInfo(r,i);
+  $('#pointList').innerHTML=`<div class="card small"><b>${esc(r.label)}</b> · ${esc(r.diff)}<br>${esc(r.src)}${navBox(r)}</div>`+r.pts.map((x,i)=>{const s=segInfo(r,i);
    return `<button class="pt" type="button" data-i="${i}"><span class="n" style="background:${r.hex}">${i+1}</span><span><b>${esc(P[x.p].n)}${x.ret?' (powrót)':''}</b><span class="meta num">${s.km!=null?fmt(s.km)+' km':'km do wyliczenia'}${s.d!=null&&i?' · +'+fmt(s.d)+' km':''}${x.visit?' · postój '+x.visit+' min':''}</span>${x.kmSt==='td'?' <span class="st td">do sprawdzenia</span>':''}</span></button>`}).join('')}
 $('#pointList').addEventListener('click',e=>{const b=e.target.closest('.pt');if(!b)return;if(b.dataset.r){setRoute(b.dataset.r);return}const i=+b.dataset.i,r=curR();
   if(map){map.setView(P[r.pts[i].p].c,12);routeLayer.eachLayer(l=>{if(l.options&&l.options.title===(r.pts.findIndex(x=>x.p===r.pts[i].p)+1)+'. '+P[r.pts[i].p].n)l.openPopup()})}else openDlg(P[r.pts[i].p].n,'Punkt '+(i+1),pointPopup(i))});
@@ -838,6 +842,11 @@ function renderStats(){const r=curR();
    .map(([v,l])=>`<div class="stat"><div class="v" style="font-size:${v.length>9?'1.15rem':'1.7rem'};color:${r.hex}">${esc(v)}</div><div class="l">${l}</div></div>`).join('')}
 function setRoute(k){cur=k;renderRouteSeg();renderPoints();try{drawRoute()}catch(e){console.warn(e)}renderStats()}
 const wpts=r=>r.pts.map(x=>x.p).filter((p,i,a)=>!i||p!==a[i-1]);
+/* nawigacja w aplikacji Google Maps: odcinki po max 2 punkty pośrednie (limit linków na telefonie) */
+const gseg=w=>'https://www.google.com/maps/dir/?api=1&travelmode=bicycling&origin='+w[0]+'&destination='+w[w.length-1]+(w.length>2?'&waypoints='+w.slice(1,-1).join('|'):'');
+const shortN=p=>P[p].n.split(' — ')[0];
+function navBox(r){const ps=wpts(r);if(ps.length<2)return '';const segs=[];for(let i=0;i<ps.length-1;i+=3)segs.push(ps.slice(i,Math.min(i+4,ps.length)));
+  return `<div class="navbox"><b>Nawiguj w Google Maps</b>${segs.length>1?' — po kolei, odcinek po odcinku':''}<div class="navbtns">`+segs.map((g,i)=>`<a class="navbtn" href="${gseg(g.map(p=>P[p].c.join(',')))}" target="_blank" rel="noopener">${segs.length>1?(i+1)+'. ':''}${esc(shortN(g[0]))} → ${esc(shortN(g[g.length-1]))} ▶</a>`).join('')+`</div><div class="muted" style="font-size:.78rem;margin-top:6px">Google wyznacza drogę po swojemu przez te same punkty — km mogą się różnić. Przy granicy jedziemy wg znaków szlaku. Pobierz wcześniej mapę offline okolicy.</div></div>`}
 const gdir=r=>{const w=wpts(r).map(p=>P[p].c.join(','));return 'https://www.google.com/maps/dir/?api=1&travelmode=bicycling&origin='+w[0]+'&destination='+w[w.length-1]+(w.length>2?'&waypoints='+w.slice(1,-1).join('|'):'')};
 const RKEY='podlasie-route-v6';let rCache={};try{rCache=JSON.parse(localStorage.getItem(RKEY)||'{}')}catch(e){}
 async function tryRouting(key,coords,type){
