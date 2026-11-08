@@ -243,7 +243,7 @@ a{text-underline-offset:3px;text-decoration-thickness:1px}
 .leaflet-tooltip.rail-lbl{background:#1f2a33;color:#fff;border:0;font:600 11px/1 var(--f-body);padding:5px 7px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
 .leaflet-tooltip.rail-lbl:before{display:none}
 .apin{width:26px;height:26px;border-radius:6px;background:#7a3f8f;border:2px solid #fff;color:#fff;display:grid;place-items:center;font:700 12px/1 var(--f-body);box-shadow:0 2px 6px rgba(0,0,0,.4)}
-.apin{position:relative}.coin{position:absolute;right:-9px;top:-9px;width:17px;height:17px;border-radius:50%;background:#e2b24a;color:#3a2a06;border:1.5px solid #fff;font:700 8px/14px var(--f-body);text-align:center;font-style:normal}
+.apin{position:relative}.apin.pink{background:#e0218a}.coin{position:absolute;right:-9px;top:-9px;width:17px;height:17px;border-radius:50%;background:#e2b24a;color:#3a2a06;border:1.5px solid #fff;font:700 8px/14px var(--f-body);text-align:center;font-style:normal}
 .paid{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:999px;background:rgba(226,178,74,.18);color:#c99a2e;font:600 .62rem/1.4 var(--f-body);letter-spacing:.04em;vertical-align:.25em}
 .spin,.snum{display:inline-flex;align-items:center;justify-content:center;gap:2px;background:#c9a55c;color:#2a2008;font:700 12px/1 var(--f-body);border-radius:12px}
 .spin{width:34px;height:24px;border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4)}
@@ -662,6 +662,7 @@ function clock(min){min=Math.round(min);return Math.floor(min/60)+':'+String(min
 const P={
   czeremcha:{n:'Czeremcha — stacja',c:[52.5165,23.3460],q:'Stacja kolejowa Czeremcha'},
   zubacze:{n:'Zubacze — drewniana cerkiew',c:[52.4800,23.3100],q:'Cerkiew Zubacze'},
+  skolim:{n:'Różowa stacja SKOLIM',c:[52.5250,23.3417],q:'Stacja paliw SKOLIM Czeremcha'},
   klukowicze:{n:'Klukowicze',c:[52.4300,23.2550],q:'Klukowicze, gmina Nurzec-Stacja'},
   tokaryc:{n:'Tokary — cerkiew',c:[52.4050,23.2450],q:'Cerkiew Tokary'},
   tokary:{n:'Tokary',c:[52.3950,23.2350],q:'Tokary, gmina Mielnik'},
@@ -707,7 +708,7 @@ const ROUTES={
     pts:[{p:'stacja',km:null,visit:0,surf:'—',info:'Przyjazd 21:13.'},{p:'laspokoj',km:null,visit:0,surf:'drogi lokalne',info:'Domki.'}]},
   sat2a:{label:'Sob · szlak do Czeremchy',color:'var(--c-light)',hex:'#4f7d5c',type:'bike',pace:14,km:null,est:60,diff:'łatwa–średnia',
     src:'Z domków przez Siemiatycze do Maćkowicz i dalej zielonym szlakiem do Czeremchy, z odbiciami do Góry Uszeście i w Mielniku (Góra Zamkowa, taras kopalni kredy). Powrót pociągiem REG 16:26 do Siemiatycz (16:54) i ok. 5 km do domków.',
-    pts:[{p:'laspokoj',km:null,visit:0,surf:'—',info:'Start 09:00.'},{p:'mackowicze',km:null,visit:10,surf:SURF,info:INFO.mackowicze},{p:'uszescie',km:null,visit:15,surf:'ścieżka, krótko pieszo',info:'Punkt widokowy na zakole Bugu.'},{p:'mielnik',km:null,visit:75,surf:SURF,info:'Ciepły posiłek. Góra Zamkowa i taras kopalni kredy.'},{p:'tokaryc',km:null,visit:10,surf:SURF,info:'Cerkiew. Odcinek przy granicy — tylko szlakiem.'},{p:'zubacze',km:null,visit:15,surf:SURF,info:INFO.zubacze},{p:'czeremcha',km:null,visit:30,surf:SURF,info:'Kawa, ciepły posiłek. Pociąg REG 16:26 do Siemiatycz (16:54).'}]},
+    pts:[{p:'laspokoj',km:null,visit:0,surf:'—',info:'Start 09:00.'},{p:'mackowicze',km:null,visit:10,surf:SURF,info:INFO.mackowicze},{p:'uszescie',km:null,visit:15,surf:'ścieżka, krótko pieszo',info:'Punkt widokowy na zakole Bugu.'},{p:'mielnik',km:null,visit:75,surf:SURF,info:'Ciepły posiłek. Góra Zamkowa i taras kopalni kredy.'},{p:'tokaryc',km:null,visit:10,surf:SURF,info:'Cerkiew. Odcinek przy granicy — tylko szlakiem.'},{p:'zubacze',km:null,visit:15,surf:SURF,info:INFO.zubacze},{p:'skolim',km:null,visit:30,surf:'asfalt',info:'Różowa stacja Skolima: hot dog, kawa, ciepło przed pociągiem.'},{p:'czeremcha',km:null,visit:30,surf:SURF,info:'Kawa, ciepły posiłek. Pociąg REG 16:26 do Siemiatycz (16:54).'}]},
   sun3a:{label:'Nd · Drohiczyn',color:'var(--c-sun)',hex:'#3e6e8e',type:'bike',pace:14,km:null,est:37,diff:'łatwa',
     src:'Po spacerze i wymeldowaniu: rowerem do Drohiczyna (Góra Zamkowa, katedra, widok na dolinę Bugu, obiad), potem na stację Siemiatycze i TLK 15:41 do Warszawy (17:20). Bagaż w sakwach.',
     pts:[{p:'laspokoj',km:null,visit:0,surf:'—',info:'Start 10:00 po wymeldowaniu.'},{p:'drohiczyn',km:null,visit:120,surf:'drogi lokalne',info:'Góra Zamkowa, katedra, klasztory, punkt widokowy nad Bugiem. Obiad.'},{p:'stacja',km:null,visit:0,surf:'drogi lokalne',info:'TLK 1112 o 15:41 do Warszawy Wschodniej.'}]}
@@ -758,7 +759,7 @@ function initMap(){
   const onRoute=new Set(Object.values(ROUTES).flatMap(r=>r.pts.map(x=>x.p))),seenA={};
   ATTR.forEach(a=>{const k=seenA[a.p]=(seenA[a.p]||0)+1,off=onRoute.has(a.p)||k>1,ang=-0.9+(k-1)*0.95;
     const dx=off?Math.round(30*Math.cos(ang)):0,dy=off?Math.round(30*Math.sin(ang)):0,L1=ALET(a.id);
-    L.marker(P[a.p].c,{icon:L.divIcon({className:'',html:`<div class="apin">${L1}${PAID(a)?'<i class="coin">zł</i>':''}</div>`,iconSize:[26,26],iconAnchor:[13-dx,13-dy],popupAnchor:[dx,dy-12],tooltipAnchor:[dx+12,dy]}),title:L1+'. '+a.n,zIndexOffset:1200}).bindTooltip(L1+'. '+a.n).bindPopup(()=>attrPopup(a)).addTo(layers.attr)});
+    L.marker(P[a.p].c,{icon:L.divIcon({className:'',html:`<div class="apin${a.t==='smaki'?' pink':''}">${L1}${PAID(a)?'<i class="coin">zł</i>':''}</div>`,iconSize:[26,26],iconAnchor:[13-dx,13-dy],popupAnchor:[dx,dy-12],tooltipAnchor:[dx+12,dy]}),title:L1+'. '+a.n,zIndexOffset:1200}).bindTooltip(L1+'. '+a.n).bindPopup(()=>attrPopup(a)).addTo(layers.attr)});
   const box=$('#layerToggles');
   box.innerHTML=[['route','Wybrana trasa'],['attr','Atrakcje'],['stay','Domki'],['shop','Sklepy'],['food','Knajpy'],['rail','Kolej']].map(([k,l])=>`<label><input type="checkbox" data-layer="${k}" checked> ${l}</label>`).join('');
   box.addEventListener('change',e=>{const k=e.target.dataset.layer;if(!k)return;
@@ -842,13 +843,13 @@ function renderStats(){const r=curR();
    .map(([v,l])=>`<div class="stat"><div class="v" style="font-size:${v.length>9?'1.15rem':'1.7rem'};color:${r.hex}">${esc(v)}</div><div class="l">${l}</div></div>`).join('')}
 function setRoute(k){cur=k;renderRouteSeg();renderPoints();try{drawRoute()}catch(e){console.warn(e)}renderStats()}
 const wpts=r=>r.pts.map(x=>x.p).filter((p,i,a)=>!i||p!==a[i-1]);
-/* nawigacja w aplikacji Google Maps: odcinki po max 2 punkty pośrednie (limit linków na telefonie) */
+/* nawigacja w aplikacji Google Maps: odcinki po max 3 punkty pośrednie (limit linków na telefonie) */
 const gseg=w=>'https://www.google.com/maps/dir/?api=1&travelmode=bicycling&origin='+w[0]+'&destination='+w[w.length-1]+(w.length>2?'&waypoints='+w.slice(1,-1).join('|'):'');
 const shortN=p=>P[p].n.split(' — ')[0];
-function navBox(r){const ps=wpts(r);if(ps.length<2)return '';const segs=[];for(let i=0;i<ps.length-1;i+=3)segs.push(ps.slice(i,Math.min(i+4,ps.length)));
+function navBox(r){const ps=wpts(r);if(ps.length<2)return '';const segs=[];for(let i=0;i<ps.length-1;i+=4)segs.push(ps.slice(i,Math.min(i+5,ps.length)));
   return `<div class="navbox"><b>Nawiguj w Google Maps</b>${segs.length>1?' — po kolei, odcinek po odcinku':''}<div class="navbtns">`+segs.map((g,i)=>`<a class="navbtn" style="background:${r.hex}" href="${gseg(g.map(p=>P[p].c.join(',')))}" target="_blank" rel="noopener">${segs.length>1?(i+1)+'. ':''}${esc(shortN(g[0]))} → ${esc(shortN(g[g.length-1]))} ▶</a>`).join('')+`</div><div class="muted" style="font-size:.78rem;margin-top:6px">Google wyznacza drogę po swojemu przez te same punkty — km mogą się różnić. Przy granicy jedziemy wg znaków szlaku. Pobierz wcześniej mapę offline okolicy.</div></div>`}
 const gdir=r=>{const w=wpts(r).map(p=>P[p].c.join(','));return 'https://www.google.com/maps/dir/?api=1&travelmode=bicycling&origin='+w[0]+'&destination='+w[w.length-1]+(w.length>2?'&waypoints='+w.slice(1,-1).join('|'):'')};
-const RKEY='podlasie-route-v6';let rCache={};try{rCache=JSON.parse(localStorage.getItem(RKEY)||'{}')}catch(e){}
+const RKEY='podlasie-route-v7';let rCache={};try{rCache=JSON.parse(localStorage.getItem(RKEY)||'{}')}catch(e){}
 async function tryRouting(key,coords,type){
   if(key==='sat2a'&&!window.__dk19ok)return;
   if(liveKm[key]!==undefined)return; liveKm[key]=null;
@@ -920,7 +921,7 @@ let grp='light';
 const DAYS={
  light:[
   {n:'Piątek',d:'20 listopada · 1a lub 1b',c:'var(--mk-yellow)',tl:[['1a','Grupa poranna:'],['10:24','TLK 1012 z Warszawy Wschodniej (rower: rezerwacja 11,90 zł).'],['11:58','Siemiatycze. Start rowerem ze stacji.'],['13:00','Święta Góra Grabarka (30 min).'],['14:30','Siemiatycze: obiad, kościół, synagoga, sfinksy. Zakupy.'],['16:30','Do domków, ok. 8 km z lampkami (zmrok 15:28).'],['17:00','Sauna i kominek (w cenie), balia za dopłatą.'],['1b','Grupa wieczorna:'],['19:38','IC 1016 z Warszawy Wschodniej (miejsce na rower sprawdź przy zakupie).'],['21:13','Siemiatycze. Ok. 5 km rowerem do domków, po ciemku.']]},
-  {n:'Sobota',d:'21 listopada · {sat2a}',c:'var(--c-light)',tl:[['07:30','Pobudka, śniadanie.'],['09:00','Start z domków przez Siemiatycze do Maćkowicz, dalej zielonym szlakiem: most kolejowy w Olendrach (z zewnątrz).'],['10:15','Góra Uszeście — punkt widokowy (15 min).'],['10:45','Mielnik: Góra Zamkowa, taras kopalni kredy, ciepły posiłek (ok. 75 min).'],['13:00','Adamowo, Tokary — cerkiew (10 min). Przy granicy tylko szlakiem.'],['14:15','Zubacze — drewniana cerkiew (15 min).'],['15:30','Czeremcha. Kawa, ciepły posiłek (zmrok ok. 15:28 — lampki).'],['16:26','REG 10482 → Siemiatycze 16:54 (rower 8,50 zł).'],['17:20','Domki: sauna, balia, kolacja.']]},
+  {n:'Sobota',d:'21 listopada · {sat2a}',c:'var(--c-light)',tl:[['07:30','Pobudka, śniadanie.'],['09:00','Start z domków przez Siemiatycze do Maćkowicz, dalej zielonym szlakiem: most kolejowy w Olendrach (z zewnątrz).'],['10:15','Góra Uszeście — punkt widokowy (15 min).'],['10:45','Mielnik: Góra Zamkowa, taras kopalni kredy, ciepły posiłek (ok. 75 min).'],['13:00','Adamowo, Tokary — cerkiew (10 min). Przy granicy tylko szlakiem.'],['14:15','Zubacze — drewniana cerkiew (15 min).'],['15:30','Czeremcha-Wieś: różowa stacja SKOLIM — hot dog, kawa, ogrzanie się (zmrok ok. 15:28 — lampki). Potem ok. 1 km na stację.'],['16:26','REG 10482 → Siemiatycze 16:54 (rower 8,50 zł).'],['17:20','Domki: sauna, balia, kolacja.']]},
   {n:'Niedziela',d:'22 listopada · Drohiczyn · {sun3a}',c:'var(--c-sun)',tl:[['08:00','Śniadanie.'],['09:00','Spacer ścieżką przyrodniczą w Wólce Nadbużnej.'],['09:45','Pakowanie do sakw, wymeldowanie (godzina do ustalenia).'],['10:00','Rowerem do Drohiczyna.'],['11:15','Drohiczyn: Góra Zamkowa, katedra, klasztory, widok na Bug. Obiad.'],['13:30','Drohiczyn → stacja Siemiatycze.'],['15:41','TLK 1112 do Warszawy Wschodniej (17:20).']]}
  ]};
 DAYS.hard=DAYS.light;
@@ -940,15 +941,16 @@ const ATTR=[
   {id:'muzeum',www:[['Facebook muzeum','https://www.facebook.com/p/Muzeum-Kolejnictwa-w-Czeremsze-100057645241122/'],['Polska.travel (POT)','https://www.polska.travel/rit/muzeum-kolejnictwa-w-czeremsze/'],['GOK Czeremcha','https://gok.czeremcha.pl/'],['czeremcha.pl — o muzeum','https://www.czeremcha.pl/index.php?option=com_content&view=article&id=1736:szynobus-sn81-001-muzeum-kolejnictwa-w-czeremsze&catid=118&Itemid=862']],addr:'ul. 1 Maja 87, Czeremcha',p:'czeremcha',pin:true,km:'0',t:'muzea',n:'Muzeum Kolejnictwa w Czeremsze',d:'Pamiątki dawnego węzła kolejowego, który przed wojną łączył wschód Polski z centrum.',visit:60,price:'do sprawdzenia',hours:'do sprawdzenia',src:'komoot, wprost.pl'},
   {id:'uszescie',p:'uszescie',km:'≈ 41',t:'widoki',n:'Rezerwat Góra Uszeście',d:'Stromy stok doliny Bugu z murawami kserotermicznymi tuż za Mielnikiem. Punkt widokowy na krawędzi ok. 30-metrowej skarpy nad zakolem rzeki.',visit:20,price:'bezpłatnie',hours:'teren otwarty, tylko wyznaczone ścieżki',src:'komoot, hajnowka.pl'},
   {id:'grabarka',www:[['grabarka.pl','http://www.grabarka.pl/'],['Portal turystyczny powiatu','https://podlasie.siemiatycze.pl/en/351-siematycze-orthodox-monastery-complex-in-grabarka']],tel:'+48 85 655 00 10',p:'grabarka',maps:'https://maps.app.goo.gl/s3xwKjdoV6Mk2hTs7',km:'Pt 1a',t:'cerkwie',n:'Święta Góra Grabarka',d:'Najważniejsze sanktuarium prawosławne w Polsce: cerkiew, żeński monaster, tysiące krzyży i cudowne źródełko. Na piątkowej pętli 1a ze stacji Siemiatycze. W cerkwi nie fotografujemy; obowiązuje skromny strój.',visit:45,price:'bezpłatnie (ofiara mile widziana)',hours:'cerkiew: pn–pt 10–17, sob 11–17, nd 13–17 (serwis nieoficjalny)',src:'GreenVelo, nocowanie.pl'},
+  {id:'skolim',www:[['Google Maps','https://www.google.com/maps/search/?api=1&query=Stacja+paliw+SKOLIM+Czeremcha']],p:'skolim',km:'ok. 1 od stacji Czeremcha',t:'smaki',n:'Różowa stacja SKOLIM',d:'Pierwsza stacja paliw muzyka Skolima — cała w różu, z różową myjnią (różowa piana). Odwiedzający chwalą tanie hot dogi i kawę. Idealny przystanek na rozgrzewkę przed sobotnim pociągiem z Czeremchy. Położenie na mapie orientacyjne (Czeremcha-Wieś).',visit:30,price:'wstęp bezpłatnie; hot dog i kawa — ceny na miejscu',hours:'wg Google Maps czynna do 23:45 — do sprawdzenia na 21.11',src:'Google Maps, Interia'},
   {id:'drohiczyn',www:[['Wikipedia','https://pl.wikipedia.org/wiki/Drohiczyn'],['Portal turystyczny powiatu','https://podlasie.siemiatycze.pl/']],p:'drohiczyn',km:'—',t:'miasta',n:'Drohiczyn',d:'Dawna stolica Podlasia na wysokiej skarpie nad Bugiem: Góra Zamkowa (grodzisko z widokiem na dolinę rzeki), katedra Trójcy Przenajświętszej, zespoły klasztorne franciszkanów, benedyktynek i jezuitów, rynek. Niedzielny cel wycieczki.',visit:90,price:'bezpłatnie z zewnątrz',hours:'teren otwarty; wnętrza kościołów i Muzeum Diecezjalne — do sprawdzenia',src:'Wikipedia'},
 ];
-const ACC={cerkwie:'var(--mk-blue)',widoki:'var(--mk-green)',muzea:'var(--mk-yellow)',miasta:'var(--mk-red)'};
+const ACC={smaki:'#e0218a',cerkwie:'var(--mk-blue)',widoki:'var(--mk-green)',muzea:'var(--mk-yellow)',miasta:'var(--mk-red)'};
 let attrF='all';
 function attrPopup(a){return `<div class="tag">${esc(a.t)} · km ${esc(a.km)}</div><b>${ALET(a.id)}. ${esc(a.n)}${PAID(a)?' 💰':''}</b><p class="small" style="margin:4px 0">${esc(a.d)}</p><div class="small">⏱ ok. ${a.visit} min · 💳 ${esc(a.price)}<br>🕘 ${esc(a.hours)}</div><p style="margin-top:8px"><button class="btn small" type="button" onclick="attrDetails('${a.id}')">Szczegóły</button></p>`}
 const PAID=a=>!/bezpłatnie/.test(a.price);
 const ALET=id=>String.fromCharCode(65+ATTR.findIndex(x=>x.id===id));
 function renderAttr(){setTimeout(()=>fillPhotos($('#attrGrid')),0);
-  $('#attrFilters').innerHTML=[['all','Wszystkie'],['cerkwie','Cerkwie'],['widoki','Widoki'],['muzea','Muzea'],['miasta','Miasteczka']].map(([k,l])=>`<button type="button" data-f="${k}" aria-pressed="${k===attrF}">${l}</button>`).join('');
+  $('#attrFilters').innerHTML=[['all','Wszystkie'],['cerkwie','Cerkwie'],['widoki','Widoki'],['muzea','Muzea'],['miasta','Miasteczka'],['smaki','Smaki']].map(([k,l])=>`<button type="button" data-f="${k}" aria-pressed="${k===attrF}">${l}</button>`).join('');
   $('#attrGrid').innerHTML=ATTR.filter(a=>attrF==='all'||a.t===attrF).map(a=>{const sure=!/sprawdz|umówieniu/.test(a.hours+a.price);
    return `<article class="card attr" style="--acc:${ACC[a.t]}"><div class="top"><span class="tag">${esc(a.t)}</span><span class="kmchip">km ${esc(a.km)}</span></div><h3><span class="alet">${ALET(a.id)}</span>${esc(a.n)}${PAID(a)?' <span class="paid" title="Wstęp prawdopodobnie płatny — cena do sprawdzenia">💰 płatne?</span>':''}</h3><figure class="ph" data-ph="${a.id}"><span class="ph-empty">Wczytuję zdjęcie…</span></figure><p class="small">${esc(a.d)}</p>
    <dl class="kv"><dt>Zwiedzanie</dt><dd>ok. ${a.visit} min</dd><dt>Wstęp</dt><dd>${esc(a.price)}</dd><dt>Listopad</dt><dd>${esc(a.hours)} ${sure?ST.or:ST.td}</dd></dl>
